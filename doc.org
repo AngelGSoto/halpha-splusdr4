@@ -1,0 +1,15 @@
+#+TITLE: Ha emitters DR4
+* Find PNe in LAMOST
+:PROPERTIES:
+:ID:       
+:END:
+
+* Halpha emitters in DR4 S-PLUS
+
+I try to improve the aproach to select Ha emitters in S-PLUS.
+
++ Papers:
+ - [[https://ui.adsabs.harvard.edu/abs/2020A%26A...638A..18M/abstract][Monguio et al.]]
+ - [[https://ui.adsabs.harvard.edu/abs/2021MNRAS.505.1135F/abstract][Fratta et al.]]
+ - [[https://ui.adsabs.harvard.edu/abs/2008MNRAS.384.1277W/abstract][Witham et al.]]
+ - [[https://ui.adsabs.harvard.edu/abs/2006MNRAS.369..581W/abstract][Witahm et al.]]

@@ -124,7 +124,7 @@ C = 5.0 # Is the constant
 crite = C * np.sqrt(sigma_fit**2 + data_final["e(r - J0660)"]**2) + cy_predic
 mask_ha_emitter = data_final["r - J0660"] >= crite
 # Applying mask to the data
-data_ha_emitter = data_final[mask_ha_emitter]
+data_ha_emitter  = data_final[mask_ha_emitter]
 
 
 x_values = np.linspace(-5.0, 5.0)
@@ -189,7 +189,7 @@ with sns.axes_style('white'):
 # Firts merge the orignal table with resulting ones
 ##################################################################################################################
 data_orig_fin = df[mask_ha_emitter]
-data_merge = pd.merge(data_orig_fin, data_ha)
+data_merge = pd.merge(data_orig_fin, data_ha_emitter)
 
 df_file = "Halpha-{}.csv".format(file_.split('.cs')[0]) 
 data_merge.to_csv(df_file, index=False)
