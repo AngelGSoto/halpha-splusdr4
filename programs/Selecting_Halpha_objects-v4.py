@@ -95,7 +95,7 @@ print("Iterative fitted model with iterative sigma clipped ", fitted_line_)
 # Create DataFrame with the new colums
 colum1 = pd.DataFrame(cx, columns=['r - i'])
 colum2 = pd.DataFrame(cy, columns=['r - J0660'])
-data = pd.concat([df["RA"], df["DEC"], df["r_PStotal"], colum1, colum2], axis=1)
+data = pd.concat([df["RA"], df["DEC"], df["FWHM"], df["r_PStotal"], colum1, colum2], axis=1)
 
 # Estimating parameter for statistical
 cy_predic = fitted_line_(data['r - i'])
@@ -120,11 +120,11 @@ colum_rh = pd.DataFrame(ecy, columns=['e(r - J0660)'])
 data_final = pd.concat([data, colum_ri, colum_rh], axis=1)
 
 # Applying the criterion 
-C = 4.0 # Is the constant
+C = 5.0 # Is the constant
 crite = C * np.sqrt(sigma_fit**2 + data_final["e(r - J0660)"]**2) + cy_predic
-mask = data_final["r - J0660"] >= crite
+mask_ha_emitter = data_final["r - J0660"] >= crite
 # Applying mask to the data
-data_ha = data_final[mask]
+data_ha_emitter = data_final[mask_ha_emitter]
 
 
 x_values = np.linspace(-5.0, 5.0)
@@ -181,16 +181,19 @@ with sns.axes_style('white'):
     
     ax1.legend(loc = 'upper left', ncol=1, fontsize=25, title='Fitted models', title_fontsize=30)
     #ax1.set_aspect("equal")
-    file_save = "diagram-{}-sigma4.jpg".format(file_.split('.cs')[0])
+    file_save = "diagram-{}.jpg".format(file_.split('.cs')[0])
     plt.savefig(file_save)
 
 ##################################################################################################################
 # Save the resultanting table
 # Firts merge the orignal table with resulting ones
 ##################################################################################################################
-data_orig_fin = df[mask]
+data_orig_fin = df[mask_ha_emitter]
 data_merge = pd.merge(data_orig_fin, data_ha)
 
-asciifile = "Halpha-{}-sigma4.ecsv".format(file_.split('.cs')[0]) 
+df_file = "Halpha-{}.csv".format(file_.split('.cs')[0]) 
+data_merge.to_csv(df_file, index=False)
+
+asciifile = "Halpha-{}.ecsv".format(file_.split('.cs')[0]) 
 Table.from_pandas(data_merge).write(asciifile, format="ascii.ecsv", overwrite=True)
 
