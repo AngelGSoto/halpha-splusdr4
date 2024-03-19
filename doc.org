@@ -1,5 +1,4 @@
 #+TITLE: Ha emitters DR4
-* Find PNe in LAMOST
 :PROPERTIES:
 :ID:       
 :END:
@@ -14,7 +13,9 @@ I try to improve the aproach to select Ha emitters in S-PLUS.
  - [[https://ui.adsabs.harvard.edu/abs/2008MNRAS.384.1277W/abstract][Witham et al.]]
  - [[https://ui.adsabs.harvard.edu/abs/2006MNRAS.369..581W/abstract][Witahm et al.]]
 
-\section{Justification for Variance Estimation Formula in Selecting H$\alpha$ Emitters}
+** Choose the better selection criteria
+
+- \section{Justification for Variance Estimation Formula in Selecting H$\alpha$ Emitters}
 
 In our study, we employed a rigorous approach to identify H$\alpha$ emitters in astronomical datasets, 
 aiming to robustly isolate objects exhibiting H$\alpha$ emission features. Central to this process is 
@@ -57,3 +58,52 @@ We selected this variance estimation formula based on its ability to incorporate
 associated with the color indices, thereby ensuring a stringent and reliable criterion for identifying H$\alpha$ emitters. 
 By considering the intrinsic scatter in the data and the errors in color measurements, we aimed to minimize the 
 impact of noise and artifacts, facilitating the accurate identification of genuine H$\alpha$ emission features.
+
+*** Comparison of Approaches for Selecting Halpha Emitters
+
+In this section, we compare two different approaches for 
+selecting Halpha emitters based on color criteria.
+ Both approaches involve estimating the variance in color 
+measurements and identifying objects with color deviations 
+indicative of Halpha emission. We will discuss each approach and highlight their differences.
+
+*** Fratta et al. Approach:
+
+Fratta et al. proposed an approach to select Halpha emitters 
+based on color criteria. Their method involves estimating the 
+variance in color measurements and identifying objects with 
+significant deviations from the fitted model. The variance estimation 
+formula used by Fratta et al. is given by:
+
+#+BEGIN_LaTeX
+\[ \text{variance\_est} = \sigma_{\text{rms}}^2 + \text{error}^2(r - \text{Hα}) + m_{\text{fit}}^2 \cdot \text{error}^2(r - i) \]
+#+END_LaTeX
+
+In this formula, \( \sigma_{\text{rms}}^2 \) represents the intrinsic scatter, \( \text{error}(r - \text{Hα}) \) is 
+the error in the Halpha color measurement, and \( m_{\text{fit}}^2 \cdot \text{error}^2(r - i) \) accounts for 
+deviations in the reference color \( r - i \) influenced by the slope of the fitted line \( m_{\text{fit}} \).
+
+*** Recommended Approach:
+
+Alternatively, we propose a slightly different approach for selecting Halpha emitters. Our method 
+also involves estimating the variance in color measurements and identifying objects with significant 
+deviations from the fitted model. The variance estimation formula used in our approach is as follows:
+
+#+BEGIN_LaTeX
+\[ \text{variance\_est} = \sigma_{\text{fit}}^2 + m^2 \cdot \text{error}^2(r - i) + (1 - m)^2 \cdot \text{error}^2(r - \text{Hα}) \]
+#+END_LaTeX
+
+In this formula, \( \sigma_{\text{fit}}^2 \) represents the intrinsic scatter, \( \text{error}(r - i) \) is the error in the \( r - i \) 
+color measurement, and \( (1 - m)^2 \cdot \text{error}^2(r - \text{Hα}) \) accounts for deviations in the Halpha color influenced 
+by the slope of the fitted line \( m \).
+
+*** Comparison:
+
+The main difference between the two approaches lies in the treatment of the slope of the fitted line \( m \) or \( m_{\text{fit}} \). 
+In the Fratta et al. approach, the squared slope term \( m_{\text{fit}}^2 \) only affects the error in the reference color \( r - i \), 
+potentially emphasizing its influence over deviations in \( r - \text{Hα} \). On the other hand, in our recommended approach, the slope \( m \) 
+affects both terms in the variance estimation formula, providing a balanced consideration of its impact on color deviations.
+
+Ultimately, the choice between the two approaches depends on the specific characteristics of the data and the desired sensitivity to 
+deviations from the fitted model.
+
