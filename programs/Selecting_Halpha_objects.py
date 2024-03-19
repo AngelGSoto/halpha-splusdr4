@@ -52,6 +52,9 @@ parser.add_argument("--Ranger", type=str,
                     default="r < 16",
                     help="Base name of FITS image that contains the source")
 
+parser.add_argument("--varianceApproach", type=str, choices=["Maguio", "Yours", "Fratta"], default="Fratta",
+                    help="Approach for estimating variance")
+
 cmd_args = parser.parse_args()
 file_ = cmd_args.fileName + ".csv"
 
@@ -115,9 +118,13 @@ data_final = pd.concat([data, colum_ri, colum_rh], axis=1)
 # Applying the criterion 
 m = fitted_line_sigma_clip.slope  # Slope of the fit line
 C = 5.0  # Is the constant
-#variance_est = sigma_fit_sigma_clip**2 + m**2 * df["e_i_PStotal"]**2 + (1 - m)**2 * df["e_r_PStotal"]**2 + df["e_J0660_PStotal"]**2 #Maguio et al.
-#variance_est = sigma_fit_sigma_clip**2 + m**2 * data_final["e(r - i)"]**2 + (1 - m)**2 * data_final["e(r - J0660)"]**2 # Mine 
-variance_est = sigma_fit_sigma_clip**2 + m**2 * data_final["e(r - i)"]**2 +  data_final["e(r - J0660)"]**2 #Frata et al. 
+
+if cmd_args.varianceApproach == "Maguio":
+    variance_est = sigma_fit_sigma_clip**2 + m**2 * df["e_i_PStotal"]**2 + (1 - m)**2 * df["e_r_PStotal"]**2 + df["e_J0660_PStotal"]**2
+elif cmd_args.varianceApproach == "Yours":
+    variance_est = sigma_fit_sigma_clip**2 + m**2 * data_final["e(r - i)"]**2 + (1 - m)**2 * data_final["e(r - J0660)"]**2
+else:  # Default to Fratta
+    variance_est = sigma_fit_sigma_clip**2 + m**2 * data_final["e(r - i)"]**2 +  data_final["e(r - J0660)"]**2
 
 criterion = C * np.sqrt(variance_est)
 mask_ha_emitter = (cy - cy_predic_sigma_clip) >= criterion
@@ -172,7 +179,7 @@ with sns.axes_style('white'):
             xytext=(-120, -60), textcoords='offset points', )
     
     ax1.legend(loc='upper left', ncol=1, fontsize=25, title='Fitted models', title_fontsize=30)
-    file_save = "diagram-{}-fratta.jpg".format(file_.split('.cs')[0])
+    file_save = "diagram-{}-{}.jpg".format(file_.split('.cs')[0], cmd_args.varianceApproach)
     plt.savefig(file_save)
 
 ##################################################################################################################
@@ -182,8 +189,9 @@ with sns.axes_style('white'):
 data_orig_fin = df[mask_ha_emitter]
 data_merge = pd.merge(data_orig_fin, data_ha_emitter)
 
-df_file = "Halpha-{}-fratta.csv".format(file_.split('.cs')[0]) 
+df_file = "Halpha-{}-{}.csv".format(file_.split('.cs')[0], cmd_args.varianceApproach) 
 data_merge.to_csv(df_file, index=False)
 
-asciifile = "Halpha-{}-fratta.ecsv".format(file_.split('.cs')[0]) 
+asciifile = "Halpha-{}-{}.ecsv".format(file_.split('.cs')[0], cmd_args.varianceApproach) 
 Table.from_pandas(data_merge).write(asciifile, format="ascii.ecsv", overwrite=True)
+
