@@ -117,8 +117,8 @@ data_final = pd.concat([data, colum_ri, colum_rh], axis=1)
 # Applying the criterion 
 m = fitted_line_sigma_clip.slope  # Slope of the fit line
 C = 5.0  # Is the constant
-variance_est = sigma_fit_sigma_clip**2 + m**2 * df["e_i_PStotal"]**2 + (1 - m)**2 * df["e_J0660_PStotal"]**2 + df["e_r_PStotal"]**2 #Maguio
-#variance_est = sigma_fit_sigma_clip**2 + m**2 * data_final["e(r - i)"]**2 + (1 - m)**2 * data_final["e(r - J0660)"]**2
+#variance_est = sigma_fit_sigma_clip**2 + m**2 * df["e_i_PStotal"]**2 + (1 - m)**2 * df["e_r_PStotal"]**2 + df["e_J0660_PStotal"]**2 #Maguio et al.
+variance_est = sigma_fit_sigma_clip**2 + m**2 * data_final["e(r - i)"]**2 + (1 - m)**2 * data_final["e(r - J0660)"]**2
 criterion = C * np.sqrt(variance_est)
 mask_ha_emitter = (cy - cy_predic_sigma_clip) >= criterion
 data_ha_emitter = data_final[mask_ha_emitter]

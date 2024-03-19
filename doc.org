@@ -13,3 +13,47 @@ I try to improve the aproach to select Ha emitters in S-PLUS.
  - [[https://ui.adsabs.harvard.edu/abs/2021MNRAS.505.1135F/abstract][Fratta et al.]]
  - [[https://ui.adsabs.harvard.edu/abs/2008MNRAS.384.1277W/abstract][Witham et al.]]
  - [[https://ui.adsabs.harvard.edu/abs/2006MNRAS.369..581W/abstract][Witahm et al.]]
+
+\section{Justification for Variance Estimation Formula in Selecting H$\alpha$ Emitters}
+
+In our study, we employed a rigorous approach to identify H$\alpha$ emitters in astronomical datasets, 
+aiming to robustly isolate objects exhibiting H$\alpha$ emission features. Central to this process is 
+the determination of a reliable criterion that effectively distinguishes genuine H$\alpha$ emitters 
+from other sources of noise and contamination.
+
+The selection criterion we adopted involves the computation of a threshold value based on the observed 
+colors $(r - i)$ and $(r - J0660)$, where $(r - i)$ represents the difference between the magnitudes 
+measured in the $r$ and $i$ filters, and $(r - J0660)$ represents the difference between the magnitudes 
+in the $r$ filter and the H$\alpha$ filter (J0660).
+
+To quantify the uncertainty associated with these color measurements and ensure a robust selection 
+criterion, we derived a variance estimation formula denoted as \texttt{variance\_est}. 
+This formula incorporates several key components:
+
+\begin{equation}
+\texttt{variance\_est} = \sigma_{\text{fit}}^2 + m^2 \cdot (\text{e}(r - i))^2 + (1 - m)^2 \cdot (\text{e}(r - J0660))^2
+\end{equation}
+
+\begin{itemize}
+\item \textbf{Sigma Fit ($\sigma_{\text{fit}}$)}: This term accounts for the intrinsic scatter in the fitted linear model, 
+representing the variability observed around the best-fit line. It captures the dispersion of data points from the regression 
+line, providing an indication of the overall uncertainty in the model fit.
+
+\item \textbf{Slope of the Fitted Line ($m$)}: The slope of the fitted line characterizes the relationship between the 
+colors $(r - i)$ and $(r - J0660)$. It reflects the degree of correlation between these color indices and influences the 
+selection criterion's sensitivity to deviations from the fitted model.
+
+\item \textbf{Errors in Color Measurements}: The terms $\text{e}(r - i)$ and $\text{e}(r - J0660)$ represent the 
+errors associated with the color measurements $(r - i)$ and $(r - J0660)$, respectively. These errors encapsulate uncertainties arising 
+from observational noise, instrumental effects, and intrinsic variations in source fluxes.
+\end{itemize}
+
+By combining these components, the variance estimation formula \texttt{variance\_est} provides a comprehensive assessment 
+of the overall uncertainty in the color measurements $(r - i)$ and $(r - J0660)$. It accounts for both the intrinsic 
+scatter in the data and the precision of the individual color measurements, enabling a robust determination of the 
+selection criterion.
+
+We selected this variance estimation formula based on its ability to incorporate the full range of uncertainties 
+associated with the color indices, thereby ensuring a stringent and reliable criterion for identifying H$\alpha$ emitters. 
+By considering the intrinsic scatter in the data and the errors in color measurements, we aimed to minimize the 
+impact of noise and artifacts, facilitating the accurate identification of genuine H$\alpha$ emission features.
