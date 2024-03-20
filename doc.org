@@ -15,6 +15,10 @@ I try to improve the aproach to select Ha emitters in S-PLUS.
 
 ** Choose the better selection criteria
 
+   I have implemented variance estimation methods proposed by Monguio and Fratta, and I have
+   proposed an alternative method that yields better estimates to search for a better selection
+   of Halpha emitters. The results are even better when applying the algorithm per field.
+
 - \section{Justification for Variance Estimation Formula in Selecting H$\alpha$ Emitters}
 
 In our study, we employed a rigorous approach to identify H$\alpha$ emitters in astronomical datasets, 
@@ -55,8 +59,8 @@ scatter in the data and the precision of the individual color measurements, enab
 selection criterion.
 
 We selected this variance estimation formula based on its ability to incorporate the full range of uncertainties 
-associated with the color indices, thereby ensuring a stringent and reliable criterion for identifying H$\alpha$ emitters. 
-By considering the intrinsic scatter in the data and the errors in color measurements, we aimed to minimize the 
+associated with the color indices, thereby ensuring a stringent and reliable criterion for identifying H$\alpha$
+emitters. By considering the intrinsic scatter in the data and the errors in color measurements, we aimed to minimize the 
 impact of noise and artifacts, facilitating the accurate identification of genuine H$\alpha$ emission features.
 
 *** Comparison of Approaches for Selecting Halpha Emitters
@@ -107,3 +111,34 @@ affects both terms in the variance estimation formula, providing a balanced cons
 Ultimately, the choice between the two approaches depends on the specific characteristics of the data and the desired sensitivity to 
 deviations from the fitted model.
 
+*Justification for Applying the Algorithm per Field*
+
+Applying the algorithm per field can be the better choice for the following reasons:
+
+1. **Field-specific characteristics:** Different fields may exhibit unique characteristics
+   such as varying levels of background noise, instrumental effects, or sky conditions.
+   By analyzing each field separately, we can tailor the algorithm to account for
+   these differences, leading to more accurate results.
+
+2. **Minimizing contamination:** Some fields may have higher levels of contamination
+   from non-Halpha sources, such as stars or galaxies with similar colors.
+   By analyzing each field independently, we can better identify and filter
+   out such contaminants, resulting in a cleaner sample of Halpha emitters.
+
+3. **Optimizing parameters:** Certain parameters of the algorithm may need to
+   be adjusted depending on the characteristics of each field. By running the
+   algorithm separately for each field, we can optimize these parameters to
+   maximize the detection of true Halpha emitters while minimizing false positives.
+
+4. **Enhancing statistical robustness:** Analyzing each field independently allows
+   for better statistical assessment of the results within that specific context.
+   It reduces the risk of biases introduced by averaging over diverse data and enhances
+   the robustness of the findings.
+
+5. **Facilitating interpretation:** By presenting results on a per-field basis, it becomes
+   easier to interpret and compare the properties of Halpha emitters across different regions
+   of the sky. This approach can provide valuable insights into the spatial distribution
+   and environmental factors influencing Halpha emission in different astronomical contexts.
+
+Overall, applying the algorithm per field enables a more tailored and accurate analysis,
+leading to better characterization and understanding of Halpha emitters in each specific region of interest.

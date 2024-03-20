@@ -52,7 +52,7 @@ parser.add_argument("--Ranger", type=str,
                     default="r < 16",
                     help="Base name of FITS image that contains the source")
 
-parser.add_argument("--varianceApproach", type=str, choices=["Maguio", "Yours", "Fratta"], default="Fratta",
+parser.add_argument("--varianceApproach", type=str, choices=["Maguio", "Mine", "Fratta"], default="Fratta",
                     help="Approach for estimating variance")
 
 cmd_args = parser.parse_args()
@@ -127,7 +127,7 @@ for field, data_ in grouped_df:
 
     if cmd_args.varianceApproach == "Maguio":
         variance_est = sigma_fit_sigma_clip**2 + m**2 * data_["e_i_PStotal"]**2 + (1 - m)**2 * data_["e_r_PStotal"]**2 + data_["e_J0660_PStotal"]**2
-    elif cmd_args.varianceApproach == "Yours":
+    elif cmd_args.varianceApproach == "Mine":
         variance_est = sigma_fit_sigma_clip**2 + m**2 * data_final["e(r - i)"]**2 + (1 - m)**2 * data_final["e(r - J0660)"]**2
     else:  # Default to Fratta
         variance_est = sigma_fit_sigma_clip**2 + m**2 * data_final["e(r - i)"]**2 +  data_final["e(r - J0660)"]**2
