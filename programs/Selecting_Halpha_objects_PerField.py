@@ -42,7 +42,8 @@ def errormag(table, ef1, ef2, ef3, ef4):
 
 # Read the file
 parser = argparse.ArgumentParser(
-    description="""Make a table from the S-PLUS catalogs """)
+    description="""This script selects Halpha emitters based on color-color diagrams. 
+                   You can specify the filename, and variance estimation method.""")
 
 parser.add_argument("fileName", type=str,
                     default="teste-program",
@@ -53,7 +54,7 @@ parser.add_argument("--Ranger", type=str,
                     help="Base name of FITS image that contains the source")
 
 parser.add_argument("--varianceApproach", type=str, choices=["Maguio", "Mine", "Fratta"], default="Fratta",
-                    help="Approach for estimating variance")
+                    help="Approach for estimating variance (choose from 'Manguio', 'Mine', 'Fratta').")
 
 cmd_args = parser.parse_args()
 file_ = cmd_args.fileName + ".csv"
