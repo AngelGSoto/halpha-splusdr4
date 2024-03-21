@@ -1,3 +1,5 @@
 splus_halpha_report.pdf
 *.csv
 *~
+*#
+#*

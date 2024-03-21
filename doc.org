@@ -18,6 +18,8 @@ I try to improve the aproach to select Ha emitters in S-PLUS.
    I have implemented variance estimation methods proposed by Monguio and Fratta, and I have
    proposed an alternative method that yields better estimates to search for a better selection
    of Halpha emitters. The results are even better when applying the algorithm per field.
+   The implementation of my approach can be found in this [[programs/Selecting_Halpha_objects_PerField.py][Python Script]].
+   
 
 - \section{Justification for Variance Estimation Formula in Selecting H$\alpha$ Emitters}
 
@@ -142,3 +144,5 @@ Applying the algorithm per field can be the better choice for the following reas
 
 Overall, applying the algorithm per field enables a more tailored and accurate analysis,
 leading to better characterization and understanding of Halpha emitters in each specific region of interest.
+
+
