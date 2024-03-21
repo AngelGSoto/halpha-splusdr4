@@ -21,7 +21,7 @@ I try to improve the aproach to select Ha emitters in S-PLUS.
    The implementation of my approach can be found in this [[programs/Selecting_Halpha_objects_PerField.py][Python Script]].
    
 
-- \section{Justification for Variance Estimation Formula in Selecting H$\alpha$ Emitters}
+*Justification for Variance Estimation Formula in Selecting H$\alpha$ Emitters*
 
 In our study, we employed a rigorous approach to identify H$\alpha$ emitters in astronomical datasets, 
 aiming to robustly isolate objects exhibiting H$\alpha$ emission features. Central to this process is 
