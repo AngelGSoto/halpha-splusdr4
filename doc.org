@@ -75,7 +75,7 @@ indicative of Halpha emission. We will discuss each approach and highlight their
 
 *** Fratta et al. Approach:
 
-Fratta et al. proposed an approach to select Halpha emitters 
+Fratta et al. proposed an approach to select H\alpha emitters 
 based on color criteria. Their method involves estimating the 
 variance in color measurements and identifying objects with 
 significant deviations from the fitted model. The variance estimation 
