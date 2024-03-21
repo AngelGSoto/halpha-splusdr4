@@ -13,6 +13,49 @@ I try to improve the aproach to select Ha emitters in S-PLUS.
  - [[https://ui.adsabs.harvard.edu/abs/2008MNRAS.384.1277W/abstract][Witham et al.]]
  - [[https://ui.adsabs.harvard.edu/abs/2006MNRAS.369..581W/abstract][Witahm et al.]]
 
+** Getting and cleaning the data
+
+The data were downloaded from the [[https://splus.cloud/][SPLUS.CLOUD]], and a preliminary cut were in the [[programs/getting-splusdata-basedGustavo.py][query]] 
+using Python to cleaned the data. And after I apply some criteria to getting data with very high quality,
+this after to make different tests.
+
+*Additionally criteria to cleaned the data*
+
+ The criteria are systematically chosen to ensure the robustness and 
+reliability of the selected sample, taking into account various photometric 
+and morphological properties of the sources.
+
+1. **Photometric Properties**:
+   - We apply stringent constraints on the photometric 
+properties of the sources to ensure that we focus on objects 
+with appropriate brightness levels for detecting Hα emission. 
+Specifically, we select sources with magnitudes in the r, J0660, 
+and i bands falling within defined ranges (r_PStotal > 16 and r_PStotal ≤ 17.5, J0660_PStotal ≤ 19.4, i_PStotal ≤ 19.2).
+
+2. **Error Values**:
+   - To ensure the reliability of our measurements, 
+we impose upper limits on the error values associated with the photometric measurements. 
+Sources with error values exceeding 0.2 in any of the photometric bands are excluded from the analysis.
+
+3. **Signal-to-Noise Ratio (SNR)**:
+   - We require sources to have a minimum signal-to-noise ratio (SNR) in each photometric band to 
+ensure sufficient signal strength relative to the noise. Sources with SNR values below 10 are considered 
+to have insufficient signal and are excluded from further analysis.
+
+4. **Ellipticity**:
+   - We consider the morphological properties of the sources by imposing a threshold on ellipticity. 
+Sources with ellipticity values greater than 0.2 are likely to have non-galactic or irregular shapes 
+and are therefore excluded from consideration.
+
+5. **Flux Radius**:
+   - We select sources with compact morphology by constraining the radius enclosing 50% of the total flux. 
+Sources with a flux radius exceeding 3 pixels are likely to have extended morphology and are thus excluded from the sample.
+
+Each of these criteria is chosen based on considerations of the characteristics of our dataset, the sensitivity of our observations, 
+and the requirements for detecting Hα emission. By applying these stringent selection criteria, we aim to ensure the reliability and 
+robustness of the identified sample of Hα emitters.
+
+
 ** Choose the better selection criteria
 
    I have implemented variance estimation methods proposed by Monguio and Fratta, and I have
