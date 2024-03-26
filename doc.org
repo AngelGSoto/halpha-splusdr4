@@ -16,6 +16,9 @@ I try to improve the aproach to select Ha emitters in S-PLUS.
  - [[https://ui.adsabs.harvard.edu/abs/2006MNRAS.369..581W/abstract][Witahm et al.]]
  - [[https://ui.adsabs.harvard.edu/abs/2005MNRAS.362..753D/abstract][Drew et al.]]
 
+** Main sequence stars
+I putted the track of unredened MS and giant stars from [[https://ui.adsabs.harvard.edu/abs/1998PASP..110..863P/abstract][Pickles et al.]] in the color-color diagram .
+
 ** Getting and cleaning the data
 
 The data were downloaded from the [[https://splus.cloud/][SPLUS.CLOUD]], and a preliminary cut were in the [[programs/getting-splusdata-basedGustavo.py][query]] 
