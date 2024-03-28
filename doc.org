@@ -61,6 +61,12 @@ Each of these criteria is chosen based on considerations of the characteristics 
 and the requirements for detecting Hα emission. By applying these stringent selection criteria, we aim to ensure the reliability and 
 robustness of the identified sample of Hα emitters.
 
+All thse yield the follow stars:
+
+- 13 < r < 16 => 1027290
+- 16 < r 17.5 => 1676988
+- 17.5 < r < 18.5 => 1733486
+- 18.5 < r < 19.5 = > 
 
 ** Choose the better selection criteria
 

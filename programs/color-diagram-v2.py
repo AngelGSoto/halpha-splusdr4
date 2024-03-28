@@ -191,4 +191,4 @@ with sns.axes_style("ticks"):
     #ax.legend(fontsize=20)
 
 save_file = file_.split("-PSF-")[-1].split("_class05")[0]
-plt.savefig(f"color-color-diagram_{save_file}.pdf")
+plt.savefig(f"Figs/color-color-diagram_{save_file}.pdf")
