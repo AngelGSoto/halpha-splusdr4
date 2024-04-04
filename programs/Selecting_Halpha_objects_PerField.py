@@ -66,7 +66,7 @@ try:
 except FileNotFoundError:
     df = pd.read_csv(file_)
 
-
+print("Number of stars=", len(df))
 # Creating the color to creating the diagram from IPHAS
 # Grouping the data by field
 grouped_df = df.groupby("Field")
@@ -89,7 +89,7 @@ for field, data_ in grouped_df:
     cy_predic_normal = fitted_line_normal(cx)
 
     # Initialize the outlier removal fitter
-    or_fit = fitting.FittingWithOutlierRemoval(fit, sigma_clip, niter=4, sigma=4.0)
+    or_fit = fitting.FittingWithOutlierRemoval(fit, sigma_clip, niter=5, sigma=4.0)
 
     # Fit the data with the fitter and sigma clipping
     fitted_line_sigma_clip, mask = or_fit(line_init, cx, cy)
@@ -154,9 +154,9 @@ for field, data_ in grouped_df:
 # Concatenate all Halpha emitter data
 ha_emitter_combined = pd.concat(ha_emitter_data, ignore_index=True)
 
-df_file = "Halpha-{}-{}_PerField.csv".format(file_.split('.cs')[0], cmd_args.varianceApproach) 
+df_file = "Ha-emitters/Halpha-{}-{}_PerField.csv".format(file_.split('.cs')[0], cmd_args.varianceApproach) 
 ha_emitter_combined.to_csv(df_file, index=False)
 
-asciifile = "Halpha-{}-{}_PerField.ecsv".format(file_.split('.cs')[0], cmd_args.varianceApproach) 
+asciifile = "Ha-emitters/Halpha-{}-{}_PerField.ecsv".format(file_.split('.cs')[0], cmd_args.varianceApproach) 
 Table.from_pandas(ha_emitter_combined).write(asciifile, format="ascii.ecsv", overwrite=True)
 
