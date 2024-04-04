@@ -105,7 +105,7 @@ def main(test_mode=False):
         LEFT OUTER JOIN "idr4_psf"."idr4_psf_j0861" AS j0861s ON j0861s.id = det.id
               
         WHERE 
-            r_PStotal > 17.5 AND r_PStotal <= 18.5
+            r_PStotal > 18.5 AND r_PStotal <= 19.5
             AND e_r_PStotal <= 0.2 AND e_J0660_PStotal <= 0.2
             AND e_i_PStotal <= 0.2
             AND CLASS_STAR_r > 0.5 AND CLASS_STAR_i > 0.5  
@@ -126,7 +126,7 @@ def main(test_mode=False):
         result = process_field(field, query_template)
         final_table = pd.concat([final_table, result])
 
-    final_table.to_csv(f"iDR4-SPLUS-PStotal-PSF-175r185_class05_flags4.csv", index=False)
+    final_table.to_csv(f"iDR4-SPLUS-PStotal-PSF-185r195_class05_flags4.csv", index=False)
 
 if __name__ == "__main__":
     test_mode = False  # Set this to False when you are ready to run on the entire dataset
