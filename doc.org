@@ -201,3 +201,12 @@ Overall, applying the algorithm per field enables a more tailored and accurate a
 leading to better characterization and understanding of Halpha emitters in each specific region of interest.
 
 
+** Machine Learning
+
+   *** UMAP
+
+   Paper in astronomy appliying UMAP:
+
+   - [[https://ui.adsabs.harvard.edu/abs/2023MNRAS.522.4342Y/abstract][Yang et al.]]
+   - [[https://ui.adsabs.harvard.edu/abs/2022MNRAS.509.1227C/abstract][Chen et al.]]
+   - [[https://ui.adsabs.harvard.edu/abs/2021ApJS..257...65S/abstract][Yongkang et al.]]
