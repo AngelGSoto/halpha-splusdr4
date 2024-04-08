@@ -1,7 +1,6 @@
 """
 This script is for plotting the results of UMAP and HDBSCAM.
 """
-
 import numpy as np
 import pandas as pd
 import glob
@@ -46,7 +45,7 @@ markers = ['o', 's', 'D', '^']
 colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']  # Set custom colors
 for group, marker, color in zip(range(4), markers, colors):
     border_color = np.array(plt.cm.colors.to_rgba(color))  # Convert color to RGBA array
-    border_color *= 0.7  # Darken the color by reducing its intensity
+    border_color *= 0.6  # Darken the color by reducing its intensity
     ax.scatter(df_splus["PC1"][df_splus["Label"] == group], 
                df_splus["PC2"][df_splus["Label"] == group], 
                c=color, s=200, marker=marker, edgecolors=border_color, linewidth=1.5, label=f"Group {group}")
@@ -82,7 +81,7 @@ markers = ['o', 's', 'D', '^', '*']
 
 for group, marker, color in zip(range(5), markers, colors):
     border_color = np.array(plt.cm.colors.to_rgba(color))  # Convert color to RGBA array
-    border_color *= 0.7  # Darken the color by reducing its intensity
+    border_color *= 0.6  # Darken the color by reducing its intensity
     ax.scatter(df_splus_wise["PC1"][df_splus_wise["Label"] == group], 
                df_splus_wise["PC2"][df_splus_wise["Label"] == group], 
                c=color, s=200, marker=marker, edgecolors=border_color, linewidth=1.5, label=f"Group {group}")
