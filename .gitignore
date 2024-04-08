@@ -1,5 +1,7 @@
 splus_halpha_report.pdf
 *.csv
+*.fits
+*.dat
 *~
 *#
 #*

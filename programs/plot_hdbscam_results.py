@@ -73,13 +73,11 @@ plt.tick_params(axis='x', labelsize=30, width=2, length=10)  # Adjusting width a
 plt.tick_params(axis='y', labelsize=30, width=2, length=10)  # Adjusting width and length of tick marks
 
 # Create a scatter plot with different marker styles and colors
-# Suggested colors for the five groups
-colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']  
+colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#ff9896']
 
-# Suggested markers for the five groups
-markers = ['o', 's', 'D', '^', '*']
+markers = ['o', 's', 'D', '^', '*', 'P']
 
-for group, marker, color in zip(range(5), markers, colors):
+for group, marker, color in zip(range(6), markers, colors):
     border_color = np.array(plt.cm.colors.to_rgba(color))  # Convert color to RGBA array
     border_color *= 0.6  # Darken the color by reducing its intensity
     ax.scatter(df_splus_wise["PC1"][df_splus_wise["Label"] == group], 
