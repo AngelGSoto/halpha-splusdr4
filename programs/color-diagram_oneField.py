@@ -179,8 +179,6 @@ plt.ylabel(r"$r - J0660$", fontsize=35)
 plt.tick_params(axis='x', labelsize=35) 
 plt.tick_params(axis='y', labelsize=35)
 
-
-
 # Assuming z represents some calculated value based on cx and cy
 #z = calculate_z(cx, cy)
 
@@ -197,7 +195,6 @@ scatter = ax.scatter(
     linewidths=1,
     zorder=2,  # Set a lower z-order for scatter plot to make it appear below contour lines
 )
-
 
 # Contour plot
 contour = sns.kdeplot(
@@ -219,8 +216,8 @@ if not df_obj.empty:
 
 # The fitted lines
 x_values = np.linspace(-5.0, 5.0, 100)
-ax.plot(x_values, fitted_line_normal(x_values), 'k-', zorder=6, label='Initial fitted')
-ax.plot(x_values, fitted_line_sigma_clip(x_values), ls='--', color="k", zorder=8, label='Iter. fitted $\\sigma$ clipped')
+ax.plot(x_values, fitted_line_normal(x_values), 'r-', zorder=6, label='Initial fitted')
+ax.plot(x_values, fitted_line_sigma_clip(x_values), ls='--', color="r", zorder=8, label='Iter. fitted $\\sigma$ clipped')
 
 ax.set(xlim=[-0.7, 2.6], ylim=[-0.8, 1.5])
 
