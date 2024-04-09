@@ -200,6 +200,9 @@ Applying the algorithm per field can be the better choice for the following reas
 Overall, applying the algorithm per field enables a more tailored and accurate analysis,
 leading to better characterization and understanding of Halpha emitters in each specific region of interest.
 
+*** running some scripts
+
+    : python programs/color-diagram_oneField.py iDR4-SPLUS-PStotal-PSF-16r175_class05_flags4_clean --Field "b'STRIPE82-0142'" --Object "b'iDR4_3_STRIPE82-0142_0021237'" --Range "16 < r $\leq$ 17.5"
 
 ** Machine Learning
 

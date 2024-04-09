@@ -13,6 +13,9 @@ import sys
 import os
 from statistics import median
 from matplotlib.colors import PowerNorm
+from sklearn.metrics import mean_squared_error
+from astropy.modeling import models, fitting
+from astropy.stats import sigma_clip
 from pathlib import Path
 
 # Define spectral type ranges for MS stars and giants
@@ -123,14 +126,38 @@ except FileNotFoundError:
 mask_field = df["Field"] == cmd_args.Field
 df_field = df[mask_field]
 
-#Choose the field
-mask_obj = df["ID"] == cmd_args.Object
-df_obj = df[mask_obj]
+# Choose the field
+mask_obj = df_field["ID"] == cmd_args.Object
+df_obj = df_field[mask_obj]
+
+# Remove rows corresponding to the individual object from df_field
+df_field = df_field[~mask_obj]
+
 
 # Creating the color to creating the diagram from IPHAS
 cx, cy = colour(df_field, "r_PStotal", "i_PStotal", "r_PStotal", "J0660_PStotal")
 # error
 ecx, ecy = errormag(df_field, "e_r_PStotal", "e_i_PStotal", "e_r_PStotal", "e_J0660_PStotal")
+
+# 𝐔𝐬𝐢𝐧𝐠 𝐚𝐬𝐭𝐫𝐨𝐩𝐲 𝐭𝐨 𝐝𝐨 𝐭𝐡𝐞 𝐟𝐢𝐭 𝐥𝐢𝐧𝐞
+
+# Initialize a linear fitter
+fit = fitting.LinearLSQFitter()
+
+# Initialize a linear model
+line_init = models.Linear1D()
+
+# Fit the data with the fitter
+fitted_line_normal = fit(line_init, cx, cy)
+cy_predic_normal = fitted_line_normal(cx)
+
+# Initialize the outlier removal fitter
+or_fit = fitting.FittingWithOutlierRemoval(fit, sigma_clip, niter=4, sigma=4.0)
+
+# Fit the data with the fitter and sigma clipping
+fitted_line_sigma_clip, mask = or_fit(line_init, cx, cy)
+cy_predic_sigma_clip = fitted_line_sigma_clip(cx)
+
 
 # Check if any rows are selected
 if df_obj.empty:
@@ -153,15 +180,6 @@ plt.tick_params(axis='x', labelsize=35)
 plt.tick_params(axis='y', labelsize=35)
 
 
-levels = [0.001, 0.003, 0.01, 0.03, 0.1, 1.0]
-
-from matplotlib.tri import Triangulation
-
-x = np.array(cx)
-y = np.array(cy)
-
-# Create a Triangulation object
-triang = Triangulation(cx, cy)
 
 # Assuming z represents some calculated value based on cx and cy
 #z = calculate_z(cx, cy)
@@ -170,36 +188,39 @@ triang = Triangulation(cx, cy)
 #contour = ax.tricontourf(triang, z, levels=levels, cmap="Reds_r", zorder=-2, alpha=0.5)
 
 
-
 # Scatter plot
 scatter = ax.scatter(
     cx, cy,
     color=sns.xkcd_palette(["forest green"])[0],  # Use a valid XKCD color name
-    s=100,
+    s=300,
     edgecolors="w",
     linewidths=1,
-    vmin=-1,
-    vmax=4,
-    cmap="seismic",
     zorder=2,  # Set a lower z-order for scatter plot to make it appear below contour lines
 )
 
+
 # Contour plot
 contour = sns.kdeplot(
-    cx, cy,
+    x=cx,
+    y=cy,
     ax=ax,
-    bw_method='silverman',  # Bandwidth for KDE estimation
-     levels=[0.01, 0.05, 0.1, 0.2, 0.6, 0.7, 0.8, 0.9, 0.95, 0.99],  # Adjusted contour levels (proportions) with more spacing and keeping the most outer contour
-    fill=False,  # Do not fill contours, use lines only
-    zorder=3,  # Set a higher z-order for contours
-    linewidths=2,  # Increase line width for better visibility
-    colors=['#AEEEEE', '#87CEEB', '#4682B4', '#4169E1'],  # Use shades of blue for contours
+    bw_method='silverman',  
+    levels=[0.01, 0.05, 0.1, 0.2, 0.6, 0.7, 0.8, 0.9, 0.95, 0.99],  
+    fill=False,  
+    zorder=3,  
+    linewidths=2,  
+    colors=['#AEEEEE', '#87CEEB', '#4682B4', '#4169E1'],  
 )
-
 
 # Scatter plot for individual object
 if not df_obj.empty:
-    ax.scatter(cx_obj, cy_obj, color="#377eb8", marker="o", s=800, edgecolors="k", zorder=11)
+    ax.scatter(cx_obj, cy_obj, color="#ff7f0e", marker="*", s=1200, edgecolors="k", zorder=11)
+
+
+# The fitted lines
+x_values = np.linspace(-5.0, 5.0, 100)
+ax.plot(x_values, fitted_line_normal(x_values), 'k-', zorder=6, label='Initial fitted')
+ax.plot(x_values, fitted_line_sigma_clip(x_values), ls='--', color="k", zorder=8, label='Iter. fitted $\\sigma$ clipped')
 
 ax.set(xlim=[-0.7, 2.6], ylim=[-0.8, 1.5])
 
@@ -221,5 +242,6 @@ ax.errorbar(foo[0], foo[1], xerr=pro_ri, yerr=pro_rj660, c="k", capsize=3)
 ax.annotate("Median Errors", xy=(0.09, 1.35),  xycoords='data', size=25,
         xytext=(-120, -60), textcoords='offset points', )
 
+ax.legend(loc='upper right', ncol=1, fontsize=25, title='Fitted models', title_fontsize=30)
 save_file = file_.split("-PSF-")[-1].split("_class05")[0]
 plt.savefig(f"Figs/color-color-diagram_{save_file}_{cmd_args.Field}.pdf")
