@@ -213,3 +213,34 @@ leading to better characterization and understanding of Halpha emitters in each 
    - [[https://ui.adsabs.harvard.edu/abs/2023MNRAS.522.4342Y/abstract][Yang et al.]]
    - [[https://ui.adsabs.harvard.edu/abs/2022MNRAS.509.1227C/abstract][Chen et al.]]
    - [[https://ui.adsabs.harvard.edu/abs/2021ApJS..257...65S/abstract][Yongkang et al.]]
+
+
+** Results
+
+   *** Why EB and RRlyra stars a high latitude?
+
+   he identification of more eclipsing binaries and RR Lyrae stars at higher latitudes could be attributed to several physical factors:
+
+    Galactic Halo: At higher latitudes, you may be probing regions outside the main disk of the galaxy, such as the galactic halo.
+    The galactic halo contains older stellar populations, including RR Lyrae stars, which are commonly found in globular clusters a
+    nd halo substructures. These stars are relatively faint and can be more easily detected against the darker background of the
+    halo compared to the crowded regions of the galactic disk.
+
+    Stellar Populations: The distribution of different stellar populations can vary with galactic latitude.
+    In the disk, you may predominantly detect younger stellar populations associated with ongoing star formation. As you move
+    to higher latitudes, the prevalence of older stellar populations, including those containing RR Lyrae stars, may increase.
+    Eclipsing binaries, which are systems consisting of two stars orbiting around their common center of mass and periodically
+    eclipsing each other, can also be more prevalent in older stellar populations.
+
+    Survey Sensitivity: The sensitivity of the survey instruments and techniques may play a role in the detection of different
+    types of objects. For example, RR Lyrae stars are relatively faint and may require deeper observations or specialized
+    detection methods to be identified. High-latitude observations may benefit from reduced contamination and background noise,
+    allowing for more sensitive detection of faint objects such as eclipsing binaries and RR Lyrae stars.
+
+    Differential Extinction: Extinction due to interstellar dust can affect the observed colors and magnitudes of stars,
+    particularly in the galactic plane where dust concentrations are higher. At higher latitudes, where dust extinction may
+    be lower, the observed colors of stars can be less affected by dust reddening, making it easier to identify specific
+    types of stars based on their intrinsic properties.
+
+By considering these factors, astronomers can better understand the distribution and properties of different types of
+stars across the sky and gain insights into the formation and evolution of galaxies like the Milky Way.
