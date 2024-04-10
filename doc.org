@@ -214,6 +214,89 @@ leading to better characterization and understanding of Halpha emitters in each 
    - [[https://ui.adsabs.harvard.edu/abs/2022MNRAS.509.1227C/abstract][Chen et al.]]
    - [[https://ui.adsabs.harvard.edu/abs/2021ApJS..257...65S/abstract][Yongkang et al.]]
 
+** Disk
+   :PROPERTIES:
+   :h:        7
+   :END:
+
+The final list of Halpha I crossmatched with VPHAS DR2 using a 1 arcsec of tolerance. 
+Getting 1022 comun sources.
+
+Explanation of VPHAS table: 
+
+
+#+NAME: todoOverview
+#+BEGIN_SRC emacs-lisp
+
+gmagapAB	REAL	mag	false	? g-band AB magnitude obtained using aperture photometry (aperMag_g_AB)	phot.mag;em.opt.B			std
+e_gmagap	REAL	mag	false	? Statistical uncertainty for gmagap, not including systematics (aperMagErr_g)	stat.error			std
+snrg	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_g)	stat.snr			std
+gmaglim	REAL	mag	false	? The Vega magnitude a SNR=3 source would have at this position (magLim_g)	phot.mag			std
+PSFFWHMg	REAL	arcsec	false	? Typical PSF FWHM in the CCD frame (psffwhm_g)	phys.angSize			std
+MJDg	REAL	d	false	? Modified Julian Date at the start of the g-band exposure (mjd_g)	time.epoch			std
+detIDg	CHAR(23)		false	Detection identifier: night-#exposure-#extension-#number (detectionID_g)	meta.id			std
+cleanr2	SMALLINT		false	[0/1] =1 if the r2-band detection is significant and the PSF fit good (clean_r2)	meta.code			std
+r2mag	REAL	mag	false	? Second r-band VEGA magnitude obtained using PSF fitting (r2)	phot.mag;em.opt.R			std
+r2magAB	REAL	mag	false	? Second r-band AB magnitude obtained using PSF fitting (r2_AB)	phot.mag;em.opt.R			std
+e_r2mag	REAL	mag	false	? Statistical uncertainty for r2, not including systematics (err_r2)	stat.error;phot.mag			std
+chir2	REAL		false	? Goodness of the PSF fit in r2, as determined by DAOPHOT ALLSTAR (chi_r2)	stat.fit.goodness;instr.det.psf			std
+warningr2	CHAR(12)		false	Flags problems encountered while fitting the PSF, if any (warning_r2) (1)	meta.code			std
+r2magap	REAL	mag	false	? r2-band VEGA magnitude obtained using aperture photometry (aperMag_r2)	phot.mag;em.opt.R			std
+r2magapAB	REAL	mag	false	? r2-band AB magnitude obtained using aperture photometry (aperMag_r2_AB)	phot.mag;em.opt.R			std
+e_r2magap	REAL	mag	false	? Statistical uncertainty for r2magap, not including systematics (aperMagErr_r2)	stat.error			std
+snrr2	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_r2)	stat.snr			std
+r2maglim	REAL	mag	false	? The Vega magnitude a SNR=3 source would have at this position (magLim_r2)	phot.mag			std
+PSFFWHMr2	REAL	arcsec	false	? Typical PSF FWHM in the CCD frame (psffwhm_r2)	phys.angSize			std
+MJDr2	REAL	d	false	? Modified Julian Date at the start of the r2-band exposure (mjd_r2)	time.epoch			std
+detIDr2	CHAR(23)		false	Detection identifier: night-#exposure-#extension-#number (detectionID_r2)	meta.id			std
+cleanHa	SMALLINT		false	[0/1] =1 if the H-alpha detection is significant and the PSF fit good (clean_ha)	meta.code			std
+Hamag	REAL	mag	false	? Default H-alpha VEGA magnitude obtained using PSF fitting (ha)	phot.flux;em.line.Halpha			std
+e_Hamag	REAL	mag	false	? Statistical uncertainty for ha, not including systematics (err_ha)	stat.error;phot.mag;em.IR.H			std
+chiHa	REAL		false	? Goodness of the PSF fit in H-alpha, as determined by DAOPHOT (chi_ha)	stat.fit.goodness;instr.det.psf			std
+warningHa	CHAR(9)		false	Flags problems encountered while fitting the PSF, if any (warning_ha) (1)	meta.code			std
+Hamagap	REAL	mag	false	? H-alpha VEGA magnitude obtained using aperture photometry (aperMag_ha)	phot.flux;em.line.Halpha			std
+e_Hamagap	REAL	mag	false	? Statistical uncertainty for Hamagap, not including systematics (aperMagErr_ha)	stat.error			std
+snrHa	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_ha)	stat.snr			std
+Hamaglim	REAL	mag	false	? The Vega magnitude a SNR=3 source would have at this position (magLim_ha)	phot.mag			std
+PSFFWHMHa	REAL	arcsec	false	? Typical PSF FWHM in the CCD frame (psffwhm_ha)	phys.angSize			std
+MJDHa	REAL	d	false	? Modified Julian Date at the start of the H-alpha exposure (mjd_ha)	time.epoch			std
+detIDHa	CHAR(23)		false	Detection identifier: night-#exposure-#extension-#number (detectionID_ha)	meta.id			std
+cleanr	SMALLINT		false	[0/1] =1 if the r-band detection is significant and the PSF fit good (clean_r)	meta.code			std
+rmag	REAL	mag	true	? Default r-band VEGA magnitude obtained using PSF fitting (r)	phot.mag;em.opt.R			indexed std
+rmagAB	REAL	mag	false	? Default r-band AB magnitude obtained using PSF fitting (r_AB)	phot.mag;em.opt.R			std
+e_rmag	REAL	mag	false	? Statistical uncertainty for r, not including systematics (err_r)	stat.error;phot.mag;em.opt.R			std
+chir	REAL		false	? Goodness of the PSF fit in r, as determined by DAOPHOT ALLSTAR (chi_r)	stat.fit.goodness;instr.det.psf			std
+warningr	CHAR(9)		false	Flags problems encountered while fitting the PSF, if any (warning_r) (1)	meta.code			std
+rmagap	REAL	mag	false	? r-band VEGA magnitude obtained using aperture photometry (aperMag_r)	phot.mag;em.opt.R			std
+rmagapAB	REAL	mag	false	? r-band AB magnitude obtained using aperture photometry (aperMag_r_AB)	phot.mag;em.opt.R			std
+e_rmagap	REAL	mag	false	? Statistical uncertainty for rmagap, not including systematics (aperMagErr_r)	stat.error			std
+snrr	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_r)	stat.snr			std
+rmaglim	REAL	mag	false	? The Vega magnitude a SNR=3 source would have at this position (magLim_r)	phot.mag			std
+PSFFWHMr	REAL	arcsec	false	? Typical PSF FWHM in the CCD frame (psffwhm_r)	phys.angSize			std
+MJDr	REAL	d	false	? Modified Julian Date at the start of the r-band exposure (mjd_r)	time.epoch			std
+detIDr	CHAR(23)		false	Detection identifier: night-#exposure-#extension-#number (detectionID_r)	meta.id			std
+cleani	SMALLINT		false	[0/1] =1 if the i-band detection is significant and the PSF fit good (clean_i)	meta.code			std
+imag	REAL	mag	true	? Default i-band VEGA magnitude obtained using PSF fitting (i)	phot.mag;em.opt.I			indexed std
+imagAB	REAL	mag	false	? Default i-band AB magnitude obtained using PSF fitting (i_AB)	phot.mag;em.opt.I			std
+e_imag	REAL	mag	false	? Statistical uncertainty for i, not including systematics (err_i)	stat.error;phot.mag;em.opt.I			std
+chii	REAL		false	? Goodness of the PSF fit in i, as determined by DAOPHOT ALLSTAR (chi_i)	stat.fit.goodness;instr.det.psf			std
+warningi	CHAR(9)		false	Flags problems encountered while fitting the PSF, if any (warning_i) (1)	meta.code			std
+imagap	REAL	mag	false	? i-band VEGA magnitude obtained using aperture photometry (aperMag_i)	phot.mag;em.opt.I			std
+imagapAB	REAL	mag	false	? i-band AB magnitude obtained using aperture photometry (aperMag_i_AB)	phot.mag;em.opt.I			std
+e_imagap	REAL	mag	false	? Statistical uncertainty for imagap, not including systematics (aperMagErr_i)	stat.error			std
+snri	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_i)	stat.snr			std
+imaglim	REAL	mag	false	? The Vega magnitude a SNR=3 source would have at this position (magLim_i)	phot.mag			std
+PSFFWHMi	REAL	arcsec	false	Typical PSF FWHM in the CCD frame (psffwhm_i)	phys.angSize			std
+MJDi	REAL	d	false	Modified Julian Date at the start of the i-band exposure (mjd_i)	time.epoch			std
+detIDi	CHAR(23)		false	Detection identifier: night-#exposure-#extension-#number (detectionID_i)	meta.id			std
+Field	CHAR(5)		false	Survey-specific identifier of the telescope pointing (field)	meta.id;instr.tel			std
+Ext	SMALLINT		false	[1/32] OmegaCAM CCD extension used (ext)	phys.angSize;instr.plate			std
+nbDist	REAL	arcsec	false	Distance to the nearest neighbour detected in	pos.angDistance			std
+"r-i"	REAL	mag	false	? (r-i) colour index, formed by subtracting columns r and i (r_i)	phot.color;em.opt.R;em.opt.I			std
+"r-ha"	REAL	mag	false	? (r-Halpha) colour index, formed by subtracting columns r and ha (r_ha)	phot.color;em.opt.R;em.line.Halpha			std
+"u-g"	REAL	mag	false	? (u-g) colour index, formed by subtracting columns u and g (u_g)	phot.color;em.opt.U;em.opt.B			std
+"g-r2"	REAL	mag	false	? (g-r2) colour index, formed by subtracting columns g and r2 (g_r2)	phot.color;em.opt.B;em.opt.R			std
+#+END_SRC
 
 ** Results
 

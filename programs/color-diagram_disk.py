@@ -113,14 +113,27 @@ except FileNotFoundError:
     df = pd.read_csv(file_)
 
 
+
 # Creating the color to creating the diagram from IPHAS
 cx, cy = colour(df, "r", "i", "r", "F660")
 # error
 ecx, ecy = errormag(df, "rerr", "ierr", "rerr", "F660err")
 
 # Modify the file pattern to match the JSON files
-pattern = "../MS_stars/*.json"
-file_list = glob.glob(pattern)
+patterns = ["../MS_stars/*.json", "MS_stars/*.json"]
+file_list = []
+
+for pattern in patterns:
+    try:
+        file_list = glob.glob(pattern)
+        if file_list:
+            break  # Exit the loop if files are found
+    except FileNotFoundError:
+        continue  # Continue to the next pattern if FileNotFoundError occurs
+
+if not file_list:
+    print("No JSON files found.")
+    sys.exit(1)  # Exit the script if no JSON files are found
 
 A1_MS, B1_MS, A1_giant, B1_giant = plot_mag("F0626_rSDSS", "F0660", "F0769_iSDSS")
 
