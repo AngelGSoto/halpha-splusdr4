@@ -239,6 +239,10 @@ ax.errorbar(foo[0], foo[1], xerr=pro_ri, yerr=pro_rj660, c="k", capsize=3)
 ax.annotate("Median Errors", xy=(0.09, 1.35),  xycoords='data', size=25,
         xytext=(-120, -60), textcoords='offset points', )
 
+plt.text(cx_obj - 0.1, cy_obj - 0.16, r"Hα emitter", verticalalignment='bottom',
+         horizontalalignment='left', fontsize=25, fontweight=None, color='black')
+
+
 ax.legend(loc='upper right', ncol=1, fontsize=25, title='Fitted models', title_fontsize=30)
 save_file = file_.split("-PSF-")[-1].split("_class05")[0]
 plt.savefig(f"Figs/color-color-diagram_{save_file}_{cmd_args.Field}.pdf")
