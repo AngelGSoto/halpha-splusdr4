@@ -35,7 +35,7 @@ plt.figure(figsize=(8, 6))
 plt.tick_params(axis='x', labelsize=15) 
 plt.tick_params(axis='y', labelsize=15)
 
-plt.hist(ri_diff, bins=30, color='#4CAF50', edgecolor='black', alpha=0.7, density=True)  # Green color for bars
+plt.hist(ri_diff, bins=25, color='#4CAF50', edgecolor='black', alpha=0.7, density=True)  # Green color for bars
 
 # Fit Gaussian to the data
 mu, std = norm.fit(ri_diff)
@@ -55,7 +55,7 @@ plt.axvline(mu - std, color='purple', linestyle='-.', linewidth=1.5)  # Purple d
 
 plt.xlabel('Difference in $r - i$ color (S-PLUS - VPHAS)', fontsize=15)
 plt.ylabel('Density', fontsize=15)
-plt.legend(['Gaussian Fit', 'Mean', 'Mean ± Std Dev'], loc='upper right', fontsize=12)
+plt.legend(['Gaussian Fit', 'Mean', 'Mean ± Std Dev'], loc='upper right', fontsize=15)
 
 plt.savefig("Figs/comparison_SPLUS_VPHAS_ri_with_gaussian_fit.pdf")
 
@@ -65,7 +65,7 @@ plt.savefig("Figs/comparison_SPLUS_VPHAS_ri_with_gaussian_fit.pdf")
 plt.figure(figsize=(8, 6))
 plt.tick_params(axis='x', labelsize=15) 
 plt.tick_params(axis='y', labelsize=15)
-plt.hist(rj660_diff, bins=30, color='#4CAF50', edgecolor='black', alpha=0.7, density=True)  # Blue color for bars
+plt.hist(rj660_diff, bins=25, color='#4CAF50', edgecolor='black', alpha=0.7, density=True)  # Blue color for bars
 
 # Fit Gaussian to the data
 mu_, std_ = norm.fit(rj660_diff)
@@ -85,6 +85,6 @@ plt.axvline(mu_ - std_, color='purple', linestyle='-.', linewidth=1.5)  # Purple
 
 plt.xlabel(r'Difference in $r - H\alpha$ color (S-PLUS - VPHAS)', fontsize=15)
 plt.ylabel('Density', fontsize=15)
-plt.legend(['Gaussian Fit', 'Mean', 'Mean ± Std Dev'], loc='upper right', fontsize=12)
+plt.legend(['Gaussian Fit', 'Mean', 'Mean ± Std Dev'], loc='upper right', fontsize=15)
 
 plt.savefig("Figs/comparison_SPLUS_VPHAS_rj660_with_gaussian_fit.pdf")
