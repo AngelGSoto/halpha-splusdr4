@@ -88,10 +88,10 @@ border_color_main = '#8c2d04'  # Dark orange
 plt.figure(figsize=(10, 6))
 
 # Scatter plot for disk
-plt.scatter(galactic_coords_d.l, galactic_coords_d.b, color=color_disk, edgecolor=border_color_disk, linewidth=1, label='Disk', s=30, alpha=0.5)
+plt.scatter(galactic_coords_d.l.deg, galactic_coords_d.b.deg, color=color_disk, edgecolor=border_color_disk, linewidth=1, label='Disk', s=30, alpha=0.5)
 
 # Scatter plot for main
-plt.scatter(galactic_coords_h.l, galactic_coords_h.b, color=color_main, edgecolor=border_color_main, linewidth=1, label='Main', s=30, alpha=0.5)
+plt.scatter(galactic_coords_h.l.deg, galactic_coords_h.b.deg, color=color_main, edgecolor=border_color_main, linewidth=1, label='Main', s=30, alpha=0.5)
 
 plt.xlabel("Galactic Longitude (l)", fontsize=20)
 plt.ylabel("Galactic Latitude (b)", fontsize=20)
@@ -102,4 +102,5 @@ plt.legend(loc='upper center', fontsize=25)
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.tight_layout()
 plt.savefig("Figs/Halpha_galactic_coordinates.pdf")
+
 

@@ -128,9 +128,11 @@ lon_range = (min(galactic_coords_d.l.deg), max(galactic_coords_d.l.deg))
 plt.figure(figsize=(10, 6))
 plt.tick_params(axis='x', labelsize=20)
 plt.tick_params(axis='y', labelsize=20)
-plt.hist(galactic_coords_d.l.deg, bins=num_bins, range=lon_range, alpha=0.7, color='deepskyblue', label='All Disk Stars', density=True, zorder=3)
-plt.hist(df_halpha_d["GAL_LONG"], bins=num_bins, range=lon_range, alpha=0.7, color='salmon', label='Hα Excess (Disk)', density=True, zorder=2)
-plt.xlabel("Absolute Galactic Longitude (l)", fontsize=20)
+plt.hist(galactic_coords_d.l.deg, bins=num_bins,  range=lon_range,  color='deepskyblue', label='Hα Excess (Disk)', alpha=1, zorder=3,
+         histtype='step', linewidth=3, density=True)
+plt.hist(df_halpha_d["GAL_LONG"], bins=num_bins, range=lon_range,  color='salmon', label='All Disk Stars', alpha=1, zorder=2,
+         histtype='step', linewidth=3, density=True)
+plt.xlabel("Galactic Longitude (l)", fontsize=20)
 plt.ylabel("Normalized Density", fontsize=20)
 plt.legend()
 plt.grid(True)
@@ -151,7 +153,7 @@ plt.figure(figsize=(10, 6))
 plt.tick_params(axis='x', labelsize=20)
 plt.tick_params(axis='y', labelsize=20)
 plt.plot(fraction_halpha, color='navy', label='Fraction of Hα Emitters (Disk)')
-plt.xlabel("Absolute Galactic Longitude Bin", fontsize=20)
+plt.xlabel("Galactic Longitude (l)", fontsize=20)
 plt.ylabel("Fraction of Hα Emitters (mag$^{-1}$ deg$^{-2}$)", fontsize=20)
 plt.grid(True)
 plt.savefig("Figs/Fraction-Halpha-Galactic-Longitude.pdf")
@@ -170,13 +172,15 @@ plt.hist(np.arange(len(number_density_halpha_d)), bins=bin_edges, weights=number
 plt.hist(np.arange(len(number_density_all_objects_d)), bins=bin_edges, weights=number_density_all_objects_d, color='salmon', label='All Disk Stars', alpha=1, zorder=2,
          histtype='step', linewidth=3, density=True)
 
-plt.xlabel("Absolute Galactic Longitude Bin", fontsize=20)  # Add clarification
+plt.xlabel("Galactic Longitude (l) bin", fontsize=20)  # Add clarification
 plt.ylabel("Number Density (mag$^{-1}$ deg$^{-2}$)", fontsize=20)
 plt.legend(fontsize=20)
 plt.grid(True, axis='y')  # Add grid lines only on the y-axis
 plt.xticks(np.arange(0, len(number_density_halpha_d), 5), rotation=45)  # Set x-ticks to align with the bins and rotate them
 plt.tight_layout()  # Improve spacing between subplots
 plt.savefig("Figs/Number-Density-Galactic-Longitude.pdf")
+
+
 
 # Plot cumulative distribution function (CDF) of Galactic Longitude
 plt.figure(figsize=(10, 6))
