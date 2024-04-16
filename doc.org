@@ -298,6 +298,8 @@ nbDist	REAL	arcsec	false	Distance to the nearest neighbour detected in	pos.angDi
 "g-r2"	REAL	mag	false	? (g-r2) colour index, formed by subtracting columns g and r2 (g_r2)	phot.color;em.opt.B;em.opt.R			std
 #+END_SRC
 
++ I made crossmat with ALWISE using a radious of 1 arcsec.
+
 ** Results
 
    *** Why EB and RRlyra stars a high latitude?
