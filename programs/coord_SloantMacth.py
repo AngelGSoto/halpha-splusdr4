@@ -1,7 +1,8 @@
 '''
 This is a simply script to make table with the SDSS format for cross-match.
 '''
-from astropy.table import Table, vstack
+import pandas as pd
+from astropy.table import Table
 import numpy as np
 import argparse
 import sys
@@ -11,13 +12,24 @@ parser = argparse.ArgumentParser(
     description="""Make a table from the S-PLUS catalogs """)
 
 parser.add_argument("source", type=str,
-                    default=" teste-program",
+                    default="teste-program",
                     help="Name of catalog, taken the prefix ")
 
 cmd_args = parser.parse_args()
 file_ = cmd_args.source + ".ecsv"
 
-tab = Table.read(file_, format="ascii.ecsv")
+# Check if the file is a CSV
+if os.path.splitext(file_)[1] == ".csv":
+    file_format = "pandas_csv"
+else:
+    file_format = "ascii.ecsv"
+
+# Read the file based on the format
+if file_format == "pandas_csv":
+    df = pd.read_csv(file_)
+    tab = Table.from_pandas(df)
+else:
+    tab = Table.read(file_, format="ascii.ecsv")
 
 n = len(tab)
 
@@ -25,48 +37,19 @@ sep = np.linspace(2.0/60., 2.0/60., num=n)
 
 tab["Sep"] = sep
 
-#n_new = len(table)
-#n_ = n_new/900.
+n = int(len(tab) / 500.) + 1
 
-# coverting in pandas table
-df = (tab.to_pandas())
-n = int(len(df) / 500.) + 1
-
-df_ = [] # list
+tab_list = [] # list
 j = 0 # counter
-d = {} # empty
+
 for i in range(n):
     j += 1  
-    df_.append(df.iloc[500*i:500*j])
+    tab_list.append(tab[500*i:500*j])
 
-n_list = len(df_)
+n_list = len(tab_list)
 
-t = [Table() for _ in range(n_list)]
-for j in range(n_list):
-    t[j]["ra"] = df_[j]["RA"]
-    t[j]["dec"] = df_[j]["DEC"]
-    t[j]["sep"] = df_[j]["Sep"]
-
-#Save the file
+# Save the file
 datadir = "SDSS-spectra/"
 for m in range(n_list):
-    asciifile = file_.replace(".ecsv", "-" + str(m) + ".dat")
-    t[m].write(os.path.join(datadir, asciifile), format="ascii", delimiter=',', overwrite=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    asciifile = file_.replace(".ecsv", "-{}.dat".format(m))
+    tab_list[m].write(os.path.join(datadir, asciifile), format="ascii", delimiter=',', overwrite=True)
