@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 from astropy.io import fits
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MultipleLocator, NullFormatter
 import seaborn as sn
 import glob
 import argparse

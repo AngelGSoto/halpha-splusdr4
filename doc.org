@@ -204,6 +204,135 @@ leading to better characterization and understanding of Halpha emitters in each 
 
     : python programs/color-diagram_oneField.py iDR4-SPLUS-PStotal-PSF-16r175_class05_flags4_clean --Field "b'STRIPE82-0142'" --Object "b'iDR4_3_STRIPE82-0142_0021237'" --Range "16 < r $\leq$ 17.5"
 
+*** Spectra
+
+**** SDSS
++ Mach with SDSS [[https://skyserver.sdss.org/dr18/en/tools/search/SQS.aspx][DR18]]. I used a 1 arcsec of tolerance.
+
+
+#+BEGIN_SRC python :return pltfile :results file :results output
+
+import astropy.coordinates as coord
+import astropy.units as u
+from astropy.io import ascii
+from astropy.table import Table, QTable
+from astropy.coordinates import SkyCoord 
+import numpy as np
+from astropy.io import fits
+import matplotlib.pyplot as plt
+import argparse
+import sys
+import os
+from astropy.visualization import hist
+from astroML.datasets import fetch_imaging_sample, fetch_sdss_S82standards
+from astroML.crossmatch import crossmatch_angular
+from collections import OrderedDict
+import glob
+import json
+import seaborn as sn
+
+pattern = "Ha-emitters/SDSS-spectra/*.fits"
+file_fits = glob.glob(pattern)
+
+shape = (len(file_fits), 5)
+
+inffits = []
+for name_fit in file_fits:
+    hdulist = fits.open(name_fit)
+    c = SkyCoord(ra=float(hdulist[0].header["PLUG_RA"])*u.degree, dec=float(hdulist[0].header["PLUG_DEC"])*u.degree)
+    inffits.append(name_fit.split("spectra/")[-1])
+    inffits.append('SDSSJ{0}{1}'.format(c.ra.to_string(u.hour, sep='', precision=2, pad=True), c.dec.to_string(sep='', precision=1, alwayssign=True, pad=True)))
+    inffits.append(float(hdulist[0].header["PLUG_RA"]))
+    inffits.append(float(hdulist[0].header["PLUG_DEC"]))
+    inffits.append(float(hdulist[2].data['Z']))
+
+XX_fits = np.array(inffits).reshape(shape)
+print("Data shape:", XX_fits.shape)
+
+# Tables with all information 
+tab = Table(XX_fits, names=('FileName', 'ID', 'RA', 'DEC', 'Redshift'), meta={'name': 'first table'}, dtype=('S', 'S', 'f8', 'f8', 'f8'))
+
+#How many are the local universe
+liml_z = tab["Redshift"] <= 0.02
+limu_z = tab["Redshift"] > 0.02
+
+print("Number the objects with z < 0.02:", len(tab[liml_z]))
+print("Number the objects with z > 0.02:", len(tab[limu_z]))
+
+tab.write("Ha-emitters/SDSS-spectra/spectra-information_sdss.ecsv", format="ascii.ecsv", overwrite=True)
+tab.write("Ha-emitters/SDSS-spectra/spectra-information_sdss.dat", format="ascii.commented_header", overwrite=True)
+
+#+END_SRC
+
+#+RESULTS:
+[[file:Data shape: (138, 5)
+Number the objects with z < 0.02: 61
+Number the objects with z > 0.02: 77
+]]
+
+**** LAMOST
++ Mach with LAMOST DR7. I used a 2 arcsec of tolerance.
+
+#+BEGIN_SRC python :return pltfile :results file :results output
+
+import astropy.coordinates as coord
+import astropy.units as u
+from astropy.io import ascii
+from astropy.table import Table, QTable
+from astropy.coordinates import SkyCoord 
+import numpy as np
+from astropy.io import fits
+import matplotlib.pyplot as plt
+import argparse
+import sys
+import os
+from astropy.visualization import hist
+from astroML.datasets import fetch_imaging_sample, fetch_sdss_S82standards
+from astroML.crossmatch import crossmatch_angular
+from collections import OrderedDict
+import glob
+import json
+import seaborn as sn
+
+pattern = "Ha-emitters/LAMOST-spectra/*.fits"
+file_fits = glob.glob(pattern)
+
+shape = (len(file_fits), 5)
+
+inffits = []
+for name_fit in file_fits:
+    hdulist = fits.open(name_fit)
+    c = SkyCoord(ra=float(hdulist[0].header["RA"])*u.degree, dec=float(hdulist[0].header["DEC"])*u.degree) 
+    inffits.append(name_fit.split("spectra/")[-1])
+    inffits.append('LAMOST{0}{1}'.format(c.ra.to_string(u.hour, sep='', precision=2, pad=True), c.dec.to_string(sep='', precision=1, alwayssign=True, pad=True)))
+    inffits.append(float(hdulist[0].header["RA"]))
+    inffits.append(float(hdulist[0].header["DEC"]))
+    inffits.append(float(hdulist[0].header['Z']))
+
+XX_fits = np.array(inffits).reshape(shape)
+print("Data shape:", XX_fits.shape)
+
+# Tables with all information 
+tab = Table(XX_fits, names=('FileName', 'ID', 'RA', 'DEC', 'Redshift'), meta={'name': 'first table'}, dtype=('S', 'S', 'f8', 'f8', 'f8'))
+
+#How many are the local universe
+liml_z = tab["Redshift"] <= 0.02
+limu_z = tab["Redshift"] > 0.02
+
+print("Number the objects with z < 0.02:", len(tab[liml_z]))
+print("Number the objects with z > 0.02:", len(tab[limu_z]))
+
+tab.write("Ha-emitters/LAMOST-spectra/spectra-information-lamost.ecsv", format="ascii.ecsv", overwrite=True)
+tab.write("Ha-emitters/LAMOST-spectra/spectra-information-lamost.dat", format="ascii.commented_header", overwrite=True)
+
+#+END_SRC
+
+#+RESULTS:
+[[file:Data shape: (96, 5)
+Number the objects with z < 0.02: 66
+Number the objects with z > 0.02: 30
+]]
+
 ** Machine Learning
 
    *** UMAP

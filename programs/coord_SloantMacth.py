@@ -8,32 +8,40 @@ import argparse
 import sys
 import os
 
-parser = argparse.ArgumentParser(
-    description="""Make a table from the S-PLUS catalogs """)
-
-parser.add_argument("source", type=str,
-                    default="teste-program",
-                    help="Name of catalog, taken the prefix ")
-
+# Parse command-line arguments
+parser = argparse.ArgumentParser(description="""Make a table for cross-matching with LAMOST survey data""")
+parser.add_argument("source", type=str, default="input_catalog", help="Prefix of the input catalog file (default: 'input_catalog')")
+parser.add_argument("--datadir", type=str, default="", help="Path to the directory containing the input catalog file. If not provided, assumes the file is in the same directory as the script.")
 cmd_args = parser.parse_args()
-file_ = cmd_args.source + ".ecsv"
 
-# Check if the file is a CSV
-if os.path.splitext(file_)[1] == ".csv":
-    file_format = "pandas_csv"
+# Determine the directory containing the input file
+if cmd_args.datadir:
+    datadir = cmd_args.datadir
 else:
-    file_format = "ascii.ecsv"
+    datadir = os.getcwd()
 
-# Read the file based on the format
-if file_format == "pandas_csv":
-    df = pd.read_csv(file_)
-    tab = Table.from_pandas(df)
-else:
-    tab = Table.read(file_, format="ascii.ecsv")
+# Construct input file name
+file_ = os.path.join(datadir, cmd_args.source + ".csv")
+
+# Check if the file exists
+if not os.path.exists(file_):
+    raise FileNotFoundError(f"The file {file_} does not exist.")
+
+# Read the catalog table using Pandas
+df = pd.read_csv(file_)
+
+# Rename columns if necessary
+if "ALPHA" in df.columns:
+    df.rename(columns={"ALPHA": "RA"}, inplace=True)
+if "DELTA" in df.columns:
+    df.rename(columns={"DELTA": "DEC"}, inplace=True)
+
+# Convert DataFrame to Astropy Table
+tab = Table.from_pandas(df)
 
 n = len(tab)
 
-sep = np.linspace(2.0/60., 2.0/60., num=n)
+sep = np.linspace(1.0/60., 1.0/60., num=n)
 
 tab["Sep"] = sep
 
@@ -48,8 +56,14 @@ for i in range(n):
 
 n_list = len(tab_list)
 
-# Save the file
+t = [Table() for _ in range(n_list)]
+for j in range(n_list):
+    t[j]["ra"] = tab_list[j]["RA"]
+    t[j]["dec"] = tab_list[j]["DEC"]
+    t[j]["sep"] = tab_list[j]["Sep"]
+
+# # Save the file
 datadir = "SDSS-spectra/"
 for m in range(n_list):
-    asciifile = file_.replace(".ecsv", "-{}.dat".format(m))
-    tab_list[m].write(os.path.join(datadir, asciifile), format="ascii", delimiter=',', overwrite=True)
+    asciifile = file_.replace(".csv", "-MacthSDSS_{}.dat".format(m))
+    t[m].write(os.path.join(datadir, asciifile), format="ascii", delimiter=',', overwrite=True)
