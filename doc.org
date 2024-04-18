@@ -332,6 +332,9 @@ tab.write("Ha-emitters/LAMOST-spectra/spectra-information-lamost.dat", format="a
 Number the objects with z < 0.02: 66
 Number the objects with z > 0.02: 30
 ]]
+*** Spectra for the paper
+    - spec-4740-55651-0188 -> CV
+    - spec-9218-57724-0804 -> QSO
 
 ** Machine Learning
 

@@ -130,12 +130,6 @@ mag_err_br.append(float(table["e_i_PStotal"][ind]))
 mag_err_nr.append(float(table["e_J0861_PStotal"][ind]))
 mag_err_br.append(float(table["e_z_PStotal"][ind]))
 
-# ff = (10**(-(table["R_PStotal"][ind] + 2.41) / 2.5)) / 6250.0**2
-# print(ff)
-# for i, ii in zip(wl, Flux):
-#     if i> 6000 and i< 6300:
-#          print(i, ii)
-
 # Find scale factor
 m = wl == 6250.289 
 wl_part = wl[m]
@@ -160,6 +154,79 @@ for wll_nr, magg_nr, magerr_nr in zip(wl_nr, mag_nr, mag_err_nr):
     err_nr_ = np.sqrt(((c_nr*10**(b_nr*magg_nr))**2)*(np.log(10)*b_nr*magerr_nr)**2)
     err_nr.append(err_nr_)
 
+
+# Selecting one emission line from the dictionary
+# CV
+# selected_emission_line = "Hα"  # Change this line to select a different emission line
+# z = 0
+Type = table["main_type"][ind][0]
+z = table["redshift"][ind]
+
+if 3.2 <= z <= 3.4:
+    selected_emission_line = "C IV 1551"
+    offset_x = 200
+    offset_yy = 0.1
+    offset_y = 0.035
+elif 2.4 <= z <= 2.55:
+    selected_emission_line = "C III] 1909"
+    offset_x = 200
+    offset_yy = 0.1
+    offset_y = 0.035
+elif 1.3 <= z <= 1.4:
+    selected_emission_line = "Mg II 2799"
+    offset_x = 200
+    offset_yy = 0.1
+    offset_y = 0.035
+elif  0.33 <= z <= 0.4: 
+    selected_emission_line = "[O III] 5007"
+    offset_x = 200
+    offset_yy = 0.1
+    offset_y = 0.035
+else:
+    selected_emission_line = "Hα"
+    z=0
+    offset_x = 0
+    offset_yy = 0
+    offset_y = 0.05
+
+   
+# Calculate max flux around the selected emission line for label positioning
+emission_lines = {
+    "Lyα": 1215.670,
+    "C IV 1551": 1550.772,
+    "C III] 1909": 1908.734,
+    "Mg II 2799": 2799,
+    "Hγ": 4340.471, 
+    "[O III] 4363": 4363.21,
+    "He I 4472": 4471.5,
+    "Hβ": 4861.33,
+    "[O III] 4959": 4958.911,
+    "[O III] 5007": 5006.843,
+    "He I 5876": 5875.66,    
+    "[O I] 6300": 6300.3,
+    "[S III] 6312": 6312.1,
+    "[O I] 6364": 6363.77,
+    "Hα": 6562.82,
+    "[N II] 6584": 6583.50,
+    "He I 6678": 6678.16,
+    "[S II] 6716": 6716.44,
+    "[S II] 6731": 6730.82,
+    "He I 7065": 7065.25,
+    "[Ar III] 7136": 7135.80,
+    "[O II] 7319": 7319.45,
+    "[O II] 7330": 7330.20,
+}
+
+selected_wavelength = emission_lines[selected_emission_line]
+lambda_ob = selected_wavelength * (z + 1)
+j = lambda_ob - 10
+k = lambda_ob + 10
+mask = (j < wl) & (wl < k)
+flux_values = Flux[mask]
+flux_values /=1e-15
+flux_values +=0.05
+max_flux = np.max(flux_values) if len(flux_values) > 0 else 10
+
 # PLOTS
 fig, ax = plt.subplots(figsize=(12, 5))
 ax.spines["top"].set_visible(False)  
@@ -173,9 +240,6 @@ mask_lim = (wl > 6100.) & (wl < 6900.)
 Flux_lim = Flux[mask_lim]
 if max(Flux_lim) > 5 * np.mean(Flux_lim):
     max_y_lim = max(Flux_lim) * .9
-    #plt.ylim(ymax=max_y_lim)
-    # min_y_lim = min(Flux_lim) - 0.2
-    # plt.ylim(ymin=min_y_lim,ymax=max_y_lim)
 
 # set Y-axis range (if applicable)
 if cmd_args.ymin is not None and cmd_args.ymax is not None:
@@ -185,9 +249,6 @@ elif cmd_args.ymin is not None:
 elif cmd_args.ymax is not None:
     plt.ylim(ymax=cmd_args.ymax)
 
-#plt.ylim(ymin=-50.0,ymax=200)
-#ax.set(xlabel='Wavelength $(\AA)$')
-#ax.set(ylabel=r'F$(\mathrm{10^{-15} erg\ s^{-1} cm^{-2} \AA^{-1}})$')
 # set labels and font size
 ax.set_xlabel('Wavelength $(\AA)$', fontsize = 20)
 ax.set_ylabel(r'F$(\mathrm{10^{-15} erg\ s^{-1} cm^{-2} \AA^{-1}})$', fontsize = 20)
@@ -197,47 +258,30 @@ ax.plot(wl, Flux, c="#808080", linewidth=1.5, alpha=0.6, zorder=2)
 for wl1, mag, magErr, colors, marker_ in zip(wl_br, mag_br, err_br, color_br, marker_br): #
     F = (10**(-(mag + 2.41) / 2.5)) / wl1**2
     F /= 1e-15
-    #F *= factor
     ax.scatter(wl1, F, color=colors, marker=marker_, edgecolors='k', s=200, zorder=4)
     ax.errorbar(wl1, F, yerr=magErr, fmt='r', marker=None, linestyle=(0, (5, 5)), color=colors, ecolor=colors, elinewidth=3.9, markeredgewidth=3.2, capsize=10)
 
 for wl1, mag, magErr, colors, marker_ in zip(wl_nr, mag_nr, err_nr, color_nr, marker_nr):
     F = (10**(-(mag + 2.41) / 2.5)) / wl1**2
     F /= 1e-15
-    #F *= factor
     ax.scatter(wl1, F, color=colors, marker=marker_, edgecolors='k', s=180, zorder=4)
     ax.errorbar(wl1, F, yerr=magErr, fmt='r', marker=None, linestyle=(0, (5, 5)), color=colors, ecolor=colors, elinewidth=3.9, markeredgewidth=3.2, capsize=10)
-#ax.axvline(4686, color='r', linewidth=0.3, linestyle='-', zorder = 6, label="He II")
-# plt.text(0.70, 0.19, table["ID"].split("R3.")[-1]).replace(".", "-"),
-#              transform=ax.transAxes, fontsize=25, weight='bold')
 
-# if cmd_args.ymax is not None:
-#     for idd in table["main_id"][ind]:
-#         ax.annotate(idd, xy=(9000, 0.48*cmd_args.ymax),  xycoords='data', size=13,
-#                xytext=(-120, -60), textcoords='offset points', 
-#                 bbox=dict(boxstyle="round4,pad=.5", fc="0.94"),)
-#     for i in table[ind]:
-#         if i["ID"].endswith(" '"):
-#             ax.annotate(i["ID"].split("R3.")[-1].split(" ")[0].replace(".", "-"), xy=(9000, 0.415*cmd_args.ymax),  xycoords='data', size=13,
-#                     xytext=(-120, -60), textcoords='offset points', 
-#                     bbox=dict(boxstyle="round4,pad=.5", fc="0.94"),)
-#         else:
-#             ax.annotate(i["ID"].split("R3.")[-1].split("'")[0].replace(".", "-"), xy=(9000, 0.415*cmd_args.ymax),  xycoords='data', size=13,
-#                     xytext=(-120, -60), textcoords='offset points', 
-#                     bbox=dict(boxstyle="round4,pad=.5", fc="0.94"),)
-#     ax.annotate("r=" + format(float(table["r_PStotal"][ind]), '.2f'), xy=(9000, 0.35*cmd_args.ymax),  xycoords='data', size=13,
-#             xytext=(-120, -60), textcoords='offset points', 
-#             bbox=dict(boxstyle="round4,pad=.5", fc="0.94"),)
-# else:
-#     None
+# Putting the labels to the lines
+# Putting the label for the selected emission line
+ax.axvline(lambda_ob, color='k', linewidth=0.9, alpha=0.9, linestyle='--')
+bbox_props = dict(boxstyle="round", fc="w", ec="0.88", alpha=0.6, pad=0.1)
+ax.annotate(selected_emission_line, (lambda_ob, max_flux), alpha=1, size=18,
+            xytext=(10.5, 5.6), textcoords='offset points', ha='right', va='bottom',
+            rotation=90, bbox=bbox_props, zorder=200)
 
-# plt.annotate(r"H$\alpha$", xy=(7600, 1.09),  xycoords='data', size=23,
-#             xytext=(-120, -60), textcoords='offset points', 
-#             bbox=dict(boxstyle="round4, pad=.5", fc="#CC0066", alpha=0.7),)
-# ax.axvline(4686+65, color='r', linewidth=0.5, linestyle='-', label="He II")
-# ax.axvline(6560.28+65, color='k', linewidth=0.5, linestyle='--', label=r"H$\alpha$")
-# ax.axvline(5000.7+65, color='k', linewidth=0.5, linestyle='-', label="[O III]")
-#ax.legend()
+ax.annotate(Type, (8500, max_flux+offset_yy), alpha=1, size=18,
+            xytext=(7.5, 5.6), textcoords='offset points', ha='right', va='bottom',
+            rotation=0, bbox=bbox_props, zorder=200)
+
+ax.annotate("z = {:.3f}".format(float(z)), (8500+offset_x, max_flux+offset_yy-offset_y), alpha=1, size=18,
+            xytext=(7.5, 5.6), textcoords='offset points', ha='right', va='bottom',
+            rotation=0, bbox=bbox_props, zorder=200)
 
 # Add minor tick locators without showing the minor ticks
 ax.xaxis.set_minor_locator(MultipleLocator(200))  # Adjust interval as needed
@@ -257,4 +301,3 @@ for i in table[ind]:
 #path_save = "../../paper/Figs2/"
 #plt.savefig(os.path.join(path_save, asciifile))
 plt.savefig(asciifile)
-
