@@ -170,13 +170,13 @@ if 3.2 <= z <= 3.4:
 elif 2.4 <= z <= 2.55:
     selected_emission_line = "C III] 1909"
     offset_x = 200
-    offset_yy = 0.1
-    offset_y = 0.035
+    offset_yy = 0.3
+    offset_y = 0.055
 elif 1.3 <= z <= 1.4:
     selected_emission_line = "Mg II 2799"
     offset_x = 200
-    offset_yy = 0.1
-    offset_y = 0.035
+    offset_yy = 0.3
+    offset_y = 0.055
 elif  0.33 <= z <= 0.4: 
     selected_emission_line = "[O III] 5007"
     offset_x = 200

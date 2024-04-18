@@ -334,7 +334,11 @@ Number the objects with z > 0.02: 30
 ]]
 *** Spectra for the paper
     - spec-4740-55651-0188 -> CV
-    - spec-9218-57724-0804 -> QSO
+    - spec-9218-57724-0804 -> QSO, z = 3.280
+    - spec-9146-58042-0510 -> QSO, z = 2.451635599136352
+    - spec-9198-57713-0538 -> QSO, z = 1.3583483695
+    - spec-57369-EG032649N000134M01_sp13-083 -> Syfert, z = 0.347373
+    - spec-58403-S82352S01M1_sp03-036 -> CV
 
 ** Machine Learning
 
