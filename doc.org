@@ -272,6 +272,7 @@ Number the objects with z > 0.02: 77
 
 **** LAMOST
 + Mach with LAMOST DR7. I used a 2 arcsec of tolerance.
++ After I made cross match with LMOST DR9 getting 109 spectra
 
 #+BEGIN_SRC python :return pltfile :results file :results output
 
