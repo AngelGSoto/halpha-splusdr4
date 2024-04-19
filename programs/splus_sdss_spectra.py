@@ -177,17 +177,22 @@ elif 1.3 <= z <= 1.4:
     offset_x = 200
     offset_yy = 0.3
     offset_y = 0.055
-elif  0.33 <= z <= 0.4: 
-    selected_emission_line = "[O III] 5007"
-    offset_x = 200
-    offset_yy = 0.1
-    offset_y = 0.035
+# elif  0.32 <= z <= 0.33: 
+#     selected_emission_line = "[O III] 4959"
+#     offset_x = 0
+#     offset_yy = 0.2
+#     offset_y = 0.065
+elif  0.32 <= z <= 0.4: 
+    selected_emission_line = ("[O III] 4959", "[O III] 5007")
+    offset_x = 10
+    offset_yy = 0.3
+    offset_y = 0.075
 else:
     selected_emission_line = "Hα"
     z=0
-    offset_x = 0
-    offset_yy = 0
-    offset_y = 0.05
+    offset_x = 150
+    offset_yy = 0.8    #0
+    offset_y = 0.13  #0.05
 
    
 # Calculate max flux around the selected emission line for label positioning
@@ -217,15 +222,19 @@ emission_lines = {
     "[O II] 7330": 7330.20,
 }
 
-selected_wavelength = emission_lines[selected_emission_line]
-lambda_ob = selected_wavelength * (z + 1)
-j = lambda_ob - 10
-k = lambda_ob + 10
-mask = (j < wl) & (wl < k)
-flux_values = Flux[mask]
-flux_values /=1e-15
-flux_values +=0.05
-max_flux = np.max(flux_values) if len(flux_values) > 0 else 10
+# Calculate max flux for label positioning
+lambda_ob_values = [emission_lines[line] * (z + 1) for line in selected_emission_line] if isinstance(selected_emission_line, tuple) else [emission_lines[selected_emission_line] * (z + 1)]
+max_flux_values = []
+
+for lambda_ob in lambda_ob_values:
+    j = lambda_ob - 10
+    k = lambda_ob + 10
+    mask = (j < wl) & (wl < k)
+    flux_values = Flux[mask]
+    flux_values /= 1e-15
+    flux_values += 0.08  # Adjust as needed
+    max_flux = np.max(flux_values) if len(flux_values) > 0 else 10
+    max_flux_values.append(max_flux)
 
 # PLOTS
 fig, ax = plt.subplots(figsize=(12, 5))
@@ -243,19 +252,21 @@ if max(Flux_lim) > 5 * np.mean(Flux_lim):
 
 # set Y-axis range (if applicable)
 if cmd_args.ymin is not None and cmd_args.ymax is not None:
-    plt.ylim(cmd_args.ymin,cmd_args.ymax)
+    plt.ylim(cmd_args.ymin, cmd_args.ymax)
 elif cmd_args.ymin is not None:
     plt.ylim(ymin=cmd_args.ymin)
 elif cmd_args.ymax is not None:
     plt.ylim(ymax=cmd_args.ymax)
 
 # set labels and font size
-ax.set_xlabel('Wavelength $(\AA)$', fontsize = 20)
-ax.set_ylabel(r'F$(\mathrm{10^{-15} erg\ s^{-1} cm^{-2} \AA^{-1}})$', fontsize = 20)
-Flux /=1e-15
+ax.set_xlabel('Wavelength $(\AA)$', fontsize=20)
+ax.set_ylabel(r'F$(\mathrm{10^{-15} erg\ s^{-1} cm^{-2} \AA^{-1}})$', fontsize=20)
+Flux /= 1e-15
 
 ax.plot(wl, Flux, c="#808080", linewidth=1.5, alpha=0.6, zorder=2)
-for wl1, mag, magErr, colors, marker_ in zip(wl_br, mag_br, err_br, color_br, marker_br): #
+
+# Handle multiple selected emission lines
+for wl1, mag, magErr, colors, marker_ in zip(wl_br, mag_br, err_br, color_br, marker_br):
     F = (10**(-(mag + 2.41) / 2.5)) / wl1**2
     F /= 1e-15
     ax.scatter(wl1, F, color=colors, marker=marker_, edgecolors='k', s=200, zorder=4)
@@ -267,19 +278,34 @@ for wl1, mag, magErr, colors, marker_ in zip(wl_nr, mag_nr, err_nr, color_nr, ma
     ax.scatter(wl1, F, color=colors, marker=marker_, edgecolors='k', s=180, zorder=4)
     ax.errorbar(wl1, F, yerr=magErr, fmt='r', marker=None, linestyle=(0, (5, 5)), color=colors, ecolor=colors, elinewidth=3.9, markeredgewidth=3.2, capsize=10)
 
-# Putting the labels to the lines
-# Putting the label for the selected emission line
-ax.axvline(lambda_ob, color='k', linewidth=0.9, alpha=0.9, linestyle='--')
-bbox_props = dict(boxstyle="round", fc="w", ec="0.88", alpha=0.6, pad=0.1)
-ax.annotate(selected_emission_line, (lambda_ob, max_flux), alpha=1, size=18,
-            xytext=(10.5, 5.6), textcoords='offset points', ha='right', va='bottom',
-            rotation=90, bbox=bbox_props, zorder=200)
+# Putting the labels for the selected emission lines
+if isinstance(selected_emission_line, tuple):  # If multiple lines are selected
+    for line, max_flux, lambda_ob in zip(selected_emission_line, max_flux_values, lambda_ob_values):
+        ax.axvline(lambda_ob, color='k', linewidth=0.8, alpha=0.7, linestyle='--', zorder=1)
+        bbox_props = dict(boxstyle="round", fc="w", ec="0.88", alpha=0.6, pad=0.1)
+        if line == "[O III] 4959":
+            ax.annotate(line, (lambda_ob-100, max_flux), alpha=1, size=18,
+                        xytext=(10, 5.6), textcoords='offset points', ha='right', va='bottom',
+                        rotation=90, bbox=bbox_props, zorder=200)
+        else:  # For other lines, place the label to the right of the line
+            ax.annotate(line, (lambda_ob+100, max_flux-0.3), alpha=1, size=18,
+                        xytext=(10.5, 5.6), textcoords='offset points', ha='right', va='bottom',
+                        rotation=90, bbox=bbox_props, zorder=200)
+else:  # If only one line is selected
+    lambda_ob = emission_lines[selected_emission_line] * (z + 1)
+    ax.axvline(lambda_ob, color='k', linewidth=0.8, alpha=0.7, linestyle='--', zorder=1)
+    bbox_props = dict(boxstyle="round", fc="w", ec="0.88", alpha=0.6, pad=0.1)
+    ax.annotate(selected_emission_line, (lambda_ob, max_flux_values[0]), alpha=1, size=18,
+                xytext=(10.5, 5.6), textcoords='offset points', ha='right', va='bottom',
+                rotation=90, bbox=bbox_props, zorder=200)
 
-ax.annotate(Type, (8500, max_flux+offset_yy), alpha=1, size=18,
+
+# Annotation for Type and redshift
+ax.annotate(Type, (8500, max_flux_values[0] + offset_yy), alpha=1, size=18,
             xytext=(7.5, 5.6), textcoords='offset points', ha='right', va='bottom',
             rotation=0, bbox=bbox_props, zorder=200)
 
-ax.annotate("z = {:.3f}".format(float(z)), (8500+offset_x, max_flux+offset_yy-offset_y), alpha=1, size=18,
+ax.annotate("z = {:.3f}".format(float(z)), (8500 + offset_x, max_flux_values[0] + offset_yy - offset_y), alpha=1, size=18,
             xytext=(7.5, 5.6), textcoords='offset points', ha='right', va='bottom',
             rotation=0, bbox=bbox_props, zorder=200)
 

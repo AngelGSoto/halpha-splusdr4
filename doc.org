@@ -338,7 +338,10 @@ Number the objects with z > 0.02: 30
     - spec-9146-58042-0510 -> QSO, z = 2.451635599136352
     - spec-9198-57713-0538 -> QSO, z = 1.3583483695
     - spec-57369-EG032649N000134M01_sp13-083 -> Syfert, z = 0.347373
+    - spec-9154-58013-0971 -> Syfert, z = 0.32072
     - spec-58403-S82352S01M1_sp03-036 -> CV
+    - spec-0395-51783-0008 -> RRLyr
+    - spec-56595-EG012606S021203B01_sp16-243 -> EB
 
 ** Machine Learning
 

@@ -178,9 +178,9 @@ elif  0.33 <= z <= 0.4:
 else:
     selected_emission_line = "Hα"
     z=0
-    offset_x = 10
-    offset_yy = 3
-    offset_y = 2
+    offset_x = 150
+    offset_yy = -400
+    offset_y = 50
 
    
 # Calculate max flux around the selected emission line for label positioning
@@ -216,7 +216,7 @@ j = lambda_ob - 10
 k = lambda_ob + 10
 mask = (j < wl) & (wl < k)
 flux_values = Flux[mask]
-flux_values +=0.05
+flux_values +=50
 max_flux = np.max(flux_values) if len(flux_values) > 0 else 10
 
 # PLOTS
@@ -264,7 +264,7 @@ for wl1, mag, magErr, colors, marker_ in zip(wl_nr, mag_nr, err_nr, color_nr, ma
 
 # Putting the labels to the lines
 # Putting the label for the selected emission line
-ax.axvline(lambda_ob, color='k', linewidth=0.9, alpha=0.9, linestyle='--')
+ax.axvline(lambda_ob, color='k', linewidth=0.8, alpha=0.7, linestyle='--', zorder=1)
 bbox_props = dict(boxstyle="round", fc="w", ec="0.88", alpha=0.6, pad=0.1)
 ax.annotate(selected_emission_line, (lambda_ob, max_flux), alpha=1, size=18,
             xytext=(10.5, 5.6), textcoords='offset points', ha='right', va='bottom',
