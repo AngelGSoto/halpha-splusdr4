@@ -35,20 +35,28 @@ print("Number of objects just with SPLUS+WISE colors:", len(df_splus_wise))
 
 # Plotting
 fig, ax = plt.subplots(figsize=(15, 11))
-plt.xlabel("UMAP-1", fontsize=30)
-plt.ylabel("UMAP-2", fontsize=30)
-plt.tick_params(axis='x', labelsize=30, width=2, length=10)  # Adjusting width and length of tick marks
-plt.tick_params(axis='y', labelsize=30, width=2, length=10)  # Adjusting width and length of tick marks
+plt.xlabel("UMAP-1", fontsize=32)
+plt.ylabel("UMAP-2", fontsize=32)
+plt.tick_params(axis='x', labelsize=32, width=2, length=10)  # Adjusting width and length of tick marks
+plt.tick_params(axis='y', labelsize=32, width=2, length=10)  # Adjusting width and length of tick marks
 
-# Create a scatter plot with different marker styles and colors
-markers = ['o', 's', 'D', '^']
-colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']  # Set custom colors
-for group, marker, color in zip(range(4), markers, colors):
-    border_color = np.array(plt.cm.colors.to_rgba(color))  # Convert color to RGBA array
-    border_color *= 0.6  # Darken the color by reducing its intensity
-    ax.scatter(df_splus["PC1"][df_splus["Label"] == group], 
-               df_splus["PC2"][df_splus["Label"] == group], 
-               c=color, s=200, marker=marker, edgecolors=border_color, linewidth=1.5, label=f"Group {group}")
+# Define colors based on the number of CSV files found
+num_colors = len(df_splus["Label"].unique())
+colors = sns.color_palette("tab10", num_colors)
+edge_colors = sns.color_palette("dark", num_colors)  # Define nice edge colors
+
+# Iterate over groups and assign colors and markers
+for group, (label, group_data) in enumerate(df_splus.groupby("Label")):
+    if label == -1:
+        legend_label = "Noise"
+    else:
+        legend_label = f"Group {label}"
+        
+    color = colors[group % num_colors]
+    edge_color = edge_colors[group % num_colors]
+    marker = 'o'  # You can change this if you want different markers for each group
+    ax.scatter(group_data["PC1"], group_data["PC2"],
+               c=[color], s=200, marker=marker, edgecolors=[edge_color], linewidth=1.5, label=legend_label)
 
 # Add minor tick locators without showing the minor ticks
 ax.xaxis.set_minor_locator(MultipleLocator(0.5))
@@ -57,7 +65,7 @@ ax.xaxis.set_minor_formatter(NullFormatter())
 ax.yaxis.set_minor_formatter(NullFormatter())
 
 # Customize legend with larger font size
-ax.legend(loc='upper left', fontsize=25)
+ax.legend(loc='lower left', fontsize=30)
 
 plt.tight_layout()    
 plt.savefig("Figs/umap_hdbscam_splus_disk.pdf")
@@ -67,22 +75,28 @@ plt.savefig("Figs/umap_hdbscam_splus_disk.pdf")
 #######################################################
 
 fig, ax = plt.subplots(figsize=(15, 11))
-plt.xlabel("UMAP-1", fontsize=30)
-plt.ylabel("UMAP-2", fontsize=30)
-plt.tick_params(axis='x', labelsize=30, width=2, length=10)  # Adjusting width and length of tick marks
-plt.tick_params(axis='y', labelsize=30, width=2, length=10)  # Adjusting width and length of tick marks
+plt.xlabel("UMAP-1", fontsize=32)
+plt.ylabel("UMAP-2", fontsize=32)
+plt.tick_params(axis='x', labelsize=32, width=2, length=10)  # Adjusting width and length of tick marks
+plt.tick_params(axis='y', labelsize=32, width=2, length=10)  # Adjusting width and length of tick marks
 
-# Create a scatter plot with different marker styles and colors
-colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#ff9896']
+# Define colors based on the number of CSV files found
+num_colors_wise = len(df_splus_wise["Label"].unique())
+colors_wise = sns.color_palette("tab10", num_colors_wise)
+edge_colors_wise = sns.color_palette("dark", num_colors_wise)  # Define nice edge colors
 
-markers = ['o', 's', 'D', '^', '*', 'P']
-
-for group, marker, color in zip(range(6), markers, colors):
-    border_color = np.array(plt.cm.colors.to_rgba(color))  # Convert color to RGBA array
-    border_color *= 0.6  # Darken the color by reducing its intensity
-    ax.scatter(df_splus_wise["PC1"][df_splus_wise["Label"] == group], 
-               df_splus_wise["PC2"][df_splus_wise["Label"] == group], 
-               c=color, s=200, marker=marker, edgecolors=border_color, linewidth=1.5, label=f"Group {group}")
+# Iterate over groups and assign colors and markers
+for group, (label, group_data) in enumerate(df_splus_wise.groupby("Label")):
+    if label == -1:
+        legend_label = "Noise"
+    else:
+        legend_label = f"Group {label}"
+        
+    color_wise = colors_wise[group % num_colors_wise]
+    edge_color_wise = edge_colors_wise[group % num_colors_wise]
+    marker_wise = 'o'  # You can change this if you want different markers for each group
+    ax.scatter(group_data["PC1"], group_data["PC2"],
+               c=[color_wise], s=200, marker=marker_wise, edgecolors=[edge_color_wise], linewidth=1.5, label=legend_label)
 
 # Add minor tick locators without showing the minor ticks
 ax.xaxis.set_minor_locator(MultipleLocator(0.5))
@@ -91,7 +105,7 @@ ax.xaxis.set_minor_formatter(NullFormatter())
 ax.yaxis.set_minor_formatter(NullFormatter())
 
 # Customize legend with larger font size
-ax.legend(loc='lower center', fontsize=25)
+ax.legend(loc='upper right', fontsize=30)
 
 plt.tight_layout()    
 plt.savefig("Figs/umap_hdbscam_splus_wise_disk.pdf")
