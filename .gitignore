@@ -2,12 +2,12 @@
 splus_halpha_report.pdf
 
 # Include specific files
-!/Ha-emitters/Halpha_Mine_PerField_total.csv
-!/Ha-emitters/Halpha_Mine_PerField_total_simbad.csv
-!/Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total.csv
-!/Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total_vphas.csv
-!/Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total_wise.csv
-!/Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total_simbad.csv
+!Ha-emitters/Halpha_Mine_PerField_total.csv
+!Ha-emitters/Halpha_Mine_PerField_total_simbad.csv
+!Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total.csv
+!Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total_vphas.csv
+!Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total_wise.csv
+!Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total_simbad.csv
 
 # Exclude files with certain extensions
 *.csv
