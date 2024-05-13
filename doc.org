@@ -354,6 +354,12 @@ Number the objects with z > 0.02: 30
    - [[https://ui.adsabs.harvard.edu/abs/2022MNRAS.509.1227C/abstract][Chen et al.]]
    - [[https://ui.adsabs.harvard.edu/abs/2021ApJS..257...65S/abstract][Yongkang et al.]]
 
+** Main
+
++ I made crossmatch with ALWISE using a radious of 2 arcsec.
++ I made crossmatch with SIMBAD using a error of 2 arcsec.
+
+
 ** Disk
    :PROPERTIES:
    :h:        7
@@ -438,7 +444,8 @@ nbDist	REAL	arcsec	false	Distance to the nearest neighbour detected in	pos.angDi
 "g-r2"	REAL	mag	false	? (g-r2) colour index, formed by subtracting columns g and r2 (g_r2)	phot.color;em.opt.B;em.opt.R			std
 #+END_SRC
 
-+ I made crossmat with ALWISE using a radious of 1 arcsec.
++ I made crossmatch with ALWISE using a radious of 1 arcsec.
++ I made crossmatch with SIMBAD using a error of 1 arcsec.
 
 ** Results
 

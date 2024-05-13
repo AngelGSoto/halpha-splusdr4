@@ -1,4 +1,10 @@
 splus_halpha_report.pdf
+!Halpha_Mine_PerField_total.csv
+!Halpha_Mine_PerField_total_simbad.csv
+!Halpha-disk_splus_Mine_PerField_total.csv
+!Halpha-disk_splus_Mine_PerField_total_vphas.csv
+!Halpha-disk_splus_Mine_PerField_total_wise.csv
+!Halpha-disk_splus_Mine_PerField_total_simbad.csv
 *.csv
 *.fits
 *.dat
