@@ -1,0 +1,478 @@
+#+TITLE: Ha emitters DR4
+:PROPERTIES:
+:ID:       
+:END:
+
+* Halpha emitters in DR4 S-PLUS
+
+I try to improve the aproach to select Halpha emitters in S-PLUS.
+
++ Papers:
+
+ - [[https://ui.adsabs.harvard.edu/abs/2021MNRAS.505.1135F/abstract][Fratta et al.]]
+ - [[https://ui.adsabs.harvard.edu/abs/2020A%26A...638A..18M/abstract][Monguio et al.]]
+ - [[https://ui.adsabs.harvard.edu/abs/2017MNRAS.466..163W/abstract][Wevers et al.]]
+ - [[https://ui.adsabs.harvard.edu/abs/2008MNRAS.384.1277W/abstract][Witham et al.]]
+ - [[https://ui.adsabs.harvard.edu/abs/2006MNRAS.369..581W/abstract][Witahm et al.]]
+ - [[https://ui.adsabs.harvard.edu/abs/2005MNRAS.362..753D/abstract][Drew et al.]]
+
+** Main sequence stars
+I putted the track of unredened MS and giant stars from [[https://ui.adsabs.harvard.edu/abs/1998PASP..110..863P/abstract][Pickles et al.]] in the color-color diagram .
+
+** Getting and cleaning the data
+
+The data were downloaded from the [[https://splus.cloud/][SPLUS.CLOUD]], and a preliminary cut were in the [[programs/getting-splusdata-basedGustavo.py][query]] 
+using Python to cleaned the data. And after I apply some criteria to getting data with very high quality,
+this after to make different tests.
+
+*Additionally criteria to cleaned the data*
+
+ The criteria are systematically chosen to ensure the robustness and 
+reliability of the selected sample, taking into account various photometric 
+and morphological properties of the sources.
+
+1. **Photometric Properties**:
+   - We apply stringent constraints on the photometric 
+properties of the sources to ensure that we focus on objects 
+with appropriate brightness levels for detecting Hα emission. 
+Specifically, we select sources with magnitudes in the r, J0660, 
+and i bands falling within defined ranges (r_PStotal > 16 and r_PStotal ≤ 17.5, J0660_PStotal ≤ 19.4, i_PStotal ≤ 19.2).
+
+2. **Error Values**:
+   - To ensure the reliability of our measurements, 
+we impose upper limits on the error values associated with the photometric measurements. 
+Sources with error values exceeding 0.2 in any of the photometric bands are excluded from the analysis.
+
+3. **Signal-to-Noise Ratio (SNR)**:
+   - We require sources to have a minimum signal-to-noise ratio (SNR) in each photometric band to 
+ensure sufficient signal strength relative to the noise. Sources with SNR values below 10 are considered 
+to have insufficient signal and are excluded from further analysis.
+
+4. **Ellipticity**:
+   - We consider the morphological properties of the sources by imposing a threshold on ellipticity. 
+Sources with ellipticity values greater than 0.2 are likely to have non-galactic or irregular shapes 
+and are therefore excluded from consideration.
+
+5. **Flux Radius**:
+   - We select sources with compact morphology by constraining the radius enclosing 50% of the total flux. 
+Sources with a flux radius exceeding 3 pixels are likely to have extended morphology and are thus excluded from the sample.
+
+Each of these criteria is chosen based on considerations of the characteristics of our dataset, the sensitivity of our observations, 
+and the requirements for detecting Hα emission. By applying these stringent selection criteria, we aim to ensure the reliability and 
+robustness of the identified sample of Hα emitters.
+
+All thse yield the follow stars:
+
+- 13 < r < 16 => 1027290
+- 16 < r 17.5 => 1676988
+- 17.5 < r < 18.5 => 1733486
+- 18.5 < r < 19.5 = > 2217375
+
+** Choose the better selection criteria
+
+   I have implemented variance estimation methods proposed by Monguio and Fratta, and I have
+   proposed an alternative method that yields better estimates to search for a better selection
+   of Halpha emitters. The results are even better when applying the algorithm per field.
+   The implementation of my approach can be found in this [[programs/Selecting_Halpha_objects_PerField.py][Python Script]].
+   
+
+*Justification for Variance Estimation Formula in Selecting H\alpha Emitters*
+
+In our study, we employed a rigorous approach to identify H$\alpha$ emitters in astronomical datasets, 
+aiming to robustly isolate objects exhibiting H$\alpha$ emission features. Central to this process is 
+the determination of a reliable criterion that effectively distinguishes genuine H$\alpha$ emitters 
+from other sources of noise and contamination.
+
+The selection criterion we adopted involves the computation of a threshold value based on the observed 
+colors $(r - i)$ and $(r - J0660)$, where $(r - i)$ represents the difference between the magnitudes 
+measured in the $r$ and $i$ filters, and $(r - J0660)$ represents the difference between the magnitudes 
+in the $r$ filter and the H$\alpha$ filter (J0660).
+
+To quantify the uncertainty associated with these color measurements and ensure a robust selection 
+criterion, we derived a variance estimation formula denoted as \texttt{variance\_est}. 
+This formula incorporates several key components:
+
+\begin{equation}
+\texttt{variance\_est} = \sigma_{\text{fit}}^2 + m^2 \cdot (\text{e}(r - i))^2 + (1 - m)^2 \cdot (\text{e}(r - J0660))^2
+\end{equation}
+
+\begin{itemize}
+\item \textbf{Sigma Fit ($\sigma_{\text{fit}}$)}: This term accounts for the intrinsic scatter in the fitted linear model, 
+representing the variability observed around the best-fit line. It captures the dispersion of data points from the regression 
+line, providing an indication of the overall uncertainty in the model fit.
+
+\item \textbf{Slope of the Fitted Line ($m$)}: The slope of the fitted line characterizes the relationship between the 
+colors $(r - i)$ and $(r - J0660)$. It reflects the degree of correlation between these color indices and influences the 
+selection criterion's sensitivity to deviations from the fitted model.
+
+\item \textbf{Errors in Color Measurements}: The terms $\text{e}(r - i)$ and $\text{e}(r - J0660)$ represent the 
+errors associated with the color measurements $(r - i)$ and $(r - J0660)$, respectively. These errors encapsulate uncertainties arising 
+from observational noise, instrumental effects, and intrinsic variations in source fluxes.
+\end{itemize}
+
+By combining these components, the variance estimation formula \texttt{variance\_est} provides a comprehensive assessment 
+of the overall uncertainty in the color measurements $(r - i)$ and $(r - J0660)$. It accounts for both the intrinsic 
+scatter in the data and the precision of the individual color measurements, enabling a robust determination of the 
+selection criterion.
+
+We selected this variance estimation formula based on its ability to incorporate the full range of uncertainties 
+associated with the color indices, thereby ensuring a stringent and reliable criterion for identifying H$\alpha$
+emitters. By considering the intrinsic scatter in the data and the errors in color measurements, we aimed to minimize the 
+impact of noise and artifacts, facilitating the accurate identification of genuine H$\alpha$ emission features.
+
+*** Comparison of Approaches for Selecting Halpha Emitters
+
+In this section, we compare two different approaches for 
+selecting Halpha emitters based on color criteria.
+ Both approaches involve estimating the variance in color 
+measurements and identifying objects with color deviations 
+indicative of Halpha emission. We will discuss each approach and highlight their differences.
+
+*** Fratta et al. Approach:
+
+Fratta et al. proposed an approach to select H\alpha emitters 
+based on color criteria. Their method involves estimating the 
+variance in color measurements and identifying objects with 
+significant deviations from the fitted model. The variance estimation 
+formula used by Fratta et al. is given by:
+
+#+BEGIN_LaTeX
+\[ \text{variance\_est} = \sigma_{\text{rms}}^2 + \text{error}^2(r - \text{Hα}) + m_{\text{fit}}^2 \cdot \text{error}^2(r - i) \]
+#+END_LaTeX
+
+In this formula, \( \sigma_{\text{rms}}^2 \) represents the intrinsic scatter, \( \text{error}(r - \text{Hα}) \) is 
+the error in the Halpha color measurement, and \( m_{\text{fit}}^2 \cdot \text{error}^2(r - i) \) accounts for 
+deviations in the reference color \( r - i \) influenced by the slope of the fitted line \( m_{\text{fit}} \).
+
+*** Recommended Approach:
+
+Alternatively, we propose a slightly different approach for selecting Halpha emitters. Our method 
+also involves estimating the variance in color measurements and identifying objects with significant 
+deviations from the fitted model. The variance estimation formula used in our approach is as follows:
+
+#+BEGIN_LaTeX
+\[ \text{variance\_est} = \sigma_{\text{fit}}^2 + m^2 \cdot \text{error}^2(r - i) + (1 - m)^2 \cdot \text{error}^2(r - \text{Hα}) \]
+#+END_LaTeX
+
+In this formula, \( \sigma_{\text{fit}}^2 \) represents the intrinsic scatter, \( \text{error}(r - i) \) is the error in the \( r - i \) 
+color measurement, and \( (1 - m)^2 \cdot \text{error}^2(r - \text{Hα}) \) accounts for deviations in the Halpha color influenced 
+by the slope of the fitted line \( m \).
+
+*** Comparison:
+
+The main difference between the two approaches lies in the treatment of the slope of the fitted line \( m \) or \( m_{\text{fit}} \). 
+In the Fratta et al. approach, the squared slope term \( m_{\text{fit}}^2 \) only affects the error in the reference color \( r - i \), 
+potentially emphasizing its influence over deviations in \( r - \text{Hα} \). On the other hand, in our recommended approach, the slope \( m \) 
+affects both terms in the variance estimation formula, providing a balanced consideration of its impact on color deviations.
+
+Ultimately, the choice between the two approaches depends on the specific characteristics of the data and the desired sensitivity to 
+deviations from the fitted model.
+
+*Justification for Applying the Algorithm per Field*
+
+Applying the algorithm per field can be the better choice for the following reasons:
+
+1. **Field-specific characteristics:** Different fields may exhibit unique characteristics
+   such as varying levels of background noise, instrumental effects, or sky conditions.
+   By analyzing each field separately, we can tailor the algorithm to account for
+   these differences, leading to more accurate results.
+
+2. **Minimizing contamination:** Some fields may have higher levels of contamination
+   from non-Halpha sources, such as stars or galaxies with similar colors.
+   By analyzing each field independently, we can better identify and filter
+   out such contaminants, resulting in a cleaner sample of Halpha emitters.
+
+3. **Optimizing parameters:** Certain parameters of the algorithm may need to
+   be adjusted depending on the characteristics of each field. By running the
+   algorithm separately for each field, we can optimize these parameters to
+   maximize the detection of true Halpha emitters while minimizing false positives.
+
+4. **Enhancing statistical robustness:** Analyzing each field independently allows
+   for better statistical assessment of the results within that specific context.
+   It reduces the risk of biases introduced by averaging over diverse data and enhances
+   the robustness of the findings.
+
+5. **Facilitating interpretation:** By presenting results on a per-field basis, it becomes
+   easier to interpret and compare the properties of Halpha emitters across different regions
+   of the sky. This approach can provide valuable insights into the spatial distribution
+   and environmental factors influencing Halpha emission in different astronomical contexts.
+
+Overall, applying the algorithm per field enables a more tailored and accurate analysis,
+leading to better characterization and understanding of Halpha emitters in each specific region of interest.
+
+*** running some scripts
+
+    : python programs/color-diagram_oneField.py iDR4-SPLUS-PStotal-PSF-16r175_class05_flags4_clean --Field "b'STRIPE82-0142'" --Object "b'iDR4_3_STRIPE82-0142_0021237'" --Range "16 < r $\leq$ 17.5"
+
+*** Spectra
+
+**** SDSS
++ Mach with SDSS [[https://skyserver.sdss.org/dr18/en/tools/search/SQS.aspx][DR18]]. I used a 1 arcsec of tolerance.
+
+
+#+BEGIN_SRC python :return pltfile :results file :results output
+
+import astropy.coordinates as coord
+import astropy.units as u
+from astropy.io import ascii
+from astropy.table import Table, QTable
+from astropy.coordinates import SkyCoord 
+import numpy as np
+from astropy.io import fits
+import matplotlib.pyplot as plt
+import argparse
+import sys
+import os
+from astropy.visualization import hist
+from astroML.datasets import fetch_imaging_sample, fetch_sdss_S82standards
+from astroML.crossmatch import crossmatch_angular
+from collections import OrderedDict
+import glob
+import json
+import seaborn as sn
+
+pattern = "Ha-emitters/SDSS-spectra/*.fits"
+file_fits = glob.glob(pattern)
+
+shape = (len(file_fits), 5)
+
+inffits = []
+for name_fit in file_fits:
+    hdulist = fits.open(name_fit)
+    c = SkyCoord(ra=float(hdulist[0].header["PLUG_RA"])*u.degree, dec=float(hdulist[0].header["PLUG_DEC"])*u.degree)
+    inffits.append(name_fit.split("spectra/")[-1])
+    inffits.append('SDSSJ{0}{1}'.format(c.ra.to_string(u.hour, sep='', precision=2, pad=True), c.dec.to_string(sep='', precision=1, alwayssign=True, pad=True)))
+    inffits.append(float(hdulist[0].header["PLUG_RA"]))
+    inffits.append(float(hdulist[0].header["PLUG_DEC"]))
+    inffits.append(float(hdulist[2].data['Z']))
+
+XX_fits = np.array(inffits).reshape(shape)
+print("Data shape:", XX_fits.shape)
+
+# Tables with all information 
+tab = Table(XX_fits, names=('FileName', 'ID', 'RA', 'DEC', 'Redshift'), meta={'name': 'first table'}, dtype=('S', 'S', 'f8', 'f8', 'f8'))
+
+#How many are the local universe
+liml_z = tab["Redshift"] <= 0.02
+limu_z = tab["Redshift"] > 0.02
+
+print("Number the objects with z < 0.02:", len(tab[liml_z]))
+print("Number the objects with z > 0.02:", len(tab[limu_z]))
+
+tab.write("Ha-emitters/SDSS-spectra/spectra-information_sdss.ecsv", format="ascii.ecsv", overwrite=True)
+tab.write("Ha-emitters/SDSS-spectra/spectra-information_sdss.dat", format="ascii.commented_header", overwrite=True)
+
+#+END_SRC
+
+#+RESULTS:
+[[file:Data shape: (138, 5)
+Number the objects with z < 0.02: 61
+Number the objects with z > 0.02: 77
+]]
+
+**** LAMOST
++ Mach with LAMOST DR7. I used a 2 arcsec of tolerance.
++ After I made cross match with LMOST DR9 getting 109 spectra
+
+#+BEGIN_SRC python :return pltfile :results file :results output
+
+import astropy.coordinates as coord
+import astropy.units as u
+from astropy.io import ascii
+from astropy.table import Table, QTable
+from astropy.coordinates import SkyCoord 
+import numpy as np
+from astropy.io import fits
+import matplotlib.pyplot as plt
+import argparse
+import sys
+import os
+from astropy.visualization import hist
+from astroML.datasets import fetch_imaging_sample, fetch_sdss_S82standards
+from astroML.crossmatch import crossmatch_angular
+from collections import OrderedDict
+import glob
+import json
+import seaborn as sn
+
+pattern = "Ha-emitters/LAMOST-spectra/*.fits"
+file_fits = glob.glob(pattern)
+
+shape = (len(file_fits), 5)
+
+inffits = []
+for name_fit in file_fits:
+    hdulist = fits.open(name_fit)
+    c = SkyCoord(ra=float(hdulist[0].header["RA"])*u.degree, dec=float(hdulist[0].header["DEC"])*u.degree) 
+    inffits.append(name_fit.split("spectra/")[-1])
+    inffits.append('LAMOST{0}{1}'.format(c.ra.to_string(u.hour, sep='', precision=2, pad=True), c.dec.to_string(sep='', precision=1, alwayssign=True, pad=True)))
+    inffits.append(float(hdulist[0].header["RA"]))
+    inffits.append(float(hdulist[0].header["DEC"]))
+    inffits.append(float(hdulist[0].header['Z']))
+
+XX_fits = np.array(inffits).reshape(shape)
+print("Data shape:", XX_fits.shape)
+
+# Tables with all information 
+tab = Table(XX_fits, names=('FileName', 'ID', 'RA', 'DEC', 'Redshift'), meta={'name': 'first table'}, dtype=('S', 'S', 'f8', 'f8', 'f8'))
+
+#How many are the local universe
+liml_z = tab["Redshift"] <= 0.02
+limu_z = tab["Redshift"] > 0.02
+
+print("Number the objects with z < 0.02:", len(tab[liml_z]))
+print("Number the objects with z > 0.02:", len(tab[limu_z]))
+
+tab.write("Ha-emitters/LAMOST-spectra/spectra-information-lamost.ecsv", format="ascii.ecsv", overwrite=True)
+tab.write("Ha-emitters/LAMOST-spectra/spectra-information-lamost.dat", format="ascii.commented_header", overwrite=True)
+
+#+END_SRC
+
+#+RESULTS:
+[[file:Data shape: (96, 5)
+Number the objects with z < 0.02: 66
+Number the objects with z > 0.02: 30
+]]
+*** Spectra for the paper
+    - spec-4740-55651-0188 -> CV
+    - spec-9218-57724-0804 -> QSO, z = 3.280
+    - spec-9146-58042-0510 -> QSO, z = 2.451635599136352
+    - spec-9198-57713-0538 -> QSO, z = 1.3583483695
+    - spec-57369-EG032649N000134M01_sp13-083 -> Syfert, z = 0.347373
+    - spec-9154-58013-0971 -> Syfert, z = 0.32072
+    - spec-58403-S82352S01M1_sp03-036 -> CV
+    - spec-0395-51783-0008 -> RRLyr
+    - spec-56595-EG012606S021203B01_sp16-243 -> EB
+
+** Machine Learning
+
+   *** UMAP
+
+   Paper in astronomy appliying UMAP:
+
+   - [[https://ui.adsabs.harvard.edu/abs/2023MNRAS.522.4342Y/abstract][Yang et al.]]
+   - [[https://ui.adsabs.harvard.edu/abs/2022MNRAS.509.1227C/abstract][Chen et al.]]
+   - [[https://ui.adsabs.harvard.edu/abs/2021ApJS..257...65S/abstract][Yongkang et al.]]
+
+** Main
+
++ I made crossmatch with ALWISE using a radious of 2 arcsec.
++ I made crossmatch with SIMBAD using a error of 2 arcsec.
+
+
+** Disk
+   :PROPERTIES:
+   :h:        7
+   :END:
+
+The final list of Halpha I crossmatched with VPHAS DR2 using a 1 arcsec of tolerance. 
+Getting 1022 comun sources.
+
+Explanation of VPHAS table: 
+
+
+#+NAME: todoOverview
+#+BEGIN_SRC emacs-lisp
+
+gmagapAB	REAL	mag	false	? g-band AB magnitude obtained using aperture photometry (aperMag_g_AB)	phot.mag;em.opt.B			std
+e_gmagap	REAL	mag	false	? Statistical uncertainty for gmagap, not including systematics (aperMagErr_g)	stat.error			std
+snrg	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_g)	stat.snr			std
+gmaglim	REAL	mag	false	? The Vega magnitude a SNR=3 source would have at this position (magLim_g)	phot.mag			std
+PSFFWHMg	REAL	arcsec	false	? Typical PSF FWHM in the CCD frame (psffwhm_g)	phys.angSize			std
+MJDg	REAL	d	false	? Modified Julian Date at the start of the g-band exposure (mjd_g)	time.epoch			std
+detIDg	CHAR(23)		false	Detection identifier: night-#exposure-#extension-#number (detectionID_g)	meta.id			std
+cleanr2	SMALLINT		false	[0/1] =1 if the r2-band detection is significant and the PSF fit good (clean_r2)	meta.code			std
+r2mag	REAL	mag	false	? Second r-band VEGA magnitude obtained using PSF fitting (r2)	phot.mag;em.opt.R			std
+r2magAB	REAL	mag	false	? Second r-band AB magnitude obtained using PSF fitting (r2_AB)	phot.mag;em.opt.R			std
+e_r2mag	REAL	mag	false	? Statistical uncertainty for r2, not including systematics (err_r2)	stat.error;phot.mag			std
+chir2	REAL		false	? Goodness of the PSF fit in r2, as determined by DAOPHOT ALLSTAR (chi_r2)	stat.fit.goodness;instr.det.psf			std
+warningr2	CHAR(12)		false	Flags problems encountered while fitting the PSF, if any (warning_r2) (1)	meta.code			std
+r2magap	REAL	mag	false	? r2-band VEGA magnitude obtained using aperture photometry (aperMag_r2)	phot.mag;em.opt.R			std
+r2magapAB	REAL	mag	false	? r2-band AB magnitude obtained using aperture photometry (aperMag_r2_AB)	phot.mag;em.opt.R			std
+e_r2magap	REAL	mag	false	? Statistical uncertainty for r2magap, not including systematics (aperMagErr_r2)	stat.error			std
+snrr2	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_r2)	stat.snr			std
+r2maglim	REAL	mag	false	? The Vega magnitude a SNR=3 source would have at this position (magLim_r2)	phot.mag			std
+PSFFWHMr2	REAL	arcsec	false	? Typical PSF FWHM in the CCD frame (psffwhm_r2)	phys.angSize			std
+MJDr2	REAL	d	false	? Modified Julian Date at the start of the r2-band exposure (mjd_r2)	time.epoch			std
+detIDr2	CHAR(23)		false	Detection identifier: night-#exposure-#extension-#number (detectionID_r2)	meta.id			std
+cleanHa	SMALLINT		false	[0/1] =1 if the H-alpha detection is significant and the PSF fit good (clean_ha)	meta.code			std
+Hamag	REAL	mag	false	? Default H-alpha VEGA magnitude obtained using PSF fitting (ha)	phot.flux;em.line.Halpha			std
+e_Hamag	REAL	mag	false	? Statistical uncertainty for ha, not including systematics (err_ha)	stat.error;phot.mag;em.IR.H			std
+chiHa	REAL		false	? Goodness of the PSF fit in H-alpha, as determined by DAOPHOT (chi_ha)	stat.fit.goodness;instr.det.psf			std
+warningHa	CHAR(9)		false	Flags problems encountered while fitting the PSF, if any (warning_ha) (1)	meta.code			std
+Hamagap	REAL	mag	false	? H-alpha VEGA magnitude obtained using aperture photometry (aperMag_ha)	phot.flux;em.line.Halpha			std
+e_Hamagap	REAL	mag	false	? Statistical uncertainty for Hamagap, not including systematics (aperMagErr_ha)	stat.error			std
+snrHa	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_ha)	stat.snr			std
+Hamaglim	REAL	mag	false	? The Vega magnitude a SNR=3 source would have at this position (magLim_ha)	phot.mag			std
+PSFFWHMHa	REAL	arcsec	false	? Typical PSF FWHM in the CCD frame (psffwhm_ha)	phys.angSize			std
+MJDHa	REAL	d	false	? Modified Julian Date at the start of the H-alpha exposure (mjd_ha)	time.epoch			std
+detIDHa	CHAR(23)		false	Detection identifier: night-#exposure-#extension-#number (detectionID_ha)	meta.id			std
+cleanr	SMALLINT		false	[0/1] =1 if the r-band detection is significant and the PSF fit good (clean_r)	meta.code			std
+rmag	REAL	mag	true	? Default r-band VEGA magnitude obtained using PSF fitting (r)	phot.mag;em.opt.R			indexed std
+rmagAB	REAL	mag	false	? Default r-band AB magnitude obtained using PSF fitting (r_AB)	phot.mag;em.opt.R			std
+e_rmag	REAL	mag	false	? Statistical uncertainty for r, not including systematics (err_r)	stat.error;phot.mag;em.opt.R			std
+chir	REAL		false	? Goodness of the PSF fit in r, as determined by DAOPHOT ALLSTAR (chi_r)	stat.fit.goodness;instr.det.psf			std
+warningr	CHAR(9)		false	Flags problems encountered while fitting the PSF, if any (warning_r) (1)	meta.code			std
+rmagap	REAL	mag	false	? r-band VEGA magnitude obtained using aperture photometry (aperMag_r)	phot.mag;em.opt.R			std
+rmagapAB	REAL	mag	false	? r-band AB magnitude obtained using aperture photometry (aperMag_r_AB)	phot.mag;em.opt.R			std
+e_rmagap	REAL	mag	false	? Statistical uncertainty for rmagap, not including systematics (aperMagErr_r)	stat.error			std
+snrr	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_r)	stat.snr			std
+rmaglim	REAL	mag	false	? The Vega magnitude a SNR=3 source would have at this position (magLim_r)	phot.mag			std
+PSFFWHMr	REAL	arcsec	false	? Typical PSF FWHM in the CCD frame (psffwhm_r)	phys.angSize			std
+MJDr	REAL	d	false	? Modified Julian Date at the start of the r-band exposure (mjd_r)	time.epoch			std
+detIDr	CHAR(23)		false	Detection identifier: night-#exposure-#extension-#number (detectionID_r)	meta.id			std
+cleani	SMALLINT		false	[0/1] =1 if the i-band detection is significant and the PSF fit good (clean_i)	meta.code			std
+imag	REAL	mag	true	? Default i-band VEGA magnitude obtained using PSF fitting (i)	phot.mag;em.opt.I			indexed std
+imagAB	REAL	mag	false	? Default i-band AB magnitude obtained using PSF fitting (i_AB)	phot.mag;em.opt.I			std
+e_imag	REAL	mag	false	? Statistical uncertainty for i, not including systematics (err_i)	stat.error;phot.mag;em.opt.I			std
+chii	REAL		false	? Goodness of the PSF fit in i, as determined by DAOPHOT ALLSTAR (chi_i)	stat.fit.goodness;instr.det.psf			std
+warningi	CHAR(9)		false	Flags problems encountered while fitting the PSF, if any (warning_i) (1)	meta.code			std
+imagap	REAL	mag	false	? i-band VEGA magnitude obtained using aperture photometry (aperMag_i)	phot.mag;em.opt.I			std
+imagapAB	REAL	mag	false	? i-band AB magnitude obtained using aperture photometry (aperMag_i_AB)	phot.mag;em.opt.I			std
+e_imagap	REAL	mag	false	? Statistical uncertainty for imagap, not including systematics (aperMagErr_i)	stat.error			std
+snri	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_i)	stat.snr			std
+imaglim	REAL	mag	false	? The Vega magnitude a SNR=3 source would have at this position (magLim_i)	phot.mag			std
+PSFFWHMi	REAL	arcsec	false	Typical PSF FWHM in the CCD frame (psffwhm_i)	phys.angSize			std
+MJDi	REAL	d	false	Modified Julian Date at the start of the i-band exposure (mjd_i)	time.epoch			std
+detIDi	CHAR(23)		false	Detection identifier: night-#exposure-#extension-#number (detectionID_i)	meta.id			std
+Field	CHAR(5)		false	Survey-specific identifier of the telescope pointing (field)	meta.id;instr.tel			std
+Ext	SMALLINT		false	[1/32] OmegaCAM CCD extension used (ext)	phys.angSize;instr.plate			std
+nbDist	REAL	arcsec	false	Distance to the nearest neighbour detected in	pos.angDistance			std
+"r-i"	REAL	mag	false	? (r-i) colour index, formed by subtracting columns r and i (r_i)	phot.color;em.opt.R;em.opt.I			std
+"r-ha"	REAL	mag	false	? (r-Halpha) colour index, formed by subtracting columns r and ha (r_ha)	phot.color;em.opt.R;em.line.Halpha			std
+"u-g"	REAL	mag	false	? (u-g) colour index, formed by subtracting columns u and g (u_g)	phot.color;em.opt.U;em.opt.B			std
+"g-r2"	REAL	mag	false	? (g-r2) colour index, formed by subtracting columns g and r2 (g_r2)	phot.color;em.opt.B;em.opt.R			std
+#+END_SRC
+
++ I made crossmatch with ALWISE using a radious of 1 arcsec.
++ I made crossmatch with SIMBAD using a error of 1 arcsec.
+
+** Results
+
+   *** Why EB and RRlyra stars a high latitude?
+
+   he identification of more eclipsing binaries and RR Lyrae stars at higher latitudes could be attributed to several physical factors:
+
+    Galactic Halo: At higher latitudes, you may be probing regions outside the main disk of the galaxy, such as the galactic halo.
+    The galactic halo contains older stellar populations, including RR Lyrae stars, which are commonly found in globular clusters a
+    nd halo substructures. These stars are relatively faint and can be more easily detected against the darker background of the
+    halo compared to the crowded regions of the galactic disk.
+
+    Stellar Populations: The distribution of different stellar populations can vary with galactic latitude.
+    In the disk, you may predominantly detect younger stellar populations associated with ongoing star formation. As you move
+    to higher latitudes, the prevalence of older stellar populations, including those containing RR Lyrae stars, may increase.
+    Eclipsing binaries, which are systems consisting of two stars orbiting around their common center of mass and periodically
+    eclipsing each other, can also be more prevalent in older stellar populations.
+
+    Survey Sensitivity: The sensitivity of the survey instruments and techniques may play a role in the detection of different
+    types of objects. For example, RR Lyrae stars are relatively faint and may require deeper observations or specialized
+    detection methods to be identified. High-latitude observations may benefit from reduced contamination and background noise,
+    allowing for more sensitive detection of faint objects such as eclipsing binaries and RR Lyrae stars.
+
+    Differential Extinction: Extinction due to interstellar dust can affect the observed colors and magnitudes of stars,
+    particularly in the galactic plane where dust concentrations are higher. At higher latitudes, where dust extinction may
+    be lower, the observed colors of stars can be less affected by dust reddening, making it easier to identify specific
+    types of stars based on their intrinsic properties.
+
+By considering these factors, astronomers can better understand the distribution and properties of different types of
+stars across the sky and gain insights into the formation and evolution of galaxies like the Milky Way.
