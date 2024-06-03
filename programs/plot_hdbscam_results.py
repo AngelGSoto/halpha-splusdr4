@@ -57,7 +57,7 @@ with sns.axes_style("ticks"):
     ax.xaxis.set_minor_formatter(NullFormatter())
     ax.yaxis.set_minor_formatter(NullFormatter())
 
-    ax.legend(loc='lower left', fontsize=30)
+    ax.legend(loc='upper right', fontsize=30)
    
     plt.tight_layout()    
 plt.savefig("Figs/umap_hdbscam_splus.pdf")
@@ -94,7 +94,7 @@ with sns.axes_style("ticks"):
     ax.xaxis.set_minor_formatter(NullFormatter())
     ax.yaxis.set_minor_formatter(NullFormatter())
 
-    ax.legend(loc='upper right', fontsize=30, ncol=1)
+    ax.legend(loc='lower left', fontsize=30, ncol=1)
 
     plt.tight_layout()    
 plt.savefig("Figs/umap_hdbscam_splus_wise.pdf")
