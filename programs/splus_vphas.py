@@ -53,7 +53,7 @@ plt.axvline(mu, color='blue', linestyle='-', linewidth=1.5)  # Blue solid line f
 plt.axvline(mu + std, color='purple', linestyle='-.', linewidth=1.5)  # Purple dash-dot line for mean + std
 plt.axvline(mu - std, color='purple', linestyle='-.', linewidth=1.5)  # Purple dash-dot line for mean - std
 
-plt.xlabel('Difference in $r - i$ color (S-PLUS - VPHAS)', fontsize=15)
+plt.xlabel('Difference in $r - i$ color (S-PLUS - VPHAS+)', fontsize=15)
 plt.ylabel('Density', fontsize=15)
 plt.legend(['Gaussian Fit', 'Mean', 'Mean ± Std Dev'], loc='upper right', fontsize=15)
 
@@ -83,7 +83,7 @@ plt.axvline(mu_, color='blue', linestyle='-', linewidth=1.5)  # Blue solid line 
 plt.axvline(mu_ + std_, color='purple', linestyle='-.', linewidth=1.5)  # Purple dash-dot line for mean + std
 plt.axvline(mu_ - std_, color='purple', linestyle='-.', linewidth=1.5)  # Purple dash-dot line for mean - std
 
-plt.xlabel(r'Difference in $r - H\alpha$ color (S-PLUS - VPHAS)', fontsize=15)
+plt.xlabel(r'Difference in $r - H\alpha$ color (S-PLUS - VPHAS+)', fontsize=15)
 plt.ylabel('Density', fontsize=15)
 plt.legend(['Gaussian Fit', 'Mean', 'Mean ± Std Dev'], loc='upper right', fontsize=15)
 

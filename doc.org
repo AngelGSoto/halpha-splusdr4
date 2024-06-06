@@ -358,6 +358,7 @@ Number the objects with z > 0.02: 30
 
 + I made crossmatch with ALWISE using a radious of 2 arcsec.
 + I made crossmatch with SIMBAD using a error of 2 arcsec.
++ I remove the duplicate objects
 
 
 ** Disk
