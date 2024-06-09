@@ -12,7 +12,8 @@ from scipy.stats import norm
 sns.set_style("whitegrid")
 
 # Load your DataFrame from CSV
-df = pd.read_csv("Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total_vphas.csv")
+df = pd.read_csv("Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total-unique_vphas.csv")
+print("Number of sorces with VPHAS match:", len(df))
 
 # Compute ri colors for SPLUS and VPHAS
 ri_splus = df["r"] - df["i"]
