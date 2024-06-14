@@ -354,6 +354,50 @@ Number the objects with z > 0.02: 30
    - [[https://ui.adsabs.harvard.edu/abs/2022MNRAS.509.1227C/abstract][Chen et al.]]
    - [[https://ui.adsabs.harvard.edu/abs/2021ApJS..257...65S/abstract][Yongkang et al.]]
 
+*** Determining Optimal Parameters for UMAP Projection
+
+In this study, the Uniform Manifold Approximation and Projection (UMAP) algorithm was employed for dimensionality reduction of the dataset. 
+UMAP is known for its ability to capture both local and global structures within high-dimensional data, making it suitable for visualizing 
+complex datasets and facilitating subsequent analysis tasks such as clustering and classification.
+
+The selection of parameters n_neighbors and n_components in UMAP is critical as it directly influences the quality of the reduced-dimensional 
+representation. Here, we describe our approach to determining the optimal values of these parameters, balancing the need for effective separation 
+of distinct clusters while preserving the integrity of closely packed groups.
+Parameter Selection Strategy:
+
+    Exploratory Analysis: Initially, we conducted exploratory data analysis to visualize the dataset in reduced dimensions using various 
+combinations of n_neighbors and n_components. This allowed us to qualitatively assess how well UMAP preserved the underlying structure of the data.
+
+    Evaluation Metrics: We employed quantitative metrics to objectively evaluate the performance of different parameter combinations:
+        Silhouette Score: This metric measures how well-defined the clusters are in the reduced space. Higher values indicate better 
+separation between clusters.
+        Davies-Bouldin Index: This index evaluates the average similarity between each cluster and its most similar cluster. Lower values 
+indicate better-defined clusters.
+
+    Grid Search Approach: A systematic grid search was performed over a range of n_neighbors (5, 10, 15, 20, 30, 50, 70, 100) and 
+n_components (2, 3, 4, 5) values. For each combination, UMAP was applied followed by clustering using KMeans, and the aforementioned metrics 
+were computed.
+
+    Selection Criteria: The optimal parameter set was chosen based on maximizing the Silhouette Score while ensuring a low Davies-Bouldin 
+Index. This dual criterion approach aimed to balance the separation of distinct clusters with the compactness of closely packed groups 
+in the reduced space.
+
+Best Parameters:
+
+After rigorous evaluation, the optimal parameters determined for our dataset were:
+
+    Number of Components (n_components): [Insert Best Number of Components]
+    Number of Neighbors (n_neighbors): [Insert Best Number of Neighbors]
+
+These parameters were selected based on their ability to effectively represent the dataset in a reduced-dimensional space, 
+facilitating subsequent clustering and analysis tasks with improved interpretability and accuracy.
+Conclusion:
+
+The approach described herein provides a systematic methodology for parameter selection in UMAP, ensuring that the 
+chosen parameters adequately capture the underlying structure of complex datasets. By leveraging both qualitative 
+insights and quantitative metrics, we aimed to enhance the reliability and robustness of our results, thereby 
+contributing to a deeper understanding of the dataset under study.
+
 ** Main
 
 + I made crossmatch with ALWISE using a radious of 2 arcsec.
@@ -481,7 +525,8 @@ stars across the sky and gain insights into the formation and evolution of galax
 ** Lo que he hecho
    [x] Eliminé los duplicados. Apartir todo de aqui hecho sin los duplicados.
    [x] Hice crossmatch com SIMBAD.
-   [x ] Rehice el plot con la comnparaciòn con VPHAS.
+   [x] Rehice el plot con la comnparación con VPHAS.
+   [x] Rehice los plots con la lista finbal de emisores: diagramas de distribuciones.
    [ ] Analisis de ML.
    [ ] Rehacer los plots de ML.
     

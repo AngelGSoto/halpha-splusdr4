@@ -15,8 +15,8 @@ border_color_disk = '#006d2c'  # Dark green
 border_color_main = '#8c2d04'  # Dark orange
 
 # Load data
-df_d = pd.read_csv("Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total.csv")
-df_h = pd.read_csv("Ha-emitters/Halpha_Mine_PerField_total.csv")
+df_d = pd.read_csv("Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total-unique.csv")
+df_h = pd.read_csv("Ha-emitters/Halpha_Mine_PerField_total-unique.csv")
 
 # Calculate colors
 ri_d = df_d["r"] - df_d["i"]

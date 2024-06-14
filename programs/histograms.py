@@ -23,7 +23,7 @@ for file in csv_files:
 df_all_objects_d = pd.concat(dfs, ignore_index=True)
 
 # The Halpha emitters
-df_halpha_d = pd.read_csv("Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total.csv")
+df_halpha_d = pd.read_csv("Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total-unique.csv")
 
 # Define the number of bins and the range of r-band magnitudes
 num_bins = 50
