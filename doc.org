@@ -395,8 +395,92 @@ Conclusion:
 
 The approach described herein provides a systematic methodology for parameter selection in UMAP, ensuring that the 
 chosen parameters adequately capture the underlying structure of complex datasets. By leveraging both qualitative 
-insights and quantitative metrics, we aimed to enhance the reliability and robustness of our results, thereby 
+insights and quantitative metrics, we aimed to enhance the reliability and robustness of our results, thereby
 contributing to a deeper understanding of the dataset under study.
+
+*** Some results
+    Main survey: Obtuve diferentes resultados desde mi computadora en comparaciòn con la computadora del IALP. Los resultados de UAMP y HDBSCAN son mejores en mi
+    computadora solo usando los filtros de SPLUS pero sumando los resultados the WISE son mejores en la comp. del IALP. No entiendo esto!!
+
+    \begin{table*}[ht!]
+    \centering
+    \caption{Summary of clustering outcomes achieved using the UMAP and HDBSCAN unsupervised machine learning methods applied to H$\alpha$ excess sources. Clustering is performed using S-PLUS and S-PLUS + WISE filter combinations for both the main survey and disk datasets. The table displays the number of objects allocated to each cluster, providing insights into the distribution of sources identified through the clustering process.}
+    \label{tab:summary}
+    \begin{tabular}{c>{\centering\arraybackslash}p{1.8cm}>{\arraybackslash}p{4cm}|>{\centering\arraybackslash}p{1.8cm}>{\arraybackslash}p{4cm}}
+        \hline
+        \multirow{2}{*}{\textbf{Group}} & \multicolumn{2}{c|}{\textbf{S-PLUS}} & \multicolumn{2}{c}{\textbf{S-PLUS + WISE}} \\
+        \cline{2-5}
+                                        & \textbf{Number of Objects} & \textbf{Object Types}    & \textbf{Number of Objects} & \textbf{Object Types}    \\
+        \hline
+        \multirow{4}{*}{0}              & \multirow{4}{*}{22}        & QSO: 19                  & \multirow{4}{*}{23}        & QSO: 20                  \\
+                                        &                            & Galaxy: 1                &                            & Galaxy: 1                \\
+                                        &                            & Radio: 1                 &                            & Radio: 1                 \\
+                                        &                            & QSO\_Candidate: 1        &                            & QSO\_Candidate: 1        \\
+        \hline
+        \multirow{10}{*}{1}             & \multirow{10}{*}{149}      & RRLyr: 107               & \multirow{7}{*}{127}      & RRLyr: 95                \\
+                                        &                            & EB*: 19                  &                            & EB*: 19                  \\
+                                        &                            & PulsV*: 9                &                            & PulsV*: 8                \\
+                                        &                            & PulsV*delSct: 6          &                            & PulsV*delSct: 2          \\
+                                        &                            & Star: 2                  &                            & EB*\_Candidate: 1        \\
+                                        &                            & QSO: 2                   &                            & RotV*: 1                 \\
+                                        &                            & EB*\_Candidate: 1        &                            & SB*\_Candidate: 1        \\
+                                        &                            & RotV*: 1                 &                            &                          \\
+                                        &                            & SB*\_Candidate: 1        &                            &                          \\
+                                        &                            & BlueStraggler: 1         &                            &                          \\
+        \hline
+        \multirow{15}{*}{2}             & \multirow{15}{*}{307}      & EB*: 248                 & \multirow{12}{*}{297}     & EB*: 243                 \\
+                                        &                            & EB*\_Candidate: 22       &                            & EB*\_Candidate: 22       \\
+                                        &                            & Star: 12                 &                            & Star: 13                 \\
+                                        &                            & QSO: 9                   &                            & V*: 4                    \\
+                                        &                            & V*: 4                    &                            & RRLyr: 3                 \\
+                                        &                            & RotV*: 2                 &                            & QSO: 3                   \\
+                                        &                            & Pec*: 2                  &                            & RotV*: 2                 \\
+                                        &                            & low-mass*: 2             &                            & Pec*: 2                  \\
+                                        &                            & RRLyr: 2                 &                            & low-mass*: 2             \\
+                                        &                            & CataclyV*: 1             &                            & CataclyV*: 1             \\
+                                        &                            & AGB*: 1                  &                            & AGB*: 1                  \\
+                                        &                            & CV*\_Candidate: 1        &                            & CV*\_Candidate: 1        \\
+                                        &                            & PulsV*: 1                &                            &                          \\
+                                        &                            & PulsV*delSct: 1          &                            &                          \\
+                                        &                            & RSCVn: 1                 &                            &                          \\
+        \hline
+        \multirow{7}{*}{3}              & \multirow{7}{*}{42}        & QSO: 17                  & \multirow{7}{*}{43}       & QSO: 18                  \\
+                                        &                            & Seyfert\_1: 10           &                            & Seyfert\_1: 10           \\
+                                        &                            & AGN\_Candidate: 6        &                            & AGN\_Candidate: 6        \\
+                                        &                            & Galaxy: 3                &                            & Galaxy: 3                \\
+                                        &                            & AGN: 3                   &                            & AGN: 3                   \\
+                                        &                            & Radio: 2                 &                            & Radio: 2                 \\
+                                        &                            & RadioG: 1                &                            & RadioG: 1                \\
+        \hline
+        \multirow{15}{*}{4}             & \multirow{15}{*}{141}      & QSO: 78                  & \multirow{7}{*}{99}       & QSO: 81                  \\
+                                        &                            & CataclyV*: 25            &                            & Blue: 7                  \\
+                                        &                            & Blue: 7                  &                            & AGN: 3                   \\
+                                        &                            & Star: 6                  &                            & Radio: 3                 \\
+                                        &                            & CV*\_Candidate: 4        &                            & Star: 2                  \\
+                                        &                            & Hsd\_Candidate: 4        &                            & Galaxy: 2                \\
+                                        &                            & AGN: 3                   &                            & RRLyr: 1                 \\
+                                        &                            & Radio: 3                 &                            &                          \\
+                                        &                            & WD*\_Candidate: 3        &                            &                          \\
+                                        &                            & RRLyr: 2                 &                            &                          \\
+                                        &                            & Galaxy: 2                &                            &                          \\
+                                        &                            & WD*: 2                   &                            &                          \\
+                                        &                            & EB*: 1                   &                            &                          \\
+                                        &                            & Seyfert\_1: 1            &                            &                          \\
+        \hline
+        \multirow{5}{*}{5}              & \multirow{5}{*}{0}         & No objects               & \multirow{5}{*}{31}       & CataclyV*: 23            \\
+                                        &                            &                          &                            & CV*\_Candidate: 3        \\
+                                        &                            &                          &                            & Hsd\_Candidate: 3        \\
+                                        &                            &                          &                            & WD*\_Candidate: 2        \\
+                                        &                            &                          &                            &                          \\
+        \hline
+        \multirow{5}{*}{Noise}          & \multirow{5}{*}{0}         & No objects               & \multirow{5}{*}{6}        & QSO: 2                   \\
+                                        &                            &                          &                            & CataclyV*: 1             \\
+                                        &                            &                          &                            & Seyfert\_1: 1            \\
+                                        &                            &                          &                            & WD*\_Candidate: 1        \\
+                                        &                            &                          &                            & Star: 1                  \\
+        \hline
+    \end{tabular}
+\end{table*}
 
 ** Main
 
@@ -496,7 +580,7 @@ nbDist	REAL	arcsec	false	Distance to the nearest neighbour detected in	pos.angDi
 
    *** Why EB and RRlyra stars a high latitude?
 
-   he identification of more eclipsing binaries and RR Lyrae stars at higher latitudes could be attributed to several physical factors:
+   He identification of more eclipsing binaries and RR Lyrae stars at higher latitudes could be attributed to several physical factors:
 
     Galactic Halo: At higher latitudes, you may be probing regions outside the main disk of the galaxy, such as the galactic halo.
     The galactic halo contains older stellar populations, including RR Lyrae stars, which are commonly found in globular clusters a
