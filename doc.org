@@ -259,13 +259,19 @@ limu_z = tab["Redshift"] > 0.02
 print("Number the objects with z < 0.02:", len(tab[liml_z]))
 print("Number the objects with z > 0.02:", len(tab[limu_z]))
 
-tab.write("Ha-emitters/SDSS-spectra/spectra-information_sdss.ecsv", format="ascii.ecsv", overwrite=True)
-tab.write("Ha-emitters/SDSS-spectra/spectra-information_sdss.dat", format="ascii.commented_header", overwrite=True)
+tab.write("Ha-emitters/SDSS-spectra/spectra-information_sdss-unique.ecsv", format="ascii.ecsv", overwrite=True)
+tab.write("Ha-emitters/SDSS-spectra/spectra-information_sdss-unique.dat", format="ascii.commented_header", overwrite=True)
 
 #+END_SRC
 
 #+RESULTS:
 [[file:Data shape: (138, 5)
+Number the objects with z < 0.02: 61
+Number the objects with z > 0.02: 77
+]]
+Number the objects with z < 0.02: 61
+Number the objects with z > 0.02: 77
+]]
 Number the objects with z < 0.02: 61
 Number the objects with z > 0.02: 77
 ]]
@@ -295,7 +301,7 @@ import glob
 import json
 import seaborn as sn
 
-pattern = "Ha-emitters/LAMOST-spectra/*.fits"
+pattern = "Ha-emitters/Lamost-spectra/*.fits"
 file_fits = glob.glob(pattern)
 
 shape = (len(file_fits), 5)
@@ -323,13 +329,19 @@ limu_z = tab["Redshift"] > 0.02
 print("Number the objects with z < 0.02:", len(tab[liml_z]))
 print("Number the objects with z > 0.02:", len(tab[limu_z]))
 
-tab.write("Ha-emitters/LAMOST-spectra/spectra-information-lamost.ecsv", format="ascii.ecsv", overwrite=True)
-tab.write("Ha-emitters/LAMOST-spectra/spectra-information-lamost.dat", format="ascii.commented_header", overwrite=True)
+tab.write("Ha-emitters/Lamost-spectra/spectra-information-lamost-unique.ecsv", format="ascii.ecsv", overwrite=True)
+tab.write("Ha-emitters/Lamost-spectra/spectra-information-lamost-unique.dat", format="ascii.commented_header", overwrite=True)
 
 #+END_SRC
 
 #+RESULTS:
-[[file:Data shape: (96, 5)
+[[file:Data shape: (109, 5)
+Number the objects with z < 0.02: 69
+Number the objects with z > 0.02: 40
+]]
+Number the objects with z < 0.02: 69
+Number the objects with z > 0.02: 40
+]]
 Number the objects with z < 0.02: 66
 Number the objects with z > 0.02: 30
 ]]

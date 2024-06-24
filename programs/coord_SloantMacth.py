@@ -41,7 +41,7 @@ tab = Table.from_pandas(df)
 
 n = len(tab)
 
-sep = np.linspace(1.0/60., 1.0/60., num=n)
+sep = np.linspace(2.0/60., 2.0/60., num=n)
 
 tab["Sep"] = sep
 

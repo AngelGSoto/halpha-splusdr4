@@ -1,0 +1,434 @@
+Number of stars: 109
+Pairs of duplicate objects based on similar coordinates:
+Duplicate Pair:
+FileName    spec-55859-F5907_sp16-143.fits
+ID                LAMOST025607.26+011038.6
+RA                               44.030234
+DEC                               1.177382
+Name: 2, dtype: object
+FileName    spec-59145-S82044N00M1_sp15-200.fits
+ID                      LAMOST025607.25+011038.7
+RA                                     44.030228
+DEC                                     1.177423
+Name: 89, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-55859-F5907_sp16-143.fits
+ID                LAMOST025607.26+011038.6
+RA                               44.030234
+DEC                               1.177382
+Name: 2, dtype: object
+FileName    spec-56944-EG025338N015809M01_sp08-159.fits
+ID                             LAMOST025607.24+011038.7
+RA                                             44.03017
+DEC                                            1.177422
+Name: 71, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-55915-F5591503_sp09-210.fits
+ID                   LAMOST025625.63-011911.6
+RA                                   44.10679
+DEC                                   -1.3199
+Name: 3, dtype: object
+FileName    spec-59145-S82044N00M1_sp01-156.fits
+ID                      LAMOST025625.63-011911.6
+RA                                     44.106786
+DEC                                    -1.319878
+Name: 26, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-55973-F5597306_sp12-098.fits
+ID                   LAMOST121022.49+005002.1
+RA                                   182.5937
+DEC                                   0.83392
+Name: 6, dtype: object
+FileName    spec-56656-HD120800N003716M01_sp09-025.fits
+ID                             LAMOST121022.49+005002.1
+RA                                           182.593689
+DEC                                            0.833912
+Name: 70, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-57719-EG012606S021203M01_sp16-150.fits
+ID                             LAMOST012226.19-000729.8
+RA                                            20.609128
+DEC                                           -0.124931
+Name: 13, dtype: object
+FileName    spec-56632-EG012606S021203F05_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 67, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-57719-EG012606S021203M01_sp16-150.fits
+ID                             LAMOST012226.19-000729.8
+RA                                            20.609128
+DEC                                           -0.124931
+Name: 13, dtype: object
+FileName    spec-56604-EG012606S021203F04_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 65, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-57719-EG012606S021203M01_sp16-150.fits
+ID                             LAMOST012226.19-000729.8
+RA                                            20.609128
+DEC                                           -0.124931
+Name: 13, dtype: object
+FileName    spec-56600-EG012606S021203F02_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 63, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-57719-EG012606S021203M01_sp16-150.fits
+ID                             LAMOST012226.19-000729.8
+RA                                            20.609128
+DEC                                           -0.124931
+Name: 13, dtype: object
+FileName    spec-59164-S82018S00M1_sp13-143.fits
+ID                      LAMOST012226.19-000729.7
+RA                                      20.60914
+DEC                                     -0.12493
+Name: 92, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-57719-EG012606S021203M01_sp16-150.fits
+ID                             LAMOST012226.19-000729.8
+RA                                            20.609128
+DEC                                           -0.124931
+Name: 13, dtype: object
+FileName    spec-56591-EG012606S021203F01_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 53, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-57816-HD115813N032855M01_sp01-158.fits
+ID                             LAMOST115758.21+014625.5
+RA                                            179.49253
+DEC                                            1.773752
+Name: 15, dtype: object
+FileName    spec-57402-KP115507N031307M01_sp08-215.fits
+ID                             LAMOST115758.21+014625.5
+RA                                            179.49253
+DEC                                            1.773752
+Name: 41, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-58869-S82052S00B1_sp09-031.fits
+ID                      LAMOST033429.44+000611.1
+RA                                     53.622659
+DEC                                     0.103072
+Name: 18, dtype: object
+FileName    spec-57369-EG032649N000134M01_sp13-083.fits
+ID                             LAMOST033429.44+000611.0
+RA                                             53.62267
+DEC                                            0.103061
+Name: 39, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-58869-S82052S00B1_sp12-096.fits
+ID                      LAMOST033513.49+010405.1
+RA                                     53.806195
+DEC                                     1.068084
+Name: 19, dtype: object
+FileName    spec-57003-EG033855N024548B01_sp02-249.fits
+ID                             LAMOST033513.49+010405.1
+RA                                            53.806195
+DEC                                            1.068084
+Name: 29, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-57043-EG030739N012421M01_sp04-155.fits
+ID                             LAMOST030612.72+012157.3
+RA                                            46.552994
+DEC                                            1.365928
+Name: 33, dtype: object
+FileName    spec-58138-S82048N00B1_sp16-083.fits
+ID                      LAMOST030612.72+012157.3
+RA                                      46.55299
+DEC                                     1.365928
+Name: 107, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-57064-HD100408N031203M01_sp05-243.fits
+ID                             LAMOST100101.83+022018.3
+RA                                           150.257633
+DEC                                            2.338411
+Name: 34, dtype: object
+FileName    spec-59312-HD100408N031203M03_sp05-197.fits
+ID                             LAMOST100101.83+022018.3
+RA                                           150.257633
+DEC                                            2.338411
+Name: 97, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-57454-HD120800N003716B02_sp01-196.fits
+ID                             LAMOST121028.12-013909.6
+RA                                           182.617187
+DEC                                           -1.652678
+Name: 42, dtype: object
+FileName    spec-56654-HD120800N003716B01_sp01-196.fits
+ID                             LAMOST121028.12-013909.6
+RA                                           182.617187
+DEC                                           -1.652678
+Name: 68, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-58401-S82048N00M1_sp10-149.fits
+ID                      LAMOST030238.16+000203.6
+RA                                     45.658986
+DEC                                     0.034333
+Name: 49, dtype: object
+FileName    spec-59193-EG030712S014809M01_sp16-065.fits
+ID                             LAMOST030238.17+000203.5
+RA                                            45.659049
+DEC                                              0.0343
+Name: 95, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-58401-S82048N00M1_sp10-149.fits
+ID                      LAMOST030238.16+000203.6
+RA                                     45.658986
+DEC                                     0.034333
+Name: 49, dtype: object
+FileName    spec-59145-S82044N00M1_sp08-074.fits
+ID                      LAMOST030238.16+000203.6
+RA                                     45.658986
+DEC                                     0.034333
+Name: 61, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56591-EG012606S021203F01_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 53, dtype: object
+FileName    spec-56632-EG012606S021203F05_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 67, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56591-EG012606S021203F01_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 53, dtype: object
+FileName    spec-56604-EG012606S021203F04_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 65, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56591-EG012606S021203F01_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 53, dtype: object
+FileName    spec-56600-EG012606S021203F02_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 63, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56591-EG012606S021203F01_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 53, dtype: object
+FileName    spec-59164-S82018S00M1_sp13-143.fits
+ID                      LAMOST012226.19-000729.7
+RA                                      20.60914
+DEC                                     -0.12493
+Name: 92, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-59145-S82044N00M1_sp08-074.fits
+ID                      LAMOST030238.16+000203.6
+RA                                     45.658986
+DEC                                     0.034333
+Name: 61, dtype: object
+FileName    spec-59193-EG030712S014809M01_sp16-065.fits
+ID                             LAMOST030238.17+000203.5
+RA                                            45.659049
+DEC                                              0.0343
+Name: 95, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56595-EG012606S021203B01_sp16-243.fits
+ID                             LAMOST012119.10-001950.0
+RA                                            20.329582
+DEC                                           -0.330559
+Name: 62, dtype: object
+FileName    spec-56630-EG012606S021203B02_sp16-243.fits
+ID                             LAMOST012119.10-001950.0
+RA                                            20.329582
+DEC                                           -0.330559
+Name: 66, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56595-EG012606S021203B01_sp16-243.fits
+ID                             LAMOST012119.10-001950.0
+RA                                            20.329582
+DEC                                           -0.330559
+Name: 62, dtype: object
+FileName    spec-56233-EG012606S021203B03_sp16-053.fits
+ID                             LAMOST012119.10-001950.0
+RA                                            20.329582
+DEC                                           -0.330559
+Name: 86, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56600-EG012606S021203F02_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 63, dtype: object
+FileName    spec-56632-EG012606S021203F05_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 67, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56600-EG012606S021203F02_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 63, dtype: object
+FileName    spec-56604-EG012606S021203F04_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 65, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56600-EG012606S021203F02_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 63, dtype: object
+FileName    spec-59164-S82018S00M1_sp13-143.fits
+ID                      LAMOST012226.19-000729.7
+RA                                      20.60914
+DEC                                     -0.12493
+Name: 92, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56604-EG012606S021203F04_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 65, dtype: object
+FileName    spec-56632-EG012606S021203F05_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 67, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56604-EG012606S021203F04_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 65, dtype: object
+FileName    spec-59164-S82018S00M1_sp13-143.fits
+ID                      LAMOST012226.19-000729.7
+RA                                      20.60914
+DEC                                     -0.12493
+Name: 92, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56630-EG012606S021203B02_sp16-243.fits
+ID                             LAMOST012119.10-001950.0
+RA                                            20.329582
+DEC                                           -0.330559
+Name: 66, dtype: object
+FileName    spec-56233-EG012606S021203B03_sp16-053.fits
+ID                             LAMOST012119.10-001950.0
+RA                                            20.329582
+DEC                                           -0.330559
+Name: 86, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56632-EG012606S021203F05_sp16-150.fits
+ID                             LAMOST012226.20-000729.8
+RA                                            20.609155
+DEC                                           -0.124958
+Name: 67, dtype: object
+FileName    spec-59164-S82018S00M1_sp13-143.fits
+ID                      LAMOST012226.19-000729.7
+RA                                      20.60914
+DEC                                     -0.12493
+Name: 92, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56944-EG025338N015809M01_sp08-159.fits
+ID                             LAMOST025607.24+011038.7
+RA                                             44.03017
+DEC                                            1.177422
+Name: 71, dtype: object
+FileName    spec-59145-S82044N00M1_sp15-200.fits
+ID                      LAMOST025607.25+011038.7
+RA                                     44.030228
+DEC                                     1.177423
+Name: 89, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56948-EG212551N003203M01_sp06-145.fits
+ID                             LAMOST213438.54+001304.0
+RA                                            323.66057
+DEC                                            0.217764
+Name: 72, dtype: object
+FileName    spec-56218-EG213945N020821B01_sp02-219.fits
+ID                             LAMOST213438.54+001304.1
+RA                                           323.660591
+DEC                                            0.217793
+Name: 82, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56214-EG211942S025242B02_sp12-050.fits
+ID                             LAMOST212507.71-004756.6
+RA                                           321.282135
+DEC                                           -0.799046
+Name: 79, dtype: object
+FileName    spec-56214-EG211942S025242M02_sp12-050.fits
+ID                             LAMOST212507.71-004756.6
+RA                                           321.282135
+DEC                                           -0.799046
+Name: 80, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-56218-EG213945N020821B01_sp05-172.fits
+ID                             LAMOST213925.57+012345.6
+RA                                           324.856556
+DEC                                            1.395994
+Name: 83, dtype: object
+FileName    spec-56218-EG213945N020821M01_sp05-169.fits
+ID                             LAMOST213925.57+012345.6
+RA                                           324.856556
+DEC                                            1.395994
+Name: 84, dtype: object
+-----------------------------
+Duplicate Pair:
+FileName    spec-59318-HD123204S014620B02_sp10-001.fits
+ID                             LAMOST122328.82-015232.0
+RA                                           185.870092
+DEC                                           -1.875554
+Name: 98, dtype: object
+FileName    spec-58229-HD123204S014620B01_sp10-129.fits
+ID                             LAMOST122328.82-015232.0
+RA                                           185.870092
+DEC                                           -1.875554
+Name: 108, dtype: object
+-----------------------------

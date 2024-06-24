@@ -77,10 +77,10 @@ print("Coordinate Lamost source:", lmX)
 print("Coordinate Splus source:", spX[ind])
 print("******************************************************")
 
-# Data from the lamost spectra
-hdudata = hdu[0].data
-wl = hdudata[2]
-Flux = hdudata[0]
+# Data from the lamost spectra this for DR9
+hdudata = hdu[1].data 
+wl = hdudata['WAVELENGTH']
+Flux = hdudata['FLUX']
 
 # Data of the SPLUs list
 mag_br, mag_err_br, mag_nr, mag_err_nr = [], [], [], []
@@ -106,18 +106,18 @@ mag_nr.append(table["J0861_PStotal"][ind])
 mag_br.append(table["z_PStotal"][ind])
 
 #ERRO PStotal
-mag_err_br.append(float(table["e_u_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0378_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0395_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0410_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0430_PStotal"][ind]))
-mag_err_br.append(float(table["e_g_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0515_PStotal"][ind])) 
-mag_err_br.append(float(table["e_r_PStotal"][ind])) 
-mag_err_nr.append(float(table["e_J0660_PStotal"][ind])) 
-mag_err_br.append(float(table["e_i_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0861_PStotal"][ind]))
-mag_err_br.append(float(table["e_z_PStotal"][ind]))
+mag_err_br.append(float(table["e_u_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0378_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0395_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0410_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0430_PStotal"][ind][0]))
+mag_err_br.append(float(table["e_g_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0515_PStotal"][ind][0])) 
+mag_err_br.append(float(table["e_r_PStotal"][ind][0])) 
+mag_err_nr.append(float(table["e_J0660_PStotal"][ind][0])) 
+mag_err_br.append(float(table["e_i_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0861_PStotal"][ind][0]))
+mag_err_br.append(float(table["e_z_PStotal"][ind][0]))
 
 # Find scale factor
 m = wl == 6250.289
@@ -152,8 +152,16 @@ for wll, magg, magerr in zip(wl_nr, mag_nr, mag_err_nr):
 # CV
 # selected_emission_line = "Hα"  # Change this line to select a different emission line
 # z = 0
-Type = table["main_type"][ind][0]
-z = table["redshift"][ind]
+if 'main_type' in table.columns:
+    Type = table["main_type"][ind][0]
+else:
+    Type = 'Unknown'
+
+if 'redshift' in table.columns:
+    z = table["redshift"][ind][0]
+else:
+    z = 0
+
 
 if 3.2 <= z <= 3.4:
     selected_emission_line = "C IV 1551"

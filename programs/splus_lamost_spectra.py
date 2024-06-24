@@ -1,6 +1,3 @@
-'''
-This script makes the Lamost spectra overlapped with the SPLUS photometry
-'''
 import astropy.coordinates as coord
 import astropy.units as u
 from astropy.io import ascii
@@ -78,9 +75,11 @@ print("Coordinate Splus source:", spX[ind])
 print("******************************************************")
 
 # Data from the lamost spectra
-hdudata = hdu[0].data
-wl = hdudata[2]
-Flux = hdudata[0]
+wl = hdu[1].data['WAVELENGTH'].flatten()
+Flux = hdu[1].data['FLUX'].flatten()
+
+print(f"wl type: {type(wl)}, Flux type: {type(Flux)}")
+print(f"wl shape: {wl.shape}, Flux shape: {Flux.shape}")
 
 # Data of the SPLUs list
 mag_br, mag_err_br, mag_nr, mag_err_nr = [], [], [], []
@@ -92,45 +91,45 @@ color_nr = ["#9900FF", "#6600FF", "#0000FF", "#009999",  "#DD8000",  "#CC0066", 
 marker_br = ["s", "s",  "s", "s", "s"]
 marker_nr = ["o", "o", "o", "o", "o",  "o", "o"]
 
-mag_br.append(table["u_PStotal"][ind]) 
-mag_nr.append(table["J0378_PStotal"][ind])
-mag_nr.append(table["J0395_PStotal"][ind])
-mag_nr.append(table["J0410_PStotal"][ind])
-mag_nr.append(table["J0430_PStotal"][ind])
-mag_br.append(table["g_PStotal"][ind])
-mag_nr.append(table["J0515_PStotal"][ind]) 
-mag_br.append(table["r_PStotal"][ind]) 
-mag_nr.append(table["J0660_PStotal"][ind])
-mag_br.append(table["i_PStotal"][ind]) 
-mag_nr.append(table["J0861_PStotal"][ind]) 
-mag_br.append(table["z_PStotal"][ind])
+mag_br.append(table["u_PStotal"][ind][0]) 
+mag_nr.append(table["J0378_PStotal"][ind][0])
+mag_nr.append(table["J0395_PStotal"][ind][0])
+mag_nr.append(table["J0410_PStotal"][ind][0])
+mag_nr.append(table["J0430_PStotal"][ind][0])
+mag_br.append(table["g_PStotal"][ind][0])
+mag_nr.append(table["J0515_PStotal"][ind][0]) 
+mag_br.append(table["r_PStotal"][ind][0]) 
+mag_nr.append(table["J0660_PStotal"][ind][0])
+mag_br.append(table["i_PStotal"][ind][0]) 
+mag_nr.append(table["J0861_PStotal"][ind][0]) 
+mag_br.append(table["z_PStotal"][ind][0])
 
 #ERRO PStotal
-mag_err_br.append(float(table["e_u_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0378_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0395_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0410_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0430_PStotal"][ind]))
-mag_err_br.append(float(table["e_g_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0515_PStotal"][ind])) 
-mag_err_br.append(float(table["e_r_PStotal"][ind])) 
-mag_err_nr.append(float(table["e_J0660_PStotal"][ind])) 
-mag_err_br.append(float(table["e_i_PStotal"][ind]))
-mag_err_nr.append(float(table["e_J0861_PStotal"][ind]))
-mag_err_br.append(float(table["e_z_PStotal"][ind]))
+mag_err_br.append(float(table["e_u_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0378_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0395_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0410_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0430_PStotal"][ind][0]))
+mag_err_br.append(float(table["e_g_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0515_PStotal"][ind][0])) 
+mag_err_br.append(float(table["e_r_PStotal"][ind][0])) 
+mag_err_nr.append(float(table["e_J0660_PStotal"][ind][0])) 
+mag_err_br.append(float(table["e_i_PStotal"][ind][0]))
+mag_err_nr.append(float(table["e_J0861_PStotal"][ind][0]))
+mag_err_br.append(float(table["e_z_PStotal"][ind][0]))
 
 # Find scale factor
 m = wl == 6250.289
 wl_part = wl[m]
 flux_part = Flux[m]
-Fsp = (10**(-(table["r_PStotal"][ind] + 2.41) / 2.5)) / 6250.0**2
+Fsp = (10**(-(table["r_PStotal"][ind][0] + 2.41) / 2.5)) / 6250.0**2
 factor = flux_part / Fsp
 
 # Using other wl for find the factor of scale
 m1 = wl == 6250.3125
 wl_part1 = wl[m1]
 flux_part1 = Flux[m1]
-Fsp1 = (10**(-(table["r_PStotal"][ind] + 2.41) / 2.5)) / 6250.0**2
+Fsp1 = (10**(-(table["r_PStotal"][ind][0] + 2.41) / 2.5)) / 6250.0**2
 factor1 = flux_part1 / Fsp1
 
 # Propagation of error
@@ -167,7 +166,7 @@ elif cmd_args.ymax is not None:
 ax.set_xlabel('Wavelength $(\AA)$', fontsize=20)
 ax.set_ylabel('Relative flux', fontsize=20)
 
-ax.plot(wl, Flux, c="#808080", linewidth=1.5, alpha=0.6, zorder=2)
+ax.plot(wl, Flux, c="#808080", alpha=0.9, zorder=5)
 
 for wl1, mag, magErr, colors, marker_ in zip(wl_br, mag_br, err_br, color_br, marker_br):
     F = (10**(-(mag + 2.41) / 2.5)) / wl1**2
@@ -177,8 +176,8 @@ for wl1, mag, magErr, colors, marker_ in zip(wl_br, mag_br, err_br, color_br, ma
     except ValueError:
         F *= factor1
         magErr *= factor1
-    ax.scatter(wl1, F, color=colors, marker=marker_, edgecolors='k', s=200, zorder=4)
-    ax.errorbar(wl1, F, yerr=magErr, fmt='o', linestyle=(0, (5, 5)), ecolor=colors, elinewidth=3.9, markeredgewidth=3.2, capsize=10)
+    ax.scatter(wl1, F, color=colors, marker=marker_, edgecolors='k',  alpha=0.6, s=100, zorder=4)
+    ax.errorbar(wl1, F, yerr=magErr, fmt='o', linestyle=(0, (5, 5)), color=colors, elinewidth=2, capthick=2, capsize=4)
 
 for wl1, mag, magErr, colors, marker_ in zip(wl_nr, mag_nr, err_nr, color_nr, marker_nr):
     F = (10**(-(mag + 2.41) / 2.5)) / wl1**2
@@ -188,15 +187,10 @@ for wl1, mag, magErr, colors, marker_ in zip(wl_nr, mag_nr, err_nr, color_nr, ma
     except ValueError:
         F *= factor1
         magErr *= factor1
-    ax.scatter(wl1, F, color=colors, marker=marker_, edgecolors='k', s=180, zorder=4)
-    ax.errorbar(wl1, F, yerr=magErr, fmt='o', linestyle=(0, (5, 5)), ecolor=colors, elinewidth=3.9, markeredgewidth=3.2, capsize=10)
+    ax.scatter(wl1, F, color=colors, marker=marker_, edgecolors='k', alpha=0.6, s=100, zorder=4)
+    ax.errorbar(wl1, F, yerr=magErr, fmt='o', linestyle=(0, (5, 5)), color=colors, elinewidth=2, capthick=2, capsize=4)
 
-# Add minor tick locators without showing the minor ticks
-ax.xaxis.set_minor_locator(MultipleLocator(200))  # Adjust interval as needed
-ax.yaxis.set_minor_locator(MultipleLocator(0.1))   # Adjust interval as needed
-ax.xaxis.set_minor_formatter(NullFormatter())
-ax.yaxis.set_minor_formatter(NullFormatter())
-
+#plt.legend(fontsize=15, loc="best", markerscale=0.5, ncol=2)
 plt.tight_layout()
 
 for i in table[ind]:
