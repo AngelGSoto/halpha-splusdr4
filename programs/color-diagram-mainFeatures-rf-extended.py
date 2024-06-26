@@ -24,35 +24,40 @@ print("Number of objects just with SPLUS+WISE colors:", len(df_splus_wise))
 
 # Select specific pairs based on domain knowledge or preliminary analysis
 specific_pairs = [
-    (('J0430_PStotal', 'J0515_PStotal'), ('W2mag', 'i_PStotal')),
-    (('J0430_PStotal', 'J0515_PStotal'), ('W2mag', 'z_PStotal')),
-    (('J0395_PStotal', 'J0660_PStotal'), ('W1mag', 'W2mag')),
-    (('J0395_PStotal', 'J0660_PStotal'), ('W2mag', 'i_PStotal')),
-    (('J0395_PStotal', 'J0660_PStotal'), ('u_PStotal', 'J0430_PStotal')),
-    (('J0395_PStotal', 'J0660_PStotal'), ('i_PStotal', 'z_PStotal')),
-    (('i_PStotal', 'J0395_PStotal'), ('W1mag', 'W2mag')),
-    (('i_PStotal', 'J0395_PStotal'), ('W1mag', 'i_PStotal')),
-    (('i_PStotal', 'z_PStotal'), ('i_PStotal', 'J0430_PStotal')),
-    (('i_PStotal', 'u_PStotal'), ('W1mag', 'z_PStotal')),
-    (('J0378_PStotal', 'J0515_PStotal'), ('W2mag', 'z_PStotal')),
-    (('J0378_PStotal', 'J0515_PStotal'), ('W2mag', 'i_PStotal')),
-    (('u_PStotal', 'J0430_PStotal'), ('i_PStotal', 'J0430_PStotal')),
-    (('u_PStotal', 'J0515_PStotal'), ('W2mag', 'z_PStotal')),
-    (('W1mag', 'r_PStotal'), ('i_PStotal', 'J0430_PStotal')),
-    (('W1mag', 'i_PStotal'), ('J0378_PStotal', 'J0515_PStotal')),
-    (('u_PStotal', 'J0430_PStotal'), ('r_PStotal', 'J0395_PStotal')),
-    (('J0395_PStotal', 'J0515_PStotal'), ('J0430_PStotal', 'J0515_PStotal')),
-    (('J0395_PStotal', 'J0515_PStotal'), ('W1mag', 'i_PStotal')),
-    (('J0378_PStotal', 'J0515_PStotal'), ('W1mag', 'W2mag')),
-    (('J0410_PStotal', 'J0515_PStotal'), ('W2mag', 'z_PStotal')),
-    (('u_PStotal', 'J0660_PStotal'), ('i_PStotal', 'z_PStotal')),
-    (('i_PStotal', 'J0378_PStotal'), ('i_PStotal', 'z_PStotal')),
-    (('J0378_PStotal', 'J0660_PStotal'), ('W1mag', 'r_PStotal')),
-    (('i_PStotal', 'J0430_PStotal'), ('W2mag', 'z_PStotal'))
+    (('u_PStotal', 'J0660_PStotal'), ('W1mag', 'W2mag')),
+    (('r_PStotal', 'u_PStotal'), ('W1mag', 'W2mag')),
+    (('W2mag', 'z_PStotal'), ('J0378_PStotal', 'J0515_PStotal')),
+    (('W1mag', 'z_PStotal'), ('J0378_PStotal', 'J0515_PStotal')),
+    (('W2mag', 'i_PStotal'), ('u_PStotal', 'J0660_PStotal')),
+    (('i_PStotal', 'z_PStotal'), ('u_PStotal', 'J0660_PStotal')),
+    (('W2mag', 'r_PStotal'), ('r_PStotal', 'u_PStotal')),
+    (('W1mag', 'i_PStotal'), ('r_PStotal', 'u_PStotal')),
+    (('W1mag', 'W2mag'), ('g_PStotal', 'u_PStotal')),
+    (('W1mag', 'z_PStotal'), ('g_PStotal', 'u_PStotal')),
+    (('i_PStotal', 'z_PStotal'), ('g_PStotal', 'u_PStotal')),
+    (('W1mag', 'i_PStotal'), ('i_PStotal', 'u_PStotal')),
+    (('i_PStotal', 'z_PStotal'), ('g_PStotal', 'J0378_PStotal')),
+    (('W2mag', 'i_PStotal'), ('g_PStotal', 'J0378_PStotal')),
+    (('r_PStotal', 'z_PStotal'), ('g_PStotal', 'J0378_PStotal')),
+    (('W1mag', 'i_PStotal'), ('g_PStotal', 'J0378_PStotal')),
+    (('W1mag', 'z_PStotal'), ('u_PStotal', 'J0515_PStotal')),
+    (('i_PStotal', 'z_PStotal'), ('u_PStotal', 'J0515_PStotal')),
+    (('W2mag', 'r_PStotal'), ('u_PStotal', 'J0515_PStotal')),
+    (('J0378_PStotal', 'J0430_PStotal'), ('u_PStotal', 'J0515_PStotal')),
+    (('i_PStotal', 'z_PStotal'), ('u_PStotal', 'J0861_PStotal')),
+    (('r_PStotal', 'z_PStotal'), ('u_PStotal', 'J0861_PStotal')),
+    (('W1mag', 'i_PStotal'), ('u_PStotal', 'J0861_PStotal')),
+    (('r_PStotal', 'u_PStotal'), ('u_PStotal', 'J0430_PStotal')),
+    (('i_PStotal', 'z_PStotal'), ('u_PStotal', 'J0430_PStotal')),
+    (('W1mag', 'i_PStotal'), ('u_PStotal', 'z_PStotal')),
+    (('u_PStotal', 'J0660_PStotal'), ('J0378_PStotal', 'J0430_PStotal')),
+    (('J0378_PStotal', 'J0515_PStotal'), ('J0378_PStotal', 'J0430_PStotal')),
+    (('W2mag', 'z_PStotal'), ('J0395_PStotal', 'J0515_PStotal')),
+    (('i_PStotal', 'z_PStotal'), ('J0395_PStotal', 'J0515_PStotal'))
 ]
 
 # Create a figure with subplots
-fig, axes = plt.subplots(5, 5, figsize=(20, 18), dpi=300)  # 5 rows, 5 columns
+fig, axes = plt.subplots(6, 5, figsize=(20, 20), dpi=300)  # 5 rows, 5 columns
 axes = axes.flatten()  # Flatten the 2D array of axes for easy iteration
 
 # Define colors based on the number of labels
@@ -72,7 +77,7 @@ for i, ((x1, y1), (x2, y2)) in enumerate(specific_pairs):
         marker = 'o'  # You can change this if you want different markers for each group
 
         ax.scatter(group_data[x1] - group_data[y1], group_data[x2] - group_data[y2],
-                   c=[color], s=100, marker=marker, edgecolors=[edge_color], linewidth=0.5, label=legend_label, alpha=0.7)
+                   c=[color], s=50, marker=marker, edgecolors=[edge_color], linewidth=0.5, label=legend_label, alpha=0.7)
 
     # Customize axis labels with the Wise filter renaming
     if x1 == 'W1mag':
