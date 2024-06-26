@@ -47,7 +47,7 @@ def plot_data(df, filename, xlabel, ylabel, loc='upper right'):
             edge_color = edge_colors[group % num_colors]
             marker = 'o'  # You can change this if you want different markers for each group
             ax.scatter(group_data["PC1"], group_data["PC2"],
-                       c=[color], s=200, marker=marker, edgecolors=[edge_color], linewidth=1.5, label=legend_label)
+                       c=[color], s=300, marker=marker, edgecolors=[edge_color], linewidth=0.5, label=legend_label, alpha=0.7)
 
         ax.xaxis.set_minor_locator(MultipleLocator(0.5))
         ax.yaxis.set_minor_locator(MultipleLocator(0.5))

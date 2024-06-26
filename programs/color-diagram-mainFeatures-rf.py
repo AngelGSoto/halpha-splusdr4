@@ -24,12 +24,12 @@ print("Number of objects just with SPLUS+WISE colors:", len(df_splus_wise))
 
 # Select specific pairs based on domain knowledge or preliminary analysis
 specific_pairs = [
-    (('J0430_PStotal', 'J0515_PStotal'), ('W1mag', 'W2mag')),
-    (('J0395_PStotal', 'J0660_PStotal'), ('W1mag', 'r_PStotal')),
-    (('i_PStotal', 'J0395_PStotal'), ('W2mag', 'i_PStotal')),
-    (('r_PStotal', 'J0395_PStotal'), ('W1mag', 'i_PStotal')),
-    (('i_PStotal', 'u_PStotal'), ('i_PStotal', 'z_PStotal')),
-    (('u_PStotal', 'J0660_PStotal'), ('W2mag', 'z_PStotal'))
+    (('J0378_PStotal', 'J0515_PStotal'), ('W1mag', 'W2mag')),
+    (('W2mag', 'z_PStotal'), ('u_PStotal', 'J0660_PStotal')),
+    (('W2mag', 'i_PStotal'), ('g_PStotal', 'u_PStotal')),
+    (('i_PStotal', 'z_PStotal'), ('i_PStotal', 'u_PStotal')),
+    (('W1mag', 'i_PStotal'), ('g_PStotal', 'J0378_PStotal')),
+    (('W1mag', 'z_PStotal'), ('r_PStotal', 'u_PStotal'))
 ]
 
 # Create a figure with subplots
