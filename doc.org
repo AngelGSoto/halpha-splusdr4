@@ -403,6 +403,7 @@ After rigorous evaluation, the optimal parameters determined for our dataset wer
 
 These parameters were selected based on their ability to effectively represent the dataset in a reduced-dimensional space, 
 facilitating subsequent clustering and analysis tasks with improved interpretability and accuracy.
+
 Conclusion:
 
 The approach described herein provides a systematic methodology for parameter selection in UMAP, ensuring that the 
