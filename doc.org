@@ -356,6 +356,12 @@ Number the objects with z > 0.02: 30
     - spec-0395-51783-0008 -> RRLyr
     - spec-56595-EG012606S021203B01_sp16-243 -> EB
 
+*** Coments of spectra
+    Duplicates. 
+    - LAMOST: spec-56656-HD120800N003716M01_sp09-025. Better
+              spec-55973-F5597306_sp12-098 -> Esta en la pasta unique
+      
+      
 ** Machine Learning
 
    *** UMAP
@@ -624,8 +630,8 @@ stars across the sky and gain insights into the formation and evolution of galax
    + [x] Hice crossmatch com SIMBAD.
    + [x] Rehice el plot con la comnparación con VPHAS.
    + [x] Rehice los plots con la lista finbal de emisores: diagramas de distribuciones.
-   + [ ] Analisis de ML.
-   + [ ] Rehacer los plots de ML.
+   + [x] Analisis de ML.
+   + [x ] Rehacer los plots de ML.
     
 
 ** Thing to think
