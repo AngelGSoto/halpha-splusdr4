@@ -79,8 +79,8 @@ print("******************************************************")
 
 # Data from the lamost spectra this for DR9
 hdudata = hdu[1].data 
-wl = hdudata['WAVELENGTH']
-Flux = hdudata['FLUX']
+wl = hdudata['WAVELENGTH'].flatten()
+Flux = hdudata['FLUX'].flatten()
 
 # Data of the SPLUs list
 mag_br, mag_err_br, mag_nr, mag_err_nr = [], [], [], []
@@ -272,7 +272,7 @@ for wl1, mag, magErr, colors, marker_ in zip(wl_nr, mag_nr, err_nr, color_nr, ma
 
 # Putting the labels to the lines
 # Putting the label for the selected emission line
-ax.axvline(lambda_ob, color='k', linewidth=0.8, alpha=0.7, linestyle='--', zorder=1)
+ax.axvline(lambda_ob, color='k', linewidth=0.5, alpha=0.2, linestyle='--', zorder=1)
 bbox_props = dict(boxstyle="round", fc="w", ec="0.88", alpha=0.6, pad=0.1)
 ax.annotate(selected_emission_line, (lambda_ob, max_flux), alpha=1, size=18,
             xytext=(10.5, 5.6), textcoords='offset points', ha='right', va='bottom',
