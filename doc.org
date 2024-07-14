@@ -200,6 +200,73 @@ Applying the algorithm per field can be the better choice for the following reas
 Overall, applying the algorithm per field enables a more tailored and accurate analysis,
 leading to better characterization and understanding of Halpha emitters in each specific region of interest.
 
+**** Recicling text
+
+     \begin{figure*}
+\centering
+\begin{tabular}{l l}
+    \includegraphics[width=0.5\linewidth, trim=10 10 5 8, clip]{Figs/umap_splus_disk.pdf} 
+     \includegraphics[width=0.45\linewidth, trim=10 10 5 8, clip]{Figs/umap_hdbscam_splus_disk.pdf} 
+    \end{tabular}  
+    \caption{After dimension reduction by UMAP to two dimensions. 
+    The left panel indicates the UMAP result using only the S-PLUS 
+    colors as input parameters, while the right panel shows the result after 
+    adding other colors created using W1 and W2 bands of WISE to generate additional features.}
+
+    \label{fig:umap-disk}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\begin{tabular}{l l}
+    \includegraphics[width=0.5\linewidth, trim=10 10 5 8, clip]{Figs/umap_splus_disk_wise.pdf}
+    \includegraphics[width=0.45\linewidth, trim=10 10 5 8, clip]{Figs/umap_hdbscam_splus_wise_disk.pdf}
+    \end{tabular}  
+    \caption{After dimension reduction by UMAP to two dimensions. The left panel 
+    indicates the \texttt{UMAP} result using only the S-PLUS colors as input parameters, 
+    while the right panel shows the result after adding other colors created using W1 and 
+    W2 bands of WISE to generate additional features.}
+
+    \label{fig:umap-disk-wise}
+\end{figure*}
+
+\begin{table*}[h]
+\centering
+\caption{Summary of clustering outcomes achieved using the UMAP and HDBSCAN unsupervised machine learning methods applied to H$\alpha$ excess sources. Clustering is performed using S-PLUS and S-PLUS + WISE filter combinations for both the main survey and disk datasets. The table displays the number of objects allocated to each cluster, providing insights into the distribution of sources identified through the clustering process.}
+\label{tab:ML-groups}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{} & \textbf{Group} & \textbf{Number of Objects} & \textbf{Number with \texttt{SIMBAD} Match} & \textbf{Comments about \texttt{SIMBAD} Match} \\
+\midrule
+\multicolumn{5}{c}{\textbf{Disk}} \\
+\midrule
+\multicolumn{5}{c}{Only S-PLUS Filters} \\
+\midrule
+& Group 0 & 29 & 29 & \parbox[t]{7cm}{Em* (7), Star (5), CataclyV* (4), Hsd\_Candidate (3), V* (2), WD*\_Candidate (2), CV*\_Candidate (1), RRLyr (1), Transient (1), X (1), Nova (1), PulsV* (1)} \\
+\cmidrule{2-5}
+& Group 1 & 106 & 106 & \parbox[t]{7cm}{Em* (58), YSO\_Candidate (29), Star (7), LP*\_Candidate (3), RSCVn (2), YSO (2), EB* (1), BYDra (1), ** (1), T Tau*\_Candidate (1), Orion\_V* (1)} \\
+\cmidrule{2-5}
+& Group 2 & 205 & 205 & \parbox[t]{7cm}{Star (77), EB*\_Candidate (38), SB* (16), EB* (15), V* (8), PulsVdelSct (7), Em* (7), RRLyr (6), YSO\_Candidate (4), LPV* (4), LP*\_Candidate (4), PulsV* (3), Be* (3), RGB* (2), EmObj (2), ** (2), YSO (2), C* (1), delta Cep (1), V*\_Candidate (1), Cepheid\_Candidate (1), Ae*\_Candidate (1)} \\
+\cmidrule{2-5}
+& Noise & 10 & 10 & \parbox[t]{7cm}{Star (3), Em* (2), V* (2), ** (1), PulsV* (1), SB* (1)} \\
+\midrule
+\textbf{Total} & & \textbf{350} & \textbf{350} & \\
+\midrule
+\multicolumn{5}{c}{S-PLUS + WISE Filters} \\
+\midrule
+& Group 0 & 105 & 105 & \parbox[t]{7cm}{Em* (57), YSO\_Candidate (29), Star (7), LP*\_Candidate (3), YSO (2), BYDra (1), RSCVn (1), ** (1), T Tau*\_Candidate (1), V* (1), Ae*\_Candidate (1), LPV* (1)} \\
+\cmidrule{2-5}
+& Group 1 & 216 & 216 & \parbox[t]{7cm}{Star (77), EB*\_Candidate (37), SB* (17), EB* (14), Em* (13), V* (9), PulsVdelSct (7), RRLyr (6), PulsV* (5), LP*\_Candidate (4), LPV* (3), Be* (3), YSO\_Candidate (3), CataclyV* (3), Hsd\_Candidate (2), RGB* (2), ** (2), YSO (2), X (1), EmObj (1), CV*\_Candidate (1), C* (1), delta Cep (1), V*\_Candidate (1), Cepheid\_Candidate (1)} \\
+\cmidrule{2-5}
+& Noise & 28 & 28 & \parbox[t]{7cm}{Star (4), Em* (4), V* (3), ** (3), CataclyV* (3), RRLyr (2), Galaxy (2), Blue (2), X (1), PulsV* (1), SB* (1), EmObj (1), CV*\_Candidate (1)} \\
+\midrule
+\textbf{Total} & & \textbf{349} & \textbf{349} & \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}
+
 *** running some scripts
 
     : python programs/color-diagram_oneField.py iDR4-SPLUS-PStotal-PSF-16r175_class05_flags4_clean --Field "b'STRIPE82-0142'" --Object "b'iDR4_3_STRIPE82-0142_0021237'" --Range "16 < r $\leq$ 17.5"
@@ -631,7 +698,7 @@ stars across the sky and gain insights into the formation and evolution of galax
    + [x] Rehice el plot con la comnparación con VPHAS.
    + [x] Rehice los plots con la lista finbal de emisores: diagramas de distribuciones.
    + [x] Analisis de ML.
-   + [x ] Rehacer los plots de ML.
+   + [x] Rehacer los plots de ML.
     
 
 ** Thing to think
