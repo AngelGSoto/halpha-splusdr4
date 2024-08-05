@@ -158,6 +158,11 @@ or_fit = fitting.FittingWithOutlierRemoval(fit, sigma_clip, niter=4, sigma=4.0)
 fitted_line_sigma_clip, mask = or_fit(line_init, cx, cy)
 cy_predic_sigma_clip = fitted_line_sigma_clip(cx)
 
+# Get the coefficients of the fitted line after sigma clipping
+a = fitted_line_sigma_clip.slope.value
+b = fitted_line_sigma_clip.intercept.value
+print("Pendiente:",a)
+print("Intercept:",b)
 
 # Check if any rows are selected
 if df_obj.empty:
@@ -178,13 +183,6 @@ plt.xlabel(r"$r - i$", fontsize=35)
 plt.ylabel(r"$r - J0660$", fontsize=35)
 plt.tick_params(axis='x', labelsize=35) 
 plt.tick_params(axis='y', labelsize=35)
-
-# Assuming z represents some calculated value based on cx and cy
-#z = calculate_z(cx, cy)
-
-# Plot the filled contours using tricontourf
-#contour = ax.tricontourf(triang, z, levels=levels, cmap="Reds_r", zorder=-2, alpha=0.5)
-
 
 # Scatter plot
 scatter = ax.scatter(
@@ -213,11 +211,15 @@ contour = sns.kdeplot(
 if not df_obj.empty:
     ax.scatter(cx_obj, cy_obj, color="#ff7f0e", marker="*", s=1200, edgecolors="k", zorder=11)
 
-
 # The fitted lines
 x_values = np.linspace(-5.0, 5.0, 100)
 ax.plot(x_values, fitted_line_normal(x_values), 'r-', zorder=6, label='Initial fitted')
-ax.plot(x_values, fitted_line_sigma_clip(x_values), ls='--', color="r", zorder=8, label='Iter. fitted $\\sigma$ clipped')
+ax.plot(x_values, fitted_line_sigma_clip(x_values), ls='--', color="r", zorder=8, label='Iter. fitted $\\sigma$ clipped:')
+
+# Add the equation to the legend
+intercept_str = f"{b:.2f}" if b >= 0 else f"- {-b:.2f}"
+equation_label = f'$y = {a:.2f}x {intercept_str}$'
+ax.plot([], [], ' ', label=equation_label)  # Invisible plot to add the equation to the legend
 
 ax.set(xlim=[-0.7, 2.6], ylim=[-0.8, 1.5])
 
@@ -225,7 +227,7 @@ ax.set(xlim=[-0.7, 2.6], ylim=[-0.8, 1.5])
 ax.annotate(cmd_args.Ranger, xy=(0.08, 1.5),  xycoords='data', size=25, xytext=(-120, -50), 
             textcoords='offset points', bbox=dict(boxstyle="round4,pad=.5", fc="0.9"))
 
-#representation of the errors
+# Representation of the errors
 pro_ri = median(ecx)
 pro_rj660 = median(ecy)
 print("Median", pro_ri)
@@ -237,12 +239,35 @@ foo = data_coordinates_of_representative_error_bar
 
 ax.errorbar(foo[0], foo[1], xerr=pro_ri, yerr=pro_rj660, c="k", capsize=3)
 ax.annotate("Median Errors", xy=(0.09, 1.35),  xycoords='data', size=25,
-        xytext=(-120, -60), textcoords='offset points', )
+            xytext=(-120, -60), textcoords='offset points', )
 
-plt.text(cx_obj - 0.1, cy_obj - 0.16, r"Hα emitter", verticalalignment='bottom',
-         horizontalalignment='left', fontsize=25, fontweight=None, color='black')
+if not df_obj.empty: 
+    plt.text(cx_obj - 0.1, cy_obj - 0.16, r"Hα emitter", verticalalignment='bottom',
+             horizontalalignment='left', fontsize=25, fontweight=None, color='black')
 
+# Add text for the equation of the fitted line
+#ax.text(0.65, 0.1, f'$y = {a:.2f}x + {b:.2f}$', transform=ax.transAxes, fontsize=25, verticalalignment='top')
 
+# Update the legend with the equation
 ax.legend(loc='upper right', ncol=1, fontsize=25, title='Fitted models', title_fontsize=30)
-save_file = file_.split("-PSF-")[-1].split("_class05")[0]
-plt.savefig(f"Figs/color-color-diagram_{save_file}_{cmd_args.Field}.pdf")
+
+# Ensure the 'Figs' directory exists
+if not os.path.exists('Figs'):
+    os.makedirs('Figs')
+
+# Extract file name for saving
+save_file = file_.split("-PSF-")[-1].split("_class")[0]
+
+# Construct the full path for saving the file
+output_file = os.path.join('Figs', f"color-color-diagram_{save_file}_{cmd_args.Field}.pdf")
+
+# Save the figure
+try:
+    plt.savefig(output_file, dpi=200)
+    print(f"Figure saved successfully as {output_file}")
+except Exception as e:
+    print(f"Error saving figure: {e}")
+finally:
+    plt.close(fig)
+
+
