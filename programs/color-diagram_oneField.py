@@ -159,8 +159,8 @@ fitted_line_sigma_clip, mask = or_fit(line_init, cx, cy)
 cy_predic_sigma_clip = fitted_line_sigma_clip(cx)
 
 # Get the coefficients of the fitted line after sigma clipping
-a = fitted_line_sigma_clip.slope.value
-b = fitted_line_sigma_clip.intercept.value
+a = fitted_line_normal.slope.value
+b = fitted_line_normal.intercept.value
 print("Pendiente:",a)
 print("Intercept:",b)
 
@@ -188,7 +188,7 @@ plt.tick_params(axis='y', labelsize=35)
 scatter = ax.scatter(
     cx, cy,
     color=sns.xkcd_palette(["forest green"])[0],  # Use a valid XKCD color name
-    s=300,
+    #s=300,
     edgecolors="w",
     linewidths=1,
     zorder=2,  # Set a lower z-order for scatter plot to make it appear below contour lines

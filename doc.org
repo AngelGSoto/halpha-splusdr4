@@ -693,14 +693,16 @@ By considering these factors, astronomers can better understand the distribution
 stars across the sky and gain insights into the formation and evolution of galaxies like the Milky Way.
 
 ** Lo que he hecho
-   + [x] Eliminé los duplicados. Apartir todo de aqui hecho sin los duplicados.
+   + [x] Eliminé los duplicados. Apartir de aqui todo le hecho sin los duplicados.
    + [x] Hice crossmatch com SIMBAD.
-   + [x] Rehice el plot con la comnparación con VPHAS.
+   + [x] Rehice el plot con la comparación con VPHAS.
    + [x] Rehice los plots con la lista finbal de emisores: diagramas de distribuciones.
    + [x] Analisis de ML.
    + [x] Rehacer los plots de ML.
+   + [ ] Voy a tener que correr el script para el disco.
     
 
 ** Thing to think
 
-   I got different result for the SIMBAD match with disk.
+   - I got different result for the SIMBAD match with disk.
+   - Quizas hay que decir que emiisores enrrojecidos van a ser perdidos. Pero no en todos los campos aparecen los locus.
