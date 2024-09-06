@@ -134,7 +134,7 @@ fitted_line_normal = fit(line_init, cx, cy)
 cy_predic_normal = fitted_line_normal(cx)
 
 # Iterative fitting as per Witham et al. (2006)
-def iterative_fit(x, y, niter=2):
+def iterative_fit(x, y, niter=1):
     # Initial fit
     fit = fitting.LinearLSQFitter()
     line_init = models.Linear1D()
@@ -250,7 +250,7 @@ if not os.path.exists('Figs'):
 save_file = file_.split(".csv")[0]
 
 # Construct the full path for saving the file
-output_file = os.path.join('Figs', f"color-color-diagram_{save_file}_{cmd_args.Field}.pdf")
+output_file = os.path.join('Fig_color_diagram_disk_175R185', f"color-color-diagram_{save_file}_{cmd_args.Field}.pdf")
 
 # Save the figure
 try:

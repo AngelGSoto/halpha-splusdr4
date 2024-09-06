@@ -15,7 +15,6 @@ from astropy.modeling import models, fitting
 from astropy.stats import sigma_clip
 from pathlib import Path
 
-
 def filter_mag(e, s, f1, f2, f3, data):
     '''
     Calculate the colors using any set of filters
@@ -75,6 +74,23 @@ def errormag(table, ef1, ef2, ef3, ef4):
     eycolour = np.sqrt(table[ef3]**2 + table[ef4]**2)
     return excolour, eycolour
 
+def iterative_fit(x, y, niter=2):
+    # Initial fit
+    fit = fitting.LinearLSQFitter()
+    line_init = models.Linear1D()
+    fitted_line = fit(line_init, x, y)
+    
+    # Iteratively force the fit upwards
+    for i in range(niter):
+        # Select only the objects above the fitted line
+        mask = y >= fitted_line(x)
+        x_fit = x[mask]
+        y_fit = y[mask]
+        
+        # Fit the selected points
+        fitted_line = fit(line_init, x_fit, y_fit)
+    
+    return fitted_line
 
 # Read the file
 parser = argparse.ArgumentParser(
@@ -104,6 +120,7 @@ except FileNotFoundError:
 
 # List of unique fields
 fields = df["field"].unique()
+print("Nu,bers of fields:", len(fields))
 
 # Modify the file pattern to match the JSON files
 pattern = "../MS_stars/*.json"
@@ -127,31 +144,20 @@ for field in fields:
     # error
     ecx, ecy = errormag(df_field, "rerr", "ierr", "rerr", "F660err")
 
-    # 𝐔𝐬𝐢𝐧𝐠 𝐚𝐬𝐭𝐫𝐨𝐩𝐲 𝐭𝐨 𝐝𝐨 𝐭𝐡𝐞 𝐟𝐢𝐭 𝐥𝐢𝐧𝐞
-
-    # Initialize a linear fitter
-    fit = fitting.LinearLSQFitter()
-
-    # Initialize a linear model
-    line_init = models.Linear1D()
-
     # Fit the data with the fitter
+    fit = fitting.LinearLSQFitter()
+    line_init = models.Linear1D()
     fitted_line_normal = fit(line_init, cx, cy)
-    cy_predic_normal = fitted_line_normal(cx)
-
-    # Initialize the outlier removal fitter
-    or_fit = fitting.FittingWithOutlierRemoval(fit, sigma_clip, niter=4, sigma=4.0)
-
-    # Fit the data with the fitter and sigma clipping
-    fitted_line_sigma_clip, mask = or_fit(line_init, cx, cy)
-    cy_predic_sigma_clip = fitted_line_sigma_clip(cx)
-
-    # Get the coefficients of the fitted line after sigma clipping
-    a = fitted_line_sigma_clip.slope.value
-    b = fitted_line_sigma_clip.intercept.value
-    print("Field:", field)
-    print("Pendiente:", a)
-    print("Intercept:", b)
+    
+    # Perform iterative fitting
+    fitted_line_iter = iterative_fit(cx, cy)
+    
+    # Get the coefficients of the fitted line after iterative fitting
+    a_iter = fitted_line_iter.slope.value
+    b_iter = fitted_line_iter.intercept.value
+    print(f"Field: {field}")
+    print("Pendiente (Iterative):", a_iter)
+    print("Intercept (Iterative):", b_iter)
 
     # Check if any rows are selected
     if df_obj.empty:
@@ -197,14 +203,13 @@ for field in fields:
     # The fitted lines
     x_values = np.linspace(-5.0, 5.0, 100)
     ax.plot(x_values, fitted_line_normal(x_values), 'r-', zorder=6, label='Initial fitted')
-    ax.plot(x_values, fitted_line_sigma_clip(x_values), ls='--', color="r", zorder=8, label='Iter. fitted $\\sigma$ clipped:')
+    ax.plot(x_values, fitted_line_iter(x_values), ls='--', color="k", zorder=8, label='Iter. fitted')
 
     # Add the equation to the legend
-    intercept_str = f"{b:.2f}" if b >= 0 else f"- {-b:.2f}"
-    equation_label = f'$y = {a:.2f}x {intercept_str}$'
-    ax.plot([], [], ' ', label=equation_label)  # Invisible plot to add the equation to the legend
-
-    ax.set(xlim=[-0.4, 1.7], ylim=[-0.3, 0.6])
+    intercept_str_iter = f"{b_iter:.2f}" if b_iter >= 0 else f"- {-b_iter:.2f}"
+    equation_label_iter = f'$y = {a_iter:.2f}x {intercept_str_iter}$'
+    ax.plot([], [], ' ', label=equation_label_iter)  # Invisible plot to add the equation to the legend
+    ax.set(xlim=[-0.4, 2.2], ylim=[-0.3, 0.8])
 
     # Annotate range
     ax.annotate(cmd_args.Ranger, xy=(0.08, 1.5),  xycoords='data', size=25, xytext=(-120, -50), 
@@ -222,7 +227,7 @@ for field in fields:
     #ax.add_patch(rect)
 
     # Save the plot
-    out_file_name = f"Fig_color_diagram_disk_16R175/color_color_diagram_{field}.pdf"
+    out_file_name = f"Fig_color_diagram_disk_185R195/color_color_diagram_{field}.png"
     plt.savefig(out_file_name, bbox_inches='tight', dpi=300)
     print(f"Plot saved as {out_file_name}")
 
