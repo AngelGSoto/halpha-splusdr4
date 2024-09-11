@@ -15,7 +15,7 @@ border_color_disk = '#006d2c'  # Dark green
 border_color_main = '#8c2d04'  # Dark orange
 
 # Load data
-df_d = pd.read_csv("Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total-unique.csv")
+df_d = pd.read_csv("Ha-emitters-disk-iteractive/Halpha-disk_splus_Mine_PerField_total-unique.csv")
 df_h = pd.read_csv("Ha-emitters/Halpha_Mine_PerField_total-unique.csv")
 
 # Calculate colors
@@ -39,7 +39,7 @@ scatter_disk = ax.scatter(
     marker='o',
     edgecolors=border_color_disk,
     linewidths=1,
-    zorder=2, label="Disk"
+    zorder=2, label="Galactic Disk"
 )
 
 # Scatter plot for main
@@ -78,7 +78,7 @@ galactic_coords_h = coords_h.galactic
 plt.figure(figsize=(10, 6))
 
 # Scatter plot for disk
-plt.scatter(galactic_coords_d.l.deg, galactic_coords_d.b.deg, color=color_disk, edgecolor=border_color_disk, linewidth=1, label='Disk', s=30, alpha=0.5)
+plt.scatter(galactic_coords_d.l.deg, galactic_coords_d.b.deg, color=color_disk, edgecolor=border_color_disk, linewidth=1, label='Galactic Disk', s=30, alpha=0.5)
 
 # Scatter plot for main
 plt.scatter(galactic_coords_h.l.deg, galactic_coords_h.b.deg, color=color_main, edgecolor=border_color_main, linewidth=1, label='Main', s=30, alpha=0.5)
@@ -86,7 +86,7 @@ plt.scatter(galactic_coords_h.l.deg, galactic_coords_h.b.deg, color=color_main, 
 plt.xlabel("Galactic Longitude (l)", fontsize=25)
 plt.ylabel("Galactic Latitude (b)", fontsize=25)
 plt.tick_params(axis='both', labelsize=20)
-plt.legend(loc='upper center', fontsize=25)
+plt.legend(loc='upper center', bbox_to_anchor=(0.4, 1.0), fontsize=25)
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.tight_layout()
 plt.savefig("Figs/Halpha_galactic_coordinates.pdf")
@@ -98,7 +98,7 @@ plt.figure(figsize=(10, 6))
 sns.kdeplot(x=galactic_coords_d.l.deg, y=galactic_coords_d.b.deg, cmap="Greens", fill=True, bw_adjust=0.5)
 
 # Scatter plot for disk
-plt.scatter(galactic_coords_d.l.deg, galactic_coords_d.b.deg, color=color_disk, edgecolor=border_color_disk, linewidth=1, label='Disk', s=30, alpha=0.5)
+plt.scatter(galactic_coords_d.l.deg, galactic_coords_d.b.deg, color=color_disk, edgecolor=border_color_disk, linewidth=1, label='Galactic Disk', s=30, alpha=0.5)
 
 plt.xlabel("Galactic Longitude (l)", fontsize=25)
 plt.ylabel("Galactic Latitude (b)", fontsize=25)

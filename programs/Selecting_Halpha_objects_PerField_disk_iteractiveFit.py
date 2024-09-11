@@ -119,16 +119,19 @@ for field, data_ in grouped_df:
         # Perform basic linear fitting if no iteration is needed
         fit = fitting.LinearLSQFitter()
         line_init = models.Linear1D()
-        fitted_line = fit(line_init, cx, cy)
+        # Initialize the outlier removal fitter
+        or_fit = fitting.FittingWithOutlierRemoval(fit, sigma_clip, niter=4, sigma=4.0)
+        # Fit the data with the fitter and sigma clipping
+        fitted_line, mask = or_fit(line_init, cx, cy)
 
     cy_predic = fitted_line(cx)
 
-    # Initialize the outlier removal fitter
-    or_fit = fitting.FittingWithOutlierRemoval(fitting.LinearLSQFitter(), sigma_clip, niter=niter, sigma=4.0) if niter > 0 else fitting.FittingWithOutlierRemoval(fitting.LinearLSQFitter(), sigma_clip, niter=4, sigma=4.0)
-
-    # Fit the data with sigma clipping
-    fitted_line_sigma_clip, mask = or_fit(fitted_line, cx, cy)
-    cy_predic_sigma_clip = fitted_line_sigma_clip(cx)
+    # Get the coefficients of the fitted line after iterative fitting
+    a_iter = fitted_line.slope.value
+    b_iter = fitted_line.intercept.value
+    intercept_str_iter = f"{b_iter:.2f}" if b_iter >= 0 else f"- {-b_iter:.2f}"
+    print(f"Field: {field},", f'$y = {a_iter:.2f}x {intercept_str_iter}$')
+    
 
     # Create DataFrame with the new columns
     colum1 = pd.DataFrame(cx, columns=['r - i'])
@@ -136,7 +139,7 @@ for field, data_ in grouped_df:
     data = pd.concat([data_["ALPHA"], data_["DELTA"], df["fwhm_r"], data_["r"], colum1, colum2], axis=1)
 
     # Estimating parameter for statistical
-    residuals = cy - cy_predic_sigma_clip
+    residuals = cy - cy_predic
     sigma_fit = np.std(residuals)
 
     # Errors on the colors
@@ -148,7 +151,7 @@ for field, data_ in grouped_df:
     data_final = pd.concat([data, colum_ri, colum_rh], axis=1)
 
     # Selecting the H𝛼 emitters
-    m = fitted_line_sigma_clip.slope  # Slope of the fit line
+    m = fitted_line.slope  # Slope of the fit line
     C = 5.0  # Constant
 
     if cmd_args.varianceApproach == "Maguio":
@@ -161,10 +164,10 @@ for field, data_ in grouped_df:
     criterion = C * np.sqrt(variance_est)
     
     cy = pd.Series(cy, index=data_["ALPHA"].index)
-    cy_predic_sigma_clip = pd.Series(cy_predic_sigma_clip, index=data_["ALPHA"].index)
+    cy_predic_sigma_clip = pd.Series(cy_predic, index=data_["ALPHA"].index)
     criterion = pd.Series(criterion, index=data_["DELTA"].index)
 
-    mask_ha_emitter = (cy - cy_predic_sigma_clip) >= criterion
+    mask_ha_emitter = (cy - cy_predic) >= criterion
 
     # Filter original data based on the mask
     data_ha_emitter_orig = data_[mask_ha_emitter]

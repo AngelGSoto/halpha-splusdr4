@@ -51,6 +51,7 @@ for obj1, obj2 in potential_duplicates:
 
 # Remove duplicate objects and keep one representative object
 unique_objects = data.drop(index=duplicate_indices_to_remove)
+print("Final number of stars:", len(unique_objects))
 
 # Save the new table without duplicate objects to a CSV file
 unique_objects.to_csv(file_.replace(".csv", "-unique.csv"), index=False)

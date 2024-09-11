@@ -12,7 +12,7 @@ from scipy.stats import norm, median_abs_deviation
 sns.set_style("whitegrid")
 
 # Load your DataFrame from CSV
-df = pd.read_csv("Ha-emitters-disk/Halpha-disk_splus_Mine_PerField_total-unique_vphas.csv")
+df = pd.read_csv("Ha-emitters-disk-iteractive/Halpha-disk_splus_Mine_PerField_total-unique_vphas.csv")
 print("Number of sources with VPHAS match:", len(df))
 
 # Compute ri colors for SPLUS and VPHAS
