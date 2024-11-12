@@ -83,8 +83,8 @@ cmd_args = parser.parse_args()
 file_ = cmd_args.fileName + ".csv"
 niter_file = cmd_args.niterFile
 
-datadir = "Disk_Lomeli/"
-datadir1 = "Disk_fields_method_tofit/"
+datadir = "Disk_Lomeli_problematicFields/"
+datadir1 = "Disk_fields_method_tofit_problematic/"
 
 # Load iteration data
 try:
@@ -178,8 +178,8 @@ for field, data_ in grouped_df:
 # Save the resulting table
 ha_emitter_combined = pd.concat(ha_emitter_data, ignore_index=True)
 
-df_file = "Ha-emitters-disk-iteractive/Halpha-{}-{}_PerField.csv".format(file_.split('.cs')[0], cmd_args.varianceApproach) 
+df_file = "Ha-emitters-disk-iteractive_problematic/Halpha-{}-{}_PerField.csv".format(file_.split('.cs')[0], cmd_args.varianceApproach) 
 ha_emitter_combined.to_csv(df_file, index=False)
 
-asciifile = "Ha-emitters-disk-iteractive/Halpha-{}-{}_PerField.ecsv".format(file_.split('.cs')[0], cmd_args.varianceApproach) 
+asciifile = "Ha-emitters-disk-iteractive_problematic/Halpha-{}-{}_PerField.ecsv".format(file_.split('.cs')[0], cmd_args.varianceApproach) 
 Table.from_pandas(ha_emitter_combined).write(asciifile, format="ascii.ecsv", overwrite=True)

@@ -111,7 +111,7 @@ parser.add_argument("--Ranger", type=str,
 cmd_args = parser.parse_args()
 file_ = cmd_args.fileName + ".csv"
 
-datadir = "Disk_Lomeli/"
+datadir = "Disk_Lomeli_problematicFields/"
 
 try:
     df = pd.read_csv(os.path.join(datadir, file_))
@@ -209,7 +209,7 @@ for field in fields:
     intercept_str_iter = f"{b_iter:.2f}" if b_iter >= 0 else f"- {-b_iter:.2f}"
     equation_label_iter = f'$y = {a_iter:.2f}x {intercept_str_iter}$'
     ax.plot([], [], ' ', label=equation_label_iter)  # Invisible plot to add the equation to the legend
-    ax.set(xlim=[-0.4, 2.2], ylim=[-0.3, 0.8])
+    ax.set(xlim=[-0.4, 2.2], ylim=[-1, 1])
 
     # Annotate range
     ax.annotate(cmd_args.Ranger, xy=(0.08, 1.5),  xycoords='data', size=25, xytext=(-120, -50), 
@@ -227,7 +227,7 @@ for field in fields:
     #ax.add_patch(rect)
 
     # Save the plot
-    out_file_name = f"Fig_color_diagram_disk_185R195/color_color_diagram_{field}.png"
+    out_file_name = f"Fig_color_diagram_disk_185r195_problematic/color_color_diagram_{field}.png"
     plt.savefig(out_file_name, bbox_inches='tight', dpi=300)
     print(f"Plot saved as {out_file_name}")
 

@@ -214,7 +214,7 @@ for field in fields:
     #ax.add_patch(rect)
 
     # Save the plot
-    out_file_name = f"Fig_color_diagram_disk_16R175/color_color_diagram_{field}.png"
+    out_file_name = f"Fig_color_diagram_disk_13r16_problematic/color_color_diagram_{field}.png"
     plt.savefig(out_file_name, bbox_inches='tight', dpi=300)
     print(f"Plot saved as {out_file_name}")
 
