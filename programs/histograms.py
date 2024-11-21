@@ -33,8 +33,8 @@ mag_range_d = (min(df_halpha_d["r"].min(), df_all_objects_d["r"].min()), max(df_
 plt.figure(figsize=(10, 6))
 plt.tick_params(axis='x', labelsize=20)
 plt.tick_params(axis='y', labelsize=20)
-plt.hist(df_halpha_d["r"], bins=num_bins, range=mag_range_d, alpha=0.7, color='deepskyblue', label='Hα Excess (Galactic Disk)', density=True, zorder =3)
-plt.hist(df_all_objects_d["r"], bins=num_bins, range=mag_range_d, alpha=0.7, color='salmon', label='All Disk Stars', density=True, zorder =2)
+plt.hist(df_halpha_d["r"], bins=num_bins, range=mag_range_d, alpha=0.7, color='deepskyblue', label='Hα Excess Sources (GDS)', density=True, zorder =3)
+plt.hist(df_all_objects_d["r"], bins=num_bins, range=mag_range_d, alpha=0.7, color='salmon', label='All Sources (GDS)', density=True, zorder =2)
 plt.xlabel("r-band Magnitude", fontsize=20)
 plt.ylabel("Normalized Density", fontsize=20)
 plt.legend(fontsize=20)
@@ -72,9 +72,9 @@ plt.tick_params(axis='y', labelsize=20)
 bin_edges = np.arange(len(number_density_halpha_d) + 1) - 0.5
 
 # Plot the histograms with step style
-plt.hist(np.arange(len(number_density_halpha_d)), bins=bin_edges, weights=number_density_halpha_d, color='deepskyblue', label='Hα Excess (Galactic Disk)', alpha=1, zorder =3,
+plt.hist(np.arange(len(number_density_halpha_d)), bins=bin_edges, weights=number_density_halpha_d, color='deepskyblue', label='Hα Excess Sources (GDS)', alpha=1, zorder =3,
          histtype='step', linewidth=3, density=True)
-plt.hist(np.arange(len(number_density_all_objects_d)), bins=bin_edges, weights=number_density_all_objects_d, color='salmon', label='All Galactic disk stars', alpha=1,  zorder =2,
+plt.hist(np.arange(len(number_density_all_objects_d)), bins=bin_edges, weights=number_density_all_objects_d, color='salmon', label='All Sources (GDS)', alpha=1,  zorder =2,
          histtype='step', linewidth=3, density=True)
 
 plt.xlabel("r-band Magnitude Bin", fontsize=20)  # Add clarification
@@ -89,8 +89,8 @@ plt.savefig("Figs/Number-Density-Disk.pdf")
 plt.figure(figsize=(10, 6))
 plt.tick_params(axis='x', labelsize=20)
 plt.tick_params(axis='y', labelsize=20)
-plt.hist(df_halpha_d["r"], bins=num_bins, range=mag_range_d, alpha=1, color='deepskyblue', label='Hα Excess (Galactic Disk)', cumulative=True, density=True,  zorder =3)
-plt.hist(df_all_objects_d["r"], bins=num_bins, range=mag_range_d, alpha=1, color='salmon', label='All Galactic Disk Stars', cumulative=True, density=True,  zorder =2)
+plt.hist(df_halpha_d["r"], bins=num_bins, range=mag_range_d, alpha=1, color='deepskyblue', label='Hα Excess Sources (GDS)', cumulative=True, density=True,  zorder =3)
+plt.hist(df_all_objects_d["r"], bins=num_bins, range=mag_range_d, alpha=1, color='salmon', label='All Sources (GDS)', cumulative=True, density=True,  zorder =2)
 plt.xlabel("r-band Magnitude")
 plt.ylabel("Cumulative Density")
 plt.legend(fontsize=20)
@@ -132,9 +132,9 @@ lon_range = (min(galactic_coords_d.l.deg), max(galactic_coords_d.l.deg))
 plt.figure(figsize=(10, 6))
 plt.tick_params(axis='x', labelsize=20)
 plt.tick_params(axis='y', labelsize=20)
-plt.hist(df_halpha_d["GAL_LONG"], bins=num_bins, range=lon_range,  color='deepskyblue', label='Hα Excess (Galactic Disk)', alpha=1, zorder=3,
+plt.hist(df_halpha_d["GAL_LONG"], bins=num_bins, range=lon_range,  color='deepskyblue', label='Hα Excess Sources (GDS)', alpha=1, zorder=3,
          histtype='step', linewidth=3, density=True)
-plt.hist(galactic_coords_d.l.deg, bins=num_bins, range=lon_range,  color='salmon', label='All Galactic Disk Stars', alpha=1, zorder=2,
+plt.hist(galactic_coords_d.l.deg, bins=num_bins, range=lon_range,  color='salmon', label='All Sources (GDS)', alpha=1, zorder=2,
          histtype='step', linewidth=3, density=True)
 plt.xlabel("Galactic Longitude (l)", fontsize=20)
 plt.ylabel("Normalized Density", fontsize=20)
@@ -191,8 +191,8 @@ plt.savefig("Figs/Number-Density-Galactic-Longitude.pdf")
 plt.figure(figsize=(10, 6))
 plt.tick_params(axis='x', labelsize=20)
 plt.tick_params(axis='y', labelsize=20)
-plt.hist(df_halpha_d["GAL_LONG"], bins=num_bins, range=lon_range, alpha=1, color='deepskyblue', label='Hα Excess (Galactic Disk)', cumulative=True, density=True, zorder=3)
-plt.hist(galactic_coords_d.l.deg, bins=num_bins, range=lon_range, alpha=1, color='salmon', label='All Disk Stars', cumulative=True, density=True, zorder=2)
+plt.hist(df_halpha_d["GAL_LONG"], bins=num_bins, range=lon_range, alpha=1, color='deepskyblue', label='Hα Excess Sources (GDS)', cumulative=True, density=True, zorder=3)
+plt.hist(galactic_coords_d.l.deg, bins=num_bins, range=lon_range, alpha=1, color='salmon', label='All Sources (GDS)', cumulative=True, density=True, zorder=2)
 plt.xlabel("Galactic Longitude", fontsize=20)
 plt.ylabel("Cumulative Density", fontsize=20)
 plt.legend(fontsize=20)

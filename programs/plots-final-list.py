@@ -35,11 +35,11 @@ scatter_disk = ax.scatter(
     ri_d, rj660_d,
     color=color_disk,
     alpha=0.8,
-    s=600,
+    s=400,
     marker='o',
     edgecolors=border_color_disk,
     linewidths=1,
-    zorder=2, label="Galactic Disk"
+    zorder=2, label="GDS"
 )
 
 # Scatter plot for main
@@ -47,11 +47,11 @@ scatter_main = ax.scatter(
     ri_h, rj660_h,
     color=color_main,
     alpha=0.4,
-    s=600,
+    s=300,
     marker='s',
     edgecolors=border_color_main,
     linewidths=1,
-    zorder=2, label="Main"
+    zorder=2, label="MS"
 )
 
 # Add minor tick locators without showing the minor ticks
@@ -78,10 +78,10 @@ galactic_coords_h = coords_h.galactic
 plt.figure(figsize=(10, 6))
 
 # Scatter plot for disk
-plt.scatter(galactic_coords_d.l.deg, galactic_coords_d.b.deg, color=color_disk, edgecolor=border_color_disk, linewidth=1, label='Galactic Disk', s=30, alpha=0.5)
+plt.scatter(galactic_coords_d.l.deg, galactic_coords_d.b.deg, color=color_disk, edgecolor=border_color_disk, linewidth=1, label='GDS', s=30, alpha=0.5)
 
 # Scatter plot for main
-plt.scatter(galactic_coords_h.l.deg, galactic_coords_h.b.deg, color=color_main, edgecolor=border_color_main, linewidth=1, label='Main', s=30, alpha=0.5)
+plt.scatter(galactic_coords_h.l.deg, galactic_coords_h.b.deg, color=color_main, edgecolor=border_color_main, linewidth=1, label='MS', s=30, alpha=0.5)
 
 plt.xlabel("Galactic Longitude (l)", fontsize=25)
 plt.ylabel("Galactic Latitude (b)", fontsize=25)
@@ -98,7 +98,7 @@ plt.figure(figsize=(10, 6))
 sns.kdeplot(x=galactic_coords_d.l.deg, y=galactic_coords_d.b.deg, cmap="Greens", fill=True, bw_adjust=0.5)
 
 # Scatter plot for disk
-plt.scatter(galactic_coords_d.l.deg, galactic_coords_d.b.deg, color=color_disk, edgecolor=border_color_disk, linewidth=1, label='Galactic Disk', s=30, alpha=0.5)
+plt.scatter(galactic_coords_d.l.deg, galactic_coords_d.b.deg, color=color_disk, edgecolor=border_color_disk, linewidth=1, label='GDS', s=30, alpha=0.5)
 
 plt.xlabel("Galactic Longitude (l)", fontsize=25)
 plt.ylabel("Galactic Latitude (b)", fontsize=25)

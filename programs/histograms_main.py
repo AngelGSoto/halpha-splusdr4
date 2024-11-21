@@ -34,8 +34,8 @@ mag_range_d = (min(df_halpha_d["r_PStotal"].min(), df_all_objects_d["r_PStotal"]
 plt.figure(figsize=(10, 6))
 plt.tick_params(axis='x', labelsize=20)
 plt.tick_params(axis='y', labelsize=20)
-plt.hist(df_halpha_d["r_PStotal"], bins=num_bins, range=mag_range_d, alpha=0.7, color='deepskyblue', label='Hα Excess (Main)', density=True, zorder =3)
-plt.hist(df_all_objects_d["r_PStotal"], bins=num_bins, range=mag_range_d, alpha=0.7, color='salmon', label='All Main Stars', density=True, zorder =2)
+plt.hist(df_halpha_d["r_PStotal"], bins=num_bins, range=mag_range_d, alpha=0.7, color='deepskyblue', label='Hα Excess Sources (MS)', density=True, zorder =3)
+plt.hist(df_all_objects_d["r_PStotal"], bins=num_bins, range=mag_range_d, alpha=0.7, color='salmon', label='All Sources (MS)', density=True, zorder =2)
 plt.xlabel("r-band Magnitude", fontsize=20)
 plt.ylabel("Normalized Density", fontsize=20)
 plt.legend(fontsize=20)
@@ -133,9 +133,9 @@ lon_range = (min(galactic_coords_d.l.deg), max(galactic_coords_d.l.deg))
 plt.figure(figsize=(10, 6))
 plt.tick_params(axis='x', labelsize=20)
 plt.tick_params(axis='y', labelsize=20)
-plt.hist(df_halpha_d["GAL_LONG"], bins=num_bins, range=lon_range,  color='deepskyblue', label='Hα Excess (Main)', alpha=1, zorder=3,
+plt.hist(df_halpha_d["GAL_LONG"], bins=num_bins, range=lon_range,  color='deepskyblue', label='Hα Excess Sources (MS)', alpha=1, zorder=3,
          histtype='step', linewidth=3, density=True)
-plt.hist(galactic_coords_d.l.deg, bins=num_bins, range=lon_range,  color='salmon', label='All Main Stars', alpha=1, zorder=2,
+plt.hist(galactic_coords_d.l.deg, bins=num_bins, range=lon_range,  color='salmon', label='All Sources (MS)', alpha=1, zorder=2,
          histtype='step', linewidth=3, density=True)
 plt.xlabel("Galactic Longitude (l)", fontsize=20)
 plt.ylabel("Normalized Density", fontsize=20)
