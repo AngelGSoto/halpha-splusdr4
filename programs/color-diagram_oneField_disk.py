@@ -84,7 +84,7 @@ parser.add_argument("fileName", type=str,
                     help="Name of table, taken the prefix ")
 
 parser.add_argument("--Field", type=str,
-                    default="d271",
+                    default="d228",
                     help="Choosing a field")
 
 parser.add_argument("--Object", type=str,
@@ -134,7 +134,7 @@ fitted_line_normal = fit(line_init, cx, cy)
 cy_predic_normal = fitted_line_normal(cx)
 
 # Iterative fitting as per Witham et al. (2006)
-def iterative_fit(x, y, niter=1):
+def iterative_fit(x, y, niter=3):
     # Initial fit
     fit = fitting.LinearLSQFitter()
     line_init = models.Linear1D()
@@ -183,7 +183,7 @@ plt.tick_params(axis='y', labelsize=35)
 scatter = ax.scatter(
     cx, cy,
     color=sns.xkcd_palette(["forest green"])[0],  # Use a valid XKCD color name
-    #s=300,
+    s=60,
     edgecolors="w",
     linewidths=1,
     zorder=2,  # Set a lower z-order for scatter plot to make it appear below contour lines
@@ -208,18 +208,18 @@ if not df_obj.empty:
 
 # The fitted lines
 x_values = np.linspace(-5.0, 5.0, 100)
-ax.plot(x_values, fitted_line_normal(x_values), 'r-', zorder=6, label='Initial fitted')
-ax.plot(x_values, fitted_line_iter(x_values), ls='--', color="k", zorder=8, label='Iter. fitted:')
+ax.plot(x_values, fitted_line_normal(x_values), 'r-', zorder=6, label='Initial fit')
+ax.plot(x_values, fitted_line_iter(x_values), ls='--', color="k", zorder=8, label='Iterative fit:')
 
 # Add the equation to the legend
 intercept_str_iter = f"{b_iter:.2f}" if b_iter >= 0 else f"- {-b_iter:.2f}"
 equation_label_iter = f'$y = {a_iter:.2f}x {intercept_str_iter}$'
 ax.plot([], [], ' ', label=equation_label_iter)  # Invisible plot to add the equation to the legend
 
-ax.set(xlim=[-0.7, 2.6], ylim=[-0.8, 1.5])
+ax.set(xlim=[-0.4, 2.2], ylim=[-0.6, 1.])
 
 # Annotate range
-ax.annotate(cmd_args.Ranger, xy=(0.08, 1.5),  xycoords='data', size=25, xytext=(-120, -50), 
+ax.annotate(cmd_args.Ranger, xy=(0.23, 1.),  xycoords='data', size=25, xytext=(-120, -50), 
             textcoords='offset points', bbox=dict(boxstyle="round4,pad=.5", fc="0.9"))
 
 
@@ -234,12 +234,12 @@ data_coordinates_of_representative_error_bar = screen_to_data_transform(screen_c
 foo = data_coordinates_of_representative_error_bar
 
 ax.errorbar(foo[0], foo[1], xerr=pro_ri, yerr=pro_rj660, c="k", capsize=3)
-ax.annotate("Median Errors", xy=(0.09, 1.35),  xycoords='data', size=25,
+ax.annotate("Median Errors", xy=(0.23, 0.89),  xycoords='data', size=25,
             xytext=(-120, -60), textcoords='offset points', )
 
 
 # Update the legend with the equation
-ax.legend(loc='upper right', ncol=1, fontsize=25, title='Fitted models', title_fontsize=30)
+ax.legend(loc='lower right', ncol=1, fontsize=25, title='Fitted models', title_fontsize=30)
 
 
 # Ensure the 'Figs' directory exists
@@ -250,7 +250,7 @@ if not os.path.exists('Figs'):
 save_file = file_.split(".csv")[0]
 
 # Construct the full path for saving the file
-output_file = os.path.join('Fig_color_diagram_disk_175R185', f"color-color-diagram_{save_file}_{cmd_args.Field}.pdf")
+output_file = os.path.join('Figs', f"color-color-diagram_{save_file}_{cmd_args.Field}.pdf")
 
 # Save the figure
 try:

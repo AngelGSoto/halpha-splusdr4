@@ -188,7 +188,7 @@ plt.tick_params(axis='y', labelsize=35)
 scatter = ax.scatter(
     cx, cy,
     color=sns.xkcd_palette(["forest green"])[0],  # Use a valid XKCD color name
-    #s=300,
+    s=60,
     edgecolors="w",
     linewidths=1,
     zorder=2,  # Set a lower z-order for scatter plot to make it appear below contour lines
@@ -213,18 +213,18 @@ if not df_obj.empty:
 
 # The fitted lines
 x_values = np.linspace(-5.0, 5.0, 100)
-ax.plot(x_values, fitted_line_normal(x_values), 'r-', zorder=6, label='Initial fitted')
-ax.plot(x_values, fitted_line_sigma_clip(x_values), ls='--', color="r", zorder=8, label='Iter. fitted $\\sigma$ clipped:')
+ax.plot(x_values, fitted_line_normal(x_values), 'r-', zorder=6, label='Initial fit')
+ax.plot(x_values, fitted_line_sigma_clip(x_values), ls='--', color="r", zorder=8, label='Iterative $\sigma$-clipped fit:')
 
 # Add the equation to the legend
 intercept_str = f"{b:.2f}" if b >= 0 else f"- {-b:.2f}"
 equation_label = f'$y = {a:.2f}x {intercept_str}$'
 ax.plot([], [], ' ', label=equation_label)  # Invisible plot to add the equation to the legend
 
-ax.set(xlim=[-0.7, 2.6], ylim=[-0.8, 1.5])
+ax.set(xlim=[-0.4, 2.2], ylim=[-0.6, 1.])
 
 # Annotate range
-ax.annotate(cmd_args.Ranger, xy=(0.08, 1.5),  xycoords='data', size=25, xytext=(-120, -50), 
+ax.annotate(cmd_args.Ranger, xy=(0.23, 1.),  xycoords='data', size=25, xytext=(-120, -50), 
             textcoords='offset points', bbox=dict(boxstyle="round4,pad=.5", fc="0.9"))
 
 # Representation of the errors
@@ -238,18 +238,18 @@ data_coordinates_of_representative_error_bar = screen_to_data_transform(screen_c
 foo = data_coordinates_of_representative_error_bar
 
 ax.errorbar(foo[0], foo[1], xerr=pro_ri, yerr=pro_rj660, c="k", capsize=3)
-ax.annotate("Median Errors", xy=(0.09, 1.35),  xycoords='data', size=25,
-            xytext=(-120, -60), textcoords='offset points', )
+# ax.annotate("Median Errors", xy=(0.23, 0.89),  xycoords='data', size=25,
+#             xytext=(-120, -60), textcoords='offset points', )
 
 if not df_obj.empty: 
-    plt.text(cx_obj - 0.1, cy_obj - 0.16, r"Hα emitter", verticalalignment='bottom',
+    plt.text(cx_obj - 0.1, cy_obj - 0.1, r"Hα emitter", verticalalignment='bottom',
              horizontalalignment='left', fontsize=25, fontweight=None, color='black')
 
 # Add text for the equation of the fitted line
 #ax.text(0.65, 0.1, f'$y = {a:.2f}x + {b:.2f}$', transform=ax.transAxes, fontsize=25, verticalalignment='top')
 
 # Update the legend with the equation
-ax.legend(loc='upper right', ncol=1, fontsize=25, title='Fitted models', title_fontsize=30)
+ax.legend(loc='lower right', ncol=1, fontsize=25, title='Fitted models', title_fontsize=30)
 
 # Ensure the 'Figs' directory exists
 if not os.path.exists('Figs'):
