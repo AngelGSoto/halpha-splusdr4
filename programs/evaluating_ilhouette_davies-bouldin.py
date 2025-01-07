@@ -17,7 +17,7 @@ def calculate_earnings(df, index_pairs):
     return df
 
 # Read the data
-combined_df = pd.read_csv("Ha-emitters/Halpha_Mine_PerField_total-unique.csv") 
+combined_df = pd.read_csv("Ha-emitters/Halpha_Mine_PerField_total-unique.csv")
 
 # Filter out rows with errors in measurements
 m_err = (combined_df["e_r_PStotal"] <= 0.2) & (combined_df["e_g_PStotal"] <= 0.2) & \
@@ -123,35 +123,39 @@ print(f"Best Number of Components: {best_num_components}")
 print(f"Best Number of Neighbors: {best_n_neighbors}")
 
 # Plot the results using seaborn
-sns.set(style="whitegrid")
+sns.set(style="ticks")  # Use a more appropriate style for A&A
+plt.rc('axes', grid=False)  # Ensure that grid is turned off
 
 fig, axes = plt.subplots(1, 2, figsize=(16, 8))
 
 # Panel 1: Silhouette Score vs n_neighbors for different n_components
 for n_components in n_components_range:
     subset = results_df[results_df['n_components'] == n_components]
-    sns.lineplot(x='n_neighbors', y='silhouette_score', data=subset, ax=axes[0], marker='o', label=f'n_components={n_components}', legend=False)
-axes[0].set_xlabel('Number of neighbors (n_neighbors)', fontsize=15)
-axes[0].set_ylabel('Silhouette Score', fontsize=15)
-axes[0].tick_params(axis='x', labelsize=15) 
-axes[0].tick_params(axis='y', labelsize=15)
+    sns.lineplot(x='n_neighbors', y='silhouette_score', data=subset, ax=axes[0], marker='o', label=f'n_components={n_components}', legend=False, markersize=9)
+axes[0].set_xlabel('Number of neighbors (n_neighbors)', fontsize=17)
+axes[0].set_ylabel('Silhouette Score', fontsize=17)
+axes[0].tick_params(axis='x', labelsize=17)
+axes[0].tick_params(axis='y', labelsize=17)
 axes[0].set_ylim(0.25, 0.85)
 
 # Panel 2: Davies-Bouldin Index vs n_neighbors for different n_components
 for n_components in n_components_range:
     subset = results_df[results_df['n_components'] == n_components]
-    sns.lineplot(x='n_neighbors', y='davies_bouldin_score', data=subset, ax=axes[1], marker='o', label=f'n_components={n_components}', legend=False)
-axes[1].set_xlabel('Number of neighbors (n_neighbors)', fontsize=15)
-axes[1].set_ylabel('Davies-Bouldin Index', fontsize=15)
-axes[1].tick_params(axis='x', labelsize=15) 
-axes[1].tick_params(axis='y', labelsize=15)
+    sns.lineplot(x='n_neighbors', y='davies_bouldin_score', data=subset, ax=axes[1], marker='o', label=f'n_components={n_components}', legend=False, markersize=9)
+axes[1].set_xlabel('Number of neighbors (n_neighbors)', fontsize=17)
+axes[1].set_ylabel('Davies-Bouldin Index', fontsize=17)
+axes[1].tick_params(axis='x', labelsize=17)
+axes[1].tick_params(axis='y', labelsize=17)
 axes[1].set_ylim(0.1, max(results_df['davies_bouldin_score']) + 0.1)
 
 # Create a single legend outside the subplots
 handles, labels = axes[0].get_legend_handles_labels()
-fig.legend(handles, labels, loc='upper center', ncol=4, title='n_components', fontsize=15, title_fontsize=16, bbox_to_anchor=(0.5, 1.05))
 
+# Adjust the legend position and ensure it appears
+kw = dict(ncol=4, loc="upper center", frameon=False, fontsize=17)
+leg1 = fig.legend(handles[:4], labels[:4], bbox_to_anchor=(0.5, 1.00), **kw)
+leg2 = fig.legend(handles[4:], labels[4:], bbox_to_anchor=(0.5, 0.95), **kw)
+fig.add_artist(leg1)
 
-plt.tight_layout(rect=[0, 0, 1, 0.95])
+plt.tight_layout(rect=[0, 0, 1, 0.90])  # Adjust layout to make space for the legend
 plt.savefig("Figs/Silhouette_Score_Davies-Bouldin.pdf")
-
