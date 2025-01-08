@@ -706,3 +706,4 @@ stars across the sky and gain insights into the formation and evolution of galax
 
    - I got different result for the SIMBAD match with disk.
    - Quizas hay que decir que emiisores enrrojecidos van a ser perdidos. Pero no en todos los campos aparecen los locus.
+   - Los resultados del clustering con WISE en MI COMP. fueron los del paper. Quierd decir con los archivos CSV son los correctos. 
