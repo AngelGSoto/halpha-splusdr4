@@ -86,7 +86,7 @@ if merged_table_list:
     print("Number of objects with match:", len(merged_table))
 
     # Save the result
-    output_file = Path(file_name).stem + "-splus-filters.csv"
+    output_file = Path(file_name).stem + "-splus-filters-test.csv"
     merged_table.to_pandas().to_csv(output_file, index=False)
     print(f"Results saved to {output_file}")
 else:

@@ -5,12 +5,16 @@ import astropy.units as u
 from getpass import getpass
 
 def main():
-    # Load your catalog with planetary nebulae
+    # Load your catalog with RRLyrae
     local_catalog = pd.read_csv("Tab_2_J_A+A_607_A11_table1.csv")
+    # Load your catalog with Be stars
+    #local_catalog = pd.read_csv("bess_catalog_converted.csv")
     
     # Convert RA/DEC in the local catalog to SkyCoord objects
     local_coords = SkyCoord(ra=local_catalog['RA'].values * u.deg, 
-                            dec=local_catalog['DEC'].values * u.deg, frame='icrs')
+                           dec=local_catalog['DEC'].values * u.deg, frame='icrs')
+    #local_coords = SkyCoord(ra=local_catalog['RA_decimal'].values * u.deg, 
+    #                        dec=local_catalog['DEC_decimal'].values * u.deg, frame='icrs')
 
     # Your query template for the S-PLUS data
     query_template = """
@@ -73,7 +77,8 @@ def main():
         print(f"Found {len(matched_table)} matches for field {field}")
 
     # Save the crossmatched results to a CSV file
-    crossmatched_table.to_csv("Tab_2_J_A+A_607_A11_table1-splus-filters.csv", index=False)
+    crossmatched_table.to_csv("Tab_2_J_A+A_607_A11_table1-splus-filters-test.csv", index=False)
+    #crossmatched_table.to_csv("bess_catalog_converted-splus-filters.csv", index=False)
     print("Crossmatch complete! Results saved to crossmatched_splus_catalog.csv")
 
 if __name__ == "__main__":
