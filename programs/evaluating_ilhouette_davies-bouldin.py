@@ -17,7 +17,7 @@ def calculate_earnings(df, index_pairs):
     return df
 
 # Read the data
-combined_df = pd.read_csv("Ha-emitters/Halpha_Mine_PerField_total-unique.csv")
+combined_df = pd.read_csv("Ha-emitters/Halpha_Mine_PerField_total-unique_wise.csv")
 
 # Filter out rows with errors in measurements
 m_err = (combined_df["e_r_PStotal"] <= 0.2) & (combined_df["e_g_PStotal"] <= 0.2) & \
@@ -54,9 +54,23 @@ print("Numbers of colors:", len(color_index_pairs))
 df_colors_mag = calculate_earnings(df_mag, color_index_pairs)
 print("Look likes the new table,", df_colors_mag.head())
 
+
 # Drop magnitude columns, keeping only color indices
 df_colors = df_colors_mag.drop(columns=columns)
 print("Look likes the colors:", df_colors.head())
+
+# Calculate differences between W1 and each magnitude
+for col in ["r_PStotal", "g_PStotal", "i_PStotal", "u_PStotal", "z_PStotal"]:
+    df_colors[f'diff_W1_{col}'] = df_cleanErr["W1mag"] - df_cleanErr[col]
+
+# Calculate differences between W2 and each magnitude
+for col in ["r_PStotal", "g_PStotal", "i_PStotal", "u_PStotal", "z_PStotal"]:
+    df_colors[f'diff_W2_{col}'] = df_cleanErr["W2mag"] - df_cleanErr[col]
+
+# Calculate difference between W1 and W2
+df_colors['diff_W1_W2'] = df_cleanErr['W1mag'] - df_cleanErr['W2mag']
+
+print(df_colors)
 
 # Standardizing the data
 X_stand = StandardScaler().fit_transform(df_colors)
@@ -158,4 +172,4 @@ leg2 = fig.legend(handles[4:], labels[4:], bbox_to_anchor=(0.5, 0.95), **kw)
 fig.add_artist(leg1)
 
 plt.tight_layout(rect=[0, 0, 1, 0.90])  # Adjust layout to make space for the legend
-plt.savefig("Figs/Silhouette_Score_Davies-Bouldin.pdf")
+plt.savefig("Figs/Silhouette_Score_Davies-Bouldin_wise.pdf")
