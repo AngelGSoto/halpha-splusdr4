@@ -4,6 +4,7 @@ import glob
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator, NullFormatter
 import seaborn as sns
+from scipy.optimize import fsolve
 
 # Función para abrir y concatenar archivos CSV
 def open_csv_conc(pattern, exclude_pattern):
@@ -19,30 +20,29 @@ def open_csv_conc(pattern, exclude_pattern):
     return combined_df
 
 # Función para encontrar la intersección entre dos líneas
-def find_intersection(m1, b1, m2, b2):
-    if m1 == m2:  # No hay intersección si las líneas son paralelas
-        return None, None
-    x_intersect = (b2 - b1) / (m1 - m2)
-    y_intersect = m1 * x_intersect + b1
-    return x_intersect, y_intersect
+def find_intersection(m, y, m1, y1, x0):
+    x = np.linspace(-10.0, 15.5, 200)
+    return fsolve(lambda x: (m*x + y) - (m1*x + y1), x0)[0]
 
 # Función para agregar líneas de corte personalizadas
 def add_custom_cut_lines(ax, lines, color):
-    for i in range(len(lines) - 1):
-        m1, b1 = lines[i]
-        m2, b2 = lines[i + 1]
-        x_intersect, y_intersect = find_intersection(m1, b1, m2, b2)
-        if x_intersect is not None and y_intersect is not None:
-            x_limits = ax.get_xlim()
-            y_limits = ax.get_ylim()
-            x_range1 = np.linspace(x_limits[0], x_intersect, 200)
-            y_range1 = m1 * x_range1 + b1
-            x_range2 = np.linspace(x_intersect, x_limits[1], 200)
-            y_range2 = m2 * x_range2 + b2
-            ax.plot(x_range1, y_range1, color=color, linestyle='-', linewidth=2)
-            ax.plot(x_range2, y_range2, color=color, linestyle='-', linewidth=2)
-            if x_limits[0] <= x_intersect <= x_limits[1] and y_limits[0] <= y_intersect <= y_limits[1]:
-                ax.scatter([x_intersect], [y_intersect], color=color, s=50, zorder=5)
+    for (m, y, m1, y1) in lines:
+        result = find_intersection(m, y, m1, y1, 0.0)
+        if m > 0:
+            x_new = np.linspace(result, 200)
+        else:
+            x_new = np.linspace(-200, result)
+        if m1 > 0:
+            x1_new = np.linspace(-200, result)
+        else:
+            x1_new = np.linspace(result, 200)
+
+        y_values = m * x_new + y
+        y1_values = m1 * x1_new + y1
+
+        ax.plot(x_new, y_values, color=color, linestyle='-.', lw=2, zorder=30)
+        ax.plot(x1_new, y1_values, color=color, linestyle='-.', lw=2, zorder=30)
+        # ax.scatter([result], [m * result + y], color=color, s=50, zorder=30)
 
 # Cargar datos
 df_splus_wise = open_csv_conc("Class_wise_main_unique/*.csv", "simbad")
@@ -65,12 +65,20 @@ specific_pairs = [
 # Líneas de corte personalizadas para cada clase y cada plot
 custom_cut_lines = {
     0: {
-        0: [(-0.644058, -1.069326), (0.246861, 0.605218)],
-        1: [(-0.644058, -1.069326), (0.262123, 1.593165), (-0.663661, -2.423346)],
+        0: [(-0.613022, -0.786812, 0.299186, 0.749829)],
+        1: [(0.396936, 1.964741, -0.468396, -1.417259)],
     },
     1: {
-        0: [(-0.644058, -1.069326), (0.246861, 0.605218), (0.679, 0.68998)],
-        1: [(0.4, 0.9), (-1.2, 3.2), (-0.5, 1.8)],
+        0: [(0.657908, -4.000669, -2.490052, -1.146136)],
+        1: [(-8.093505, -0.105229, 0.657908,  -4.000669)],
+    },
+    2: {
+        0: [(0.657908, -4.000669, -2.490052, -1.146136)],
+        1: [(0.657908,  -4.000669, -8.093505, -0.105229)],
+    },
+    6: {
+        0: [(0.657908, -4.000669, -2.490052, -1.146136)],
+        1: [(0.657908,  -4.000669, -8.093505, -0.105229)],
     },
 }
 
@@ -89,7 +97,6 @@ for plot_index, ((x1, y1), (x2, y2)) in enumerate(specific_pairs):
 
     all_x = []
     all_y = []
-    points_per_class = []
 
     for group, (label, group_data) in enumerate(df_splus_wise.groupby("Label")):
         legend_label = "Noise" if label == -1 else f"Group {label}"
@@ -99,15 +106,20 @@ for plot_index, ((x1, y1), (x2, y2)) in enumerate(specific_pairs):
 
         x_values = group_data[x1] - group_data[y1]
         y_values = group_data[x2] - group_data[y2]
-        points = np.column_stack((x_values, y_values))
-        points_per_class.append((points, color, label))
         all_x.extend(x_values)
         all_y.extend(y_values)
 
         ax.scatter(
-            x_values, y_values, c=[color], s=90, marker=marker, 
-            edgecolors=[edge_color], linewidth=0.5, label=legend_label, alpha=0.7
+            x_values, y_values, c=[color], s=40, marker=marker, 
+            edgecolors=[edge_color], linewidth=0.5, label=legend_label, alpha=0.8
         )
+
+        print(f"Plot index: {plot_index}, Label: {label}")  # Este es el lugar correcto para imprimir las etiquetas
+
+        # Agregar líneas de corte personalizadas
+        if plot_index in custom_cut_lines and label in custom_cut_lines[plot_index]:
+            lines = custom_cut_lines[plot_index][label]
+            add_custom_cut_lines(ax, lines, color)
 
     xlabel = x1.replace('_PStotal', '').replace('W1mag', 'W1').replace('W2mag', 'W2')
     ylabel = y1.replace('_PStotal', '').replace('W1mag', 'W1').replace('W2mag', 'W2')
@@ -126,25 +138,18 @@ for plot_index, ((x1, y1), (x2, y2)) in enumerate(specific_pairs):
     ax.set_aspect('auto')
 
     # Calcular límites dinámicos con margen
-    margin = 0.2
+    margin = 0.15
     x_min, x_max = min(all_x) - margin, max(all_x) + margin
     y_min, y_max = min(all_y) - margin, max(all_y) + margin
     ax.set_xlim(x_min, x_max)
     ax.set_ylim(y_min, y_max)
 
-    # Agregar líneas de corte personalizadas
-    for points, color, label in points_per_class:
-        if label in custom_cut_lines and plot_index in custom_cut_lines[label]:
-            lines = custom_cut_lines[label][plot_index]
-            add_custom_cut_lines(ax, lines, color)
+# Ajustar leyenda fuera de la figura, centrada horizontalmente en la parte inferior
+handles, labels = ax.get_legend_handles_labels()
+fig.legend(handles, labels, loc='lower center', bbox_to_anchor=(0.5, -0.05), fontsize=22, ncol=7)
 
-    if plot_index == 0:
-        fig.legend(loc='lower center', bbox_to_anchor=(0.5, -0.05), fontsize=22, ncol=7)
-
-plt.subplots_adjust(wspace=0.3, hspace=0.3)
-plt.tight_layout()
-plt.savefig(
-    "Figs/color_color_diagrams_multiple_balanced_ColorCut.pdf", 
-    format='pdf', bbox_inches='tight', dpi=300
-)
+# Ajustar diseño y guardar el plot
+plt.tight_layout(rect=[0, 0.1, 1, 1])  # Ajustar para hacer espacio para la leyenda
+plt.subplots_adjust(bottom=0.06)  # Asegurar que haya suficiente espacio en la parte inferior
+plt.savefig("Figs/color_color_diagrams_multiple_balanced_ColorCut.pdf", format='pdf', bbox_inches='tight', dpi=300)
 plt.close()
