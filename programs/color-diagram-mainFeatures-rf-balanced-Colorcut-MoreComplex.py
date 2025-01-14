@@ -24,33 +24,63 @@ def find_intersection(m, y, m1, y1, x0):
     return fsolve(lambda x: (m*x + y) - (m1*x + y1), x0)[0]
 
 # Función para generar los valores de x según la dirección
-def generate_x_values(result, direction, length=100):
-    if direction == "up-left":
-        return np.linspace(result - length, result, 100)
-    elif direction == "up-right":
-        return np.linspace(result, result + length, 100)
-    elif direction == "down-left":
-        return np.linspace(result - length, result, 100)[::-1]
-    elif direction == "down-right":
-        return np.linspace(result, result + length, 100)[::-1]
-    else:
-        raise ValueError("Invalid direction value")
+def generate_x_values(start, end, length=100):
+    return np.linspace(start, end, length)
 
 # Función para agregar líneas de corte personalizadas
 def add_custom_cut_lines(ax, lines, color):
-    for (m, y, m1, y1, dir1, dir2) in lines:
-        result = find_intersection(m, y, m1, y1, 0.0)
-        print(f"Intersección encontrada en x={result} para líneas con pendientes {m} y {m1}")
+    line_style = {'linestyle': '-.', 'linewidth': 3, 'alpha': 0.8, 'zorder': 30}
+    outline_style = {'linewidth': 5, 'alpha': 0.4, 'zorder': 29, 'color': 'black'}
+    
+    if len(lines) == 2:
+        # Caso de dos líneas de corte
+        (m1, y1, dir1), (m2, y2, dir2) = lines
+        x_intersect = find_intersection(m1, y1, m2, y2, 0.0)
+        print(f"Intersección encontrada en x={x_intersect} para líneas con pendientes {m1} y {m2}")
 
-        # Genera valores de x según la dirección
-        x_new = generate_x_values(result, dir1)
-        x1_new = generate_x_values(result, dir2)
+        # Definir los rangos de x para cada línea según la dirección
+        x_values1 = generate_x_values(x_intersect - 100, x_intersect) if "left" in dir1 else generate_x_values(x_intersect, x_intersect + 100)
+        x_values2 = generate_x_values(x_intersect - 100, x_intersect) if "left" in dir2 else generate_x_values(x_intersect, x_intersect + 100)
 
-        y_values = m * x_new + y
-        y1_values = m1 * x1_new + y1
+        y_values1 = m1 * x_values1 + y1
+        y_values2 = m2 * x_values2 + y2
 
-        ax.plot(x_new, y_values, color=color, linestyle='-.', lw=2, zorder=30)
-        ax.plot(x1_new, y1_values, color=color, linestyle='-.', lw=2, zorder=30)
+        ax.plot(x_values1, y_values1, color=color, **line_style)
+        ax.plot(x_values1, y_values1, **outline_style)
+        ax.plot(x_values2, y_values2, color=color, **line_style)
+        ax.plot(x_values2, y_values2, **outline_style)
+    elif len(lines) == 3:
+        # Caso de tres líneas de corte
+        (m1, y1, dir1), (m2, y2), (m3, y3, dir3) = lines
+
+        # Encontrar intersecciones
+        x_intersect_12 = find_intersection(m1, y1, m2, y2, 0.0)
+        x_intersect_23 = find_intersection(m2, y2, m3, y3, 0.0)
+
+        print(f"Intersecciones encontradas en x={x_intersect_12}, x={x_intersect_23}")
+
+        # Genera valores de x para las líneas según las intersecciones y direcciones
+        x_values1 = generate_x_values(x_intersect_12 - 100, x_intersect_12) if "left" in dir1 else generate_x_values(x_intersect_12, x_intersect_12 + 100)
+        x_values2 = generate_x_values(x_intersect_12, x_intersect_23)
+        x_values3 = generate_x_values(x_intersect_23 - 100, x_intersect_23) if "left" in dir3 else generate_x_values(x_intersect_23, x_intersect_23 + 100)
+
+        y_values1 = m1 * x_values1 + y1
+        y_values2 = m2 * x_values2 + y2
+        y_values3 = m3 * x_values3 + y3
+
+        ax.plot(x_values1, y_values1, color=color, **line_style)
+        ax.plot(x_values1, y_values1, **outline_style)
+        ax.plot(x_values2, y_values2, color=color, **line_style)
+        ax.plot(x_values2, y_values2, **outline_style)
+        ax.plot(x_values3, y_values3, color=color, **line_style)
+        ax.plot(x_values3, y_values3, **outline_style)
+    elif len(lines) == 1:
+        # Caso de una sola línea de corte
+        (m, y) = lines[0]
+        x_values = generate_x_values(-100, 100)  # Define un rango adecuado para x
+        y_values = m * x_values + y
+        ax.plot(x_values, y_values, color=color, **line_style)
+        ax.plot(x_values, y_values, **outline_style)
 
 # Cargar datos
 df_splus_wise = open_csv_conc("Class_wise_main_unique/*.csv", "simbad")
@@ -73,21 +103,26 @@ specific_pairs = [
 # Líneas de corte personalizadas para cada clase y cada plot
 custom_cut_lines = {
     0: {
-        0: [(-0.613022, -0.786812, 0.299186, 0.749829, "up-left", "up-right")],
-        1: [(0.396936, 1.964741, -0.468396, -1.417259, "up-right", "up-left")],
+        0: [(-0.613022, -0.786812, "up-left"), (0.299186, 0.749829, "up-right")],
+        1: [(-0.613022, -0.786812, "up-left"), (0.396936, 1.964741), (-0.468396, -1.417259, "up-left")],
+        4: [(-0.499464, -2.801993)],
     },
     1: {
-        0: [(0.657908, -4.000669, -2.490052, -1.146136, "up-right", "down-left")],
-        1: [(-8.093505, -0.105229, 0.657908, -4.000669, "down-right", "up-right")],
+        0: [(0.657908, -4.000669, "up-right"), (-2.490052, -1.146136, "down-left")],
+        1: [(-8.093505, -0.105229, "down-right"), (0.657908, -4.000669, "up-right")],
     },
     2: {
-        0: [(0.657908, -4.000669, -2.490052, -1.146136, "up-right", "down-left")],
-        1: [(0.657908, -4.000669, -8.093505, -0.105229, "up-right", "down-left")],
+        0: [(0.657908, -4.000669, "up-right"), (-2.490052, -1.146136, "down-left")],
+        1: [(0.657908, -4.000669, "up-right"), (-8.093505, -0.105229, "down-left")],
     },
     6: {
-        0: [(0.657908, -4.000669, -2.490052, -1.146136, "up-right", "down-left")],
-        1: [(0.657908, -4.000669, -8.093505, -0.105229, "up-right", "down-left")],
+        0: [(0.657908, -4.000669, "up-right"), (-2.490052, -1.146136, "down-left")],
+        1: [(0.657908, -4.000669, "up-right"), (-8.093505, -0.105229, "down-left")],
     },
+    # Ejemplo con tres líneas de corte
+    7: {
+        0: [(-0.613022, -0.786812, "up-left"), (0.396936, 1.964741), (-0.468396, -1.417259, "up-left")]
+    }
 }
 
 # Crear figura con subplots
@@ -160,5 +195,5 @@ fig.legend(handles, labels, loc='lower center', bbox_to_anchor=(0.5, -0.05), fon
 # Ajustar diseño y guardar el plot
 plt.tight_layout(rect=[0, 0.1, 1, 1])  # Ajustar para hacer espacio para la leyenda
 plt.subplots_adjust(bottom=0.06)  # Asegurar que haya suficiente espacio en la parte inferior
-plt.savefig("Figs/color_color_diagrams_multiple_balanced_ColorCut.pdf", format='pdf', bbox_inches='tight', dpi=300)
+plt.savefig("Figs/color_color_diagrams_multiple_balanced_ColorCut_complex.pdf", format='pdf', bbox_inches='tight', dpi=300)
 plt.close()
