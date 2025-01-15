@@ -488,6 +488,7 @@ contributing to a deeper understanding of the dataset under study.
     Main survey: Obtuve diferentes resultados desde mi computadora en comparaciòn con la computadora del IALP. Los resultados de UAMP y HDBSCAN son mejores en mi
     computadora solo usando los filtros de SPLUS pero sumando los resultados the WISE son mejores en la comp. del IALP. No entiendo esto!!
 
+#+BEGIN_SRC table-latex
     \begin{table*}[ht!]
     \centering
     \caption{Summary of clustering outcomes achieved using the UMAP and HDBSCAN unsupervised machine learning methods applied to H$\alpha$ excess sources. Clustering is performed using S-PLUS and S-PLUS + WISE filter combinations for both the main survey and disk datasets. The table displays the number of objects allocated to each cluster, providing insights into the distribution of sources identified through the clustering process.}
@@ -567,6 +568,7 @@ contributing to a deeper understanding of the dataset under study.
         \hline
     \end{tabular}
 \end{table*}
+#+END_SRC
 
 ** Main
 
@@ -699,9 +701,15 @@ stars across the sky and gain insights into the formation and evolution of galax
    + [x] Rehice los plots con la lista finbal de emisores: diagramas de distribuciones.
    + [x] Analisis de ML.
    + [x] Rehacer los plots de ML.
-   + [ ] Voy a tener que correr el script para el disco.
-    
+   + [x] Voy a tener que correr el script para el disco.
 
+** Color criteria
+
+#+BEGIN_SRC
+
+#+END_SRC
+
+   
 ** Thing to think
 
    - I got different result for the SIMBAD match with disk.
