@@ -20,14 +20,25 @@ def calculate_earnings(df, index_pairs):
 combined_df = pd.read_csv("Ha-emitters/Halpha_Mine_PerField_total-unique_wise.csv")
 
 # Filter out rows with errors in measurements
-m_err = (combined_df["e_r_PStotal"] <= 0.2) & (combined_df["e_g_PStotal"] <= 0.2) & \
+m_err_splus = (combined_df["e_r_PStotal"] <= 0.2) & (combined_df["e_g_PStotal"] <= 0.2) & \
         (combined_df["e_i_PStotal"] <= 0.2) & (combined_df["e_u_PStotal"] <= 0.2) & \
         (combined_df["e_J0378_PStotal"] <= 0.2) & (combined_df["e_J0395_PStotal"] <= 0.2) & \
         (combined_df["e_J0410_PStotal"] <= 0.2) & (combined_df["e_J0430_PStotal"] <= 0.2) & \
         (combined_df["e_J0515_PStotal"] <= 0.2) & (combined_df["e_J0660_PStotal"] <= 0.2) & \
         (combined_df["e_J0861_PStotal"] <= 0.2) & (combined_df["e_z_PStotal"] <= 0.2)
 
-df_cleanErr = combined_df[m_err]
+# Choose a threshold for the maximum allowed magnitude error
+max_allowed_e_Wmag = 0.5  # Example threshold value
+
+# Apply the threshold to filter the dataset
+
+m_err_wise = (combined_df["e_W1mag"] <= max_allowed_e_Wmag) & \
+              (combined_df["e_W2mag"] <= max_allowed_e_Wmag) 
+        
+
+mask_total = (m_err_splus & m_err_wise)
+
+df_cleanErr = combined_df[mask_total]
 print("Number of final objects:", len(df_cleanErr))
 
 # Selecting columns with magnitude values
