@@ -200,36 +200,42 @@ Applying the algorithm per field can be the better choice for the following reas
 Overall, applying the algorithm per field enables a more tailored and accurate analysis,
 leading to better characterization and understanding of Halpha emitters in each specific region of interest.
 
+
 **** Recicling text
 
-     \begin{figure*}
+#+BEGIN_FIGURE
+\begin{figure*}
 \centering
 \begin{tabular}{l l}
     \includegraphics[width=0.5\linewidth, trim=10 10 5 8, clip]{Figs/umap_splus_disk.pdf} 
-     \includegraphics[width=0.45\linewidth, trim=10 10 5 8, clip]{Figs/umap_hdbscam_splus_disk.pdf} 
-    \end{tabular}  
-    \caption{After dimension reduction by UMAP to two dimensions. 
-    The left panel indicates the UMAP result using only the S-PLUS 
-    colors as input parameters, while the right panel shows the result after 
-    adding other colors created using W1 and W2 bands of WISE to generate additional features.}
+    \includegraphics[width=0.45\linewidth, trim=10 10 5 8, clip]{Figs/umap_hdbscam_splus_disk.pdf} 
+\end{tabular}  
+\caption{After dimension reduction by UMAP to two dimensions. 
+The left panel indicates the UMAP result using only the S-PLUS 
+colors as input parameters, while the right panel shows the result after 
+adding other colors created using W1 and W2 bands of WISE to generate additional features.}
 
-    \label{fig:umap-disk}
+\label{fig:umap-disk}
 \end{figure*}
+#+END_FIGURE
 
+#+BEGIN_FIGURE
 \begin{figure*}
 \centering
 \begin{tabular}{l l}
     \includegraphics[width=0.5\linewidth, trim=10 10 5 8, clip]{Figs/umap_splus_disk_wise.pdf}
     \includegraphics[width=0.45\linewidth, trim=10 10 5 8, clip]{Figs/umap_hdbscam_splus_wise_disk.pdf}
-    \end{tabular}  
-    \caption{After dimension reduction by UMAP to two dimensions. The left panel 
-    indicates the \texttt{UMAP} result using only the S-PLUS colors as input parameters, 
-    while the right panel shows the result after adding other colors created using W1 and 
-    W2 bands of WISE to generate additional features.}
+\end{tabular}  
+\caption{After dimension reduction by UMAP to two dimensions. The left panel 
+indicates the \texttt{UMAP} result using only the S-PLUS colors as input parameters, 
+while the right panel shows the result after adding other colors created using W1 and 
+W2 bands of WISE to generate additional features.}
 
-    \label{fig:umap-disk-wise}
+\label{fig:umap-disk-wise}
 \end{figure*}
+#+END_FIGURE
 
+#+BEGIN_TABLE
 \begin{table*}[h]
 \centering
 \caption{Summary of clustering outcomes achieved using the UMAP and HDBSCAN unsupervised machine learning methods applied to H$\alpha$ excess sources. Clustering is performed using S-PLUS and S-PLUS + WISE filter combinations for both the main survey and disk datasets. The table displays the number of objects allocated to each cluster, providing insights into the distribution of sources identified through the clustering process.}
@@ -266,6 +272,7 @@ leading to better characterization and understanding of Halpha emitters in each 
 \end{tabular}
 \end{adjustbox}
 \end{table*}
+#+END_TABLE
 
 *** running some scripts
 
