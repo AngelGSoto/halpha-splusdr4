@@ -39,7 +39,7 @@ def generate_x_values(start, end, length=100):
 
 # Función para agregar líneas de corte personalizadas
 def add_custom_cut_lines(ax, lines, color):
-    line_style = {'linestyle': '-.', 'linewidth': 3, 'alpha': 0.8, 'zorder': 30}
+    line_style = {'linestyle': '-.', 'linewidth': 3, 'alpha': 0.9, 'zorder': 30}
     outline_style = {'linewidth': 5, 'alpha': 0.4, 'zorder': 29, 'color': 'black'}
     
     def get_line_values(line):
