@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator, NullFormatter
 import seaborn as sns
 from scipy.optimize import fsolve
+from scipy.spatial import ConvexHull
+from matplotlib.patches import Polygon
 
 # Función para abrir y concatenar archivos CSV
 def open_csv_conc(pattern, exclude_pattern):
@@ -21,7 +23,15 @@ def open_csv_conc(pattern, exclude_pattern):
 
 # Función para encontrar la intersección entre dos líneas
 def find_intersection(m, y, m1, y1, x0):
-    return fsolve(lambda x: (m*x + y) - (m1*x + y1), x0)[0]
+    return fsolve(lambda x: (m * x + y) - (m1 * x + y1), x0)[0]
+
+# Función para encontrar la intersección entre dos líneas (para el caso de 4 líneas - polígono)
+def find_intersection_polygon(m1, y1, m2, y2):
+    if m1 == m2:
+        raise ValueError("Las líneas son paralelas y no se intersectan.")
+    x = (y2 - y1) / (m1 - m2)
+    y = m1 * x + y1
+    return x, y
 
 # Función para generar los valores de x según la dirección
 def generate_x_values(start, end, length=100):
@@ -31,6 +41,12 @@ def generate_x_values(start, end, length=100):
 def add_custom_cut_lines(ax, lines, color):
     line_style = {'linestyle': '-.', 'linewidth': 3, 'alpha': 0.8, 'zorder': 30}
     outline_style = {'linewidth': 5, 'alpha': 0.4, 'zorder': 29, 'color': 'black'}
+    
+    def get_line_values(line):
+        if len(line) == 3:
+            return line[0], line[1], line[2]
+        else:
+            return line[0], line[1], None
     
     if len(lines) == 2:
         # Caso de dos líneas de corte
@@ -81,7 +97,30 @@ def add_custom_cut_lines(ax, lines, color):
         y_values = m * x_values + y
         ax.plot(x_values, y_values, color=color, **line_style)
         ax.plot(x_values, y_values, **outline_style)
+    elif len(lines) == 4:
+        # Caso de cuatro líneas de corte
+        (m1, y1, _), (m2, y2, _), (m3, y3, _), (m4, y4, _) = map(get_line_values, lines)
 
+        # Encontrar intersecciones
+        puntos = [
+            find_intersection_polygon(m1, y1, m2, y2),
+            find_intersection_polygon(m2, y2, m3, y3),
+            find_intersection_polygon(m3, y3, m4, y4),
+            find_intersection_polygon(m4, y4, m1, y1)
+        ]
+
+        puntos = np.array(puntos)
+
+        # Asegurar el orden correcto del polígono
+        hull = ConvexHull(puntos)
+        puntos_poligono = puntos[hull.vertices]
+
+        # Dibujar el polígono
+        polygon = Polygon(puntos_poligono, closed=True, edgecolor=color, fill=None, **line_style)
+        ax.add_patch(polygon)
+        polygon_outline = Polygon(puntos_poligono, closed=True, edgecolor='black', fill=None, **outline_style)
+        ax.add_patch(polygon_outline)
+        
 # Cargar datos
 df_splus_wise = open_csv_conc("Class_wise_main_unique/*.csv", "simbad")
 
@@ -120,7 +159,7 @@ custom_cut_lines = {
         #0: [(0.657908, -4.000669, "up-right"), (-2.490052, -1.146136, "down-left")],
         #1: [(-5.275046, -3.772062, "down-right"), (6.848311, -6.557168, "down-left")],
         2: [(-5.275046, -3.772062, "down-right"), (2.649786,-5.334169, "up-right")],
-        1: [( 2.512282, -5.060642, "up-right"), (-8.333315, -3.185258),  (1.933001, -3.582423,  "up-right")],
+        1: [(2.512282, -5.060642), (-8.333315, -3.185258),  (1.933001, -3.582423), (-4.440818, -2.100789)],
         4: [(4.281344, -3.373841,  "down-left"), (-5.275046, -3.772062), (6.848311, -6.557168, "down-left")]
     },
      3: {
@@ -133,7 +172,7 @@ custom_cut_lines = {
 
     4: {
         0: [(1.377418, -0.796093, "down-left"), (-2.042254, -2.707073, "up-left")],
-        1: [(0.887869, -2.950066, "down-left"), (-3.600509, -4.570070), (2.256779, -0.743571, "down-left")],
+        1: [(0.887869, -2.950066), (-3.600509, -4.570070), (2.256779, -0.743571), (-1.582634, -4.904379)],
         2: [( 1.002166, -3.852819, "down-left"), (-1.211419, -4.061459, "down-right")],
         3: [(-2.419819,  -2.380801)],
         4: [(-2.419819, -2.380801, "down-right" ), (1.679118, -2.752886), (-1.211419, -4.061459, "down-right")],
@@ -160,7 +199,7 @@ custom_cut_lines = {
         0: [(-0.227526, -0.601577, "down-right"), (1.197372, 1.610548, "donw-left")],
         2: [(0.791035, 3.031388, "down-left"), (-0.740604,-2.339453, "up-left")],
         3: [(0.193573, -0.022902, "up-righ"), (-0.934117, -2.530889,  "up-left")],
-        4: [(0.791035, 3.031388, "down-left"), (-0.802322, -2.391204), (0.526434, 1.171754, "down-left")],
+        4: [(0.791035, 3.031388), (-0.802322, -2.391204), (0.526434, 1.171754), (2.398452,  9.668162)],
     }
 }
 
@@ -234,5 +273,5 @@ fig.legend(handles, labels, loc='lower center', bbox_to_anchor=(0.5, -0.05), fon
 # Ajustar diseño y guardar el plot
 plt.tight_layout(rect=[0, 0.1, 1, 1])  # Ajustar para hacer espacio para la leyenda
 plt.subplots_adjust(bottom=0.06)  # Asegurar que haya suficiente espacio en la parte inferior
-plt.savefig("Figs/color_color_diagrams_multiple_balanced_ColorCut_complex.pdf", format='pdf', bbox_inches='tight', dpi=300)
+plt.savefig("Figs/color_color_diagrams_multiple_balanced_ColorCut_final.pdf", format='pdf', bbox_inches='tight', dpi=300)
 plt.close()

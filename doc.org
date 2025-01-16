@@ -1152,6 +1152,86 @@ Linea15 (Updated) = Pendiente: 7.399104, Intercepto: 58.227670
 Linea15 (Deleted)
 Linea6 (Updated) = Pendiente: -0.400192, Intercepto: -1.363338
 
+Plot 6:
+
+Linea1 = Pendiente: 1.309051, Intercepto: 0.393774
+Linea2 = Pendiente: -3.383624, Intercepto: -0.235461
+Linea2 (Updated) = Pendiente: -4.135541, Intercepto: -0.339907
+Linea3 = Pendiente: -14.072802, Intercepto: -4.264794
+Linea3 (Updated) = Pendiente: -14.072802, Intercepto: -4.264794
+Linea3 (Deleted)
+Linea4 = Pendiente: 1.071512, Intercepto: 0.170085
+Linea5 = Pendiente: -2.354912, Intercepto: 0.699780
+Linea6 = Pendiente: 0.508456, Intercepto: -0.375758
+Linea6 (Updated) = Pendiente: 0.549878, Intercepto: -0.453131
+Linea6 (Updated) = Pendiente: 0.517906, Intercepto: -0.447241
+Linea7 = Pendiente: -0.452814, Intercepto: 1.407316
+Linea7 (Updated) = Pendiente: -0.452814, Intercepto: 1.407316
+Linea7 (Deleted)
+Linea8 = Pendiente: -0.950748, Intercepto: -0.017049
+Linea9 = Pendiente: 0.360221, Intercepto: 0.150384
+Linea10 = Pendiente: -0.245484, Intercepto: -0.109613
+Linea10 (Updated) = Pendiente: -0.227803, Intercepto: -0.103649
+Linea10 (Updated) = Pendiente: -0.254142, Intercepto: -0.145559
+Linea11 = Pendiente: 4.094425, Intercepto: 6.840789
+Linea11 (Updated) = Pendiente: 4.094425, Intercepto: 6.840789
+Linea11 (Deleted)
+
+Plot 7:
+Linea1 = Pendiente: -0.362213, Intercepto: -1.381199
+Linea1 (Updated) = Pendiente: -0.310067, Intercepto: -1.133129
+Linea1 (Updated) = Pendiente: -0.310067, Intercepto: -1.133129
+Linea1 (Updated) = Pendiente: -0.310067, Intercepto: -1.133129
+Linea1 (Updated) = Pendiente: -0.310067, Intercepto: -1.133129
+Linea2 = Pendiente: 0.053380, Intercepto: -0.187116
+Linea2 (Updated) = Pendiente: 0.053380, Intercepto: -0.187116
+Linea2 (Deleted)
+Linea3 = Pendiente: 0.779128, Intercepto: 2.540538
+Linea3 (Updated) = Pendiente: 0.575630, Intercepto: 1.787068
+Linea3 (Updated) = Pendiente: 0.488700, Intercepto: 1.623081
+Linea4 = Pendiente: 0.583738, Intercepto: 1.828866
+Linea4 (Updated) = Pendiente: 0.583738, Intercepto: 1.828866
+Linea4 (Deleted)
+Linea3 (Updated) = Pendiente: 0.393595, Intercepto: 1.263143
+Linea5 = Pendiente: -0.388965, Intercepto: -0.178195
+Linea5 (Updated) = Pendiente: -0.388965, Intercepto: -0.178195
+Linea5 (Deleted)
+Linea6 = Pendiente: -0.484046, Intercepto: -1.047739
+Linea6 (Updated) = Pendiente: -0.407330, Intercepto: -0.718747
+Linea6 (Updated) = Pendiente: -0.333257, Intercepto: -0.552108
+Linea7 = Pendiente: 1.055590, Intercepto: 5.549640
+Linea7 (Updated) = Pendiente: 1.055590, Intercepto: 5.549640
+Linea7 (Deleted)
+Linea6 (Updated) = Pendiente: 0.317020, Intercepto: 0.910792
+Linea6 (Updated) = Pendiente: -0.412067, Intercepto: -0.729402
+Linea8 = Pendiente: 0.310969, Intercepto: 0.897179
+Linea8 (Updated) = Pendiente: 0.310969, Intercepto: 0.897179
+Linea8 (Deleted)
+Linea6 (Updated) = Pendiente: -0.448910, Intercepto: -0.886539
+Linea6 (Updated) = Pendiente: -0.406986, Intercepto: -0.792715
+Linea9 = Pendiente: -0.469055, Intercepto: -0.954788
+Linea9 (Updated) = Pendiente: -0.469055, Intercepto: -0.954788
+Linea9 (Deleted)
+
+Plot 8:
+
+Linea1 = Pendiente: 0.797553, Intercepto: 3.049705
+Linea1 (Updated) = Pendiente: 0.791035, Intercepto: 3.031388
+Linea2 = Pendiente: 0.366440, Intercepto: 1.373300
+Linea2 (Updated) = Pendiente: 0.366440, Intercepto: 1.373300
+Linea2 (Deleted)
+Linea3 = Pendiente: 0.703565, Intercepto: 2.502518
+Linea3 (Updated) = Pendiente: 0.761965, Intercepto: 2.736955
+Linea4 = Pendiente: -0.094374, Intercepto: -0.678720
+Linea4 (Updated) = Pendiente: -0.094374, Intercepto: -0.678720
+Linea4 (Deleted)
+Linea5 = Pendiente: -0.227526, Intercepto: -0.601577
+Linea6 = Pendiente: 1.156969, Intercepto: 1.681758
+Linea6 (Updated) = Pendiente: 1.227262, Intercepto: 1.754506
+Linea6 (Updated) = Pendiente: 1.197372, Intercepto: 1.610548
+Linea7 = Pendiente: -0.264450, Intercepto: 0.296862
+Linea7 (Updated) = Pendiente: -0.264450, Intercepto: 0.296862
+Linea7 (Deleted)
 
 
 #+END_SRC
