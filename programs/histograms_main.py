@@ -10,7 +10,7 @@ import astropy.units as u
 sns.set_theme(style="ticks")
 
 # Open the CSV files
-pattern = '*clean.csv'
+pattern = 'iD*clean.csv'
 csv_files = glob.glob(pattern)
 dfs = []
 
@@ -39,7 +39,7 @@ plt.hist(df_all_objects_d["r_PStotal"], bins=num_bins, range=mag_range_d, alpha=
 plt.xlabel("r-band Magnitude", fontsize=20)
 plt.ylabel("Normalized Density", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Main-histogram-r.pdf")
 
@@ -60,7 +60,7 @@ plt.tick_params(axis='y', labelsize=20)
 plt.plot(fraction_halpha, color='navy', label='Fraction of Hα Emitters')
 plt.xlabel("Magnitude Bin", fontsize=20)
 plt.ylabel("Fraction of Hα Emitters (mag$^{-1}$ deg$^{-2}$)", fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Fraction-Halpha-Main.pdf")
 
@@ -81,7 +81,7 @@ plt.hist(np.arange(len(number_density_all_objects_d)), bins=bin_edges, weights=n
 plt.xlabel("r-band Magnitude Bin", fontsize=20)  # Add clarification
 plt.ylabel("Number Density (mag$^{-1}$ deg$^{-2}$)", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True, axis='y')  # Add grid lines only on the y-axis
+#plt.grid(True, axis='y')  # Add grid lines only on the y-axis
 plt.xticks(np.arange(0, len(number_density_halpha_d), 5), rotation=45)  # Set x-ticks to align with the bins and rotate them
 plt.tight_layout()  # Improve spacing between subplots
 plt.savefig("Figs/Number-Density-Main.pdf")
@@ -95,7 +95,7 @@ plt.hist(df_all_objects_d["r_PStotal"], bins=num_bins, range=mag_range_d, alpha=
 plt.xlabel("r-band Magnitude")
 plt.ylabel("Cumulative Density")
 plt.legend(fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Main-cdf-r.pdf")
 
@@ -108,7 +108,7 @@ sns.kdeplot(df_all_objects_d["r_PStotal"], color='salmon', label='All Stars', li
 plt.xlabel("r-band Magnitude", fontsize=20)
 plt.ylabel("Density", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Main-kde-r.pdf")
 
@@ -140,7 +140,7 @@ plt.hist(galactic_coords_d.l.deg, bins=num_bins, range=lon_range,  color='salmon
 plt.xlabel("Galactic Longitude (l)", fontsize=20)
 plt.ylabel("Normalized Density", fontsize=20)
 plt.legend(loc = "upper left", fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Main-histogram-galactic-longitude.pdf")
 
@@ -161,7 +161,7 @@ plt.tick_params(axis='y', labelsize=20)
 plt.plot(fraction_halpha, color='navy', label='Fraction of Hα Emitters')
 plt.xlabel("Galactic Longitude (l)", fontsize=20)
 plt.ylabel("Fraction of Hα Emitters (mag$^{-1}$ deg$^{-2}$)", fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Fraction-Halpha-Galactic-Longitude-Main.pdf")
 
@@ -182,7 +182,7 @@ plt.hist(np.arange(len(number_density_all_objects_d)), bins=bin_edges, weights=n
 plt.xlabel("Galactic Longitude (l) bin", fontsize=20)  # Add clarification
 plt.ylabel("Number Density (mag$^{-1}$ deg$^{-2}$)", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True, axis='y')  # Add grid lines only on the y-axis
+#plt.grid(True, axis='y')  # Add grid lines only on the y-axis
 plt.xticks(np.arange(0, len(number_density_halpha_d), 5), rotation=45)  # Set x-ticks to align with the bins and rotate them
 plt.tight_layout()  # Improve spacing between subplots
 plt.savefig("Figs/Number-Density-Galactic-Longitude-Main.pdf")
@@ -197,7 +197,7 @@ plt.hist(galactic_coords_d.l.deg, bins=num_bins, range=lon_range, alpha=1, color
 plt.xlabel("Galactic Longitude", fontsize=20)
 plt.ylabel("Cumulative Density", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Main-cdf-galactic-longitude.pdf")
 
@@ -210,6 +210,6 @@ sns.kdeplot(galactic_coords_d.l.deg, color='salmon', label='All Stars', linestyl
 plt.xlabel("Absolute Galactic Longitude", fontsize=20)
 plt.ylabel("Density", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Main-kde-galactic-longitude.pdf")

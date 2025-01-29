@@ -38,7 +38,7 @@ plt.hist(df_all_objects_d["r"], bins=num_bins, range=mag_range_d, alpha=0.7, col
 plt.xlabel("r-band Magnitude", fontsize=20)
 plt.ylabel("Normalized Density", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Disk-histogram-r.pdf")
 
@@ -80,7 +80,7 @@ plt.hist(np.arange(len(number_density_all_objects_d)), bins=bin_edges, weights=n
 plt.xlabel("r-band Magnitude Bin", fontsize=20)  # Add clarification
 plt.ylabel("Number Density (mag$^{-1}$ deg$^{-2}$)", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True, axis='y')  # Add grid lines only on the y-axis
+#plt.grid(True, axis='y')  # Add grid lines only on the y-axis
 plt.xticks(np.arange(0, len(number_density_halpha_d), 5), rotation=45)  # Set x-ticks to align with the bins and rotate them
 plt.tight_layout()  # Improve spacing between subplots
 plt.savefig("Figs/Number-Density-Disk.pdf")
@@ -94,7 +94,7 @@ plt.hist(df_all_objects_d["r"], bins=num_bins, range=mag_range_d, alpha=1, color
 plt.xlabel("r-band Magnitude")
 plt.ylabel("Cumulative Density")
 plt.legend(fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Disk-cdf-r.pdf")
 
@@ -107,7 +107,7 @@ sns.kdeplot(df_all_objects_d["r"], color='salmon', label='All Disk Stars', lines
 plt.xlabel("r-band Magnitude", fontsize=20)
 plt.ylabel("Density", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Disk-kde-r.pdf")
 
@@ -139,7 +139,7 @@ plt.hist(galactic_coords_d.l.deg, bins=num_bins, range=lon_range,  color='salmon
 plt.xlabel("Galactic Longitude (l)", fontsize=20)
 plt.ylabel("Normalized Density", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Disk-histogram-galactic-longitude.pdf")
 
@@ -160,7 +160,7 @@ plt.tick_params(axis='y', labelsize=20)
 plt.plot(fraction_halpha, color='navy', label='Fraction of Hα Emitters (Galactic disk)')
 plt.xlabel("Galactic Longitude (l)", fontsize=20)
 plt.ylabel("Fraction of Hα Emitters (mag$^{-1}$ deg$^{-2}$)", fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Fraction-Halpha-Galactic-Longitude.pdf")
 
@@ -181,7 +181,7 @@ plt.hist(np.arange(len(number_density_all_objects_d)), bins=bin_edges, weights=n
 plt.xlabel("Galactic Longitude (l) bin", fontsize=20)  # Add clarification
 plt.ylabel("Number Density (mag$^{-1}$ deg$^{-2}$)", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True, axis='y')  # Add grid lines only on the y-axis
+#plt.grid(True, axis='y')  # Add grid lines only on the y-axis
 plt.xticks(np.arange(0, len(number_density_halpha_d), 5), rotation=45)  # Set x-ticks to align with the bins and rotate them
 plt.tight_layout()  # Improve spacing between subplots
 plt.savefig("Figs/Number-Density-Galactic-Longitude.pdf")
@@ -196,7 +196,7 @@ plt.hist(galactic_coords_d.l.deg, bins=num_bins, range=lon_range, alpha=1, color
 plt.xlabel("Galactic Longitude", fontsize=20)
 plt.ylabel("Cumulative Density", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Disk-cdf-galactic-longitude.pdf")
 
@@ -209,6 +209,6 @@ sns.kdeplot(galactic_coords_d.l.deg, color='salmon', label='All Galactic Disk St
 plt.xlabel("Absolute Galactic Longitude", fontsize=20)
 plt.ylabel("Density", fontsize=20)
 plt.legend(fontsize=20)
-plt.grid(True)
+#plt.grid(True)
 plt.tight_layout()
 plt.savefig("Figs/Disk-kde-galactic-longitude.pdf")
