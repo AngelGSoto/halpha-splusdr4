@@ -234,5 +234,5 @@ fig.legend(handles, labels, loc='lower center', bbox_to_anchor=(0.5, -0.05), fon
 # Ajustar diseño y guardar el plot
 plt.tight_layout(rect=[0, 0.1, 1, 1])  # Ajustar para hacer espacio para la leyenda
 plt.subplots_adjust(bottom=0.06)  # Asegurar que haya suficiente espacio en la parte inferior
-plt.savefig("Figs/color_color_diagrams_multiple_balanced_ColorCut_complex.pdf", format='pdf', bbox_inches='tight', dpi=300)
+#plt.savefig("Figs/color_color_diagrams_multiple_balanced_ColorCut_complex.pdf", format='pdf', bbox_inches='tight', dpi=300)
 plt.close()
