@@ -13,6 +13,7 @@ sns.set_theme(style="ticks")
 pattern = 'Disk_Lomeli/*.csv'
 csv_files = glob.glob(pattern)
 dfs = []
+print(csv_files)
 
 # Loop through each CSV file and read it into a DataFrame
 for file in csv_files:
@@ -24,6 +25,7 @@ df_all_objects_d = pd.concat(dfs, ignore_index=True)
 
 # The Halpha emitters
 df_halpha_d = pd.read_csv("Ha-emitters-disk-iteractive/Halpha-disk_splus_Mine_PerField_total-unique.csv")
+print(len(df_halpha_d))
 
 # Define the number of bins and the range of r-band magnitudes
 num_bins = 50
