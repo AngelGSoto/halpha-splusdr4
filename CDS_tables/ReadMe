@@ -1,0 +1,153 @@
+# =============================================================================
+# J/A+A/aa53167-24           Hα-Excess S-PLUS Catalogs       Gutiérrez-Soto+ 2025
+# =============================================================================
+# Mapping Hα-Excess Candidate Point Sources in the Southern Hemisphere Using
+# S-PLUS Data
+#     Gutiérrez-Soto L.A., Lopes de Oliveira R., Akras S., Gonçalves D.R.,
+#     Lomelí-Núñez L.F., Mendes de Oliveira C., Telles E., Alvarez-Candal A.,
+#     Borges Fernandes M., Daflon S., Ferreira Lopes C.E., Grossi M., Hazarika D.,
+#     Humire P.K., Lima-Dias C., Lopes A.R., Nilo Castellón J.L., Panda S.,
+#     Kanaan A., Ribeiro T., Schoenell W.
+#     <Astron. Astrophys.>, 2025, Volume, Page (to be completed by editors)
+# =============================================================================
+ADC_Keywords: Catalogs ; Photometry ; Stars ; Novae ; Cataclysmic variables ;
+              Quasars ; Emission lines
+Keywords: surveys -- techniques: photometric -- stars: novae, cataclysmic variables --
+          quasars: emission lines
+
+Abstract:
+    We use the Southern Photometric Local Universe Survey (S-PLUS) Fourth Data Release (DR4) to identify
+    and classify Hα-excess point source candidates in the Southern Sky. This approach combines
+    photometric data from 12 S-PLUS filters with machine learning techniques to improve source
+    classification and advance our understanding of Hα-related phenomena.
+
+    Our goal is to enhance the classification of Hα-excess point sources by distinguishing between
+    Galactic and extragalactic objects, particularly those with redshifted emission lines, and to
+    identify sources where the Hα excess is associated with variability phenomena, such as short-period RR Lyrae stars.
+
+    We selected Hα-excess candidates using the (r - J0660) versus (r - i) colour-colour diagram from the
+    S-PLUS main survey (MS) and Galactic Disk Survey (GDS). Dimensionality reduction was achieved using UMAP,
+    followed by HDBSCAN clustering. We refined this by incorporating infrared data, improving the separation
+    of source types. A Random Forest model was then trained on the clustering results to identify key colour
+    features for the classification of Hα-excess sources. New, effective colour-colour diagrams were constructed
+    by combining data from S-PLUS MS and infrared data. These diagrams, alongside tentative colour criteria,
+    offer a preliminary classification of Hα-excess sources without the need for complex algorithms.
+
+    Combining multiwavelength photometric data with machine learning techniques significantly improved the
+    classification of Hα-excess sources. We identified 6956 sources with excess in the J0660 filter,
+    and cross-matching with SIMBAD allowed us to explore the types of objects present in our catalog,
+    including emission-line stars, young stellar objects, nebulae, stellar binaries, cataclysmic variables,
+    variable stars, and extragalactic sources such as QSOs, AGNs, and galaxies. The cross-match also
+    revealed X-ray sources, transients, and other peculiar objects. Using S-PLUS colours and machine learning,
+    we successfully separated RR Lyrae stars from both other Galactic stars and extragalactic objects.
+    Additionally, we achieved a clear separation between Galactic and extragalactic sources.
+    However, distinguishing cataclysmic variables from QSOs at specific redshifts remained challenging.
+    Incorporating infrared data refined the classification, enabling us to separate Galactic from
+    extragalactic sources and to distinguish cataclysmic variables from QSOs. The Random Forest model,
+    trained on HDBSCAN results, highlighted key colour features that distinguish the different
+    classes of Hα-excess sources, providing a robust framework for future studies such as follow-up spectroscopy.
+
+Description:
+    This catalog presents 6,956 Hα-excess candidates from S-PLUS DR4, identified via the (r - J0660) versus (r - i) colour-colour
+    diagram. Sources were selected from two DR4 subsurveys: the Main Survey (MS) using 3-arcsec aperture-corrected (PStotal) photometry,
+    and the Galactic Disk Survey (GDS) using PSF photometry. MS Hα sources were classified into different classes via UMAP dimensionality
+    reduction and HDBSCAN clustering: first using S-PLUS photometry alone, then augmented with WISE infrared data.
+
+
+File Summary:
+--------------------------------------------------------------------------------
+ FileName  Lrecl  Records  Explanations
+--------------------------------------------------------------------------------
+ReadMe       80       .    This file
+hasms.dat   464    3637    Main Survey Hα-excess sources with UMAP/WISE
+hasgds.dat  337    3319    Galactic Disk Survey Hα-excess sources
+--------------------------------------------------------------------------------
+
+Byte-by-byte Description of file: hasms.dat
+--------------------------------------------------------------------------------
+   Bytes Format Units  Label              Explanations
+--------------------------------------------------------------------------------
+   1-  8  A8    ---    ID                 Unique source identifier
+  10- 21  F12.8 deg    RAJ2000            Right Ascension (J2000) (RA)
+  23- 34  F12.8 deg    DEJ2000            Declination (J2000) (DEC)
+  36- 43  F8.6  mag    umag               S-PLUS u-band PStotal magnitude
+  45- 52  F8.6  mag    e_umag             Error in u-band magnitude
+  54- 61  F8.6  mag    J0378mag           S-PLUS J0378 PStotal magnitude
+  63- 70  F8.6  mag    e_J0378mag         Error in J0378mag
+  72- 79  F8.6  mag    J0395mag           S-PLUS J0395 PStotal magnitude
+  81- 88  F8.6  mag    e_J0395mag         Error in J0395mag
+  90- 97  F8.6  mag    J0410mag           S-PLUS J0410 PStotal magnitude
+  99-106  F8.6  mag    e_J0410mag         Error in J0410mag
+ 108-115  F8.6  mag    J0430mag           S-PLUS J0430 PStotal magnitude
+ 117-124  F8.6  mag    e_J0430mag         Error in J0430mag
+ 126-133  F8.6  mag    gmag               S-PLUS g-band PStotal magnitude
+ 135-142  F8.6  mag    e_gmag             Error in gmag
+ 144-151  F8.6  mag    J0515mag           S-PLUS J0515 PStotal magnitude
+ 153-160  F8.6  mag    e_J0515mag         Error in J0515mag
+ 162-169  F8.6  mag    rmag               S-PLUS r-band PStotal magnitude
+ 171-178  F8.6  mag    e_rmag             Error in rmag
+ 180-187  F8.6  mag    J0660mag           S-PLUS J0660 PStotal magnitude
+ 189-196  F8.6  mag    e_J0660mag         Error in J0660mag
+ 198-205  F8.6  mag    imag               S-PLUS i-band PStotal magnitude
+ 207-214  F8.6  mag    e_imag             Error in imag
+ 216-223  F8.6  mag    J0861mag           S-PLUS J0861 PStotal magnitude
+ 225-232  F8.6  mag    e_J0861mag         Error in J0861mag
+ 234-241  F8.6  mag    zmag               S-PLUS z-band PStotal magnitude
+ 243-250  F8.6  mag    e_zmag             Error in zmag
+ 252-260  A9    ---    SimbadType         SIMBAD classification (1)
+ 262-269  F8.6  mag    W1mag              AllWISE W1 magnitude
+ 271-278  F8.6  mag    e_W1mag            Error in W1mag
+ 280-287  F8.6  mag    W2mag              AllWISE W2 magnitude
+ 289-296  F8.6  mag    e_W2mag            Error in W2mag
+ 298-305  F8.6  ---    UMAP1_SPLUS        UMAP axis 1 (S-PLUS only)
+ 307-314  F8.6  ---    UMAP2_SPLUS        UMAP axis 2 (S-PLUS only)
+ 316-319  I4    ---    Class_SPLUS        HDBSCAN class (S-PLUS) (2)
+ 321-328  F8.6  ---    UMAP1_SPLUS_WISE   UMAP axis 1 (S-PLUS+WISE)
+ 330-337  F8.6  ---    UMAP2_SPLUS_WISE   UMAP axis 2 (S-PLUS+WISE)
+ 339-342  I4    ---    Class_SPLUS_WISE   HDBSCAN class (S-PLUS+WISE) (3)
+--------------------------------------------------------------------------------
+Note (1): SIMBAD classification in MS cross-match (2" radius).  
+    UNKNOWN = No counterpart.
+Note (2): Class_SPLUS: Clustering groups (S-PLUS only):
+    0 = QSO-dominated, 1 = RR Lyrae/EB*, 2 = EB*/Stars,
+    3 = AGN/QSO, 4 = QSO/CataclyV*. 
+Note (3): Class_SPLUS_WISE: Clustering groups (S-PLUS+WISE):
+    0 = EB*/RRLyr-dominated, 1 = QSO, 2 = AGN/QSO, 3 = CataclyV*,
+    4 = QSO, -1 = Noise. 
+
+Byte-by-byte Description of file: hasgds.dat
+--------------------------------------------------------------------------------
+   Bytes Format Units  Label              Explanations
+--------------------------------------------------------------------------------
+   1-  8  A8    ---    ID                 Unique source identifier
+  10- 21  F12.8 deg    RAJ2000            Right Ascension (J2000) (RA)
+  23- 34  F12.8 deg    DEJ2000            Declination (J2000) (DEC)
+  36- 43  F8.6  mag    umag               S-PLUS u-band PSF-photometry magnitude
+  45- 52  F8.6  mag    e_umag             Error in u-band magnitude
+  54- 61  F8.6  mag    J0378mag           S-PLUS J0378 PSF-photometry magnitude
+  63- 70  F8.6  mag    e_J0378mag         Error in J0378mag
+  72- 79  F8.6  mag    J0395mag           S-PLUS J0395 PSF-photometry magnitude
+  81- 88  F8.6  mag    e_J0395mag         Error in J0395mag
+  90- 97  F8.6  mag    J0410mag           S-PLUS J0410 PSF-photometry magnitude
+  99-106  F8.6  mag    e_J0410mag         Error in J0410mag
+ 108-115  F8.6  mag    J0430mag           S-PLUS J0430 PSF-photometry magnitude
+ 117-124  F8.6  mag    e_J0430mag         Error in J0430mag
+ 126-133  F8.6  mag    gmag               S-PLUS g-band PSF-photometry magnitude
+ 135-142  F8.6  mag    e_gmag             Error in gmag
+ 144-151  F8.6  mag    J0515mag           S-PLUS J0515 PSF-photometry magnitude
+ 153-160  F8.6  mag    e_J0515mag         Error in J0515mag
+ 162-169  F8.6  mag    rmag               S-PLUS r-band PSF-photometry magnitude
+ 171-178  F8.6  mag    e_rmag             Error in rmag
+ 180-187  F8.6  mag    J0660mag           S-PLUS J0660 PSF-photometry magnitude
+ 189-196  F8.6  mag    e_J0660mag         Error in J0660mag
+ 198-205  F8.6  mag    imag               S-PLUS i-band PSF-photometry magnitude
+ 207-214  F8.6  mag    e_imag             Error in imag
+ 216-223  F8.6  mag    J0861mag           S-PLUS J0861 PSF-photometry magnitude
+ 225-232  F8.6  mag    e_J0861mag         Error in J0861mag
+ 234-241  F8.6  mag    zmag               S-PLUS z-band PSF-photometry magnitude
+ 243-250  F8.6  mag    e_zmag             Error in zmag
+ 252-260  A9    ---    SimbadType         SIMBAD classification (1)
+--------------------------------------------------------------------------------
+Note (1): SimbadType: SIMBAD classification in GDS cross-match (1" radius).  
+    UNKNOWN = No counterpart.
+
