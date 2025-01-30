@@ -8,6 +8,11 @@ import umap
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from itertools import combinations
+import warnings  # Importar módulo de warnings
+
+# Filtrar advertencias específicas de UMAP
+warnings.filterwarnings("ignore", category=UserWarning, module="umap")
+
 
 # Function to calculate color indices
 def calculate_earnings(df, index_pairs):
@@ -183,4 +188,4 @@ leg2 = fig.legend(handles[4:], labels[4:], bbox_to_anchor=(0.5, 0.95), **kw)
 fig.add_artist(leg1)
 
 plt.tight_layout(rect=[0, 0, 1, 0.90])  # Adjust layout to make space for the legend
-plt.savefig("Figs/Silhouette_Score_Davies-Bouldin_wise.pdf")
+#plt.savefig("Figs/Silhouette_Score_Davies-Bouldin_wise.pdf")
