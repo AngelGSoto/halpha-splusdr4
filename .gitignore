@@ -17,6 +17,7 @@ splus_halpha_report.pdf
 *.fits
 *.dat
 *.zip
+*.ecsv
 
 # Exclude files with certain suffixes or patterns
 *~
