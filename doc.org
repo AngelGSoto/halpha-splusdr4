@@ -110,7 +110,7 @@ Substituting into the ideal formula:
 \[
 \sigma_{\text{est}} = \sqrt{\sigma_s^2 + (1 - m)^2 (\sigma_{(r - J0660)}^2 - \sigma_r^2) + m^2 (\sigma_{(r - i)}^2 - \sigma_r^2) + \sigma_{J0660}^2}.
 \]
-This simplifies to the formula used in your paper:
+This simplifies to the formula used in the paper:
 \[
 \sigma_{\text{est}} = \sqrt{ \sigma_s^2 + (1 - m)^2 \sigma_{(r - J0660)}^2 + m^2 \sigma_{(r - i)}^2 }.
 \]
@@ -177,6 +177,9 @@ It represents a pragmatic improvement over classical methods, balancing rigor wi
 *Note*: This document supplements the original paper and does not replace it. For code implementation, see the project’s [[https://github.com/yourusername/your-repo][GitHub repository]].
 #+END_NOTE
 
+La fórmula para σestσest​ asume que la covarianza entre (r−J0660) y (r−i), debida a su dependencia compartida de la banda r, es despreciable. Esto es válido dado que los errores fotométricos en r (σr∼0.01σ mag) son mucho menores que los de i y J0660 (σi, σJ0660∼0.1 σi​, σJ0660​∼0.1 mag). El término σs2 incluye además cualquier dispersión intrínseca no capturada por el modelo.
+
+The factor (1−m)2 ensures that the contribution of σr2​ is weighted by the sensitivity of the linear fit, avoiding artificial duplication. This approach follows standard error propagation for models with correlated variables \citep{Lyons:1991}
 
 *Justification for Variance Estimation Formula in Selecting H\alpha Emitters*
 
