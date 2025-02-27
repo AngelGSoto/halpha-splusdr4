@@ -100,7 +100,7 @@ def main():
 
         # Applying the selection criteria to select Halpha emitters
         m = fitted_line_sigma_clip.slope
-        C = 5.0
+        C = 5
 
         if cmd_args.varianceApproach == "Manguio":
             variance_est = sigma_fit_sigma_clip**2 + m**2 * data_["e_i_PStotal"]**2 + (1 - m)**2 * data_["e_r_PStotal"]**2 + data_["e_J0660_PStotal"]**2
