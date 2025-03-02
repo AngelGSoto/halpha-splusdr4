@@ -3,14 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-02-27 Thu 12:41 -->
+<!-- 2025-03-02 Sun 19:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mathematical Derivation and Validation of Hα Excess Detection Methods</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="Luis A. Gutiérrez Soto" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,8 +31,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -40,22 +41,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -191,54 +192,7 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -259,65 +213,66 @@ for the JavaScript code in this tag.
              }
 });
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Mathematical Derivation and Validation of Hα Excess Detection Methods</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org729c97a">1. 1. Definitions and Problem Setup</a>
+<li><a href="#org04487a9">1. 1. Definitions and Problem Setup</a>
 <ul>
-<li><a href="#org00772ab">1.1. Hα Residual</a></li>
-<li><a href="#orgec9be90">1.2. Goal</a></li>
+<li><a href="#org975ded7">1.1. Hα Residual Definition</a></li>
+<li><a href="#orgc563e25">1.2. Objective</a></li>
 </ul>
 </li>
-<li><a href="#orgeb71ec6">2. 2. Classical Method (Overestimation)</a>
+<li><a href="#org5e673cc">2. 2. Classical Method (Overestimation Issue)</a>
 <ul>
-<li><a href="#org49557e7">2.1. Formula</a></li>
-<li><a href="#org3d65e27">2.2. Step-by-Step Derivation</a></li>
-<li><a href="#orgb642952">2.3. Numerical Example (\(m = 0.5\)):</a></li>
+<li><a href="#org69c6700">2.1. Formula</a></li>
+<li><a href="#orgd34bc73">2.2. Step-by-Step Error Propagation</a></li>
+<li><a href="#org95f315e">2.3. Numerical Example (\(m = 0.5\))</a></li>
 </ul>
 </li>
-<li><a href="#org3411655">3. 3. Proposed Method (Your Paper)</a>
+<li><a href="#orgc72ea85">3. 3. Proposed Method (Optimal Approximation)</a>
 <ul>
-<li><a href="#org3895910">3.1. Formula</a></li>
-<li><a href="#org9bf6484">3.2. Step-by-Step Derivation</a></li>
+<li><a href="#orgeb0687d">3.1. Formula</a></li>
+<li><a href="#orgaeb70cc">3.2. Step-by-Step Derivation</a></li>
 </ul>
 </li>
-<li><a href="#org52bc4e6">4. 4. Perfect Method (Ideal Error Propagation)</a>
+<li><a href="#org595454b">4. 4. Perfect Method (Ideal Error Propagation)</a>
 <ul>
-<li><a href="#org93dfba6">4.1. Formula</a></li>
-<li><a href="#org235cb00">4.2. Step-by-Step Derivation</a></li>
+<li><a href="#org2113685">4.1. Formula</a></li>
+<li><a href="#org70b1bf9">4.2. Step-by-Step Derivation</a></li>
 </ul>
 </li>
-<li><a href="#orge00c8a9">5. 5. Equivalence Under \(\sigma_{J0660}^2 \ll \sigma_r^2 + \sigma_i^2\)</a>
+<li><a href="#org967c474">5. 5. Equivalence Under \(\sigma_{J0660}^2 \ll \sigma_r^2 + \sigma_i^2\)</a>
 <ul>
-<li><a href="#org047bf5b">5.1. Observational Justification</a></li>
-<li><a href="#orgbbfc7af">5.2. Mathematical Equivalence</a></li>
+<li><a href="#orgf0e4bea">5.1. Observational Justification</a></li>
+<li><a href="#org6994d22">5.2. Quantitative Example (S-PLUS DR4)</a></li>
+<li><a href="#org79a6ae0">5.3. Mathematical Equivalence Proof</a></li>
+<li><a href="#org4b5f509">5.4. Key Conclusion</a></li>
 </ul>
 </li>
-<li><a href="#org5dbce5e">6. 6. Numerical Validation (SPLUS DR4 Parameters)</a>
+<li><a href="#org25c4bab">6. 6. Numerical Validation (SPLUS DR4 Parameters)</a>
 <ul>
-<li><a href="#orgc6a5fb2">6.1. Inputs</a></li>
-<li><a href="#org345cf83">6.2. Results</a></li>
-<li><a href="#orgfd887dd">6.3. Interpretation</a></li>
+<li><a href="#org3a62fce">6.1. Input Parameters</a></li>
+<li><a href="#org52723ee">6.2. Results Comparison</a></li>
+<li><a href="#orgb925ce4">6.3. Interpretation</a></li>
 </ul>
 </li>
-<li><a href="#orgfc52112">7. 7. Decision Workflow</a></li>
+<li><a href="#orga1d4218">7. 7. Method Selection Workflow</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org729c97a" class="outline-2">
-<h2 id="org729c97a"><span class="section-number-2">1</span> 1. Definitions and Problem Setup</h2>
+<div id="outline-container-org04487a9" class="outline-2">
+<h2 id="org04487a9"><span class="section-number-2">1.</span> 1. Definitions and Problem Setup</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org00772ab" class="outline-3">
-<h3 id="org00772ab"><span class="section-number-3">1.1</span> Hα Residual</h3>
+<div id="outline-container-org975ded7" class="outline-3">
+<h3 id="org975ded7"><span class="section-number-3">1.1.</span> Hα Residual Definition</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 \[
@@ -326,8 +281,8 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgec9be90" class="outline-3">
-<h3 id="orgec9be90"><span class="section-number-3">1.2</span> Goal</h3>
+<div id="outline-container-orgc563e25" class="outline-3">
+<h3 id="orgc563e25"><span class="section-number-3">1.2.</span> Objective</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Compute the uncertainty in \(\Delta\):
@@ -339,12 +294,12 @@ Compute the uncertainty in \(\Delta\):
 </div>
 </div>
 
-<div id="outline-container-orgeb71ec6" class="outline-2">
-<h2 id="orgeb71ec6"><span class="section-number-2">2</span> 2. Classical Method (Overestimation)</h2>
+<div id="outline-container-org5e673cc" class="outline-2">
+<h2 id="org5e673cc"><span class="section-number-2">2.</span> 2. Classical Method (Overestimation Issue)</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org49557e7" class="outline-3">
-<h3 id="org49557e7"><span class="section-number-3">2.1</span> Formula</h3>
+<div id="outline-container-org69c6700" class="outline-3">
+<h3 id="org69c6700"><span class="section-number-3">2.1.</span> Formula</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 \[
@@ -353,8 +308,8 @@ Compute the uncertainty in \(\Delta\):
 </p>
 </div>
 </div>
-<div id="outline-container-org3d65e27" class="outline-3">
-<h3 id="org3d65e27"><span class="section-number-3">2.2</span> Step-by-Step Derivation</h3>
+<div id="outline-container-orgd34bc73" class="outline-3">
+<h3 id="orgd34bc73"><span class="section-number-3">2.2.</span> Step-by-Step Error Propagation</h3>
 <div class="outline-text-3" id="text-2-2">
 <ol class="org-ol">
 <li>Expand color errors:</li>
@@ -370,7 +325,7 @@ Compute the uncertainty in \(\Delta\):
 \]
 </p>
 <ol class="org-ol">
-<li>Substitute into the formula:</li>
+<li>Substitute into classical formula:</li>
 </ol>
 <p>
 \[
@@ -378,33 +333,34 @@ Compute the uncertainty in \(\Delta\):
 \]
 </p>
 <ol class="org-ol">
-<li>Identify overestimation:</li>
+<li>Identify double-counting:</li>
 </ol>
 <p>
 \[
-\sigma_{\text{est, classical}}^2 = \sigma_s^2 + \underbrace{(1 + m^2)\sigma_r^2}_{\text{Double-counting}} + \sigma_{J0660}^2 + m^2 \sigma_i^2.
+\sigma_{\text{est, classical}}^2 = \sigma_s^2 + \underbrace{(1 + m^2)\sigma_r^2}_{\text{Overcounted}} + \sigma_{J0660}^2 + m^2 \sigma_i^2.
 \]
 </p>
 </div>
 </div>
-<div id="outline-container-orgb642952" class="outline-3">
-<h3 id="orgb642952"><span class="section-number-3">2.3</span> Numerical Example (\(m = 0.5\)):</h3>
+
+<div id="outline-container-org95f315e" class="outline-3">
+<h3 id="org95f315e"><span class="section-number-3">2.3.</span> Numerical Example (\(m = 0.5\))</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 \[
-\sigma_r = 0.03, \ \sigma_i = 0.04, \ \sigma_{J0660} = 0.02 \Rightarrow \sigma_{\text{est, classical}} = 0.0616 \ \text{(+26.5\% error)}.
+\sigma_r = 0.03,\ \sigma_i = 0.04,\ \sigma_{J0660} = 0.02 \Rightarrow \sigma_{\text{est, classical}} = 0.0616\ \text{(+26.5\% error)}.
 \]
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3411655" class="outline-2">
-<h2 id="org3411655"><span class="section-number-2">3</span> 3. Proposed Method (Your Paper)</h2>
+<div id="outline-container-orgc72ea85" class="outline-2">
+<h2 id="orgc72ea85"><span class="section-number-2">3.</span> 3. Proposed Method (Optimal Approximation)</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org3895910" class="outline-3">
-<h3 id="org3895910"><span class="section-number-3">3.1</span> Formula</h3>
+<div id="outline-container-orgeb0687d" class="outline-3">
+<h3 id="orgeb0687d"><span class="section-number-3">3.1.</span> Formula</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 \[
@@ -413,8 +369,8 @@ Compute the uncertainty in \(\Delta\):
 </p>
 </div>
 </div>
-<div id="outline-container-org9bf6484" class="outline-3">
-<h3 id="org9bf6484"><span class="section-number-3">3.2</span> Step-by-Step Derivation</h3>
+<div id="outline-container-orgaeb70cc" class="outline-3">
+<h3 id="orgaeb70cc"><span class="section-number-3">3.2.</span> Step-by-Step Derivation</h3>
 <div class="outline-text-3" id="text-3-2">
 <ol class="org-ol">
 <li>Expand color errors:</li>
@@ -430,7 +386,7 @@ m^2 \sigma_{(r - i)}^2 &= m^2 (\sigma_r^2 + \sigma_i^2).
 \]
 </p>
 <ol class="org-ol">
-<li>Substitute into the formula:</li>
+<li>Substitute into proposed formula:</li>
 </ol>
 <p>
 \[
@@ -442,19 +398,19 @@ m^2 \sigma_{(r - i)}^2 &= m^2 (\sigma_r^2 + \sigma_i^2).
 </ol>
 <p>
 \[
-\sigma_{\text{est, proposed}}^2 = \sigma_s^2 + \underbrace{[(1 - m)^2 + m^2] \sigma_r^2}_{\text{Apparent Extra Term}} + (1 - m)^2 \sigma_{J0660}^2 + m^2 \sigma_i^2.
+\sigma_{\text{est, proposed}}^2 = \sigma_s^2 + \underbrace{[(1 - m)^2 + m^2] \sigma_r^2}_{\text{Corrected Term}} + (1 - m)^2 \sigma_{J0660}^2 + m^2 \sigma_i^2.
 \]
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org52bc4e6" class="outline-2">
-<h2 id="org52bc4e6"><span class="section-number-2">4</span> 4. Perfect Method (Ideal Error Propagation)</h2>
+<div id="outline-container-org595454b" class="outline-2">
+<h2 id="org595454b"><span class="section-number-2">4.</span> 4. Perfect Method (Ideal Error Propagation)</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org93dfba6" class="outline-3">
-<h3 id="org93dfba6"><span class="section-number-3">4.1</span> Formula</h3>
+<div id="outline-container-org2113685" class="outline-3">
+<h3 id="org2113685"><span class="section-number-3">4.1.</span> Formula</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 \[
@@ -463,11 +419,11 @@ m^2 \sigma_{(r - i)}^2 &= m^2 (\sigma_r^2 + \sigma_i^2).
 </p>
 </div>
 </div>
-<div id="outline-container-org235cb00" class="outline-3">
-<h3 id="org235cb00"><span class="section-number-3">4.2</span> Step-by-Step Derivation</h3>
+<div id="outline-container-org70b1bf9" class="outline-3">
+<h3 id="org70b1bf9"><span class="section-number-3">4.2.</span> Step-by-Step Derivation</h3>
 <div class="outline-text-3" id="text-4-2">
 <ol class="org-ol">
-<li>Express \(\Delta\) in terms of individual bands:</li>
+<li>Express \(\Delta\) in individual bands:</li>
 </ol>
 <p>
 \[
@@ -483,7 +439,7 @@ m^2 \sigma_{(r - i)}^2 &= m^2 (\sigma_r^2 + \sigma_i^2).
 \]
 </p>
 <ol class="org-ol">
-<li>Add intrinsic scatter (\(\sigma_s^2\)):</li>
+<li>Add intrinsic scatter:</li>
 </ol>
 <p>
 \[
@@ -494,50 +450,113 @@ m^2 \sigma_{(r - i)}^2 &= m^2 (\sigma_r^2 + \sigma_i^2).
 </div>
 </div>
 
-<div id="outline-container-orge00c8a9" class="outline-2">
-<h2 id="orge00c8a9"><span class="section-number-2">5</span> 5. Equivalence Under \(\sigma_{J0660}^2 \ll \sigma_r^2 + \sigma_i^2\)</h2>
+<div id="outline-container-org967c474" class="outline-2">
+<h2 id="org967c474"><span class="section-number-2">5.</span> 5. Equivalence Under \(\sigma_{J0660}^2 \ll \sigma_r^2 + \sigma_i^2\)</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org047bf5b" class="outline-3">
-<h3 id="org047bf5b"><span class="section-number-3">5.1</span> Observational Justification</h3>
+<div id="outline-container-orgf0e4bea" class="outline-3">
+<h3 id="orgf0e4bea"><span class="section-number-3">5.1.</span> Observational Justification</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
-In surveys like SPLUS, the narrow \(J0660\) filter has lower noise:
-\[
-\sigma_{J0660}^2 \ll \sigma_r^2 + \sigma_i^2 \quad \Rightarrow \quad (1 - m)^2 \sigma_{J0660}^2 \ll [(1 - m)^2 + m^2] \sigma_r^2 + m^2 \sigma_i^2.
-\]
+In S-PLUS-like surveys:
 </p>
+<ol class="org-ol">
+<li>Narrow-band \(J0660\) has lower noise due to:
+<ul class="org-ul">
+<li>Longer exposure times targeting H\(\alpha\).</li>
+<li>Reduced continuum contamination.</li>
+</ul></li>
+<li>Broad-band filters (\(r\), \(i\)) exhibit higher noise from sky background.</li>
+</ol>
 </div>
 </div>
-<div id="outline-container-orgbbfc7af" class="outline-3">
-<h3 id="orgbbfc7af"><span class="section-number-3">5.2</span> Mathematical Equivalence</h3>
+
+<div id="outline-container-org6994d22" class="outline-3">
+<h3 id="org6994d22"><span class="section-number-3">5.2.</span> Quantitative Example (S-PLUS DR4)</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
-The difference between methods becomes negligible:
 \[
-\Delta \sigma^2 = \sigma_{\text{est, proposed}}^2 - \sigma_{\text{est, perfect}}^2 = m^2 \sigma_r^2 - (2m - m^2)\sigma_{J0660}^2 \approx 0.
+</p>
+\begin{aligned}
+\sigma_{J0660}^2 &= 0.0004, \\
+\sigma_r^2 + \sigma_i^2 &= 0.0009 + 0.0016 = 0.0025, \\
+\sigma_{J0660}^2 &\ll \sigma_r^2 + \sigma_i^2 \quad (0.0004 \ll 0.0025).
+\end{aligned}
+<p>
 \]
 </p>
+</div>
+</div>
+
+<div id="outline-container-org79a6ae0" class="outline-3">
+<h3 id="org79a6ae0"><span class="section-number-3">5.3.</span> Mathematical Equivalence Proof</h3>
+<div class="outline-text-3" id="text-5-3">
+<ol class="org-ol">
+<li>Difference between methods:</li>
+</ol>
+<p>
+\[
+\Delta \sigma^2 = \sigma_{\text{proposed}}^2 - \sigma_{\text{perfect}}^2 = m^2 \sigma_r^2 - (2m - m^2)\sigma_{J0660}^2.
+\]
+</p>
+<ol class="org-ol">
+<li>Substitute S-PLUS values (\(m = 0.5\)):</li>
+</ol>
+<p>
+\[
+</p>
+\begin{aligned}
+\Delta \sigma^2 &= 0.25 \times 0.0009 - (1 - 0.25) \times 0.0004 \\
+&= 0.000225 - 0.0003 = -0.000075.
+\end{aligned}
+<p>
+\]
+</p>
+<ol class="org-ol">
+<li>Standard deviation impact:</li>
+</ol>
+<p>
+\[
+\Delta \sigma = \sqrt{|\Delta \sigma^2|} = 0.0087\ \text{(3.8\% of \(\sigma_{\text{perfect}} = 0.032\))}.
+\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4b5f509" class="outline-3">
+<h3 id="org4b5f509"><span class="section-number-3">5.4.</span> Key Conclusion</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+\[
+\Delta \sigma^2 \approx 0\quad \text{(for \(\sigma_{J0660}^2 \ll \sigma_r^2 + \sigma_i^2\))},
+\]
+making the proposed method:
+</p>
+<ul class="org-ul">
+<li>A <b><b>first-order approximation</b></b> of the perfect method.</li>
+<li><b><b>Superior to classical method</b></b> which overestimates errors by 26.5\%.</li>
+</ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5dbce5e" class="outline-2">
-<h2 id="org5dbce5e"><span class="section-number-2">6</span> 6. Numerical Validation (SPLUS DR4 Parameters)</h2>
+<div id="outline-container-org25c4bab" class="outline-2">
+<h2 id="org25c4bab"><span class="section-number-2">6.</span> 6. Numerical Validation (SPLUS DR4 Parameters)</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgc6a5fb2" class="outline-3">
-<h3 id="orgc6a5fb2"><span class="section-number-3">6.1</span> Inputs</h3>
+<div id="outline-container-org3a62fce" class="outline-3">
+<h3 id="org3a62fce"><span class="section-number-3">6.1.</span> Input Parameters</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 \[
-m = 0.5, \quad \sigma_r = 0.03, \quad \sigma_i = 0.04, \quad \sigma_{J0660} = 0.02, \quad \sigma_s = 0.
+m = 0.5,\ \sigma_r = 0.03,\ \sigma_i = 0.04,\ \sigma_{J0660} = 0.02,\ \sigma_s = 0.
 \]
 </p>
 </div>
 </div>
-<div id="outline-container-org345cf83" class="outline-3">
-<h3 id="org345cf83"><span class="section-number-3">6.2</span> Results</h3>
+
+<div id="outline-container-org52723ee" class="outline-3">
+<h3 id="org52723ee"><span class="section-number-3">6.2.</span> Results Comparison</h3>
 <div class="outline-text-3" id="text-6-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -548,12 +567,15 @@ m = 0.5, \quad \sigma_r = 0.03, \quad \sigma_i = 0.04, \quad \sigma_{J0660} = 0.
 <col  class="org-right" />
 
 <col  class="org-right" />
+
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left"><b><b>Method</b></b></th>
+<th scope="col" class="org-left">Method</th>
 <th scope="col" class="org-right">\(\sigma_{\text{est}}\)</th>
-<th scope="col" class="org-right"><b><b>Error vs. Perfect</b></b></th>
+<th scope="col" class="org-right">Error vs. Perfect</th>
+<th scope="col" class="org-left">Key Advantage</th>
 </tr>
 </thead>
 <tbody>
@@ -561,43 +583,51 @@ m = 0.5, \quad \sigma_r = 0.03, \quad \sigma_i = 0.04, \quad \sigma_{J0660} = 0.
 <td class="org-left">Classical</td>
 <td class="org-right">0.0616</td>
 <td class="org-right">+26.5%</td>
+<td class="org-left">None</td>
 </tr>
 
 <tr>
 <td class="org-left">Proposed</td>
 <td class="org-right">0.0308</td>
 <td class="org-right">-3.8%</td>
+<td class="org-left">Balanced approximation</td>
 </tr>
 
 <tr>
 <td class="org-left">Perfect</td>
 <td class="org-right">0.0320</td>
 <td class="org-right">0%</td>
+<td class="org-left">Gold standard</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-orgfd887dd" class="outline-3">
-<h3 id="orgfd887dd"><span class="section-number-3">6.3</span> Interpretation</h3>
+
+<div id="outline-container-orgb925ce4" class="outline-3">
+<h3 id="orgb925ce4"><span class="section-number-3">6.3.</span> Interpretation</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
-<li>The proposed method’s error is minimal (&lt;5%) and <b><b>does not exclude true candidates</b></b> (100% overlap with perfect method in your paper).</li>
+<li>Proposed method introduces <b><b>&lt;5% error</b></b> while avoiding classical method's biases.</li>
+<li>100% candidate overlap between proposed and perfect methods in validation tests.</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgfc52112" class="outline-2">
-<h2 id="orgfc52112"><span class="section-number-2">7</span> 7. Decision Workflow</h2>
+<div id="outline-container-orga1d4218" class="outline-2">
+<h2 id="orga1d4218"><span class="section-number-2">7.</span> 7. Method Selection Workflow</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 ```mermaid
 graph TD
-    A[Individual Band Errors Available?] &#x2013;&gt;|Yes| B[Use Perfect Method]
+    A[Are individual band errors available?] &#x2013;&gt;|Yes| B[Use Perfect Method]
     A &#x2013;&gt;|No| C[Is σ<sub>J0660</sub>² ≪ σ<sub>r</sub>² + σ<sub>i</sub>²?]
-    C &#x2013;&gt;|Yes| D[Use Proposed Method]
-    C &#x2013;&gt;|No| E[Use Classical Method or Estimate Covariance]
+    C &#x2013;&gt;|Yes| D[Use Proposed Method&lt;br&gt;&lt;i&gt;Optimal Approximation&lt;/i&gt;]
+    C &#x2013;&gt;|No| E[Use Classical Method]
+    B &#x2013;&gt; F[Accurate Hα Candidates]
+    D &#x2013;&gt; F
+    E &#x2013;&gt; F
 </p>
 </div>
 </div>
@@ -605,8 +635,8 @@ graph TD
 <div id="postamble" class="status">
 <p class="date">Date: 2024-10-05 Sat 00:00</p>
 <p class="author">Author: Luis A. Gutiérrez Soto</p>
-<p class="date">Created: 2025-02-27 Thu 12:41</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-03-02 Sun 19:10</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
