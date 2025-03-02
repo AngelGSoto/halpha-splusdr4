@@ -4,6 +4,10 @@
 #+OPTIONS: tex:t
 #+LINK: ADS https://ui.adsabs.harvard.edu/abs/2025arXiv250116530G/abstract
 
+* Access the Paper
+This work is published in Astronomy & Astrophysics: \\
+[[https://ui.adsabs.harvard.edu/abs/2025arXiv250116530G/abstract][Gutiérrez Soto et al. 2025, A&A, 000, 000]].
+
 * 1. Definitions and Problem Setup
 ** Hα Residual Definition
 \[
