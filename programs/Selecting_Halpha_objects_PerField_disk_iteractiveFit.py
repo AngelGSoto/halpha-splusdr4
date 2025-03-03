@@ -154,7 +154,7 @@ for field, data_ in grouped_df:
     m = fitted_line.slope  # Slope of the fit line
     C = 5.0  # Constant
 
-   if cmd_args.varianceApproach == "Maguio":
+    if cmd_args.varianceApproach == "Maguio":
         variance_est = sigma_fit**2 + m**2 * data_["ierr"]**2 + (1 - m)**2 * data_["rerr"]**2 + data_["F660err"]**2
     elif cmd_args.varianceApproach == "Mine":
         variance_est = sigma_fit**2 + m**2 * data_final["e(r - i)"]**2 + (1 - m)**2 * data_final["e(r - J0660)"]**2
