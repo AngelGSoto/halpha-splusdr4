@@ -68,7 +68,7 @@ def main():
 
     for field, data_ in grouped_df:
         cx, cy = colour(data_, "r_PStotal", "i_PStotal", "r_PStotal", "J0660_PStotal")
-
+        print(field, len(cx))
         # Linear fit
         fit = fitting.LinearLSQFitter()
         line_init = models.Linear1D()
@@ -83,7 +83,7 @@ def main():
         # Create DataFrame with the new columns
         colum1 = pd.DataFrame(cx, columns=['r - i'])
         colum2 = pd.DataFrame(cy, columns=['r - J0660'])
-        data = pd.concat([data_["RA"], data_["DEC"], df["FWHM"], data_["r_PStotal"], colum1, colum2], axis=1)
+        data = pd.concat([data_["RA"], data_["DEC"], data_["FWHM"], data_["r_PStotal"], colum1, colum2], axis=1)
 
         # Estimating parameter for statistical analysis
         residuals_normal = cy - cy_predic_normal
@@ -124,10 +124,10 @@ def main():
     ha_emitter_combined = pd.concat(ha_emitter_data, ignore_index=True)
 
     # Save the resulting table
-    df_file = "Ha-emitters_teste/Halpha-{}-{}_PerField.csv".format(file_.split('.cs')[0], cmd_args.varianceApproach)
+    df_file = "Ha-emitters_teste/Halpha-{}-{}_PerField_correcto.csv".format(file_.split('.cs')[0], cmd_args.varianceApproach)
     ha_emitter_combined.to_csv(df_file, index=False)
 
-    asciifile = "Ha-emitters_teste/Halpha-{}-{}_PerField.ecsv".format(file_.split('.cs')[0], cmd_args.varianceApproach)
+    asciifile = "Ha-emitters_teste/Halpha-{}-{}_PerField_correcto.ecsv".format(file_.split('.cs')[0], cmd_args.varianceApproach)
     Table.from_pandas(ha_emitter_combined).write(asciifile, format="ascii.ecsv", overwrite=True)
 
 if __name__ == "__main__":

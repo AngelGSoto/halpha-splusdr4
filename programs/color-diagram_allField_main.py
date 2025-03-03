@@ -114,6 +114,7 @@ for field in fields:
     # Choose the field
     mask_field = df["Field"] == field
     df_field = df[mask_field]
+    print(field, len(df_field))
 
     # Choose the object if provided
     mask_obj = df_field["ID"] == cmd_args.Object
