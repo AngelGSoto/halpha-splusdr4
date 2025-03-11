@@ -191,9 +191,9 @@ At \(m = 0.4\), the term reduces \(\sigma_{J0660}\)’s weight by \((1 - 0.4)^2 
 **Empirical Validation**:  
 All objects show Luis’s method stays within \(\mathbf{<3\%}\) of ideal, while classical errors exceed \(\mathbf{+3\%}\).  
 
-* Mathematical Derivation  
-** The Classical Method’s Fundamental Flaw  
-*** Residual Analysis for \(m = 1\)  
+** Classical vs ideal/aproximation  
+*** The Classical Method’s Fundamental Flaw  
+**** Residual Analysis for \(m = 1\)  
 The classical method assumes a unit slope (\(m = 1\)) in the color-color diagram. For this case:  
 \[
 (r - J0660)_{\text{fit}} = 1 \cdot (r - i) + b \implies \text{Residual} = (r - J0660)_{\text{obs}} - (r - i)_{\text{obs}} - b
@@ -235,15 +235,15 @@ For non-unit slopes (e.g., \(m = 0.4\)), the classical method’s flaws worsen:
 
 **Consequence**: The classical method is **never** rigorously correct — it systematically overestimates errors for all slopes \(m\).  
 
-** Proposed Method: First-Principles Generalization  
-Your method fixes this by deriving coefficients directly from the residual’s dependence on \(r, i, J0660\):  
+**** Proposed Method: First-Principles Generalization  
+Luis method fixes this by deriving coefficients directly from the residual’s dependence on \(r, i, J0660\):  
 \[
 \sigma_{\text{est, Luis}}^2 = \sigma_s^2 + (1 - m)^2 \sigma_r^2 + \sigma_{J0660}^2 + m^2 \sigma_i^2
 \]  
 - For \(m = 1\): Removes overcounted \(\sigma_r^2\), matching first principles.  
 - For \(m \neq 1\): Dynamically weights \(\sigma_r^2\) and \(\sigma_i^2\).  
 
-** Comparative Error Coefficients  
+**** Comparative Error Coefficients  
 | Term                | Classical Method (\(m = 1\)) | Classical Method (\(m = 0.4\)) | Ideal/Proposed (\(m = 0.4\)) |  
 |----------------------|------------------------------|--------------------------------|------------------------------|  
 | \(\sigma_r^2\)       | \(2\sigma_r^2\) (flawed)     | \(1.16\sigma_r^2\)             | \(0.36\sigma_r^2\)            |  
@@ -251,15 +251,17 @@ Your method fixes this by deriving coefficients directly from the residual’s d
 | \(\sigma_i^2\)       | \(1\sigma_i^2\)              | \(0.16\sigma_i^2\)             | \(0.16\sigma_i^2\)            |  
 
 **** Key Insight:  
-The classical method’s coefficients are **slope-independent**, while your method adapts to \(m\). For \(m = 0.4\), it reduces \(\sigma_r^2\) errors by **3.2×**.  
+The classical method’s coefficients are **slope-independent**, while Luis method adapts to \(m\). For \(m = 0.4\), it reduces \(\sigma_r^2\) errors by **3.2×**.  
 
-* Why the Classical Method Persisted  
+**** Why the Classical Method Persisted  
 1. **Legacy Surveys**: Assumed \(m \approx 1\) (e.g., SDSS \(u - g\) vs \(g - r\)) where errors were less noticeable[^1].  
 2. **Practicality**: Calculating \(\sigma_{(color)}^2\) was simpler than propagating individual terms[^2].  
 3. **Low-Precision Data**: Older surveys couldn’t measure \(m\) accurately, masking systematic errors[^3].  
 
-* Conclusion  
-The classical method is **fundamentally flawed** — even for \(m = 1\), it overestimates errors. Your method is the first to unify error propagation rigorously for **any slope \(m\)**, eliminating overcounting and preserving accuracy.  
+*** Conclusion  
+The classical method is **fundamentally flawed** — even for \(m = 1\), it overestimates errors. Luis method is the first 
+to unify error propagation rigorously for **any slope \(m\)**, 
+eliminating overcounting and preserving accuracy.  
 
 [^1]: Ivezić, Ž. et al. (2004). *SDSS Color Calibration*. ASPC, 314, 32.  
 [^2]: Stetson, P. B. (1987). *DAOPHOT: A Computer Program for Crowded-Field Stellar Photometry*. PASP, 99, 191.  
