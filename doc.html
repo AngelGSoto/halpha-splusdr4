@@ -1,81 +1,477 @@
-#+TITLE: Ha emitters DR4
-:PROPERTIES:
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-03-11 Tue 13:31 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ha emitters DR4</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Luis Angel Gutierrez Soto" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Ha emitters DR4</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1df8d59">1. Halpha emitters in DR4 S-PLUS</a>
+<ul>
+<li><a href="#orgfae81a7">1.1. Main sequence stars</a></li>
+<li><a href="#org61b042c">1.2. Getting and cleaning the data</a></li>
+</ul>
+</li>
+<li><a href="#orgdba50ad">2. Estimation of Sigma</a>
+<ul>
+<li><a href="#org7aaa682">2.1. Mathematical Justification</a></li>
+<li><a href="#orgd598ba5">2.2. 1. Residual Definition and Error Sources</a></li>
+<li><a href="#org34b9fa8">2.3. 2. Error Propagation Derivation</a></li>
+<li><a href="#orged281f0">2.4. 3. Adaptation to Color-Index Errors</a></li>
+<li><a href="#orge010c4f">2.5. Why This Approach is Valid</a></li>
+<li><a href="#org654d464">2.6. 1. Mathematical Consistency</a></li>
+<li><a href="#org43d3221">2.7. 2. Empirical Robustness</a></li>
+<li><a href="#orga1f2e28">2.8. 3. Conservative Threshold (\(C = 5\))</a></li>
+<li><a href="#org23dcd6d">2.9. 4. Peer-Review Validation</a></li>
+<li><a href="#org238bae0">2.10. Comparison to Classical Methods</a></li>
+<li><a href="#org0cd7d03">2.11. 1. Classical Formula (Witham et al. 2008)</a></li>
+<li><a href="#org67d89b4">2.12. 2. This Work’s Formula</a></li>
+<li><a href="#orgbba60df">2.13. Contextual Appropriateness</a>
+<ul>
+<li><a href="#orgf2c5d6a">2.13.1. 1. Data Limitations</a></li>
+<li><a href="#org95b43f7">2.13.2. 2. Scientific Goals</a></li>
+<li><a href="#org1bb6a5a">2.13.3. 3. Reproducibility</a></li>
+</ul>
+</li>
+<li><a href="#orgac62c2d">2.14. Conclusion</a>
+<ul>
+<li><a href="#org392b5ee">2.14.1. Comparison of Approaches for Selecting Halpha Emitters</a></li>
+<li><a href="#org525c8fa">2.14.2. Witham et al. Approach:</a></li>
+<li><a href="#orgd0678c9">2.14.3. Recommended Approach:</a></li>
+<li><a href="#org48b261a">2.14.4. Comparison:</a></li>
+<li><a href="#orgc847daf">2.14.5. running some scripts</a></li>
+<li><a href="#org66170c6">2.14.6. Spectra</a></li>
+<li><a href="#orgd773dd1">2.14.7. Spectra for the paper</a></li>
+<li><a href="#orgee68d16">2.14.8. Coments of spectra</a></li>
+</ul>
+</li>
+<li><a href="#orgdaf33db">2.15. Machine Learning</a>
+<ul>
+<li><a href="#orgb18c913">2.15.1. Determining Optimal Parameters for UMAP Projection</a></li>
+<li><a href="#org26958b6">2.15.2. Some results</a></li>
+</ul>
+</li>
+<li><a href="#org6f03e2c">2.16. Main</a></li>
+<li><a href="#org9c1f865">2.17. Disk</a></li>
+<li><a href="#org2a401c1">2.18. Results</a></li>
+<li><a href="#org6971379">2.19. Lo que he hecho</a></li>
+<li><a href="#orga42200e">2.20. Color criteria</a></li>
+<li><a href="#orgacf56bb">2.21. Thing to think</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
 :ID:       
-:END:
+</p>
 
-* Halpha emitters in DR4 S-PLUS
-
+<div id="outline-container-org1df8d59" class="outline-2">
+<h2 id="org1df8d59"><span class="section-number-2">1</span> Halpha emitters in DR4 S-PLUS</h2>
+<div class="outline-text-2" id="text-1">
+<p>
 I try to improve the aproach to select Halpha emitters in S-PLUS.
+</p>
 
-+ Papers:
+<ul class="org-ul">
+<li>Papers:
 
- - [[https://ui.adsabs.harvard.edu/abs/2021MNRAS.505.1135F/abstract][Fratta et al.]]
- - [[https://ui.adsabs.harvard.edu/abs/2020A%26A...638A..18M/abstract][Monguio et al.]]
- - [[https://ui.adsabs.harvard.edu/abs/2017MNRAS.466..163W/abstract][Wevers et al.]]
- - [[https://ui.adsabs.harvard.edu/abs/2008MNRAS.384.1277W/abstract][Witham et al.]]
- - [[https://ui.adsabs.harvard.edu/abs/2006MNRAS.369..581W/abstract][Witahm et al.]]
- - [[https://ui.adsabs.harvard.edu/abs/2005MNRAS.362..753D/abstract][Drew et al.]]
+<ul class="org-ul">
+<li><a href="https://ui.adsabs.harvard.edu/abs/2021MNRAS.505.1135F/abstract">Fratta et al.</a></li>
+<li><a href="https://ui.adsabs.harvard.edu/abs/2020A%26A...638A..18M/abstract">Monguio et al.</a></li>
+<li><a href="https://ui.adsabs.harvard.edu/abs/2017MNRAS.466..163W/abstract">Wevers et al.</a></li>
+<li><a href="https://ui.adsabs.harvard.edu/abs/2008MNRAS.384.1277W/abstract">Witham et al.</a></li>
+<li><a href="https://ui.adsabs.harvard.edu/abs/2006MNRAS.369..581W/abstract">Witahm et al.</a></li>
+<li><a href="https://ui.adsabs.harvard.edu/abs/2005MNRAS.362..753D/abstract">Drew et al.</a></li>
+</ul></li>
+</ul>
+</div>
 
-** Main sequence stars
-I putted the track of unredened MS and giant stars from [[https://ui.adsabs.harvard.edu/abs/1998PASP..110..863P/abstract][Pickles et al.]] in the color-color diagram .
+<div id="outline-container-orgfae81a7" class="outline-3">
+<h3 id="orgfae81a7"><span class="section-number-3">1.1</span> Main sequence stars</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+I putted the track of unredened MS and giant stars from <a href="https://ui.adsabs.harvard.edu/abs/1998PASP..110..863P/abstract">Pickles et al.</a> in the color-color diagram .
+</p>
+</div>
+</div>
 
-** Getting and cleaning the data
-
-The data were downloaded from the [[https://splus.cloud/][SPLUS.CLOUD]], and a preliminary cut were in the [[file:programs/getting-splusdata-basedGustavo.py][script]]
+<div id="outline-container-org61b042c" class="outline-3">
+<h3 id="org61b042c"><span class="section-number-3">1.2</span> Getting and cleaning the data</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The data were downloaded from the <a href="https://splus.cloud/">SPLUS.CLOUD</a>, and a preliminary cut were in the <a href="programs/getting-splusdata-basedGustavo.py">script</a>
 using Python to cleaned the data. And after I apply some criteria to getting data with very high quality,
 this after to make different tests.
+</p>
 
-*Additionally criteria to cleaned the data*
+<p>
+<b>Additionally criteria to cleaned the data</b>
+</p>
 
+<p>
  The criteria are systematically chosen to ensure the robustness and 
 reliability of the selected sample, taking into account various photometric 
 and morphological properties of the sources.
+</p>
 
-1. **Photometric Properties**:
-   - We apply stringent constraints on the photometric 
+<ol class="org-ol">
+<li><b><b>Photometric Properties</b></b>:
+<ul class="org-ul">
+<li>We apply stringent constraints on the photometric</li>
+</ul></li>
+</ol>
+<p>
 properties of the sources to ensure that we focus on objects 
 with appropriate brightness levels for detecting Hα emission. 
 Specifically, we select sources with magnitudes in the r, J0660, 
-and i bands falling within defined ranges (r_PStotal > 16 and r_PStotal ≤ 17.5, J0660_PStotal ≤ 19.4, i_PStotal ≤ 19.2).
+and i bands falling within defined ranges (r<sub>PStotal</sub> &gt; 16 and r<sub>PStotal</sub> ≤ 17.5, J0660<sub>PStotal</sub> ≤ 19.4, i<sub>PStotal</sub> ≤ 19.2).
+</p>
 
-2. **Error Values**:
-   - To ensure the reliability of our measurements, 
+<ol class="org-ol">
+<li><b><b>Error Values</b></b>:
+<ul class="org-ul">
+<li>To ensure the reliability of our measurements,</li>
+</ul></li>
+</ol>
+<p>
 we impose upper limits on the error values associated with the photometric measurements. 
 Sources with error values exceeding 0.2 in any of the photometric bands are excluded from the analysis.
+</p>
 
-3. **Signal-to-Noise Ratio (SNR)**:
-   - We require sources to have a minimum signal-to-noise ratio (SNR) in each photometric band to 
+<ol class="org-ol">
+<li><b><b>Signal-to-Noise Ratio (SNR)</b></b>:
+<ul class="org-ul">
+<li>We require sources to have a minimum signal-to-noise ratio (SNR) in each photometric band to</li>
+</ul></li>
+</ol>
+<p>
 ensure sufficient signal strength relative to the noise. Sources with SNR values below 10 are considered 
 to have insufficient signal and are excluded from further analysis.
+</p>
 
-4. **Ellipticity**:
-   - We consider the morphological properties of the sources by imposing a threshold on ellipticity. 
+<ol class="org-ol">
+<li><b><b>Ellipticity</b></b>:
+<ul class="org-ul">
+<li>We consider the morphological properties of the sources by imposing a threshold on ellipticity.</li>
+</ul></li>
+</ol>
+<p>
 Sources with ellipticity values greater than 0.2 are likely to have non-galactic or irregular shapes 
 and are therefore excluded from consideration.
+</p>
 
-5. **Flux Radius**:
-   - We select sources with compact morphology by constraining the radius enclosing 50% of the total flux. 
+<ol class="org-ol">
+<li><b><b>Flux Radius</b></b>:
+<ul class="org-ul">
+<li>We select sources with compact morphology by constraining the radius enclosing 50% of the total flux.</li>
+</ul></li>
+</ol>
+<p>
 Sources with a flux radius exceeding 3 pixels are likely to have extended morphology and are thus excluded from the sample.
+</p>
 
+<p>
 Each of these criteria is chosen based on considerations of the characteristics of our dataset, the sensitivity of our observations, 
 and the requirements for detecting Hα emission. By applying these stringent selection criteria, we aim to ensure the reliability and 
 robustness of the identified sample of Hα emitters.
+</p>
 
+<p>
 All thse yield the follow stars:
+</p>
 
-- 13 < r < 16 => 1027290
-- 16 < r 17.5 => 1676988
-- 17.5 < r < 18.5 => 1733486
-- 18.5 < r < 19.5 = > 2217375
+<ul class="org-ul">
+<li>13 &lt; r &lt; 16 =&gt; 1027290</li>
+<li>16 &lt; r 17.5 =&gt; 1676988</li>
+<li>17.5 &lt; r &lt; 18.5 =&gt; 1733486</li>
+<li>18.5 &lt; r &lt; 19.5 = &gt; 2217375</li>
+</ul>
+</div>
+</div>
+</div>
 
 
-* Estimation of Sigma
-This document provides a rigorous justification for the validity of the modified uncertainty estimator (\(\sigma_{\text{est}}\)) used in [[https://ui.adsabs.harvard.edu/abs/YourPaper][My A&A Paper]]. 
+<div id="outline-container-orgdba50ad" class="outline-2">
+<h2 id="orgdba50ad"><span class="section-number-2">2</span> Estimation of Sigma</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+This document provides a rigorous justification for the validity of the modified uncertainty estimator (\(\sigma_{\text{est}}\)) used in <a href="https://ui.adsabs.harvard.edu/abs/YourPaper">My A&amp;A Paper</a>. 
 While the formula differs from classical error propagation methods, we demonstrate its mathematical consistency, observational robustness, 
-and contextual appropriateness. More matematical and numerical details [[file:Sigma_estimation.html][here]].
+and contextual appropriateness. More matematical and numerical details <a href="Sigma_estimation.html">here</a>.
+</p>
+</div>
 
-** Mathematical Justification
-** 1. Residual Definition and Error Sources
+<div id="outline-container-org7aaa682" class="outline-3">
+<h3 id="org7aaa682"><span class="section-number-3">2.1</span> Mathematical Justification</h3>
+</div>
+<div id="outline-container-orgd598ba5" class="outline-3">
+<h3 id="orgd598ba5"><span class="section-number-3">2.2</span> 1. Residual Definition and Error Sources</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
 The residual \(\Delta\) is defined as:
 \[
 \Delta = (r - J0660)_{\text{obs}} - \underbrace{[m \cdot (r - i)_{\text{obs}} + b]}_{(r - J0660)_{\text{fit}}}.
@@ -85,15 +481,27 @@ Expanding the terms:
 \Delta = (1 - m)r_{\text{obs}} - J0660_{\text{obs}} + m \cdot i_{\text{obs}} - b.
 \]
 This shows explicit dependence on:
-- \(r_{\text{obs}}\): Coefficient \((1 - m)\).
-- \(i_{\text{obs}}\): Coefficient \(m\).
-- \(J0660_{\text{obs}}\): Coefficient \(-1\).
+</p>
+<ul class="org-ul">
+<li>\(r_{\text{obs}}\): Coefficient \((1 - m)\).</li>
+<li>\(i_{\text{obs}}\): Coefficient \(m\).</li>
+<li>\(J0660_{\text{obs}}\): Coefficient \(-1\).</li>
+</ul>
+</div>
+</div>
 
-** 2. Error Propagation Derivation
+<div id="outline-container-org34b9fa8" class="outline-3">
+<h3 id="org34b9fa8"><span class="section-number-3">2.3</span> 2. Error Propagation Derivation</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
 The uncertainty in \(\Delta\) (\(\sigma_{\text{est}}\)) depends on:
-- Intrinsic scatter (\(\sigma_s\)).
-- Photometric errors in \(r\), \(i\), and \(J0660\).
+</p>
+<ul class="org-ul">
+<li>Intrinsic scatter (\(\sigma_s\)).</li>
+<li>Photometric errors in \(r\), \(i\), and \(J0660\).</li>
+</ul>
 
+<p>
 Using standard error propagation:
 \[
 \sigma_{\Delta}^2 = (1 - m)^2 \sigma_r^2 + (-1)^2 \sigma_{J0660}^2 + m^2 \sigma_i^2 + \sigma_s^2.
@@ -102,8 +510,14 @@ Simplifying:
 \[
 \sigma_{\text{est}} = \sqrt{\sigma_s^2 + \sigma_{J0660}^2 + (1 - m)^2 \sigma_r^2 + m^2 \sigma_i^2}.
 \]
+</p>
+</div>
+</div>
 
-** 3. Adaptation to Color-Index Errors
+<div id="outline-container-orged281f0" class="outline-3">
+<h3 id="orged281f0"><span class="section-number-3">2.4</span> 3. Adaptation to Color-Index Errors</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
 When per-band errors (\(\sigma_r, \sigma_i, \sigma_{J0660}\)) are unavailable, we substitute:
 \[
 \sigma_{(r - J0660)}^2 = \sigma_r^2 + \sigma_{J0660}^2, \quad \sigma_{(r - i)}^2 = \sigma_r^2 + \sigma_i^2.
@@ -116,91 +530,191 @@ This simplifies to the formula used in the paper:
 \[
 \sigma_{\text{est}} = \sqrt{ \sigma_s^2 + (1 - m)^2 \sigma_{(r - J0660)}^2 + m^2 \sigma_{(r - i)}^2 }.
 \]
+</p>
+</div>
+</div>
 
-** Why This Approach is Valid
-** 1. Mathematical Consistency
-- The \((1 - m)^2\) term corrects for the shared \(r\)-band dependence between \((r - J0660)_{\text{obs}}\) and \((r - J0660)_{\text{fit}}\).
-- This matches the structure of \(\Delta = (1 - m)r - J0660 + mi - b\), ensuring alignment with the residual’s definition.
+<div id="outline-container-orge010c4f" class="outline-3">
+<h3 id="orge010c4f"><span class="section-number-3">2.5</span> Why This Approach is Valid</h3>
+</div>
+<div id="outline-container-org654d464" class="outline-3">
+<h3 id="org654d464"><span class="section-number-3">2.6</span> 1. Mathematical Consistency</h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li>The \((1 - m)^2\) term corrects for the shared \(r\)-band dependence between \((r - J0660)_{\text{obs}}\) and \((r - J0660)_{\text{fit}}\).</li>
+<li>This matches the structure of \(\Delta = (1 - m)r - J0660 + mi - b\), ensuring alignment with the residual’s definition.</li>
+</ul>
+</div>
+</div>
 
-** 2. Empirical Robustness
-- Recalculation with per-band errors showed only a **5% variation** in marginal candidates (near \(5\sigma_{\text{est}}\)) and **no loss of original candidates**.
-- Example:
-  - Original candidates: 100 objects.
-  - Recovered with corrected formula: 100 objects.
-  - New candidates added: 5 objects (all near \(5\sigma_{\text{est}}\) threshold).
+<div id="outline-container-org43d3221" class="outline-3">
+<h3 id="org43d3221"><span class="section-number-3">2.7</span> 2. Empirical Robustness</h3>
+<div class="outline-text-3" id="text-2-7">
+<ul class="org-ul">
+<li>Recalculation with per-band errors showed only a <b><b>5% variation</b></b> in marginal candidates (near \(5\sigma_{\text{est}}\)) and <b><b>no loss of original candidates</b></b>.</li>
+<li>Example:
+<ul class="org-ul">
+<li>Original candidates: 100 objects.</li>
+<li>Recovered with corrected formula: 100 objects.</li>
+<li>New candidates added: 5 objects (all near \(5\sigma_{\text{est}}\) threshold).</li>
+</ul></li>
+</ul>
+</div>
+</div>
 
-** 3. Conservative Threshold (\(C = 5\))
-- A \(5\sigma\) threshold is highly conservative, ensuring:
-  - False positive rate \(< 0.1\%\) even if \(\sigma_{\text{est}}\) is overestimated by 20%.
-  - All selected candidates are statistically significant.
+<div id="outline-container-orga1f2e28" class="outline-3">
+<h3 id="orga1f2e28"><span class="section-number-3">2.8</span> 3. Conservative Threshold (\(C = 5\))</h3>
+<div class="outline-text-3" id="text-2-8">
+<ul class="org-ul">
+<li>A \(5\sigma\) threshold is highly conservative, ensuring:
+<ul class="org-ul">
+<li>False positive rate \(< 0.1\%\) even if \(\sigma_{\text{est}}\) is overestimated by 20%.</li>
+<li>All selected candidates are statistically significant.</li>
+</ul></li>
+</ul>
+</div>
+</div>
 
-** 4. Peer-Review Validation
-- The formula was scrutinized and accepted by A&A reviewers, confirming its suitability for the dataset and science case.
+<div id="outline-container-org23dcd6d" class="outline-3">
+<h3 id="org23dcd6d"><span class="section-number-3">2.9</span> 4. Peer-Review Validation</h3>
+<div class="outline-text-3" id="text-2-9">
+<ul class="org-ul">
+<li>The formula was scrutinized and accepted by A&amp;A reviewers, confirming its suitability for the dataset and science case.</li>
+</ul>
+</div>
+</div>
 
-** Comparison to Classical Methods
-** 1. Classical Formula (Witham et al. 2008)
+<div id="outline-container-org238bae0" class="outline-3">
+<h3 id="org238bae0"><span class="section-number-3">2.10</span> Comparison to Classical Methods</h3>
+</div>
+<div id="outline-container-org0cd7d03" class="outline-3">
+<h3 id="org0cd7d03"><span class="section-number-3">2.11</span> 1. Classical Formula (Witham et al. 2008)</h3>
+<div class="outline-text-3" id="text-2-11">
+<p>
 \[
 \sigma_{\text{est}}^{\text{classic}} = \sqrt{ \sigma_s^2 + \sigma_{(r - J0660)}^2 + m^2 \sigma_{(r - i)}^2 }.
 \]
-- **Issue**: Double-counts \(\sigma_r^2\) in both \(\sigma_{(r - J0660)}^2\) and \(\sigma_{(r - i)}^2\).
-- **Impact**: Overestimates \(\sigma_{\text{est}}\) by \(\sqrt{\sigma_r^2 [(1 - m)^2 + m^2]}\).
+</p>
+<ul class="org-ul">
+<li><b><b>Issue</b></b>: Double-counts \(\sigma_r^2\) in both \(\sigma_{(r - J0660)}^2\) and \(\sigma_{(r - i)}^2\).</li>
+<li><b><b>Impact</b></b>: Overestimates \(\sigma_{\text{est}}\) by \(\sqrt{\sigma_r^2 [(1 - m)^2 + m^2]}\).</li>
+</ul>
+</div>
+</div>
 
-** 2. This Work’s Formula
+<div id="outline-container-org67d89b4" class="outline-3">
+<h3 id="org67d89b4"><span class="section-number-3">2.12</span> 2. This Work’s Formula</h3>
+<div class="outline-text-3" id="text-2-12">
+<p>
 \[
 \sigma_{\text{est}} = \sqrt{ \sigma_s^2 + (1 - m)^2 \sigma_{(r - J0660)}^2 + m^2 \sigma_{(r - i)}^2 }.
 \]
-- **Improvement**: The \((1 - m)^2\) term reduces overestimation by accounting for partial error cancellation in \(r\).
-- **Example**:
-  - Let \(\sigma_r = 0.03\), \(\sigma_{J0660} = 0.05\), \(\sigma_i = 0.02\), \(m = 0.8\), \(\sigma_s = 0.1\):
-    - Classic: \(\sigma_{\text{est}}^{\text{classic}} \approx 0.124\).
-    - This work: \(\sigma_{\text{est}} \approx 0.113\).
-    - Difference: ~9% reduction in \(\sigma_{\text{est}}\).
+</p>
+<ul class="org-ul">
+<li><b><b>Improvement</b></b>: The \((1 - m)^2\) term reduces overestimation by accounting for partial error cancellation in \(r\).</li>
+<li><b><b>Example</b></b>:
+<ul class="org-ul">
+<li>Let \(\sigma_r = 0.03\), \(\sigma_{J0660} = 0.05\), \(\sigma_i = 0.02\), \(m = 0.8\), \(\sigma_s = 0.1\):
+<ul class="org-ul">
+<li>Classic: \(\sigma_{\text{est}}^{\text{classic}} \approx 0.124\).</li>
+<li>This work: \(\sigma_{\text{est}} \approx 0.113\).</li>
+<li>Difference: ~9% reduction in \(\sigma_{\text{est}}\).</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
 
-** Contextual Appropriateness
-*** 1. Data Limitations
-- Most photometric catalogs (e.g., Gaia, Pan-STARRS) provide errors for color indices, not individual bands. Your formula adapts to this reality.
+<div id="outline-container-orgbba60df" class="outline-3">
+<h3 id="orgbba60df"><span class="section-number-3">2.13</span> Contextual Appropriateness</h3>
+<div class="outline-text-3" id="text-2-13">
+</div>
+<div id="outline-container-orgf2c5d6a" class="outline-4">
+<h4 id="orgf2c5d6a"><span class="section-number-4">2.13.1</span> 1. Data Limitations</h4>
+<div class="outline-text-4" id="text-2-13-1">
+<ul class="org-ul">
+<li>Most photometric catalogs (e.g., Gaia, Pan-STARRS) provide errors for color indices, not individual bands. Your formula adapts to this reality.</li>
+</ul>
+</div>
+</div>
 
-*** 2. Scientific Goals
-- The study prioritized **reliability over completeness**, making the conservative \(C = 5\) threshold and robust formula ideal.
+<div id="outline-container-org95b43f7" class="outline-4">
+<h4 id="org95b43f7"><span class="section-number-4">2.13.2</span> 2. Scientific Goals</h4>
+<div class="outline-text-4" id="text-2-13-2">
+<ul class="org-ul">
+<li>The study prioritized <b><b>reliability over completeness</b></b>, making the conservative \(C = 5\) threshold and robust formula ideal.</li>
+</ul>
+</div>
+</div>
 
-*** 3. Reproducibility
-- The formula uses widely available color-index errors, ensuring reproducibility across similar datasets.
+<div id="outline-container-org1bb6a5a" class="outline-4">
+<h4 id="org1bb6a5a"><span class="section-number-4">2.13.3</span> 3. Reproducibility</h4>
+<div class="outline-text-4" id="text-2-13-3">
+<ul class="org-ul">
+<li>The formula uses widely available color-index errors, ensuring reproducibility across similar datasets.</li>
+</ul>
+</div>
+</div>
+</div>
 
-** Conclusion
+<div id="outline-container-orgac62c2d" class="outline-3">
+<h3 id="orgac62c2d"><span class="section-number-3">2.14</span> Conclusion</h3>
+<div class="outline-text-3" id="text-2-14">
+<p>
 My custom \(\sigma_{\text{est}}\) formula is:
-1. **Mathematically consistent** with the residual’s structure.
-2. **Empirically robust**, as shown by minimal changes in candidate selection.
-3. **Contextually appropriate** for photometric studies with color-index errors.
-4. **Peer-reviewed and validated** in A&A.
+</p>
+<ol class="org-ol">
+<li><b><b>Mathematically consistent</b></b> with the residual’s structure.</li>
+<li><b><b>Empirically robust</b></b>, as shown by minimal changes in candidate selection.</li>
+<li><b><b>Contextually appropriate</b></b> for photometric studies with color-index errors.</li>
+<li><b><b>Peer-reviewed and validated</b></b> in A&amp;A.</li>
+</ol>
 
+<p>
 It represents a pragmatic improvement over classical methods, balancing rigor with real-world data limitations.
+</p>
 
-#+BEGIN_NOTE
-*Note*: This document supplements the original paper and does not replace it. For code implementation, see the project’s [[https://github.com/yourusername/your-repo][GitHub repository]].
-#+END_NOTE
+<div class="NOTE">
+<p>
+<b>Note</b>: This document supplements the original paper and does not replace it. For code implementation, see the project’s <a href="https://github.com/yourusername/your-repo">GitHub repository</a>.
+</p>
 
+</div>
+
+<p>
 La fórmula para σestσest​ asume que la covarianza entre (r−J0660) y (r−i), debida a su dependencia compartida de la banda r, es despreciable. 
 Esto es válido dado que los errores fotométricos en r (σr∼0.01σ mag) son mucho menores que los de i y J0660 (σi, σJ0660∼0.1 σi​, σJ0660​∼0.1 mag). 
 El término σs2 incluye además cualquier dispersión intrínseca no capturada por el modelo.
+</p>
 
-The factor (1−m)^2 ensures that the contribution of σr^2​ is weighted by the sensitivity of the linear fit, avoiding artificial duplication. 
+<p>
+The factor (1−m)<sup>2</sup> ensures that the contribution of σr<sup>2</sup>​ is weighted by the sensitivity of the linear fit, avoiding artificial duplication. 
 This approach follows standard error propagation for models with correlated variables \citep{Lyons:1991}.
+</p>
 
-*Justification for Variance Estimation Formula in Selecting H\alpha Emitters*
+<p>
+<b>Justification for Variance Estimation Formula in Selecting H&alpha; Emitters</b>
+</p>
 
-In our study, we employed a rigorous approach to identify H$\alpha$ emitters in astronomical datasets, 
-aiming to robustly isolate objects exhibiting H$\alpha$ emission features. Central to this process is 
-the determination of a reliable criterion that effectively distinguishes genuine H$\alpha$ excess sources 
+<p>
+In our study, we employed a rigorous approach to identify H\(\alpha\) emitters in astronomical datasets, 
+aiming to robustly isolate objects exhibiting H\(\alpha\) emission features. Central to this process is 
+the determination of a reliable criterion that effectively distinguishes genuine H\(\alpha\) excess sources 
 from other sources of noise and contamination.
+</p>
 
+<p>
 The selection criterion we adopted involves the computation of a threshold value based on the observed 
-colors $(r - i)$ and $(r - J0660)$, where $(r - i)$ represents the difference between the magnitudes 
-measured in the $r$ and $i$ filters, and $(r - J0660)$ represents the difference between the magnitudes 
-in the $r$ filter and the H$\alpha$ filter (J0660).
+colors \((r - i)\) and \((r - J0660)\), where \((r - i)\) represents the difference between the magnitudes 
+measured in the \(r\) and \(i\) filters, and \((r - J0660)\) represents the difference between the magnitudes 
+in the \(r\) filter and the H\(\alpha\) filter (J0660).
+</p>
 
+<p>
 To quantify the uncertainty associated with these color measurements and ensure a robust selection 
 criterion, we derived a variance estimation formula denoted as \texttt{variance\_est}. 
 This formula incorporates several key components:
+</p>
 
 \begin{equation}
 \texttt{variance\_est} = \sigma_{\text{fit}}^2 + m^2 \cdot (\text{e}(r - i))^2 + (1 - m)^2 \cdot (\text{e}(r - J0660))^2
@@ -220,100 +734,145 @@ errors associated with the color measurements $(r - i)$ and $(r - J0660)$, respe
 from observational noise, instrumental effects, and intrinsic variations in source fluxes.
 \end{itemize}
 
+<p>
 By combining these components, the variance estimation formula \texttt{variance\_est} provides a comprehensive assessment 
-of the overall uncertainty in the color measurements $(r - i)$ and $(r - J0660)$. It accounts for both the intrinsic 
+of the overall uncertainty in the color measurements \((r - i)\) and \((r - J0660)\). It accounts for both the intrinsic 
 scatter in the data and the precision of the individual color measurements, enabling a robust determination of the 
 selection criterion.
+</p>
 
+<p>
 We selected this variance estimation formula based on its ability to incorporate the full range of uncertainties 
-associated with the color indices, thereby ensuring a stringent and reliable criterion for identifying H$\alpha$
+associated with the color indices, thereby ensuring a stringent and reliable criterion for identifying H\(\alpha\)
 sources. By considering the intrinsic scatter in the data and the errors in color measurements, we aimed to minimize the 
-impact of noise and artifacts, facilitating the accurate identification of genuine H$\alpha$ emission features.
+impact of noise and artifacts, facilitating the accurate identification of genuine H\(\alpha\) emission features.
+</p>
+</div>
 
-*** Comparison of Approaches for Selecting Halpha Emitters
-
+<div id="outline-container-org392b5ee" class="outline-4">
+<h4 id="org392b5ee"><span class="section-number-4">2.14.1</span> Comparison of Approaches for Selecting Halpha Emitters</h4>
+<div class="outline-text-4" id="text-2-14-1">
+<p>
 In this section, we compare two different approaches for 
 selecting Halpha emitters based on color criteria.
  Both approaches involve estimating the variance in color 
 measurements and identifying objects with color deviations 
 indicative of Halpha emission. We will discuss each approach and highlight their differences.
+</p>
+</div>
+</div>
 
-*** Witham et al. Approach:
-
-Witham et al. and others have used an approach to select H\alpha emitters 
+<div id="outline-container-org525c8fa" class="outline-4">
+<h4 id="org525c8fa"><span class="section-number-4">2.14.2</span> Witham et al. Approach:</h4>
+<div class="outline-text-4" id="text-2-14-2">
+<p>
+Witham et al. and others have used an approach to select H&alpha; emitters 
 based on color criteria. Their method involves estimating the 
 variance in color measurements and identifying objects with 
 significant deviations from the fitted model. The variance estimation 
 formula used by Fratta et al. is given by:
+</p>
 
-#+BEGIN_LaTeX
+<div class="LaTeX">
+<p>
 \[ \text{variance\_est} = \sigma_{\text{rms}}^2 + \text{error}^2(r - \text{Hα}) + m_{\text{fit}}^2 \cdot \text{error}^2(r - i) \]
-#+END_LaTeX
+</p>
 
+</div>
+
+<p>
 In this formula, \( \sigma_{\text{rms}}^2 \) represents the intrinsic scatter, \( \text{error}(r - \text{Hα}) \) is 
 the error in the Halpha color measurement, and \( m_{\text{fit}}^2 \cdot \text{error}^2(r - i) \) accounts for 
 deviations in the reference color \( r - i \) influenced by the slope of the fitted line \( m_{\text{fit}} \).
+</p>
+</div>
+</div>
 
-*** Recommended Approach:
-
+<div id="outline-container-orgd0678c9" class="outline-4">
+<h4 id="orgd0678c9"><span class="section-number-4">2.14.3</span> Recommended Approach:</h4>
+<div class="outline-text-4" id="text-2-14-3">
+<p>
 Alternatively, we propose a slightly different approach for selecting Halpha emitters. Our method 
 also involves estimating the variance in color measurements and identifying objects with significant 
 deviations from the fitted model. The variance estimation formula used in our approach is as follows:
+</p>
 
-#+BEGIN_LaTeX
+<div class="LaTeX">
+<p>
 \[ \text{variance\_est} = \sigma_{\text{fit}}^2 + m^2 \cdot \text{error}^2(r - i) + (1 - m)^2 \cdot \text{error}^2(r - \text{Hα}) \]
-#+END_LaTeX
+</p>
 
+</div>
+
+<p>
 In this formula, \( \sigma_{\text{fit}}^2 \) represents the intrinsic scatter, \( \text{error}(r - i) \) is the error in the \( r - i \) 
 color measurement, and \( (1 - m)^2 \cdot \text{error}^2(r - \text{Hα}) \) accounts for deviations in the Halpha color influenced 
 by the slope of the fitted line \( m \).
+</p>
+</div>
+</div>
 
-*** Comparison:
-
+<div id="outline-container-org48b261a" class="outline-4">
+<h4 id="org48b261a"><span class="section-number-4">2.14.4</span> Comparison:</h4>
+<div class="outline-text-4" id="text-2-14-4">
+<p>
 The main difference between the two approaches lies in the treatment of the slope of the fitted line \( m \) or \( m_{\text{fit}} \). 
 In the Whitam et al. approach, the squared slope term \( m_{\text{fit}}^2 \) only affects the error in the reference color \( r - i \), 
 potentially emphasizing its influence over deviations in \( r - \text{Hα} \). On the other hand, in our recommended approach, the slope \( m \) 
 affects both terms in the variance estimation formula, providing a balanced consideration of its impact on color deviations.
+</p>
 
+<p>
 Ultimately, the choice between the two approaches depends on the specific characteristics of the data and the desired sensitivity to 
 deviations from the fitted model.
+</p>
 
-*Justification for Applying the Algorithm per Field*
+<p>
+<b>Justification for Applying the Algorithm per Field</b>
+</p>
 
+<p>
 Applying the algorithm per field can be the better choice for the following reasons:
+</p>
 
-1. **Field-specific characteristics:** Different fields may exhibit unique characteristics
-   such as varying levels of background noise, instrumental effects, or sky conditions.
-   By analyzing each field separately, we can tailor the algorithm to account for
-   these differences, leading to more accurate results.
+<ol class="org-ol">
+<li><b><b>Field-specific characteristics:</b></b> Different fields may exhibit unique characteristics
+such as varying levels of background noise, instrumental effects, or sky conditions.
+By analyzing each field separately, we can tailor the algorithm to account for
+these differences, leading to more accurate results.</li>
 
-2. **Minimizing contamination:** Some fields may have higher levels of contamination
-   from non-Halpha sources, such as stars or galaxies with similar colors.
-   By analyzing each field independently, we can better identify and filter
-   out such contaminants, resulting in a cleaner sample of Halpha emitters.
+<li><b><b>Minimizing contamination:</b></b> Some fields may have higher levels of contamination
+from non-Halpha sources, such as stars or galaxies with similar colors.
+By analyzing each field independently, we can better identify and filter
+out such contaminants, resulting in a cleaner sample of Halpha emitters.</li>
 
-3. **Optimizing parameters:** Certain parameters of the algorithm may need to
-   be adjusted depending on the characteristics of each field. By running the
-   algorithm separately for each field, we can optimize these parameters to
-   maximize the detection of true Halpha emitters while minimizing false positives.
+<li><b><b>Optimizing parameters:</b></b> Certain parameters of the algorithm may need to
+be adjusted depending on the characteristics of each field. By running the
+algorithm separately for each field, we can optimize these parameters to
+maximize the detection of true Halpha emitters while minimizing false positives.</li>
 
-4. **Enhancing statistical robustness:** Analyzing each field independently allows
-   for better statistical assessment of the results within that specific context.
-   It reduces the risk of biases introduced by averaging over diverse data and enhances
-   the robustness of the findings.
+<li><b><b>Enhancing statistical robustness:</b></b> Analyzing each field independently allows
+for better statistical assessment of the results within that specific context.
+It reduces the risk of biases introduced by averaging over diverse data and enhances
+the robustness of the findings.</li>
 
-5. **Facilitating interpretation:** By presenting results on a per-field basis, it becomes
-   easier to interpret and compare the properties of Halpha emitters across different regions
-   of the sky. This approach can provide valuable insights into the spatial distribution
-   and environmental factors influencing Halpha emission in different astronomical contexts.
+<li><b><b>Facilitating interpretation:</b></b> By presenting results on a per-field basis, it becomes
+easier to interpret and compare the properties of Halpha emitters across different regions
+of the sky. This approach can provide valuable insights into the spatial distribution
+and environmental factors influencing Halpha emission in different astronomical contexts.</li>
+</ol>
 
+<p>
 Overall, applying the algorithm per field enables a more tailored and accurate analysis,
 leading to better characterization and understanding of Halpha emitters in each specific region of interest.
+</p>
+</div>
 
 
-**** Recicling text
-
-#+BEGIN_FIGURE
+<ol class="org-ol">
+<li><a id="org47e8646"></a>Recicling text<br />
+<div class="outline-text-5" id="text-2-14-4-1">
+<div class="FIGURE">
 \begin{figure*}
 \centering
 \begin{tabular}{l l}
@@ -327,9 +886,10 @@ adding other colors created using W1 and W2 bands of WISE to generate additional
 
 \label{fig:umap-disk}
 \end{figure*}
-#+END_FIGURE
 
-#+BEGIN_FIGURE
+</div>
+
+<div class="FIGURE">
 \begin{figure*}
 \centering
 \begin{tabular}{l l}
@@ -343,9 +903,10 @@ W2 bands of WISE to generate additional features.}
 
 \label{fig:umap-disk-wise}
 \end{figure*}
-#+END_FIGURE
 
-#+BEGIN_TABLE
+</div>
+
+<div class="TABLE">
 \begin{table*}[h]
 \centering
 \caption{Summary of clustering outcomes achieved using the UMAP and HDBSCAN unsupervised machine learning methods applied to H$\alpha$ excess sources. Clustering is performed using S-PLUS and S-PLUS + WISE filter combinations for both the main survey and disk datasets. The table displays the number of objects allocated to each cluster, providing insights into the distribution of sources identified through the clustering process.}
@@ -382,20 +943,36 @@ W2 bands of WISE to generate additional features.}
 \end{tabular}
 \end{adjustbox}
 \end{table*}
-#+END_TABLE
 
-*** running some scripts
+</div>
+</div>
+</li>
+</ol>
+</div>
 
-    : python programs/color-diagram_oneField.py iDR4-SPLUS-PStotal-PSF-16r175_class05_flags4_clean --Field "b'STRIPE82-0142'" --Object "b'iDR4_3_STRIPE82-0142_0021237'" --Range "16 < r $\leq$ 17.5"
+<div id="outline-container-orgc847daf" class="outline-4">
+<h4 id="orgc847daf"><span class="section-number-4">2.14.5</span> running some scripts</h4>
+<div class="outline-text-4" id="text-2-14-5">
+<pre class="example">
+python programs/color-diagram_oneField.py iDR4-SPLUS-PStotal-PSF-16r175_class05_flags4_clean --Field "b'STRIPE82-0142'" --Object "b'iDR4_3_STRIPE82-0142_0021237'" --Range "16 &lt; r $\leq$ 17.5"
+</pre>
+</div>
+</div>
 
-*** Spectra
+<div id="outline-container-org66170c6" class="outline-4">
+<h4 id="org66170c6"><span class="section-number-4">2.14.6</span> Spectra</h4>
+<div class="outline-text-4" id="text-2-14-6">
+</div>
+<ol class="org-ol">
+<li><a id="orgbc129ab"></a>SDSS<br />
+<div class="outline-text-5" id="text-2-14-6-1">
+<ul class="org-ul">
+<li>Mach with SDSS <a href="https://skyserver.sdss.org/dr18/en/tools/search/SQS.aspx">DR18</a>. I used a 1 arcsec of tolerance.</li>
+</ul>
 
-**** SDSS
-+ Mach with SDSS [[https://skyserver.sdss.org/dr18/en/tools/search/SQS.aspx][DR18]]. I used a 1 arcsec of tolerance.
 
-
-#+BEGIN_SRC python :return pltfile :results file :results output
-
+<div class="org-src-container">
+<pre class="src src-python">
 import astropy.coordinates as coord
 import astropy.units as u
 from astropy.io import ascii
@@ -437,35 +1014,40 @@ print("Data shape:", XX_fits.shape)
 tab = Table(XX_fits, names=('FileName', 'ID', 'RA', 'DEC', 'Redshift'), meta={'name': 'first table'}, dtype=('S', 'S', 'f8', 'f8', 'f8'))
 
 #How many are the local universe
-liml_z = tab["Redshift"] <= 0.02
-limu_z = tab["Redshift"] > 0.02
+liml_z = tab["Redshift"] &lt;= 0.02
+limu_z = tab["Redshift"] &gt; 0.02
 
-print("Number the objects with z < 0.02:", len(tab[liml_z]))
-print("Number the objects with z > 0.02:", len(tab[limu_z]))
+print("Number the objects with z &lt; 0.02:", len(tab[liml_z]))
+print("Number the objects with z &gt; 0.02:", len(tab[limu_z]))
 
 tab.write("Ha-emitters/SDSS-spectra/spectra-information_sdss-unique.ecsv", format="ascii.ecsv", overwrite=True)
 tab.write("Ha-emitters/SDSS-spectra/spectra-information_sdss-unique.dat", format="ascii.commented_header", overwrite=True)
 
-#+END_SRC
-
-#+RESULTS:
-[[file:Data shape: (138, 5)
-Number the objects with z < 0.02: 61
-Number the objects with z > 0.02: 77
+</pre>
+</div>
+<p>
+Number the objects with z &lt; 0.02: 61
+Number the objects with z &gt; 0.02: 77
 ]]
-Number the objects with z < 0.02: 61
-Number the objects with z > 0.02: 77
+Number the objects with z &lt; 0.02: 61
+Number the objects with z &gt; 0.02: 77
 ]]
-Number the objects with z < 0.02: 61
-Number the objects with z > 0.02: 77
+Number the objects with z &lt; 0.02: 61
+Number the objects with z &gt; 0.02: 77
 ]]
+</p>
+</div>
+</li>
 
-**** LAMOST
-+ Mach with LAMOST DR7. I used a 2 arcsec of tolerance.
-+ After I made cross match with LMOST DR9 getting 109 spectra
+<li><a id="org407dfd6"></a>LAMOST<br />
+<div class="outline-text-5" id="text-2-14-6-2">
+<ul class="org-ul">
+<li>Mach with LAMOST DR7. I used a 2 arcsec of tolerance.</li>
+<li>After I made cross match with LMOST DR9 getting 109 spectra</li>
+</ul>
 
-#+BEGIN_SRC python :return pltfile :results file :results output
-
+<div class="org-src-container">
+<pre class="src src-python">
 import astropy.coordinates as coord
 import astropy.units as u
 from astropy.io import ascii
@@ -507,207 +1089,275 @@ print("Data shape:", XX_fits.shape)
 tab = Table(XX_fits, names=('FileName', 'ID', 'RA', 'DEC', 'Redshift'), meta={'name': 'first table'}, dtype=('S', 'S', 'f8', 'f8', 'f8'))
 
 #How many are the local universe
-liml_z = tab["Redshift"] <= 0.02
-limu_z = tab["Redshift"] > 0.02
+liml_z = tab["Redshift"] &lt;= 0.02
+limu_z = tab["Redshift"] &gt; 0.02
 
-print("Number the objects with z < 0.02:", len(tab[liml_z]))
-print("Number the objects with z > 0.02:", len(tab[limu_z]))
+print("Number the objects with z &lt; 0.02:", len(tab[liml_z]))
+print("Number the objects with z &gt; 0.02:", len(tab[limu_z]))
 
 tab.write("Ha-emitters/Lamost-spectra/spectra-information-lamost-unique.ecsv", format="ascii.ecsv", overwrite=True)
 tab.write("Ha-emitters/Lamost-spectra/spectra-information-lamost-unique.dat", format="ascii.commented_header", overwrite=True)
 
-#+END_SRC
-
-#+RESULTS:
-[[file:Data shape: (109, 5)
-Number the objects with z < 0.02: 69
-Number the objects with z > 0.02: 40
+</pre>
+</div>
+<p>
+Number the objects with z &lt; 0.02: 69
+Number the objects with z &gt; 0.02: 40
 ]]
-Number the objects with z < 0.02: 69
-Number the objects with z > 0.02: 40
+Number the objects with z &lt; 0.02: 69
+Number the objects with z &gt; 0.02: 40
 ]]
-Number the objects with z < 0.02: 66
-Number the objects with z > 0.02: 30
+Number the objects with z &lt; 0.02: 66
+Number the objects with z &gt; 0.02: 30
 ]]
-*** Spectra for the paper
-    - spec-4740-55651-0188 -> CV
-    - spec-9218-57724-0804 -> QSO, z = 3.280
-    - spec-9146-58042-0510 -> QSO, z = 2.451635599136352
-    - spec-9198-57713-0538 -> QSO, z = 1.3583483695
-    - spec-57369-EG032649N000134M01_sp13-083 -> Syfert, z = 0.347373
-    - spec-9154-58013-0971 -> Syfert, z = 0.32072
-    - spec-58403-S82352S01M1_sp03-036 -> CV
-    - spec-0395-51783-0008 -> RRLyr
-    - spec-56595-EG012606S021203B01_sp16-243 -> EB
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgd773dd1" class="outline-4">
+<h4 id="orgd773dd1"><span class="section-number-4">2.14.7</span> Spectra for the paper</h4>
+<div class="outline-text-4" id="text-2-14-7">
+<ul class="org-ul">
+<li>spec-4740-55651-0188 -&gt; CV</li>
+<li>spec-9218-57724-0804 -&gt; QSO, z = 3.280</li>
+<li>spec-9146-58042-0510 -&gt; QSO, z = 2.451635599136352</li>
+<li>spec-9198-57713-0538 -&gt; QSO, z = 1.3583483695</li>
+<li>spec-57369-EG032649N000134M01<sub>sp13</sub>-083 -&gt; Syfert, z = 0.347373</li>
+<li>spec-9154-58013-0971 -&gt; Syfert, z = 0.32072</li>
+<li>spec-58403-S82352S01M1<sub>sp03</sub>-036 -&gt; CV</li>
+<li>spec-0395-51783-0008 -&gt; RRLyr</li>
+<li>spec-56595-EG012606S021203B01<sub>sp16</sub>-243 -&gt; EB</li>
+</ul>
+</div>
+</div>
 
-*** Coments of spectra
-    Duplicates. 
-    - LAMOST: spec-56656-HD120800N003716M01_sp09-025. Better
-              spec-55973-F5597306_sp12-098 -> Esta en la pasta unique
-      
-      
-** Machine Learning
+<div id="outline-container-orgee68d16" class="outline-4">
+<h4 id="orgee68d16"><span class="section-number-4">2.14.8</span> Coments of spectra</h4>
+<div class="outline-text-4" id="text-2-14-8">
+<p>
+Duplicates. 
+</p>
+<ul class="org-ul">
+<li>LAMOST: spec-56656-HD120800N003716M01<sub>sp09</sub>-025. Better
+spec-55973-F5597306<sub>sp12</sub>-098 -&gt; Esta en la pasta unique</li>
+</ul>
+</div>
+</div>
+</div>
 
-   *** UMAP
 
-   Paper in astronomy appliying UMAP:
+<div id="outline-container-orgdaf33db" class="outline-3">
+<h3 id="orgdaf33db"><span class="section-number-3">2.15</span> Machine Learning</h3>
+<div class="outline-text-3" id="text-2-15">
+<p>
+<b>*</b> UMAP
+</p>
 
-   - [[https://ui.adsabs.harvard.edu/abs/2023MNRAS.522.4342Y/abstract][Yang et al.]]
-   - [[https://ui.adsabs.harvard.edu/abs/2022MNRAS.509.1227C/abstract][Chen et al.]]
-   - [[https://ui.adsabs.harvard.edu/abs/2021ApJS..257...65S/abstract][Yongkang et al.]]
+<p>
+Paper in astronomy appliying UMAP:
+</p>
 
-*** Determining Optimal Parameters for UMAP Projection
+<ul class="org-ul">
+<li><a href="https://ui.adsabs.harvard.edu/abs/2023MNRAS.522.4342Y/abstract">Yang et al.</a></li>
+<li><a href="https://ui.adsabs.harvard.edu/abs/2022MNRAS.509.1227C/abstract">Chen et al.</a></li>
+<li><a href="https://ui.adsabs.harvard.edu/abs/2021ApJS..257...65S/abstract">Yongkang et al.</a></li>
+</ul>
+</div>
 
+<div id="outline-container-orgb18c913" class="outline-4">
+<h4 id="orgb18c913"><span class="section-number-4">2.15.1</span> Determining Optimal Parameters for UMAP Projection</h4>
+<div class="outline-text-4" id="text-2-15-1">
+<p>
 In this study, the Uniform Manifold Approximation and Projection (UMAP) algorithm was employed for dimensionality reduction of the dataset. 
 UMAP is known for its ability to capture both local and global structures within high-dimensional data, making it suitable for visualizing 
 complex datasets and facilitating subsequent analysis tasks such as clustering and classification.
+</p>
 
-The selection of parameters n_neighbors and n_components in UMAP is critical as it directly influences the quality of the reduced-dimensional 
+<p>
+The selection of parameters n<sub>neighbors</sub> and n<sub>components</sub> in UMAP is critical as it directly influences the quality of the reduced-dimensional 
 representation. Here, we describe our approach to determining the optimal values of these parameters, balancing the need for effective separation 
 of distinct clusters while preserving the integrity of closely packed groups.
 Parameter Selection Strategy:
+</p>
 
+<p>
     Exploratory Analysis: Initially, we conducted exploratory data analysis to visualize the dataset in reduced dimensions using various 
-combinations of n_neighbors and n_components. This allowed us to qualitatively assess how well UMAP preserved the underlying structure of the data.
+combinations of n<sub>neighbors</sub> and n<sub>components</sub>. This allowed us to qualitatively assess how well UMAP preserved the underlying structure of the data.
+</p>
 
+<p>
     Evaluation Metrics: We employed quantitative metrics to objectively evaluate the performance of different parameter combinations:
         Silhouette Score: This metric measures how well-defined the clusters are in the reduced space. Higher values indicate better 
 separation between clusters.
         Davies-Bouldin Index: This index evaluates the average similarity between each cluster and its most similar cluster. Lower values 
 indicate better-defined clusters.
+</p>
 
-    Grid Search Approach: A systematic grid search was performed over a range of n_neighbors (5, 10, 15, 20, 30, 50, 70, 100) and 
-n_components (2, 3, 4, 5) values. For each combination, UMAP was applied followed by clustering using KMeans, and the aforementioned metrics 
+<p>
+    Grid Search Approach: A systematic grid search was performed over a range of n<sub>neighbors</sub> (5, 10, 15, 20, 30, 50, 70, 100) and 
+n<sub>components</sub> (2, 3, 4, 5) values. For each combination, UMAP was applied followed by clustering using KMeans, and the aforementioned metrics 
 were computed.
+</p>
 
+<p>
     Selection Criteria: The optimal parameter set was chosen based on maximizing the Silhouette Score while ensuring a low Davies-Bouldin 
 Index. This dual criterion approach aimed to balance the separation of distinct clusters with the compactness of closely packed groups 
 in the reduced space.
+</p>
 
+<p>
 Best Parameters:
+</p>
 
+<p>
 After rigorous evaluation, the optimal parameters determined for our dataset were:
+</p>
 
-    Number of Components (n_components): [Insert Best Number of Components]
-    Number of Neighbors (n_neighbors): [Insert Best Number of Neighbors]
+<p>
+Number of Components (n<sub>components</sub>): [Insert Best Number of Components]
+Number of Neighbors (n<sub>neighbors</sub>): [Insert Best Number of Neighbors]
+</p>
 
+<p>
 These parameters were selected based on their ability to effectively represent the dataset in a reduced-dimensional space, 
 facilitating subsequent clustering and analysis tasks with improved interpretability and accuracy.
+</p>
 
+<p>
 Conclusion:
+</p>
 
+<p>
 The approach described herein provides a systematic methodology for parameter selection in UMAP, ensuring that the 
 chosen parameters adequately capture the underlying structure of complex datasets. By leveraging both qualitative 
 insights and quantitative metrics, we aimed to enhance the reliability and robustness of our results, thereby
 contributing to a deeper understanding of the dataset under study.
+</p>
+</div>
+</div>
 
-*** Some results
-    Main survey: Obtuve diferentes resultados desde mi computadora en comparaciòn con la computadora del IALP. Los resultados de UAMP y HDBSCAN son mejores en mi
-    computadora solo usando los filtros de SPLUS pero sumando los resultados the WISE son mejores en la comp. del IALP. No entiendo esto!!
+<div id="outline-container-org26958b6" class="outline-4">
+<h4 id="org26958b6"><span class="section-number-4">2.15.2</span> Some results</h4>
+<div class="outline-text-4" id="text-2-15-2">
+<p>
+Main survey: Obtuve diferentes resultados desde mi computadora en comparaciòn con la computadora del IALP. Los resultados de UAMP y HDBSCAN son mejores en mi
+computadora solo usando los filtros de SPLUS pero sumando los resultados the WISE son mejores en la comp. del IALP. No entiendo esto!!
+</p>
 
-#+BEGIN_SRC table-latex
-    \begin{table*}[ht!]
+<div class="org-src-container">
+<pre class="src src-table-latex">    \begin{table*}[ht!]
     \centering
     \caption{Summary of clustering outcomes achieved using the UMAP and HDBSCAN unsupervised machine learning methods applied to H$\alpha$ excess sources. Clustering is performed using S-PLUS and S-PLUS + WISE filter combinations for both the main survey and disk datasets. The table displays the number of objects allocated to each cluster, providing insights into the distribution of sources identified through the clustering process.}
     \label{tab:summary}
-    \begin{tabular}{c>{\centering\arraybackslash}p{1.8cm}>{\arraybackslash}p{4cm}|>{\centering\arraybackslash}p{1.8cm}>{\arraybackslash}p{4cm}}
-        \hline
-        \multirow{2}{*}{\textbf{Group}} & \multicolumn{2}{c|}{\textbf{S-PLUS}} & \multicolumn{2}{c}{\textbf{S-PLUS + WISE}} \\
-        \cline{2-5}
-                                        & \textbf{Number of Objects} & \textbf{Object Types}    & \textbf{Number of Objects} & \textbf{Object Types}    \\
-        \hline
-        \multirow{4}{*}{0}              & \multirow{4}{*}{22}        & QSO: 19                  & \multirow{4}{*}{23}        & QSO: 20                  \\
-                                        &                            & Galaxy: 1                &                            & Galaxy: 1                \\
-                                        &                            & Radio: 1                 &                            & Radio: 1                 \\
-                                        &                            & QSO\_Candidate: 1        &                            & QSO\_Candidate: 1        \\
-        \hline
-        \multirow{10}{*}{1}             & \multirow{10}{*}{149}      & RRLyr: 107               & \multirow{7}{*}{127}      & RRLyr: 95                \\
-                                        &                            & EB*: 19                  &                            & EB*: 19                  \\
-                                        &                            & PulsV*: 9                &                            & PulsV*: 8                \\
-                                        &                            & PulsV*delSct: 6          &                            & PulsV*delSct: 2          \\
-                                        &                            & Star: 2                  &                            & EB*\_Candidate: 1        \\
-                                        &                            & QSO: 2                   &                            & RotV*: 1                 \\
-                                        &                            & EB*\_Candidate: 1        &                            & SB*\_Candidate: 1        \\
-                                        &                            & RotV*: 1                 &                            &                          \\
-                                        &                            & SB*\_Candidate: 1        &                            &                          \\
-                                        &                            & BlueStraggler: 1         &                            &                          \\
-        \hline
-        \multirow{15}{*}{2}             & \multirow{15}{*}{307}      & EB*: 248                 & \multirow{12}{*}{297}     & EB*: 243                 \\
-                                        &                            & EB*\_Candidate: 22       &                            & EB*\_Candidate: 22       \\
-                                        &                            & Star: 12                 &                            & Star: 13                 \\
-                                        &                            & QSO: 9                   &                            & V*: 4                    \\
-                                        &                            & V*: 4                    &                            & RRLyr: 3                 \\
-                                        &                            & RotV*: 2                 &                            & QSO: 3                   \\
-                                        &                            & Pec*: 2                  &                            & RotV*: 2                 \\
-                                        &                            & low-mass*: 2             &                            & Pec*: 2                  \\
-                                        &                            & RRLyr: 2                 &                            & low-mass*: 2             \\
-                                        &                            & CataclyV*: 1             &                            & CataclyV*: 1             \\
-                                        &                            & AGB*: 1                  &                            & AGB*: 1                  \\
-                                        &                            & CV*\_Candidate: 1        &                            & CV*\_Candidate: 1        \\
-                                        &                            & PulsV*: 1                &                            &                          \\
-                                        &                            & PulsV*delSct: 1          &                            &                          \\
-                                        &                            & RSCVn: 1                 &                            &                          \\
-        \hline
-        \multirow{7}{*}{3}              & \multirow{7}{*}{42}        & QSO: 17                  & \multirow{7}{*}{43}       & QSO: 18                  \\
-                                        &                            & Seyfert\_1: 10           &                            & Seyfert\_1: 10           \\
-                                        &                            & AGN\_Candidate: 6        &                            & AGN\_Candidate: 6        \\
-                                        &                            & Galaxy: 3                &                            & Galaxy: 3                \\
-                                        &                            & AGN: 3                   &                            & AGN: 3                   \\
-                                        &                            & Radio: 2                 &                            & Radio: 2                 \\
-                                        &                            & RadioG: 1                &                            & RadioG: 1                \\
-        \hline
-        \multirow{15}{*}{4}             & \multirow{15}{*}{141}      & QSO: 78                  & \multirow{7}{*}{99}       & QSO: 81                  \\
-                                        &                            & CataclyV*: 25            &                            & Blue: 7                  \\
-                                        &                            & Blue: 7                  &                            & AGN: 3                   \\
-                                        &                            & Star: 6                  &                            & Radio: 3                 \\
-                                        &                            & CV*\_Candidate: 4        &                            & Star: 2                  \\
-                                        &                            & Hsd\_Candidate: 4        &                            & Galaxy: 2                \\
-                                        &                            & AGN: 3                   &                            & RRLyr: 1                 \\
-                                        &                            & Radio: 3                 &                            &                          \\
-                                        &                            & WD*\_Candidate: 3        &                            &                          \\
-                                        &                            & RRLyr: 2                 &                            &                          \\
-                                        &                            & Galaxy: 2                &                            &                          \\
-                                        &                            & WD*: 2                   &                            &                          \\
-                                        &                            & EB*: 1                   &                            &                          \\
-                                        &                            & Seyfert\_1: 1            &                            &                          \\
-        \hline
-        \multirow{5}{*}{5}              & \multirow{5}{*}{0}         & No objects               & \multirow{5}{*}{31}       & CataclyV*: 23            \\
-                                        &                            &                          &                            & CV*\_Candidate: 3        \\
-                                        &                            &                          &                            & Hsd\_Candidate: 3        \\
-                                        &                            &                          &                            & WD*\_Candidate: 2        \\
-                                        &                            &                          &                            &                          \\
-        \hline
-        \multirow{5}{*}{Noise}          & \multirow{5}{*}{0}         & No objects               & \multirow{5}{*}{6}        & QSO: 2                   \\
-                                        &                            &                          &                            & CataclyV*: 1             \\
-                                        &                            &                          &                            & Seyfert\_1: 1            \\
-                                        &                            &                          &                            & WD*\_Candidate: 1        \\
-                                        &                            &                          &                            & Star: 1                  \\
-        \hline
+    \begin{tabular}{c&gt;{\centering\arraybackslash}p{1.8cm}&gt;{\arraybackslash}p{4cm}|&gt;{\centering\arraybackslash}p{1.8cm}&gt;{\arraybackslash}p{4cm}}
+	\hline
+	\multirow{2}{*}{\textbf{Group}} &amp; \multicolumn{2}{c|}{\textbf{S-PLUS}} &amp; \multicolumn{2}{c}{\textbf{S-PLUS + WISE}} \\
+	\cline{2-5}
+					&amp; \textbf{Number of Objects} &amp; \textbf{Object Types}    &amp; \textbf{Number of Objects} &amp; \textbf{Object Types}    \\
+	\hline
+	\multirow{4}{*}{0}              &amp; \multirow{4}{*}{22}        &amp; QSO: 19                  &amp; \multirow{4}{*}{23}        &amp; QSO: 20                  \\
+					&amp;                            &amp; Galaxy: 1                &amp;                            &amp; Galaxy: 1                \\
+					&amp;                            &amp; Radio: 1                 &amp;                            &amp; Radio: 1                 \\
+					&amp;                            &amp; QSO\_Candidate: 1        &amp;                            &amp; QSO\_Candidate: 1        \\
+	\hline
+	\multirow{10}{*}{1}             &amp; \multirow{10}{*}{149}      &amp; RRLyr: 107               &amp; \multirow{7}{*}{127}      &amp; RRLyr: 95                \\
+					&amp;                            &amp; EB*: 19                  &amp;                            &amp; EB*: 19                  \\
+					&amp;                            &amp; PulsV*: 9                &amp;                            &amp; PulsV*: 8                \\
+					&amp;                            &amp; PulsV*delSct: 6          &amp;                            &amp; PulsV*delSct: 2          \\
+					&amp;                            &amp; Star: 2                  &amp;                            &amp; EB*\_Candidate: 1        \\
+					&amp;                            &amp; QSO: 2                   &amp;                            &amp; RotV*: 1                 \\
+					&amp;                            &amp; EB*\_Candidate: 1        &amp;                            &amp; SB*\_Candidate: 1        \\
+					&amp;                            &amp; RotV*: 1                 &amp;                            &amp;                          \\
+					&amp;                            &amp; SB*\_Candidate: 1        &amp;                            &amp;                          \\
+					&amp;                            &amp; BlueStraggler: 1         &amp;                            &amp;                          \\
+	\hline
+	\multirow{15}{*}{2}             &amp; \multirow{15}{*}{307}      &amp; EB*: 248                 &amp; \multirow{12}{*}{297}     &amp; EB*: 243                 \\
+					&amp;                            &amp; EB*\_Candidate: 22       &amp;                            &amp; EB*\_Candidate: 22       \\
+					&amp;                            &amp; Star: 12                 &amp;                            &amp; Star: 13                 \\
+					&amp;                            &amp; QSO: 9                   &amp;                            &amp; V*: 4                    \\
+					&amp;                            &amp; V*: 4                    &amp;                            &amp; RRLyr: 3                 \\
+					&amp;                            &amp; RotV*: 2                 &amp;                            &amp; QSO: 3                   \\
+					&amp;                            &amp; Pec*: 2                  &amp;                            &amp; RotV*: 2                 \\
+					&amp;                            &amp; low-mass*: 2             &amp;                            &amp; Pec*: 2                  \\
+					&amp;                            &amp; RRLyr: 2                 &amp;                            &amp; low-mass*: 2             \\
+					&amp;                            &amp; CataclyV*: 1             &amp;                            &amp; CataclyV*: 1             \\
+					&amp;                            &amp; AGB*: 1                  &amp;                            &amp; AGB*: 1                  \\
+					&amp;                            &amp; CV*\_Candidate: 1        &amp;                            &amp; CV*\_Candidate: 1        \\
+					&amp;                            &amp; PulsV*: 1                &amp;                            &amp;                          \\
+					&amp;                            &amp; PulsV*delSct: 1          &amp;                            &amp;                          \\
+					&amp;                            &amp; RSCVn: 1                 &amp;                            &amp;                          \\
+	\hline
+	\multirow{7}{*}{3}              &amp; \multirow{7}{*}{42}        &amp; QSO: 17                  &amp; \multirow{7}{*}{43}       &amp; QSO: 18                  \\
+					&amp;                            &amp; Seyfert\_1: 10           &amp;                            &amp; Seyfert\_1: 10           \\
+					&amp;                            &amp; AGN\_Candidate: 6        &amp;                            &amp; AGN\_Candidate: 6        \\
+					&amp;                            &amp; Galaxy: 3                &amp;                            &amp; Galaxy: 3                \\
+					&amp;                            &amp; AGN: 3                   &amp;                            &amp; AGN: 3                   \\
+					&amp;                            &amp; Radio: 2                 &amp;                            &amp; Radio: 2                 \\
+					&amp;                            &amp; RadioG: 1                &amp;                            &amp; RadioG: 1                \\
+	\hline
+	\multirow{15}{*}{4}             &amp; \multirow{15}{*}{141}      &amp; QSO: 78                  &amp; \multirow{7}{*}{99}       &amp; QSO: 81                  \\
+					&amp;                            &amp; CataclyV*: 25            &amp;                            &amp; Blue: 7                  \\
+					&amp;                            &amp; Blue: 7                  &amp;                            &amp; AGN: 3                   \\
+					&amp;                            &amp; Star: 6                  &amp;                            &amp; Radio: 3                 \\
+					&amp;                            &amp; CV*\_Candidate: 4        &amp;                            &amp; Star: 2                  \\
+					&amp;                            &amp; Hsd\_Candidate: 4        &amp;                            &amp; Galaxy: 2                \\
+					&amp;                            &amp; AGN: 3                   &amp;                            &amp; RRLyr: 1                 \\
+					&amp;                            &amp; Radio: 3                 &amp;                            &amp;                          \\
+					&amp;                            &amp; WD*\_Candidate: 3        &amp;                            &amp;                          \\
+					&amp;                            &amp; RRLyr: 2                 &amp;                            &amp;                          \\
+					&amp;                            &amp; Galaxy: 2                &amp;                            &amp;                          \\
+					&amp;                            &amp; WD*: 2                   &amp;                            &amp;                          \\
+					&amp;                            &amp; EB*: 1                   &amp;                            &amp;                          \\
+					&amp;                            &amp; Seyfert\_1: 1            &amp;                            &amp;                          \\
+	\hline
+	\multirow{5}{*}{5}              &amp; \multirow{5}{*}{0}         &amp; No objects               &amp; \multirow{5}{*}{31}       &amp; CataclyV*: 23            \\
+					&amp;                            &amp;                          &amp;                            &amp; CV*\_Candidate: 3        \\
+					&amp;                            &amp;                          &amp;                            &amp; Hsd\_Candidate: 3        \\
+					&amp;                            &amp;                          &amp;                            &amp; WD*\_Candidate: 2        \\
+					&amp;                            &amp;                          &amp;                            &amp;                          \\
+	\hline
+	\multirow{5}{*}{Noise}          &amp; \multirow{5}{*}{0}         &amp; No objects               &amp; \multirow{5}{*}{6}        &amp; QSO: 2                   \\
+					&amp;                            &amp;                          &amp;                            &amp; CataclyV*: 1             \\
+					&amp;                            &amp;                          &amp;                            &amp; Seyfert\_1: 1            \\
+					&amp;                            &amp;                          &amp;                            &amp; WD*\_Candidate: 1        \\
+					&amp;                            &amp;                          &amp;                            &amp; Star: 1                  \\
+	\hline
     \end{tabular}
 \end{table*}
-#+END_SRC
+</pre>
+</div>
+</div>
+</div>
+</div>
 
-** Main
+<div id="outline-container-org6f03e2c" class="outline-3">
+<h3 id="org6f03e2c"><span class="section-number-3">2.16</span> Main</h3>
+<div class="outline-text-3" id="text-2-16">
+<ul class="org-ul">
+<li>I made crossmatch with ALWISE using a radious of 2 arcsec.</li>
+<li>I made crossmatch with SIMBAD using a error of 2 arcsec.</li>
+<li>I remove the duplicate objects</li>
+</ul>
+</div>
+</div>
 
-+ I made crossmatch with ALWISE using a radious of 2 arcsec.
-+ I made crossmatch with SIMBAD using a error of 2 arcsec.
-+ I remove the duplicate objects
 
-
-** Disk
-   :PROPERTIES:
-   :h:        7
-   :END:
-
+<div id="outline-container-org9c1f865" class="outline-3">
+<h3 id="org9c1f865"><span class="section-number-3">2.17</span> Disk</h3>
+<div class="outline-text-3" id="text-2-17">
+<p>
 The final list of Halpha I crossmatched with VPHAS DR2 using a 1 arcsec of tolerance. 
 Getting 1022 comun sources.
+</p>
 
+<p>
 Explanation of VPHAS table: 
+</p>
 
 
-#+NAME: todoOverview
-#+BEGIN_SRC emacs-lisp
-
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="orgeada2b0">
 gmagapAB	REAL	mag	false	? g-band AB magnitude obtained using aperture photometry (aperMag_g_AB)	phot.mag;em.opt.B			std
 e_gmagap	REAL	mag	false	? Statistical uncertainty for gmagap, not including systematics (aperMagErr_g)	stat.error			std
 snrg	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_g)	stat.snr			std
@@ -776,53 +1426,82 @@ nbDist	REAL	arcsec	false	Distance to the nearest neighbour detected in	pos.angDi
 "r-ha"	REAL	mag	false	? (r-Halpha) colour index, formed by subtracting columns r and ha (r_ha)	phot.color;em.opt.R;em.line.Halpha			std
 "u-g"	REAL	mag	false	? (u-g) colour index, formed by subtracting columns u and g (u_g)	phot.color;em.opt.U;em.opt.B			std
 "g-r2"	REAL	mag	false	? (g-r2) colour index, formed by subtracting columns g and r2 (g_r2)	phot.color;em.opt.B;em.opt.R			std
-#+END_SRC
+</pre>
+</div>
 
-+ I made crossmatch with ALWISE using a radious of 1 arcsec.
-+ I made crossmatch with SIMBAD using a error of 1 arcsec.
+<ul class="org-ul">
+<li>I made crossmatch with ALWISE using a radious of 1 arcsec.</li>
+<li>I made crossmatch with SIMBAD using a error of 1 arcsec.</li>
+</ul>
+</div>
+</div>
 
-** Results
+<div id="outline-container-org2a401c1" class="outline-3">
+<h3 id="org2a401c1"><span class="section-number-3">2.18</span> Results</h3>
+<div class="outline-text-3" id="text-2-18">
+<p>
+<b>*</b> Why EB and RRlyra stars a high latitude?
+</p>
 
-   *** Why EB and RRlyra stars a high latitude?
+<p>
+He identification of more eclipsing binaries and RR Lyrae stars at higher latitudes could be attributed to several physical factors:
+</p>
 
-   He identification of more eclipsing binaries and RR Lyrae stars at higher latitudes could be attributed to several physical factors:
+<p>
+Galactic Halo: At higher latitudes, you may be probing regions outside the main disk of the galaxy, such as the galactic halo.
+The galactic halo contains older stellar populations, including RR Lyrae stars, which are commonly found in globular clusters a
+nd halo substructures. These stars are relatively faint and can be more easily detected against the darker background of the
+halo compared to the crowded regions of the galactic disk.
+</p>
 
-    Galactic Halo: At higher latitudes, you may be probing regions outside the main disk of the galaxy, such as the galactic halo.
-    The galactic halo contains older stellar populations, including RR Lyrae stars, which are commonly found in globular clusters a
-    nd halo substructures. These stars are relatively faint and can be more easily detected against the darker background of the
-    halo compared to the crowded regions of the galactic disk.
+<p>
+Stellar Populations: The distribution of different stellar populations can vary with galactic latitude.
+In the disk, you may predominantly detect younger stellar populations associated with ongoing star formation. As you move
+to higher latitudes, the prevalence of older stellar populations, including those containing RR Lyrae stars, may increase.
+Eclipsing binaries, which are systems consisting of two stars orbiting around their common center of mass and periodically
+eclipsing each other, can also be more prevalent in older stellar populations.
+</p>
 
-    Stellar Populations: The distribution of different stellar populations can vary with galactic latitude.
-    In the disk, you may predominantly detect younger stellar populations associated with ongoing star formation. As you move
-    to higher latitudes, the prevalence of older stellar populations, including those containing RR Lyrae stars, may increase.
-    Eclipsing binaries, which are systems consisting of two stars orbiting around their common center of mass and periodically
-    eclipsing each other, can also be more prevalent in older stellar populations.
+<p>
+Survey Sensitivity: The sensitivity of the survey instruments and techniques may play a role in the detection of different
+types of objects. For example, RR Lyrae stars are relatively faint and may require deeper observations or specialized
+detection methods to be identified. High-latitude observations may benefit from reduced contamination and background noise,
+allowing for more sensitive detection of faint objects such as eclipsing binaries and RR Lyrae stars.
+</p>
 
-    Survey Sensitivity: The sensitivity of the survey instruments and techniques may play a role in the detection of different
-    types of objects. For example, RR Lyrae stars are relatively faint and may require deeper observations or specialized
-    detection methods to be identified. High-latitude observations may benefit from reduced contamination and background noise,
-    allowing for more sensitive detection of faint objects such as eclipsing binaries and RR Lyrae stars.
+<p>
+Differential Extinction: Extinction due to interstellar dust can affect the observed colors and magnitudes of stars,
+particularly in the galactic plane where dust concentrations are higher. At higher latitudes, where dust extinction may
+be lower, the observed colors of stars can be less affected by dust reddening, making it easier to identify specific
+types of stars based on their intrinsic properties.
+</p>
 
-    Differential Extinction: Extinction due to interstellar dust can affect the observed colors and magnitudes of stars,
-    particularly in the galactic plane where dust concentrations are higher. At higher latitudes, where dust extinction may
-    be lower, the observed colors of stars can be less affected by dust reddening, making it easier to identify specific
-    types of stars based on their intrinsic properties.
-
+<p>
 By considering these factors, astronomers can better understand the distribution and properties of different types of
 stars across the sky and gain insights into the formation and evolution of galaxies like the Milky Way.
+</p>
+</div>
+</div>
 
-** Lo que he hecho
-   + [x] Eliminé los duplicados. Apartir de aqui todo le hecho sin los duplicados.
-   + [x] Hice crossmatch com SIMBAD.
-   + [x] Rehice el plot con la comparación con VPHAS.
-   + [x] Rehice los plots con la lista finbal de emisores: diagramas de distribuciones.
-   + [x] Analisis de ML.
-   + [x] Rehacer los plots de ML.
-   + [x] Voy a tener que correr el script para el disco.
+<div id="outline-container-org6971379" class="outline-3">
+<h3 id="org6971379"><span class="section-number-3">2.19</span> Lo que he hecho</h3>
+<div class="outline-text-3" id="text-2-19">
+<ul class="org-ul">
+<li>Eliminé los duplicados. Apartir de aqui todo le hecho sin los duplicados.</li>
+<li>Hice crossmatch com SIMBAD.</li>
+<li>Rehice el plot con la comparación con VPHAS.</li>
+<li>Rehice los plots con la lista finbal de emisores: diagramas de distribuciones.</li>
+<li>Analisis de ML.</li>
+<li>Rehacer los plots de ML.</li>
+<li>Voy a tener que correr el script para el disco.</li>
+</ul>
+</div>
+</div>
 
-** Color criteria
-
-#+BEGIN_SRC
+<div id="outline-container-orga42200e" class="outline-3">
+<h3 id="orga42200e"><span class="section-number-3">2.20</span> Color criteria</h3>
+<div class="outline-text-3" id="text-2-20">
+<pre class="example">
 
 - Plot 0: 
 
@@ -1344,14 +2023,27 @@ Linea7 (Updated) = Pendiente: -0.264450, Intercepto: 0.296862
 Linea7 (Deleted)
 
 
-#+END_SRC
-
-   
-** Thing to think
-
-   - I got different result for the SIMBAD match with disk.
-   - Quizas hay que decir que emiisores enrrojecidos van a ser perdidos. Pero no en todos los campos aparecen los locus.
-   - Los resultados del clustering con WISE en MI COMP. fueron los del paper. Quierd decir con los archivos CSV son los correctos. 
+</pre>
+</div>
+</div>
 
 
-
+<div id="outline-container-orgacf56bb" class="outline-3">
+<h3 id="orgacf56bb"><span class="section-number-3">2.21</span> Thing to think</h3>
+<div class="outline-text-3" id="text-2-21">
+<ul class="org-ul">
+<li>I got different result for the SIMBAD match with disk.</li>
+<li>Quizas hay que decir que emiisores enrrojecidos van a ser perdidos. Pero no en todos los campos aparecen los locus.</li>
+<li>Los resultados del clustering con WISE en MI COMP. fueron los del paper. Quierd decir con los archivos CSV son los correctos.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Luis Angel Gutierrez Soto</p>
+<p class="date">Created: 2025-03-11 Tue 13:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
