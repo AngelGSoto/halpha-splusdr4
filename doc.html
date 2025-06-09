@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-03-11 Tue 13:31 -->
+<!-- 2025-03-13 Thu 14:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ha emitters DR4</title>
@@ -269,57 +269,57 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1df8d59">1. Halpha emitters in DR4 S-PLUS</a>
+<li><a href="#org4704ba6">1. Halpha emitters in DR4 S-PLUS</a>
 <ul>
-<li><a href="#orgfae81a7">1.1. Main sequence stars</a></li>
-<li><a href="#org61b042c">1.2. Getting and cleaning the data</a></li>
+<li><a href="#org8cda794">1.1. Main sequence stars</a></li>
+<li><a href="#orgd69f737">1.2. Getting and cleaning the data</a></li>
 </ul>
 </li>
-<li><a href="#orgdba50ad">2. Estimation of Sigma</a>
+<li><a href="#orge1734cf">2. Estimation of Sigma</a>
 <ul>
-<li><a href="#org7aaa682">2.1. Mathematical Justification</a></li>
-<li><a href="#orgd598ba5">2.2. 1. Residual Definition and Error Sources</a></li>
-<li><a href="#org34b9fa8">2.3. 2. Error Propagation Derivation</a></li>
-<li><a href="#orged281f0">2.4. 3. Adaptation to Color-Index Errors</a></li>
-<li><a href="#orge010c4f">2.5. Why This Approach is Valid</a></li>
-<li><a href="#org654d464">2.6. 1. Mathematical Consistency</a></li>
-<li><a href="#org43d3221">2.7. 2. Empirical Robustness</a></li>
-<li><a href="#orga1f2e28">2.8. 3. Conservative Threshold (\(C = 5\))</a></li>
-<li><a href="#org23dcd6d">2.9. 4. Peer-Review Validation</a></li>
-<li><a href="#org238bae0">2.10. Comparison to Classical Methods</a></li>
-<li><a href="#org0cd7d03">2.11. 1. Classical Formula (Witham et al. 2008)</a></li>
-<li><a href="#org67d89b4">2.12. 2. This Work’s Formula</a></li>
-<li><a href="#orgbba60df">2.13. Contextual Appropriateness</a>
+<li><a href="#org270ab5a">2.1. Mathematical Justification</a></li>
+<li><a href="#orgf3819cb">2.2. 1. Residual Definition and Error Sources</a></li>
+<li><a href="#org91f9105">2.3. 2. Error Propagation Derivation</a></li>
+<li><a href="#org5980caa">2.4. 3. Adaptation to Color-Index Errors</a></li>
+<li><a href="#org358ad9a">2.5. Why This Approach is Valid</a></li>
+<li><a href="#org75aaf45">2.6. 1. Mathematical Consistency</a></li>
+<li><a href="#org359b055">2.7. 2. Empirical Robustness</a></li>
+<li><a href="#org8728faa">2.8. 3. Conservative Threshold (\(C = 5\))</a></li>
+<li><a href="#org8fe4935">2.9. 4. Peer-Review Validation</a></li>
+<li><a href="#org95a85ef">2.10. Comparison to Classical Methods</a></li>
+<li><a href="#orgcd7b281">2.11. 1. Classical Formula (Witham et al. 2008)</a></li>
+<li><a href="#orgbc4020e">2.12. 2. This Work’s Formula</a></li>
+<li><a href="#org84c315b">2.13. Contextual Appropriateness</a>
 <ul>
-<li><a href="#orgf2c5d6a">2.13.1. 1. Data Limitations</a></li>
-<li><a href="#org95b43f7">2.13.2. 2. Scientific Goals</a></li>
-<li><a href="#org1bb6a5a">2.13.3. 3. Reproducibility</a></li>
+<li><a href="#org75ffb83">2.13.1. 1. Data Limitations</a></li>
+<li><a href="#org97722af">2.13.2. 2. Scientific Goals</a></li>
+<li><a href="#org6e13e1e">2.13.3. 3. Reproducibility</a></li>
 </ul>
 </li>
-<li><a href="#orgac62c2d">2.14. Conclusion</a>
+<li><a href="#orgac4b5cd">2.14. Conclusion</a>
 <ul>
-<li><a href="#org392b5ee">2.14.1. Comparison of Approaches for Selecting Halpha Emitters</a></li>
-<li><a href="#org525c8fa">2.14.2. Witham et al. Approach:</a></li>
-<li><a href="#orgd0678c9">2.14.3. Recommended Approach:</a></li>
-<li><a href="#org48b261a">2.14.4. Comparison:</a></li>
-<li><a href="#orgc847daf">2.14.5. running some scripts</a></li>
-<li><a href="#org66170c6">2.14.6. Spectra</a></li>
-<li><a href="#orgd773dd1">2.14.7. Spectra for the paper</a></li>
-<li><a href="#orgee68d16">2.14.8. Coments of spectra</a></li>
+<li><a href="#org77acff2">2.14.1. Comparison of Approaches for Selecting Halpha Emitters</a></li>
+<li><a href="#org5c5a45a">2.14.2. Witham et al. Approach:</a></li>
+<li><a href="#org2431d4b">2.14.3. Recommended Approach:</a></li>
+<li><a href="#org448a6c2">2.14.4. Comparison:</a></li>
+<li><a href="#orgf199538">2.14.5. running some scripts</a></li>
+<li><a href="#orgc3590a0">2.14.6. Spectra</a></li>
+<li><a href="#orge75e2a4">2.14.7. Spectra for the paper</a></li>
+<li><a href="#orgb68252c">2.14.8. Coments of spectra</a></li>
 </ul>
 </li>
-<li><a href="#orgdaf33db">2.15. Machine Learning</a>
+<li><a href="#org487ecb6">2.15. Machine Learning</a>
 <ul>
-<li><a href="#orgb18c913">2.15.1. Determining Optimal Parameters for UMAP Projection</a></li>
-<li><a href="#org26958b6">2.15.2. Some results</a></li>
+<li><a href="#org11adf35">2.15.1. Determining Optimal Parameters for UMAP Projection</a></li>
+<li><a href="#orgf15a102">2.15.2. Some results</a></li>
 </ul>
 </li>
-<li><a href="#org6f03e2c">2.16. Main</a></li>
-<li><a href="#org9c1f865">2.17. Disk</a></li>
-<li><a href="#org2a401c1">2.18. Results</a></li>
-<li><a href="#org6971379">2.19. Lo que he hecho</a></li>
-<li><a href="#orga42200e">2.20. Color criteria</a></li>
-<li><a href="#orgacf56bb">2.21. Thing to think</a></li>
+<li><a href="#orga0d082d">2.16. Main</a></li>
+<li><a href="#orgf79dcda">2.17. Disk</a></li>
+<li><a href="#org9284c24">2.18. Results</a></li>
+<li><a href="#orgceead29">2.19. Lo que he hecho</a></li>
+<li><a href="#orgad13d88">2.20. Color criteria</a></li>
+<li><a href="#org7e0b14c">2.21. Thing to think</a></li>
 </ul>
 </li>
 </ul>
@@ -329,8 +329,8 @@ for the JavaScript code in this tag.
 :ID:       
 </p>
 
-<div id="outline-container-org1df8d59" class="outline-2">
-<h2 id="org1df8d59"><span class="section-number-2">1</span> Halpha emitters in DR4 S-PLUS</h2>
+<div id="outline-container-org4704ba6" class="outline-2">
+<h2 id="org4704ba6"><span class="section-number-2">1</span> Halpha emitters in DR4 S-PLUS</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 I try to improve the aproach to select Halpha emitters in S-PLUS.
@@ -350,8 +350,8 @@ I try to improve the aproach to select Halpha emitters in S-PLUS.
 </ul>
 </div>
 
-<div id="outline-container-orgfae81a7" class="outline-3">
-<h3 id="orgfae81a7"><span class="section-number-3">1.1</span> Main sequence stars</h3>
+<div id="outline-container-org8cda794" class="outline-3">
+<h3 id="org8cda794"><span class="section-number-3">1.1</span> Main sequence stars</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 I putted the track of unredened MS and giant stars from <a href="https://ui.adsabs.harvard.edu/abs/1998PASP..110..863P/abstract">Pickles et al.</a> in the color-color diagram .
@@ -359,8 +359,8 @@ I putted the track of unredened MS and giant stars from <a href="https://ui.adsa
 </div>
 </div>
 
-<div id="outline-container-org61b042c" class="outline-3">
-<h3 id="org61b042c"><span class="section-number-3">1.2</span> Getting and cleaning the data</h3>
+<div id="outline-container-orgd69f737" class="outline-3">
+<h3 id="orgd69f737"><span class="section-number-3">1.2</span> Getting and cleaning the data</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The data were downloaded from the <a href="https://splus.cloud/">SPLUS.CLOUD</a>, and a preliminary cut were in the <a href="programs/getting-splusdata-basedGustavo.py">script</a>
@@ -455,8 +455,8 @@ All thse yield the follow stars:
 </div>
 
 
-<div id="outline-container-orgdba50ad" class="outline-2">
-<h2 id="orgdba50ad"><span class="section-number-2">2</span> Estimation of Sigma</h2>
+<div id="outline-container-orge1734cf" class="outline-2">
+<h2 id="orge1734cf"><span class="section-number-2">2</span> Estimation of Sigma</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 This document provides a rigorous justification for the validity of the modified uncertainty estimator (\(\sigma_{\text{est}}\)) used in <a href="https://ui.adsabs.harvard.edu/abs/YourPaper">My A&amp;A Paper</a>. 
@@ -465,11 +465,11 @@ and contextual appropriateness. More matematical and numerical details <a href="
 </p>
 </div>
 
-<div id="outline-container-org7aaa682" class="outline-3">
-<h3 id="org7aaa682"><span class="section-number-3">2.1</span> Mathematical Justification</h3>
+<div id="outline-container-org270ab5a" class="outline-3">
+<h3 id="org270ab5a"><span class="section-number-3">2.1</span> Mathematical Justification</h3>
 </div>
-<div id="outline-container-orgd598ba5" class="outline-3">
-<h3 id="orgd598ba5"><span class="section-number-3">2.2</span> 1. Residual Definition and Error Sources</h3>
+<div id="outline-container-orgf3819cb" class="outline-3">
+<h3 id="orgf3819cb"><span class="section-number-3">2.2</span> 1. Residual Definition and Error Sources</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The residual \(\Delta\) is defined as:
@@ -490,8 +490,8 @@ This shows explicit dependence on:
 </div>
 </div>
 
-<div id="outline-container-org34b9fa8" class="outline-3">
-<h3 id="org34b9fa8"><span class="section-number-3">2.3</span> 2. Error Propagation Derivation</h3>
+<div id="outline-container-org91f9105" class="outline-3">
+<h3 id="org91f9105"><span class="section-number-3">2.3</span> 2. Error Propagation Derivation</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The uncertainty in \(\Delta\) (\(\sigma_{\text{est}}\)) depends on:
@@ -514,8 +514,8 @@ Simplifying:
 </div>
 </div>
 
-<div id="outline-container-orged281f0" class="outline-3">
-<h3 id="orged281f0"><span class="section-number-3">2.4</span> 3. Adaptation to Color-Index Errors</h3>
+<div id="outline-container-org5980caa" class="outline-3">
+<h3 id="org5980caa"><span class="section-number-3">2.4</span> 3. Adaptation to Color-Index Errors</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 When per-band errors (\(\sigma_r, \sigma_i, \sigma_{J0660}\)) are unavailable, we substitute:
@@ -534,11 +534,11 @@ This simplifies to the formula used in the paper:
 </div>
 </div>
 
-<div id="outline-container-orge010c4f" class="outline-3">
-<h3 id="orge010c4f"><span class="section-number-3">2.5</span> Why This Approach is Valid</h3>
+<div id="outline-container-org358ad9a" class="outline-3">
+<h3 id="org358ad9a"><span class="section-number-3">2.5</span> Why This Approach is Valid</h3>
 </div>
-<div id="outline-container-org654d464" class="outline-3">
-<h3 id="org654d464"><span class="section-number-3">2.6</span> 1. Mathematical Consistency</h3>
+<div id="outline-container-org75aaf45" class="outline-3">
+<h3 id="org75aaf45"><span class="section-number-3">2.6</span> 1. Mathematical Consistency</h3>
 <div class="outline-text-3" id="text-2-6">
 <ul class="org-ul">
 <li>The \((1 - m)^2\) term corrects for the shared \(r\)-band dependence between \((r - J0660)_{\text{obs}}\) and \((r - J0660)_{\text{fit}}\).</li>
@@ -547,8 +547,8 @@ This simplifies to the formula used in the paper:
 </div>
 </div>
 
-<div id="outline-container-org43d3221" class="outline-3">
-<h3 id="org43d3221"><span class="section-number-3">2.7</span> 2. Empirical Robustness</h3>
+<div id="outline-container-org359b055" class="outline-3">
+<h3 id="org359b055"><span class="section-number-3">2.7</span> 2. Empirical Robustness</h3>
 <div class="outline-text-3" id="text-2-7">
 <ul class="org-ul">
 <li>Recalculation with per-band errors showed only a <b><b>5% variation</b></b> in marginal candidates (near \(5\sigma_{\text{est}}\)) and <b><b>no loss of original candidates</b></b>.</li>
@@ -562,8 +562,8 @@ This simplifies to the formula used in the paper:
 </div>
 </div>
 
-<div id="outline-container-orga1f2e28" class="outline-3">
-<h3 id="orga1f2e28"><span class="section-number-3">2.8</span> 3. Conservative Threshold (\(C = 5\))</h3>
+<div id="outline-container-org8728faa" class="outline-3">
+<h3 id="org8728faa"><span class="section-number-3">2.8</span> 3. Conservative Threshold (\(C = 5\))</h3>
 <div class="outline-text-3" id="text-2-8">
 <ul class="org-ul">
 <li>A \(5\sigma\) threshold is highly conservative, ensuring:
@@ -575,8 +575,8 @@ This simplifies to the formula used in the paper:
 </div>
 </div>
 
-<div id="outline-container-org23dcd6d" class="outline-3">
-<h3 id="org23dcd6d"><span class="section-number-3">2.9</span> 4. Peer-Review Validation</h3>
+<div id="outline-container-org8fe4935" class="outline-3">
+<h3 id="org8fe4935"><span class="section-number-3">2.9</span> 4. Peer-Review Validation</h3>
 <div class="outline-text-3" id="text-2-9">
 <ul class="org-ul">
 <li>The formula was scrutinized and accepted by A&amp;A reviewers, confirming its suitability for the dataset and science case.</li>
@@ -584,11 +584,11 @@ This simplifies to the formula used in the paper:
 </div>
 </div>
 
-<div id="outline-container-org238bae0" class="outline-3">
-<h3 id="org238bae0"><span class="section-number-3">2.10</span> Comparison to Classical Methods</h3>
+<div id="outline-container-org95a85ef" class="outline-3">
+<h3 id="org95a85ef"><span class="section-number-3">2.10</span> Comparison to Classical Methods</h3>
 </div>
-<div id="outline-container-org0cd7d03" class="outline-3">
-<h3 id="org0cd7d03"><span class="section-number-3">2.11</span> 1. Classical Formula (Witham et al. 2008)</h3>
+<div id="outline-container-orgcd7b281" class="outline-3">
+<h3 id="orgcd7b281"><span class="section-number-3">2.11</span> 1. Classical Formula (Witham et al. 2008)</h3>
 <div class="outline-text-3" id="text-2-11">
 <p>
 \[
@@ -602,8 +602,8 @@ This simplifies to the formula used in the paper:
 </div>
 </div>
 
-<div id="outline-container-org67d89b4" class="outline-3">
-<h3 id="org67d89b4"><span class="section-number-3">2.12</span> 2. This Work’s Formula</h3>
+<div id="outline-container-orgbc4020e" class="outline-3">
+<h3 id="orgbc4020e"><span class="section-number-3">2.12</span> 2. This Work’s Formula</h3>
 <div class="outline-text-3" id="text-2-12">
 <p>
 \[
@@ -625,12 +625,12 @@ This simplifies to the formula used in the paper:
 </div>
 </div>
 
-<div id="outline-container-orgbba60df" class="outline-3">
-<h3 id="orgbba60df"><span class="section-number-3">2.13</span> Contextual Appropriateness</h3>
+<div id="outline-container-org84c315b" class="outline-3">
+<h3 id="org84c315b"><span class="section-number-3">2.13</span> Contextual Appropriateness</h3>
 <div class="outline-text-3" id="text-2-13">
 </div>
-<div id="outline-container-orgf2c5d6a" class="outline-4">
-<h4 id="orgf2c5d6a"><span class="section-number-4">2.13.1</span> 1. Data Limitations</h4>
+<div id="outline-container-org75ffb83" class="outline-4">
+<h4 id="org75ffb83"><span class="section-number-4">2.13.1</span> 1. Data Limitations</h4>
 <div class="outline-text-4" id="text-2-13-1">
 <ul class="org-ul">
 <li>Most photometric catalogs (e.g., Gaia, Pan-STARRS) provide errors for color indices, not individual bands. Your formula adapts to this reality.</li>
@@ -638,8 +638,8 @@ This simplifies to the formula used in the paper:
 </div>
 </div>
 
-<div id="outline-container-org95b43f7" class="outline-4">
-<h4 id="org95b43f7"><span class="section-number-4">2.13.2</span> 2. Scientific Goals</h4>
+<div id="outline-container-org97722af" class="outline-4">
+<h4 id="org97722af"><span class="section-number-4">2.13.2</span> 2. Scientific Goals</h4>
 <div class="outline-text-4" id="text-2-13-2">
 <ul class="org-ul">
 <li>The study prioritized <b><b>reliability over completeness</b></b>, making the conservative \(C = 5\) threshold and robust formula ideal.</li>
@@ -647,8 +647,8 @@ This simplifies to the formula used in the paper:
 </div>
 </div>
 
-<div id="outline-container-org1bb6a5a" class="outline-4">
-<h4 id="org1bb6a5a"><span class="section-number-4">2.13.3</span> 3. Reproducibility</h4>
+<div id="outline-container-org6e13e1e" class="outline-4">
+<h4 id="org6e13e1e"><span class="section-number-4">2.13.3</span> 3. Reproducibility</h4>
 <div class="outline-text-4" id="text-2-13-3">
 <ul class="org-ul">
 <li>The formula uses widely available color-index errors, ensuring reproducibility across similar datasets.</li>
@@ -657,8 +657,8 @@ This simplifies to the formula used in the paper:
 </div>
 </div>
 
-<div id="outline-container-orgac62c2d" class="outline-3">
-<h3 id="orgac62c2d"><span class="section-number-3">2.14</span> Conclusion</h3>
+<div id="outline-container-orgac4b5cd" class="outline-3">
+<h3 id="orgac4b5cd"><span class="section-number-3">2.14</span> Conclusion</h3>
 <div class="outline-text-3" id="text-2-14">
 <p>
 My custom \(\sigma_{\text{est}}\) formula is:
@@ -749,8 +749,8 @@ impact of noise and artifacts, facilitating the accurate identification of genui
 </p>
 </div>
 
-<div id="outline-container-org392b5ee" class="outline-4">
-<h4 id="org392b5ee"><span class="section-number-4">2.14.1</span> Comparison of Approaches for Selecting Halpha Emitters</h4>
+<div id="outline-container-org77acff2" class="outline-4">
+<h4 id="org77acff2"><span class="section-number-4">2.14.1</span> Comparison of Approaches for Selecting Halpha Emitters</h4>
 <div class="outline-text-4" id="text-2-14-1">
 <p>
 In this section, we compare two different approaches for 
@@ -762,8 +762,8 @@ indicative of Halpha emission. We will discuss each approach and highlight their
 </div>
 </div>
 
-<div id="outline-container-org525c8fa" class="outline-4">
-<h4 id="org525c8fa"><span class="section-number-4">2.14.2</span> Witham et al. Approach:</h4>
+<div id="outline-container-org5c5a45a" class="outline-4">
+<h4 id="org5c5a45a"><span class="section-number-4">2.14.2</span> Witham et al. Approach:</h4>
 <div class="outline-text-4" id="text-2-14-2">
 <p>
 Witham et al. and others have used an approach to select H&alpha; emitters 
@@ -788,8 +788,8 @@ deviations in the reference color \( r - i \) influenced by the slope of the fit
 </div>
 </div>
 
-<div id="outline-container-orgd0678c9" class="outline-4">
-<h4 id="orgd0678c9"><span class="section-number-4">2.14.3</span> Recommended Approach:</h4>
+<div id="outline-container-org2431d4b" class="outline-4">
+<h4 id="org2431d4b"><span class="section-number-4">2.14.3</span> Recommended Approach:</h4>
 <div class="outline-text-4" id="text-2-14-3">
 <p>
 Alternatively, we propose a slightly different approach for selecting Halpha emitters. Our method 
@@ -812,8 +812,8 @@ by the slope of the fitted line \( m \).
 </div>
 </div>
 
-<div id="outline-container-org48b261a" class="outline-4">
-<h4 id="org48b261a"><span class="section-number-4">2.14.4</span> Comparison:</h4>
+<div id="outline-container-org448a6c2" class="outline-4">
+<h4 id="org448a6c2"><span class="section-number-4">2.14.4</span> Comparison:</h4>
 <div class="outline-text-4" id="text-2-14-4">
 <p>
 The main difference between the two approaches lies in the treatment of the slope of the fitted line \( m \) or \( m_{\text{fit}} \). 
@@ -870,7 +870,7 @@ leading to better characterization and understanding of Halpha emitters in each 
 
 
 <ol class="org-ol">
-<li><a id="org47e8646"></a>Recicling text<br />
+<li><a id="org4d895c6"></a>Recicling text<br />
 <div class="outline-text-5" id="text-2-14-4-1">
 <div class="FIGURE">
 \begin{figure*}
@@ -950,8 +950,8 @@ W2 bands of WISE to generate additional features.}
 </ol>
 </div>
 
-<div id="outline-container-orgc847daf" class="outline-4">
-<h4 id="orgc847daf"><span class="section-number-4">2.14.5</span> running some scripts</h4>
+<div id="outline-container-orgf199538" class="outline-4">
+<h4 id="orgf199538"><span class="section-number-4">2.14.5</span> running some scripts</h4>
 <div class="outline-text-4" id="text-2-14-5">
 <pre class="example">
 python programs/color-diagram_oneField.py iDR4-SPLUS-PStotal-PSF-16r175_class05_flags4_clean --Field "b'STRIPE82-0142'" --Object "b'iDR4_3_STRIPE82-0142_0021237'" --Range "16 &lt; r $\leq$ 17.5"
@@ -959,12 +959,12 @@ python programs/color-diagram_oneField.py iDR4-SPLUS-PStotal-PSF-16r175_class05_
 </div>
 </div>
 
-<div id="outline-container-org66170c6" class="outline-4">
-<h4 id="org66170c6"><span class="section-number-4">2.14.6</span> Spectra</h4>
+<div id="outline-container-orgc3590a0" class="outline-4">
+<h4 id="orgc3590a0"><span class="section-number-4">2.14.6</span> Spectra</h4>
 <div class="outline-text-4" id="text-2-14-6">
 </div>
 <ol class="org-ol">
-<li><a id="orgbc129ab"></a>SDSS<br />
+<li><a id="orgfc031b2"></a>SDSS<br />
 <div class="outline-text-5" id="text-2-14-6-1">
 <ul class="org-ul">
 <li>Mach with SDSS <a href="https://skyserver.sdss.org/dr18/en/tools/search/SQS.aspx">DR18</a>. I used a 1 arcsec of tolerance.</li>
@@ -1039,7 +1039,7 @@ Number the objects with z &gt; 0.02: 77
 </div>
 </li>
 
-<li><a id="org407dfd6"></a>LAMOST<br />
+<li><a id="orga736be3"></a>LAMOST<br />
 <div class="outline-text-5" id="text-2-14-6-2">
 <ul class="org-ul">
 <li>Mach with LAMOST DR7. I used a 2 arcsec of tolerance.</li>
@@ -1115,8 +1115,8 @@ Number the objects with z &gt; 0.02: 30
 </li>
 </ol>
 </div>
-<div id="outline-container-orgd773dd1" class="outline-4">
-<h4 id="orgd773dd1"><span class="section-number-4">2.14.7</span> Spectra for the paper</h4>
+<div id="outline-container-orge75e2a4" class="outline-4">
+<h4 id="orge75e2a4"><span class="section-number-4">2.14.7</span> Spectra for the paper</h4>
 <div class="outline-text-4" id="text-2-14-7">
 <ul class="org-ul">
 <li>spec-4740-55651-0188 -&gt; CV</li>
@@ -1132,8 +1132,8 @@ Number the objects with z &gt; 0.02: 30
 </div>
 </div>
 
-<div id="outline-container-orgee68d16" class="outline-4">
-<h4 id="orgee68d16"><span class="section-number-4">2.14.8</span> Coments of spectra</h4>
+<div id="outline-container-orgb68252c" class="outline-4">
+<h4 id="orgb68252c"><span class="section-number-4">2.14.8</span> Coments of spectra</h4>
 <div class="outline-text-4" id="text-2-14-8">
 <p>
 Duplicates. 
@@ -1147,8 +1147,8 @@ spec-55973-F5597306<sub>sp12</sub>-098 -&gt; Esta en la pasta unique</li>
 </div>
 
 
-<div id="outline-container-orgdaf33db" class="outline-3">
-<h3 id="orgdaf33db"><span class="section-number-3">2.15</span> Machine Learning</h3>
+<div id="outline-container-org487ecb6" class="outline-3">
+<h3 id="org487ecb6"><span class="section-number-3">2.15</span> Machine Learning</h3>
 <div class="outline-text-3" id="text-2-15">
 <p>
 <b>*</b> UMAP
@@ -1165,8 +1165,8 @@ Paper in astronomy appliying UMAP:
 </ul>
 </div>
 
-<div id="outline-container-orgb18c913" class="outline-4">
-<h4 id="orgb18c913"><span class="section-number-4">2.15.1</span> Determining Optimal Parameters for UMAP Projection</h4>
+<div id="outline-container-org11adf35" class="outline-4">
+<h4 id="org11adf35"><span class="section-number-4">2.15.1</span> Determining Optimal Parameters for UMAP Projection</h4>
 <div class="outline-text-4" id="text-2-15-1">
 <p>
 In this study, the Uniform Manifold Approximation and Projection (UMAP) algorithm was employed for dimensionality reduction of the dataset. 
@@ -1237,8 +1237,8 @@ contributing to a deeper understanding of the dataset under study.
 </div>
 </div>
 
-<div id="outline-container-org26958b6" class="outline-4">
-<h4 id="org26958b6"><span class="section-number-4">2.15.2</span> Some results</h4>
+<div id="outline-container-orgf15a102" class="outline-4">
+<h4 id="orgf15a102"><span class="section-number-4">2.15.2</span> Some results</h4>
 <div class="outline-text-4" id="text-2-15-2">
 <p>
 Main survey: Obtuve diferentes resultados desde mi computadora en comparaciòn con la computadora del IALP. Los resultados de UAMP y HDBSCAN son mejores en mi
@@ -1331,8 +1331,8 @@ computadora solo usando los filtros de SPLUS pero sumando los resultados the WIS
 </div>
 </div>
 
-<div id="outline-container-org6f03e2c" class="outline-3">
-<h3 id="org6f03e2c"><span class="section-number-3">2.16</span> Main</h3>
+<div id="outline-container-orga0d082d" class="outline-3">
+<h3 id="orga0d082d"><span class="section-number-3">2.16</span> Main</h3>
 <div class="outline-text-3" id="text-2-16">
 <ul class="org-ul">
 <li>I made crossmatch with ALWISE using a radious of 2 arcsec.</li>
@@ -1343,8 +1343,8 @@ computadora solo usando los filtros de SPLUS pero sumando los resultados the WIS
 </div>
 
 
-<div id="outline-container-org9c1f865" class="outline-3">
-<h3 id="org9c1f865"><span class="section-number-3">2.17</span> Disk</h3>
+<div id="outline-container-orgf79dcda" class="outline-3">
+<h3 id="orgf79dcda"><span class="section-number-3">2.17</span> Disk</h3>
 <div class="outline-text-3" id="text-2-17">
 <p>
 The final list of Halpha I crossmatched with VPHAS DR2 using a 1 arcsec of tolerance. 
@@ -1357,7 +1357,7 @@ Explanation of VPHAS table:
 
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp" id="orgeada2b0">
+<pre class="src src-emacs-lisp" id="org2ff0915">
 gmagapAB	REAL	mag	false	? g-band AB magnitude obtained using aperture photometry (aperMag_g_AB)	phot.mag;em.opt.B			std
 e_gmagap	REAL	mag	false	? Statistical uncertainty for gmagap, not including systematics (aperMagErr_g)	stat.error			std
 snrg	REAL		false	? Ratio of the signal in the aperture relative to the background (snr_g)	stat.snr			std
@@ -1436,8 +1436,8 @@ nbDist	REAL	arcsec	false	Distance to the nearest neighbour detected in	pos.angDi
 </div>
 </div>
 
-<div id="outline-container-org2a401c1" class="outline-3">
-<h3 id="org2a401c1"><span class="section-number-3">2.18</span> Results</h3>
+<div id="outline-container-org9284c24" class="outline-3">
+<h3 id="org9284c24"><span class="section-number-3">2.18</span> Results</h3>
 <div class="outline-text-3" id="text-2-18">
 <p>
 <b>*</b> Why EB and RRlyra stars a high latitude?
@@ -1483,8 +1483,8 @@ stars across the sky and gain insights into the formation and evolution of galax
 </div>
 </div>
 
-<div id="outline-container-org6971379" class="outline-3">
-<h3 id="org6971379"><span class="section-number-3">2.19</span> Lo que he hecho</h3>
+<div id="outline-container-orgceead29" class="outline-3">
+<h3 id="orgceead29"><span class="section-number-3">2.19</span> Lo que he hecho</h3>
 <div class="outline-text-3" id="text-2-19">
 <ul class="org-ul">
 <li>Eliminé los duplicados. Apartir de aqui todo le hecho sin los duplicados.</li>
@@ -1498,8 +1498,8 @@ stars across the sky and gain insights into the formation and evolution of galax
 </div>
 </div>
 
-<div id="outline-container-orga42200e" class="outline-3">
-<h3 id="orga42200e"><span class="section-number-3">2.20</span> Color criteria</h3>
+<div id="outline-container-orgad13d88" class="outline-3">
+<h3 id="orgad13d88"><span class="section-number-3">2.20</span> Color criteria</h3>
 <div class="outline-text-3" id="text-2-20">
 <pre class="example">
 
@@ -2028,8 +2028,8 @@ Linea7 (Deleted)
 </div>
 
 
-<div id="outline-container-orgacf56bb" class="outline-3">
-<h3 id="orgacf56bb"><span class="section-number-3">2.21</span> Thing to think</h3>
+<div id="outline-container-org7e0b14c" class="outline-3">
+<h3 id="org7e0b14c"><span class="section-number-3">2.21</span> Thing to think</h3>
 <div class="outline-text-3" id="text-2-21">
 <ul class="org-ul">
 <li>I got different result for the SIMBAD match with disk.</li>
@@ -2042,7 +2042,7 @@ Linea7 (Deleted)
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Luis Angel Gutierrez Soto</p>
-<p class="date">Created: 2025-03-11 Tue 13:31</p>
+<p class="date">Created: 2025-03-13 Thu 14:37</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
