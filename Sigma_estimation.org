@@ -155,40 +155,45 @@ Now we do some numerical examples. I note to the slope of the fits in the color-
 Use this Python block to compute and render the table plus mean/median when exporting to HTML:
 
 #+name: calculate-overestimation
-#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results value table
+#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results output raw
 import numpy as np
 
-# Header row
-header = ["e_r", "e_i", "e_J0660", "σ_ideal", "σ_classic", "Overestimation (%)"]
-new_table = []
+# Imprimir encabezado de tabla
+print("| e_r | e_i | e_J0660 | σ_ideal | σ_classic | Overestimation (%) |")
+print("|-")  # Separador de cabecera
+
 overest = []
 
-# Process each data row
-for sr_str, si_str, sj_str in data:
+# Procesar cada fila de datos
+for row in data:
+    sr_str, si_str, sj_str = row
     try:
         sr = float(sr_str)
         si = float(si_str)
         sj = float(sj_str)
-        σ_ideal   = np.sqrt(sigma_s**2 + (1 - m)**2 * sr**2 + sj**2 + m**2 * si**2)
-        σ_classic = np.sqrt(sigma_s**2 + (sr**2 + sj**2) + m**2 * (sr**2 + si**2))
+        
+        # Cálculos
+        σ_ideal = np.sqrt(sigma_s**2 + (1 - m)**2 * sr**2 + sj**2 + m**2 * si**2)
+        σ_classic = np.sqrt(sigma_s**2 + sr**2 + sj**2 + m**2 * (sr**2 + si**2))
         pct = (σ_classic - σ_ideal) / σ_ideal * 100
-        new_table.append([f"{sr:.7f}", f"{si:.7f}", f"{sj:.7f}",
-                          f"{σ_ideal:.7f}", f"{σ_classic:.7f}", f"{pct:.2f}%"])
         overest.append(pct)
-    except:
-        new_table.append([sr_str, si_str, sj_str, "Error", "Error", "Error"])
+        
+        # Imprimir fila formateada
+        print(f"| {sr:.7f} | {si:.7f} | {sj:.7f} | {σ_ideal:.7f} | {σ_classic:.7f} | {pct:.2f}% |")
+    except Exception as e:
+        print(f"| Error | Error | Error | Error | Error | Error |")
 
-# Add summary rows
-mean_pct   = np.mean(overest)
+# Estadísticas finales
+mean_pct = np.mean(overest)
 median_pct = np.median(overest)
-new_table.append(["", "", "Mean", "", "", f"{mean_pct:.2f}%"])
-new_table.append(["", "", "Median", "", "", f"{median_pct:.2f}%"])
-
-return [header] + new_table
+print("|-")
+print(f"| | | Mean | | | {mean_pct:.2f}% |")
+print(f"| | | Median | | | {median_pct:.2f}% |")
 #+end_src
 
 #+RESULTS: calculate-overestimation
 |       e_r |       e_i |   e_J0660 |   σ_ideal | σ_classic | Overestimation (%) |
+|-----------+-----------+-----------+-----------+-----------+--------------------|
 | 0.0027043 | 0.0023099 | 0.0034418 | 0.0107393 | 0.0110083 |              2.51% |
 | 0.0009554 | 0.0010020 | 0.0010847 | 0.0100830 | 0.0101191 |              0.36% |
 | 0.0016022 | 0.0014943 | 0.0017040 | 0.0102071 | 0.0103072 |              0.98% |
@@ -238,6 +243,7 @@ return [header] + new_table
 | 0.0029722 | 0.0027480 | 0.0029623 | 0.0106378 | 0.0109650 |              3.08% |
 | 0.0026445 | 0.0026835 | 0.0025978 | 0.0105080 | 0.0107709 |              2.50% |
 | 0.0028707 | 0.0027355 | 0.0032248 | 0.0107034 | 0.0110071 |              2.84% |
+|-----------+-----------+-----------+-----------+-----------+--------------------|
 |           |           |      Mean |           |           |              2.33% |
 |           |           |    Median |           |           |              2.26% |
 
@@ -383,86 +389,64 @@ The luis aproximation subestima the sigma in around -1.85%.
 Now Comparing Classic vs. Luis Overestimation
 
 #+name: calculate-overestimation-compare
-#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :return table 
+#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results output raw
 import numpy as np
 
-# Header row
-header = [
-    "e_r", "e_i", "e_J0660",
-    "σ_ideal", "σ_classic", "σ_luis",
-    "Classic overestimation (%)", "Luis overestimation (%)"
-]
+# Imprimir encabezado de la tabla
+print("| e_r | e_i | e_J0660 | σ_ideal | σ_classic | σ_luis | Classic overestimation (%) | Luis overestimation (%) |")
+print("|-")
 
-new_table = []
 overest_classic = []
 overest_luis = []
 
-# Process each data row
-for sr_str, si_str, sj_str in data:
+# Procesar cada fila de datos
+for row in data:
+    sr_str, si_str, sj_str = row
     try:
         sr = float(sr_str)
         si = float(si_str)
         sj = float(sj_str)
-
-        σ_ideal   = np.sqrt(
-            sigma_s**2 +
-            (1 - m)**2 * sr**2 +
-            sj**2 +
-            m**2 * si**2
-        )
-        σ_classic = np.sqrt(
-            sigma_s**2 +
-            (sr**2 + sj**2) +
-            m**2 * (sr**2 + si**2)
-        )
-        σ_luis    = np.sqrt(
-            sigma_s**2 +
-            (1 - m)**2 * (sr**2 + sj**2) +
-            m**2 * (sr**2 + si**2)
-        )
-
+        
+        # Cálculos de sigmas
+        σ_ideal = np.sqrt(sigma_s**2 + (1 - m)**2 * sr**2 + sj**2 + m**2 * si**2)
+        σ_classic = np.sqrt(sigma_s**2 + sr**2 + sj**2 + m**2 * (sr**2 + si**2))
+        σ_luis = np.sqrt(sigma_s**2 + (1 - m)**2 * (sr**2 + sj**2) + m**2 * (sr**2 + si**2))
+        
+        # Cálculos de porcentajes
         pct_classic = (σ_classic - σ_ideal) / σ_ideal * 100
-        pct_luis    = (σ_luis    - σ_ideal) / σ_ideal * 100
-
-        new_table.append([
-            f"{sr:.7f}", f"{si:.7f}", f"{sj:.7f}",
-            f"{σ_ideal:.7f}", f"{σ_classic:.7f}", f"{σ_luis:.7f}",
-            f"{pct_classic:.2f}%", f"{pct_luis:.2f}%"
-        ])
+        pct_luis = (σ_luis - σ_ideal) / σ_ideal * 100
+        
         overest_classic.append(pct_classic)
         overest_luis.append(pct_luis)
+        
+        # Imprimir fila
+        print(f"| {sr:.7f} | {si:.7f} | {sj:.7f} | {σ_ideal:.7f} | {σ_classic:.7f} | {σ_luis:.7f} | {pct_classic:.2f}% | {pct_luis:.2f}% |")
+    except Exception as e:
+        print(f"| Error | Error | Error | Error | Error | Error | Error | Error |")
 
-    except:
-        new_table.append([sr_str, si_str, sj_str] + ["Error"] * 5)
-
-# Compute summary statistics
-mean_c   = np.mean(overest_classic)
+# Calcular estadísticas
+mean_c = np.mean(overest_classic)
 median_c = np.median(overest_classic)
-min_c    = np.min(overest_classic)
-max_c    = np.max(overest_classic)
+min_c = np.min(overest_classic)
+max_c = np.max(overest_classic)
 
-mean_l   = np.mean(overest_luis)
+mean_l = np.mean(overest_luis)
 median_l = np.median(overest_luis)
-min_l    = np.min(overest_luis)
-max_l    = np.max(overest_luis)
+min_l = np.min(overest_luis)
+max_l = np.max(overest_luis)
 
-# Append summary rows
-new_table.append(["", "", "Mean", "", "", "",
-                  f"{mean_c:.2f}%", f"{mean_l:.2f}%"])
-new_table.append(["", "", "Median", "", "", "",
-                  f"{median_c:.2f}%", f"{median_l:.2f}%"])
-new_table.append(["", "", "Min", "", "", "",
-                  f"{min_c:.2f}%", f"{min_l:.2f}%"])
-new_table.append(["", "", "Max", "", "", "",
-                  f"{max_c:.2f}%", f"{max_l:.2f}%"])
-
-# Return full table
-return [header] + new_table
+# Imprimir estadísticas
+print("|-")
+print(f"| | | Mean | | | | {mean_c:.2f}% | {mean_l:.2f}% |")
+print(f"| | | Median | | | | {median_c:.2f}% | {median_l:.2f}% |")
+print(f"| | | Min | | | | {min_c:.2f}% | {min_l:.2f}% |")
+print(f"| | | Max | | | | {max_c:.2f}% | {max_l:.2f}% |")
 #+end_src
 
 
 #+RESULTS: calculate-overestimation-compare
 |       e_r |       e_i |   e_J0660 |   σ_ideal | σ_classic |    σ_luis | Classic overestimation (%) | Luis overestimation (%) |
+|-----------+-----------+-----------+-----------+-----------+-----------+----------------------------+-------------------------|
 | 0.0027043 | 0.0023099 | 0.0034418 | 0.0107393 | 0.0110083 | 0.0104365 |                      2.51% |                  -2.82% |
 | 0.0009554 | 0.0010020 | 0.0010847 | 0.0100830 | 0.0101191 | 0.0100528 |                      0.36% |                  -0.30% |
 | 0.0016022 | 0.0014943 | 0.0017040 | 0.0102071 | 0.0103072 | 0.0101359 |                      0.98% |                  -0.70% |
@@ -512,6 +496,7 @@ return [header] + new_table
 | 0.0029722 | 0.0027480 | 0.0029623 | 0.0106378 | 0.0109650 | 0.0104384 |                      3.08% |                  -1.87% |
 | 0.0026445 | 0.0026835 | 0.0025978 | 0.0105080 | 0.0107709 | 0.0103546 |                      2.50% |                  -1.46% |
 | 0.0028707 | 0.0027355 | 0.0032248 | 0.0107034 | 0.0110071 | 0.0104511 |                      2.84% |                  -2.36% |
+|-----------+-----------+-----------+-----------+-----------+-----------+----------------------------+-------------------------|
 |           |           |      Mean |           |           |           |                      2.33% |                  -1.85% |
 |           |           |    Median |           |           |           |                      2.26% |                  -1.72% |
 |           |           |       Min |           |           |           |                      0.29% |                  -5.30% |
@@ -522,39 +507,33 @@ Clearly, Luis’s approximation is closer to the ideal case, underestimating by 
 Now estimate the value of the covariance term for both case:
 
 #+name: calculate-covarianze
-#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results value table
+#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results output raw
 import numpy as np
 
-# Header for the output table
-header = ["e_r", "e_i", "e_J0660", "Cov_classic", "Cov_Luis"]
-output = []
+# Imprimir encabezado de la tabla
+print("| e_r | e_i | e_J0660 | Cov_classic | Cov_Luis |")
+print("|-")
 
-# Compute covariance terms for each row
-for sr_str, si_str, sj_str in data:
+# Procesar cada fila de datos
+for row in data:
+    sr_str, si_str, sj_str = row
     try:
         sr = float(sr_str)
         sj = float(sj_str)
-        # Classical covariance term
+        
+        # Cálculos de covarianza
         cov_classic = -2 * m * sr**2
-        # Luis covariance term
         cov_luis = -m**2 * sr**2 + (2 * m - m**2) * sj**2
-
-        output.append([
-            f"{sr:.7f}",
-            si_str,
-            f"{sj:.7f}",
-            f"{cov_classic:.7e}",
-            f"{cov_luis:.7e}"
-        ])
-    except Exception:
-        output.append([sr_str, si_str, sj_str, "Error", "Error"])
-
-# Return header + computed rows
-return [header] + output
+        
+        # Imprimir fila formateada
+        print(f"| {sr:.7f} | {si_str} | {sj:.7f} | {cov_classic:.7e} | {cov_luis:.7e} |")
+    except Exception as e:
+        print(f"| Error | Error | Error | Error | Error |")
 #+end_src
 
 #+RESULTS: calculate-covarianze
 |       e_r |          e_i |   e_J0660 |    Cov_classic |      Cov_Luis |
+|-----------+--------------+-----------+----------------+---------------|
 | 0.0027043 |  0.002309852 | 0.0034418 | -5.8507730e-06 | 6.4111200e-06 |
 | 0.0009554 | 0.0010019763 | 0.0010847 | -7.3028422e-07 | 6.0701278e-07 |
 | 0.0016022 | 0.0014943366 | 0.0017040 | -2.0536433e-06 | 1.4475513e-06 |
