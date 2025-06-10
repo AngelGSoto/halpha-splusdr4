@@ -3,14 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-10 Tue 09:50 -->
+<!-- 2025-06-10 Tue 17:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rigorous Mathematical Proof of the Error Propagation Method in S-PLUS Hα-Excess Analysis</title>
+<meta name="generator" content="Org mode" />
 <meta name="author" content="Luis A. Gutiérrez Soto et al." />
-<meta name="generator" content="Org Mode" />
-<style>
-  #content { max-width: 60em; margin: auto; }
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,9 +31,8 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
-    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -41,22 +40,22 @@
   }
   pre.src {
     position: relative;
-    overflow: auto;
+    overflow: visible;
+    padding-top: 1.2em;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    top: -8px;
-    right: 12px;
+    background-color: white;
+    top: -10px;
+    right: 10px;
     padding: 3px;
-    color: #555;
-    background-color: #f2f2f299;
+    border: 1px solid black;
   }
-  pre.src:hover:before { display: inline; margin-top: 14px;}
+  pre.src:hover:before { display: inline;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
-  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -192,7 +191,54 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
+  /*]]>*/-->
 </style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -213,47 +259,48 @@
              }
 });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="content">
 <h1 class="title">Rigorous Mathematical Proof of the Error Propagation Method in S-PLUS Hα-Excess Analysis</h1>
-<div id="table-of-contents" role="doc-toc">
+<div id="table-of-contents">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
+<div id="text-table-of-contents">
 <ul>
-<li><a href="#org1b11375">1. Mathematical Derivation</a>
+<li><a href="#org9976472">1. Mathematical Derivation</a>
 <ul>
-<li><a href="#org0816989">1.1. Variable Definitions</a></li>
-<li><a href="#org7fe50bb">1.2. Derivation of the Ideal Method from First Principles</a>
+<li><a href="#org027a58d">1.1. Variable Definitions</a></li>
+<li><a href="#org6c7e830">1.2. Derivation of the Ideal Method from First Principles</a>
 <ul>
-<li><a href="#orgcbe4bef">1.2.1. Definition of Residual</a></li>
-<li><a href="#orgefd173e">1.2.2. Error Propagation Formula</a></li>
-<li><a href="#org0aedb47">1.2.3. Partial Derivatives</a></li>
-<li><a href="#org871b19e">1.2.4. Substitute Derivatives into Error Propagation</a></li>
+<li><a href="#org324de31">1.2.1. Definition of Residual</a></li>
+<li><a href="#orge42ada3">1.2.2. Error Propagation Formula</a></li>
+<li><a href="#org552eba6">1.2.3. Partial Derivatives</a></li>
+<li><a href="#org97e4cd0">1.2.4. Substitute Derivatives into Error Propagation</a></li>
 </ul>
 </li>
-<li><a href="#org9d8786c">1.3. Error Propagation Equations</a>
+<li><a href="#orgb21d7cc">1.3. Error Propagation Equations</a>
 <ul>
-<li><a href="#org9451b1b">1.3.1. Classical Method</a></li>
-<li><a href="#org6ccc7fc">1.3.2. Luis's Method (Proposed)</a></li>
+<li><a href="#orgb7a4bd6">1.3.1. Classical Method</a></li>
+<li><a href="#orgfe37b63">1.3.2. Luis's Method (Proposed)</a></li>
+<li><a href="#orge198f10">1.3.3. Simplified error estimate</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org829763d">2. Simplified error estimate</a></li>
 </ul>
 </div>
 </div>
 
 
 
-<div id="outline-container-org1b11375" class="outline-2">
-<h2 id="org1b11375"><span class="section-number-2">1.</span> Mathematical Derivation</h2>
+<div id="outline-container-org9976472" class="outline-2">
+<h2 id="org9976472"><span class="section-number-2">1</span> Mathematical Derivation</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org0816989" class="outline-3">
-<h3 id="org0816989"><span class="section-number-3">1.1.</span> Variable Definitions</h3>
+<div id="outline-container-org027a58d" class="outline-3">
+<h3 id="org027a58d"><span class="section-number-3">1.1</span> Variable Definitions</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>\( m \): Slope of the stellar locus in the \((r - i)\) vs. \((r - J0660)\) diagram.</li>
@@ -264,12 +311,12 @@
 </div>
 </div>
 
-<div id="outline-container-org7fe50bb" class="outline-3">
-<h3 id="org7fe50bb"><span class="section-number-3">1.2.</span> Derivation of the Ideal Method from First Principles</h3>
+<div id="outline-container-org6c7e830" class="outline-3">
+<h3 id="org6c7e830"><span class="section-number-3">1.2</span> Derivation of the Ideal Method from First Principles</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-orgcbe4bef" class="outline-4">
-<h4 id="orgcbe4bef"><span class="section-number-4">1.2.1.</span> Definition of Residual</h4>
+<div id="outline-container-org324de31" class="outline-4">
+<h4 id="org324de31"><span class="section-number-4">1.2.1</span> Definition of Residual</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 The residual between the observed and fitted colors is:
@@ -292,8 +339,8 @@ Simplifying:
 </div>
 </div>
 
-<div id="outline-container-orgefd173e" class="outline-4">
-<h4 id="orgefd173e"><span class="section-number-4">1.2.2.</span> Error Propagation Formula</h4>
+<div id="outline-container-orge42ada3" class="outline-4">
+<h4 id="orge42ada3"><span class="section-number-4">1.2.2</span> Error Propagation Formula</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 The total uncertainty in the residual is:
@@ -305,8 +352,8 @@ where \( x = r, i, J0660 \).
 </div>
 </div>
 
-<div id="outline-container-org0aedb47" class="outline-4">
-<h4 id="org0aedb47"><span class="section-number-4">1.2.3.</span> Partial Derivatives</h4>
+<div id="outline-container-org552eba6" class="outline-4">
+<h4 id="org552eba6"><span class="section-number-4">1.2.3</span> Partial Derivatives</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 \[
@@ -323,8 +370,8 @@ where \( x = r, i, J0660 \).
 </div>
 </div>
 
-<div id="outline-container-org871b19e" class="outline-4">
-<h4 id="org871b19e"><span class="section-number-4">1.2.4.</span> Substitute Derivatives into Error Propagation</h4>
+<div id="outline-container-org97e4cd0" class="outline-4">
+<h4 id="org97e4cd0"><span class="section-number-4">1.2.4</span> Substitute Derivatives into Error Propagation</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <p>
 \[
@@ -338,12 +385,12 @@ where \( x = r, i, J0660 \).
 </div>
 </div>
 
-<div id="outline-container-org9d8786c" class="outline-3">
-<h3 id="org9d8786c"><span class="section-number-3">1.3.</span> Error Propagation Equations</h3>
+<div id="outline-container-orgb21d7cc" class="outline-3">
+<h3 id="orgb21d7cc"><span class="section-number-3">1.3</span> Error Propagation Equations</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org9451b1b" class="outline-4">
-<h4 id="org9451b1b"><span class="section-number-4">1.3.1.</span> Classical Method</h4>
+<div id="outline-container-orgb7a4bd6" class="outline-4">
+<h4 id="orgb7a4bd6"><span class="section-number-4">1.3.1</span> Classical Method</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 Now, we try to writte the equation similar those used in Witham et al. (2206);
@@ -404,7 +451,7 @@ Go back to the individual error bands:
 Now we do some numerical examples. I note to the slope of the fits in the color-color diagram  in most of the case is between 0.35 - 0.4, used in this case 0.4 for the slope:
 </p>
 
-<table id="org10f33a4" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org4127feb" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -726,35 +773,35 @@ Use this Python block to compute and render the table plus mean/median when expo
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org92f067d"><span style="color: #00ffff;">import</span> numpy <span style="color: #00ffff;">as</span> np
+<pre class="src src-python" id="orgab7af7c">import numpy as np
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Header row</span>
-<span style="color: #eedd82;">header</span> = [<span style="color: #ffa07a;">"e_r"</span>, <span style="color: #ffa07a;">"e_i"</span>, <span style="color: #ffa07a;">"e_J0660"</span>, <span style="color: #ffa07a;">"&#963;_ideal"</span>, <span style="color: #ffa07a;">"&#963;_classic"</span>, <span style="color: #ffa07a;">"Overestimation (%)"</span>]
-<span style="color: #eedd82;">new_table</span> = []
-<span style="color: #eedd82;">overest</span> = []
+# Header row
+header = ["e_r", "e_i", "e_J0660", "σ_ideal", "σ_classic", "Overestimation (%)"]
+new_table = []
+overest = []
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Process each data row</span>
-<span style="color: #00ffff;">for</span> sr_str, si_str, sj_str <span style="color: #00ffff;">in</span> <span style="color: #eedd82;">data</span>:
-    <span style="color: #00ffff;">try</span>:
-        sr = <span style="color: #b0c4de;">float</span>(sr_str)
-        <span style="color: #eedd82;">si</span> = <span style="color: #b0c4de;">float</span>(si_str)
-        <span style="color: #eedd82;">sj</span> = <span style="color: #b0c4de;">float</span>(sj_str)
-        <span style="color: #eedd82;">&#963;_ideal</span>   = np.sqrt(sigma_s**2 + (1 - m)**2 * sr**2 + sj**2 + m**2 * si**2)
-        <span style="color: #eedd82;">&#963;_classic</span> = np.sqrt(sigma_s**2 + (sr**2 + sj**2) + m**2 * (sr**2 + si**2))
-        <span style="color: #eedd82;">pct</span> = (&#963;_classic - &#963;_ideal) / &#963;_ideal * 100
-        new_table.append([f<span style="color: #ffa07a;">"</span>{sr:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{si:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{sj:.7f}<span style="color: #ffa07a;">"</span>,
-                          f<span style="color: #ffa07a;">"</span>{&#963;_ideal:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{&#963;_classic:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{pct:.2f}<span style="color: #ffa07a;">%"</span>])
-        overest.append(pct)
-    <span style="color: #00ffff;">except</span>:
-        new_table.append([sr_str, si_str, sj_str, <span style="color: #ffa07a;">"Error"</span>, <span style="color: #ffa07a;">"Error"</span>, <span style="color: #ffa07a;">"Error"</span>])
+# Process each data row
+for sr_str, si_str, sj_str in data:
+    try:
+	sr = float(sr_str)
+	si = float(si_str)
+	sj = float(sj_str)
+	σ_ideal   = np.sqrt(sigma_s**2 + (1 - m)**2 * sr**2 + sj**2 + m**2 * si**2)
+	σ_classic = np.sqrt(sigma_s**2 + (sr**2 + sj**2) + m**2 * (sr**2 + si**2))
+	pct = (σ_classic - σ_ideal) / σ_ideal * 100
+	new_table.append([f"{sr:.7f}", f"{si:.7f}", f"{sj:.7f}",
+			  f"{σ_ideal:.7f}", f"{σ_classic:.7f}", f"{pct:.2f}%"])
+	overest.append(pct)
+    except:
+	new_table.append([sr_str, si_str, sj_str, "Error", "Error", "Error"])
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Add summary rows</span>
+# Add summary rows
 mean_pct   = np.mean(overest)
-<span style="color: #eedd82;">median_pct</span> = np.median(overest)
-new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Mean"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, f<span style="color: #ffa07a;">"</span>{mean_pct:.2f}<span style="color: #ffa07a;">%"</span>])
-new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Median"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, f<span style="color: #ffa07a;">"</span>{median_pct:.2f}<span style="color: #ffa07a;">%"</span>])
+median_pct = np.median(overest)
+new_table.append(["", "", "Mean", "", "", f"{mean_pct:.2f}%"])
+new_table.append(["", "", "Median", "", "", f"{median_pct:.2f}%"])
 
-<span style="color: #00ffff;">return</span> [header] + new_table
+return [header] + new_table
 </pre>
 </div>
 
@@ -765,8 +812,8 @@ which is typical for the fit in the stellar locus color–color diagram of S-PLU
 </div>
 </div>
 
-<div id="outline-container-org6ccc7fc" class="outline-4">
-<h4 id="org6ccc7fc"><span class="section-number-4">1.3.2.</span> Luis's Method (Proposed)</h4>
+<div id="outline-container-orgfe37b63" class="outline-4">
+<h4 id="orgfe37b63"><span class="section-number-4">1.3.2</span> Luis's Method (Proposed)</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
 See if I get a better apprximation on wich the covariance term contribute lees to the sigma value. Go back again to the ideal case:
@@ -828,12 +875,10 @@ The covariance term is: \(-m^2 \sigma_r^2 + (2m - m^2) \sigma_{J0660}^2\). There
 </p>
 </div>
 </div>
-</div>
-</div>
 
-<div id="outline-container-org829763d" class="outline-2">
-<h2 id="org829763d"><span class="section-number-2">2.</span> Simplified error estimate</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orge198f10" class="outline-4">
+<h4 id="orge198f10"><span class="section-number-4">1.3.3</span> Simplified error estimate</h4>
+<div class="outline-text-4" id="text-1-3-3">
 <p>
 By removing the covariance term, we keep only the color errors:
 </p>
@@ -848,49 +893,34 @@ Contribution of the Removed Covariance Term
 
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgae32354"><span style="color: #00ffff;">import</span> numpy <span style="color: #00ffff;">as</span> np
+<pre class="src src-python" id="orgc6afafb">import numpy as np
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Header row</span>
-<span style="color: #eedd82;">header</span> = [<span style="color: #ffa07a;">"e_r"</span>, <span style="color: #ffa07a;">"e_i"</span>, <span style="color: #ffa07a;">"e_J0660"</span>, <span style="color: #ffa07a;">"&#963;_ideal"</span>, <span style="color: #ffa07a;">"&#963;_luis"</span>, <span style="color: #ffa07a;">"Overestimation (%)"</span>]
-<span style="color: #eedd82;">new_table</span> = []
-<span style="color: #eedd82;">overest</span> = []
+# Encabezado de la tabla
+print("| e_r | e_i | e_J0660 | σ_ideal | σ_luis | Overestimation (%) |")
+print("|-")
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Process each data row</span>
-<span style="color: #00ffff;">for</span> sr_str, si_str, sj_str <span style="color: #00ffff;">in</span> <span style="color: #eedd82;">data</span>:
-    <span style="color: #00ffff;">try</span>:
-        sr = <span style="color: #b0c4de;">float</span>(sr_str)
-        <span style="color: #eedd82;">si</span> = <span style="color: #b0c4de;">float</span>(si_str)
-        <span style="color: #eedd82;">sj</span> = <span style="color: #b0c4de;">float</span>(sj_str)
+overest = []
 
-        <span style="color: #eedd82;">&#963;_ideal</span> = np.sqrt(
-            sigma_s**2 +
-            (1 - m)**2 * sr**2 +
-            sj**2 +
-            m**2 * si**2
-        )
-        <span style="color: #eedd82;">&#963;_luis</span> = np.sqrt(
-            sigma_s**2 +
-            (1 - m)**2 * (sr**2 + sj**2) +
-            m**2 * (sr**2 + si**2)
-        )
+for sr_str, si_str, sj_str in data:
+    try:
+	sr = float(sr_str); si = float(si_str); sj = float(sj_str)
 
-        <span style="color: #eedd82;">pct</span> = (&#963;_luis - &#963;_ideal) / &#963;_ideal * 100
-        new_table.append([
-            f<span style="color: #ffa07a;">"</span>{sr:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{si:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{sj:.7f}<span style="color: #ffa07a;">"</span>,
-            f<span style="color: #ffa07a;">"</span>{&#963;_ideal:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{&#963;_luis:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{pct:.2f}<span style="color: #ffa07a;">%"</span>
-        ])
-        overest.append(pct)
-    <span style="color: #00ffff;">except</span>:
-        new_table.append([sr_str, si_str, sj_str, <span style="color: #ffa07a;">"Error"</span>, <span style="color: #ffa07a;">"Error"</span>, <span style="color: #ffa07a;">"Error"</span>])
+	σ_ideal = np.sqrt(sigma_s**2 + (1 - m)**2 * sr**2 + sj**2 + m**2 * si**2)
+	σ_luis = np.sqrt(sigma_s**2 + (1 - m)**2 * (sr**2 + sj**2) + m**2 * (sr**2 + si**2))
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Add summary rows</span>
-mean_pct   = np.mean(overest)
-<span style="color: #eedd82;">median_pct</span> = np.median(overest)
-new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Mean"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, f<span style="color: #ffa07a;">"</span>{mean_pct:.2f}<span style="color: #ffa07a;">%"</span>])
-new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Median"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, f<span style="color: #ffa07a;">"</span>{median_pct:.2f}<span style="color: #ffa07a;">%"</span>])
+	pct = (σ_luis - σ_ideal) / σ_ideal * 100
+	overest.append(pct)
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Return full table</span>
-<span style="color: #00ffff;">return</span> [header] + new_table
+	print(f"| {sr:.7f} | {si:.7f} | {sj:.7f} | {σ_ideal:.7f} | {σ_luis:.7f} | {pct:.2f}% |")
+    except:
+	print(f"| Error | Error | Error | Error | Error | Error |")
+
+# Estadísticas finales
+mean_pct = np.mean(overest)
+median_pct = np.median(overest)
+print("|-")
+print(f"| | | Mean | | | {mean_pct:.2f}% |")
+print(f"| | | Median | | | {median_pct:.2f}% |")
 </pre>
 </div>
 
@@ -900,87 +930,87 @@ The luis aproximation subestima the sigma in around -1.85%.
 </div>
 
 <ol class="org-ol">
-<li><a id="org5ab1cc9"></a>Classic versus Luis aproximation<br />
-<div class="outline-text-5" id="text-2-0-0-1">
+<li><a id="orge0fb6c4"></a>Classic versus Luis aproximation<br />
+<div class="outline-text-5" id="text-1-3-3-1">
 <p>
 Now Comparing Classic vs. Luis Overestimation
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgb948f4f"><span style="color: #00ffff;">import</span> numpy <span style="color: #00ffff;">as</span> np
+<pre class="src src-python" id="orgcfc32d9">import numpy as np
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Header row</span>
-<span style="color: #eedd82;">header</span> = [
-    <span style="color: #ffa07a;">"e_r"</span>, <span style="color: #ffa07a;">"e_i"</span>, <span style="color: #ffa07a;">"e_J0660"</span>,
-    <span style="color: #ffa07a;">"&#963;_ideal"</span>, <span style="color: #ffa07a;">"&#963;_classic"</span>, <span style="color: #ffa07a;">"&#963;_luis"</span>,
-    <span style="color: #ffa07a;">"Classic overestimation (%)"</span>, <span style="color: #ffa07a;">"Luis overestimation (%)"</span>
+# Header row
+header = [
+    "e_r", "e_i", "e_J0660",
+    "σ_ideal", "σ_classic", "σ_luis",
+    "Classic overestimation (%)", "Luis overestimation (%)"
 ]
 
-<span style="color: #eedd82;">new_table</span> = []
-<span style="color: #eedd82;">overest_classic</span> = []
-<span style="color: #eedd82;">overest_luis</span> = []
+new_table = []
+overest_classic = []
+overest_luis = []
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Process each data row</span>
-<span style="color: #00ffff;">for</span> sr_str, si_str, sj_str <span style="color: #00ffff;">in</span> <span style="color: #eedd82;">data</span>:
-    <span style="color: #00ffff;">try</span>:
-        sr = <span style="color: #b0c4de;">float</span>(sr_str)
-        <span style="color: #eedd82;">si</span> = <span style="color: #b0c4de;">float</span>(si_str)
-        <span style="color: #eedd82;">sj</span> = <span style="color: #b0c4de;">float</span>(sj_str)
+# Process each data row
+for sr_str, si_str, sj_str in data:
+    try:
+	sr = float(sr_str)
+	si = float(si_str)
+	sj = float(sj_str)
 
-        <span style="color: #eedd82;">&#963;_ideal</span>   = np.sqrt(
-            sigma_s**2 +
-            (1 - m)**2 * sr**2 +
-            sj**2 +
-            m**2 * si**2
-        )
-        <span style="color: #eedd82;">&#963;_classic</span> = np.sqrt(
-            sigma_s**2 +
-            (sr**2 + sj**2) +
-            m**2 * (sr**2 + si**2)
-        )
-        <span style="color: #eedd82;">&#963;_luis</span>    = np.sqrt(
-            sigma_s**2 +
-            (1 - m)**2 * (sr**2 + sj**2) +
-            m**2 * (sr**2 + si**2)
-        )
+	σ_ideal   = np.sqrt(
+	    sigma_s**2 +
+	    (1 - m)**2 * sr**2 +
+	    sj**2 +
+	    m**2 * si**2
+	)
+	σ_classic = np.sqrt(
+	    sigma_s**2 +
+	    (sr**2 + sj**2) +
+	    m**2 * (sr**2 + si**2)
+	)
+	σ_luis    = np.sqrt(
+	    sigma_s**2 +
+	    (1 - m)**2 * (sr**2 + sj**2) +
+	    m**2 * (sr**2 + si**2)
+	)
 
-        <span style="color: #eedd82;">pct_classic</span> = (&#963;_classic - &#963;_ideal) / &#963;_ideal * 100
-        <span style="color: #eedd82;">pct_luis</span>    = (&#963;_luis    - &#963;_ideal) / &#963;_ideal * 100
+	pct_classic = (σ_classic - σ_ideal) / σ_ideal * 100
+	pct_luis    = (σ_luis    - σ_ideal) / σ_ideal * 100
 
-        new_table.append([
-            f<span style="color: #ffa07a;">"</span>{sr:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{si:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{sj:.7f}<span style="color: #ffa07a;">"</span>,
-            f<span style="color: #ffa07a;">"</span>{&#963;_ideal:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{&#963;_classic:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{&#963;_luis:.7f}<span style="color: #ffa07a;">"</span>,
-            f<span style="color: #ffa07a;">"</span>{pct_classic:.2f}<span style="color: #ffa07a;">%"</span>, f<span style="color: #ffa07a;">"</span>{pct_luis:.2f}<span style="color: #ffa07a;">%"</span>
-        ])
-        overest_classic.append(pct_classic)
-        overest_luis.append(pct_luis)
+	new_table.append([
+	    f"{sr:.7f}", f"{si:.7f}", f"{sj:.7f}",
+	    f"{σ_ideal:.7f}", f"{σ_classic:.7f}", f"{σ_luis:.7f}",
+	    f"{pct_classic:.2f}%", f"{pct_luis:.2f}%"
+	])
+	overest_classic.append(pct_classic)
+	overest_luis.append(pct_luis)
 
-    <span style="color: #00ffff;">except</span>:
-        new_table.append([sr_str, si_str, sj_str] + [<span style="color: #ffa07a;">"Error"</span>] * 5)
+    except:
+	new_table.append([sr_str, si_str, sj_str] + ["Error"] * 5)
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Compute summary statistics</span>
-<span style="color: #eedd82;">mean_c</span>   = np.mean(overest_classic)
-<span style="color: #eedd82;">median_c</span> = np.median(overest_classic)
-<span style="color: #eedd82;">min_c</span>    = np.<span style="color: #b0c4de;">min</span>(overest_classic)
-<span style="color: #eedd82;">max_c</span>    = np.<span style="color: #b0c4de;">max</span>(overest_classic)
+# Compute summary statistics
+mean_c   = np.mean(overest_classic)
+median_c = np.median(overest_classic)
+min_c    = np.min(overest_classic)
+max_c    = np.max(overest_classic)
 
-<span style="color: #eedd82;">mean_l</span>   = np.mean(overest_luis)
-<span style="color: #eedd82;">median_l</span> = np.median(overest_luis)
-<span style="color: #eedd82;">min_l</span>    = np.<span style="color: #b0c4de;">min</span>(overest_luis)
-<span style="color: #eedd82;">max_l</span>    = np.<span style="color: #b0c4de;">max</span>(overest_luis)
+mean_l   = np.mean(overest_luis)
+median_l = np.median(overest_luis)
+min_l    = np.min(overest_luis)
+max_l    = np.max(overest_luis)
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Append summary rows</span>
-new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Mean"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>,
-                  f<span style="color: #ffa07a;">"</span>{mean_c:.2f}<span style="color: #ffa07a;">%"</span>, f<span style="color: #ffa07a;">"</span>{mean_l:.2f}<span style="color: #ffa07a;">%"</span>])
-new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Median"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>,
-                  f<span style="color: #ffa07a;">"</span>{median_c:.2f}<span style="color: #ffa07a;">%"</span>, f<span style="color: #ffa07a;">"</span>{median_l:.2f}<span style="color: #ffa07a;">%"</span>])
-new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Min"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>,
-                  f<span style="color: #ffa07a;">"</span>{min_c:.2f}<span style="color: #ffa07a;">%"</span>, f<span style="color: #ffa07a;">"</span>{min_l:.2f}<span style="color: #ffa07a;">%"</span>])
-new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Max"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>,
-                  f<span style="color: #ffa07a;">"</span>{max_c:.2f}<span style="color: #ffa07a;">%"</span>, f<span style="color: #ffa07a;">"</span>{max_l:.2f}<span style="color: #ffa07a;">%"</span>])
+# Append summary rows
+new_table.append(["", "", "Mean", "", "", "",
+		  f"{mean_c:.2f}%", f"{mean_l:.2f}%"])
+new_table.append(["", "", "Median", "", "", "",
+		  f"{median_c:.2f}%", f"{median_l:.2f}%"])
+new_table.append(["", "", "Min", "", "", "",
+		  f"{min_c:.2f}%", f"{min_l:.2f}%"])
+new_table.append(["", "", "Max", "", "", "",
+		  f"{max_c:.2f}%", f"{max_l:.2f}%"])
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Return full table</span>
-<span style="color: #00ffff;">return</span> [header] + new_table
+# Return full table
+return [header] + new_table
 </pre>
 </div>
 
@@ -993,34 +1023,34 @@ Now estimate the value of the covariance term for both case:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org92d3e4c"><span style="color: #00ffff;">import</span> numpy <span style="color: #00ffff;">as</span> np
+<pre class="src src-python" id="orge4311d4">import numpy as np
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Header for the output table</span>
-<span style="color: #eedd82;">header</span> = [<span style="color: #ffa07a;">"e_r"</span>, <span style="color: #ffa07a;">"e_i"</span>, <span style="color: #ffa07a;">"e_J0660"</span>, <span style="color: #ffa07a;">"Cov_classic"</span>, <span style="color: #ffa07a;">"Cov_Luis"</span>]
-<span style="color: #eedd82;">output</span> = []
+# Header for the output table
+header = ["e_r", "e_i", "e_J0660", "Cov_classic", "Cov_Luis"]
+output = []
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Compute covariance terms for each row</span>
-<span style="color: #00ffff;">for</span> sr_str, si_str, sj_str <span style="color: #00ffff;">in</span> <span style="color: #eedd82;">data</span>:
-    <span style="color: #00ffff;">try</span>:
-        sr = <span style="color: #b0c4de;">float</span>(sr_str)
-        <span style="color: #eedd82;">sj</span> = <span style="color: #b0c4de;">float</span>(sj_str)
-        <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Classical covariance term</span>
-        <span style="color: #eedd82;">cov_classic</span> = -2 * m * sr**2
-        <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Luis covariance term</span>
-        <span style="color: #eedd82;">cov_luis</span> = -m**2 * sr**2 + (2 * m - m**2) * sj**2
+# Compute covariance terms for each row
+for sr_str, si_str, sj_str in data:
+    try:
+	sr = float(sr_str)
+	sj = float(sj_str)
+	# Classical covariance term
+	cov_classic = -2 * m * sr**2
+	# Luis covariance term
+	cov_luis = -m**2 * sr**2 + (2 * m - m**2) * sj**2
 
-        output.append([
-            f<span style="color: #ffa07a;">"</span>{sr:.7f}<span style="color: #ffa07a;">"</span>,
-            si_str,
-            f<span style="color: #ffa07a;">"</span>{sj:.7f}<span style="color: #ffa07a;">"</span>,
-            f<span style="color: #ffa07a;">"</span>{cov_classic:.7e}<span style="color: #ffa07a;">"</span>,
-            f<span style="color: #ffa07a;">"</span>{cov_luis:.7e}<span style="color: #ffa07a;">"</span>
-        ])
-    <span style="color: #00ffff;">except</span> <span style="color: #98fb98;">Exception</span>:
-        output.append([sr_str, si_str, sj_str, <span style="color: #ffa07a;">"Error"</span>, <span style="color: #ffa07a;">"Error"</span>])
+	output.append([
+	    f"{sr:.7f}",
+	    si_str,
+	    f"{sj:.7f}",
+	    f"{cov_classic:.7e}",
+	    f"{cov_luis:.7e}"
+	])
+    except Exception:
+	output.append([sr_str, si_str, sj_str, "Error", "Error"])
 
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Return header + computed rows</span>
-<span style="color: #00ffff;">return</span> [header] + output
+# Return header + computed rows
+return [header] + output
 </pre>
 </div>
 
@@ -1038,10 +1068,12 @@ a more reliable representation of the photometric error relationships in this co
 </ol>
 </div>
 </div>
+</div>
+</div>
 <div id="postamble" class="status">
 <p class="author">Author: Luis A. Gutiérrez Soto et al.</p>
-<p class="date">Created: 2025-06-10 Tue 09:50</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-06-10 Tue 17:23</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
