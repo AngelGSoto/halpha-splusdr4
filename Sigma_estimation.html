@@ -3,14 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-03-11 Tue 13:57 -->
+<!-- 2025-06-10 Tue 01:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rigorous Mathematical Proof of the Error Propagation Method in S-PLUS Hα-Excess Analysis</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="Luis A. Gutiérrez Soto et al." />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,8 +31,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -40,22 +41,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -191,54 +192,7 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -259,81 +213,47 @@ for the JavaScript code in this tag.
              }
 });
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Rigorous Mathematical Proof of the Error Propagation Method in S-PLUS Hα-Excess Analysis</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6e76475">1. Mathematical Derivation</a>
+<li><a href="#orga462243">1. Mathematical Derivation</a>
 <ul>
-<li><a href="#orgf125f7d">1.1. Variable Definitions</a></li>
-<li><a href="#orgb2b89b2">1.2. Derivation of the Ideal Method from First Principles</a>
+<li><a href="#org4efc3ca">1.1. Variable Definitions</a></li>
+<li><a href="#orgfe96779">1.2. Derivation of the Ideal Method from First Principles</a>
 <ul>
-<li><a href="#org16df84f">1.2.1. Definition of Residual</a></li>
-<li><a href="#org7085f43">1.2.2. Error Propagation Formula</a></li>
-<li><a href="#org7fbdfb1">1.2.3. Partial Derivatives</a></li>
-<li><a href="#org86bb84e">1.2.4. Substitute Derivatives into Error Propagation</a></li>
+<li><a href="#org2aeeac1">1.2.1. Definition of Residual</a></li>
+<li><a href="#org06fe011">1.2.2. Error Propagation Formula</a></li>
+<li><a href="#org9103d1b">1.2.3. Partial Derivatives</a></li>
+<li><a href="#orgf6b3cfb">1.2.4. Substitute Derivatives into Error Propagation</a></li>
 </ul>
 </li>
-<li><a href="#org3d114aa">1.3. Error Propagation Equations</a>
+<li><a href="#orgde2120a">1.3. Error Propagation Equations</a>
 <ul>
-<li><a href="#org25665bb">1.3.1. Classical Method (Flawed)</a></li>
-<li><a href="#orga727c0e">1.3.2. Luis's Method (Proposed)</a></li>
-</ul>
-</li>
-<li><a href="#orgfdcd6c6">1.4. Key Difference</a></li>
-<li><a href="#org2a2cf60">1.5. Analysis of the \((1 - m)^2 \sigma_{J0660}^2\) Term</a>
-<ul>
-<li><a href="#orgb1a995b">1.5.1. Structural Origin</a></li>
-<li><a href="#orgf538206">1.5.2. Numerical Impact</a></li>
-<li><a href="#org6cff36b">1.5.3. Compensation Mechanism</a></li>
+<li><a href="#org37b58a7">1.3.1. Classical Method</a></li>
+<li><a href="#org510285e">1.3.2. Luis's Method (Proposed)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgee6e4fc">2. Numerical Validation with 15 S-PLUS Objects</a>
-<ul>
-<li><a href="#org8d57f10">2.1. Parameters</a></li>
-<li><a href="#orge7d5ece">2.2. Calculations for All 15 Objects</a></li>
-</ul>
-</li>
-<li><a href="#org0c4a532">3. Average Differences</a></li>
-<li><a href="#org0c72a0a">4. Critical Analysis</a>
-<ul>
-<li><a href="#org59cf522">4.1. Case 11: Moderately High \(\sigma_{J0660}\)</a></li>
-<li><a href="#org1897529">4.2. Why Luis’s Method Wins</a></li>
-</ul>
-</li>
-<li><a href="#org408ad86">5. Robustness of the \((1 - m)^2 \sigma_{J0660}^2\) Term</a>
-<ul>
-<li><a href="#org04da932">5.1. Classical vs ideal/aproximation</a>
-<ul>
-<li><a href="#org024bd38">5.1.1. The Classical Method’s Fundamental Flaw</a></li>
-<li><a href="#org0d79e50">5.1.2. Classical Method’s Critical Error</a></li>
-<li><a href="#orge4631ed">5.1.3. Why This Matters for S-PLUS (\(m = 0.4\))</a></li>
-<li><a href="#orgdb8efe0">5.1.4. Conclusion</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgb0a0dad">6. Conclusion</a></li>
+<li><a href="#org9fbe81b">2. Simplified error estimate</a></li>
 </ul>
 </div>
 </div>
 
 
 
-<div id="outline-container-org6e76475" class="outline-2">
-<h2 id="org6e76475"><span class="section-number-2">1</span> Mathematical Derivation</h2>
+<div id="outline-container-orga462243" class="outline-2">
+<h2 id="orga462243"><span class="section-number-2">1.</span> Mathematical Derivation</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgf125f7d" class="outline-3">
-<h3 id="orgf125f7d"><span class="section-number-3">1.1</span> Variable Definitions</h3>
+<div id="outline-container-org4efc3ca" class="outline-3">
+<h3 id="org4efc3ca"><span class="section-number-3">1.1.</span> Variable Definitions</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>\( m \): Slope of the stellar locus in the \((r - i)\) vs. \((r - J0660)\) diagram.</li>
@@ -344,12 +264,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgb2b89b2" class="outline-3">
-<h3 id="orgb2b89b2"><span class="section-number-3">1.2</span> Derivation of the Ideal Method from First Principles</h3>
+<div id="outline-container-orgfe96779" class="outline-3">
+<h3 id="orgfe96779"><span class="section-number-3">1.2.</span> Derivation of the Ideal Method from First Principles</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org16df84f" class="outline-4">
-<h4 id="org16df84f"><span class="section-number-4">1.2.1</span> Definition of Residual</h4>
+<div id="outline-container-org2aeeac1" class="outline-4">
+<h4 id="org2aeeac1"><span class="section-number-4">1.2.1.</span> Definition of Residual</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 The residual between the observed and fitted colors is:
@@ -372,8 +292,8 @@ Simplifying:
 </div>
 </div>
 
-<div id="outline-container-org7085f43" class="outline-4">
-<h4 id="org7085f43"><span class="section-number-4">1.2.2</span> Error Propagation Formula</h4>
+<div id="outline-container-org06fe011" class="outline-4">
+<h4 id="org06fe011"><span class="section-number-4">1.2.2.</span> Error Propagation Formula</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 The total uncertainty in the residual is:
@@ -385,8 +305,8 @@ where \( x = r, i, J0660 \).
 </div>
 </div>
 
-<div id="outline-container-org7fbdfb1" class="outline-4">
-<h4 id="org7fbdfb1"><span class="section-number-4">1.2.3</span> Partial Derivatives</h4>
+<div id="outline-container-org9103d1b" class="outline-4">
+<h4 id="org9103d1b"><span class="section-number-4">1.2.3.</span> Partial Derivatives</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 \[
@@ -403,8 +323,8 @@ where \( x = r, i, J0660 \).
 </div>
 </div>
 
-<div id="outline-container-org86bb84e" class="outline-4">
-<h4 id="org86bb84e"><span class="section-number-4">1.2.4</span> Substitute Derivatives into Error Propagation</h4>
+<div id="outline-container-orgf6b3cfb" class="outline-4">
+<h4 id="orgf6b3cfb"><span class="section-number-4">1.2.4.</span> Substitute Derivatives into Error Propagation</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <p>
 \[
@@ -418,18 +338,60 @@ where \( x = r, i, J0660 \).
 </div>
 </div>
 
-<div id="outline-container-org3d114aa" class="outline-3">
-<h3 id="org3d114aa"><span class="section-number-3">1.3</span> Error Propagation Equations</h3>
+<div id="outline-container-orgde2120a" class="outline-3">
+<h3 id="orgde2120a"><span class="section-number-3">1.3.</span> Error Propagation Equations</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org25665bb" class="outline-4">
-<h4 id="org25665bb"><span class="section-number-4">1.3.1</span> Classical Method (Flawed)</h4>
+<div id="outline-container-org37b58a7" class="outline-4">
+<h4 id="org37b58a7"><span class="section-number-4">1.3.1.</span> Classical Method</h4>
 <div class="outline-text-4" id="text-1-3-1">
+<p>
+Now, we try to writte the equation similar those used in Witham et al. (2206);
+</p>
+
+<p>
+\[
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + (1 - 2m + m^2) \sigma_r^2 + \sigma_{J0660}^2 + m^2 \sigma_i^2
+\]
+</p>
+
+<p>
+\[
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 - 2m \sigma_r^2 + m^2 \sigma_r^2 + \sigma_{J0660}^2 + m^2 \sigma_i^2
+\]
+</p>
+
+<p>
+Rearranging terms;
+</p>
+
+<p>
+\[
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 + \sigma_{J0660}^2 - 2m \sigma_r^2 + m^2 \sigma_r^2  + m^2 \sigma_i^2
+\]
+</p>
+
+<p>
+Given  \(\sigma_x^2 + \sigma_y^2 = \sigma_{(x - y)}^2 \) then;
+</p>
+
+
+<p>
+\[
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_{r - J0660}^2 +  m^2 \sigma_{r - i}^2 - 2m \sigma_r^2 
+\]
+</p>
+
+<p>
+So, to obtain the equation from Witham et al., we have to remove the contribution of the \(- 2m \sigma_r^2\) term. How much does this term contribute?
+</p>
+
+
 <p>
 \[
 \sigma_{\text{est, classical}}^2 = \sigma_s^2 + \sigma_{(r-J0660)}^2 + m^2 \sigma_{(r-i)}^2
 \]
-Expanding:
+Go back to the individual error bands:
 \[
 \sigma_{\text{est, classical}}^2 = \sigma_s^2 + (\sigma_r^2 + \sigma_{J0660}^2) + m^2 (\sigma_r^2 + \sigma_i^2)
 \]
@@ -437,664 +399,649 @@ Expanding:
 = \sigma_s^2 + \sigma_r^2(1 + m^2) + \sigma_{J0660}^2 + m^2 \sigma_i^2 \quad \text{(Overcounts } \sigma_r^2 \text{)}
 \]
 </p>
+
+<p>
+Now we do some numerical examples. I note to the slope of the fits in the color-color diagram  in most of the case is between 0.35 - 0.4, used in this case 0.4 for the slope:
+</p>
+
+<table id="org33aa745" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">e<sub>r</sub><sub>PStotal</sub></th>
+<th scope="col" class="org-right">e<sub>i</sub><sub>PStotal</sub></th>
+<th scope="col" class="org-right">e<sub>J0660</sub><sub>PStotal</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0.0027043421</td>
+<td class="org-right">0.002309852</td>
+<td class="org-right">0.0034417643</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0009554346</td>
+<td class="org-right">0.0010019763</td>
+<td class="org-right">0.0010847448</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0016022029</td>
+<td class="org-right">0.0014943366</td>
+<td class="org-right">0.0017039843</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0022326636</td>
+<td class="org-right">0.0020145355</td>
+<td class="org-right">0.0023408893</td>
+</tr>
+
+<tr>
+<td class="org-right">0.00428348</td>
+<td class="org-right">0.0026568426</td>
+<td class="org-right">0.004832741</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0008637211</td>
+<td class="org-right">0.0008142423</td>
+<td class="org-right">0.0009804317</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0037895583</td>
+<td class="org-right">0.0036628896</td>
+<td class="org-right">0.0044751875</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0026341775</td>
+<td class="org-right">0.0025405292</td>
+<td class="org-right">0.0020656579</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0011333079</td>
+<td class="org-right">0.0010817236</td>
+<td class="org-right">0.0010882834</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0013017068</td>
+<td class="org-right">0.0012364228</td>
+<td class="org-right">0.0009283392</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0032339918</td>
+<td class="org-right">0.0032643287</td>
+<td class="org-right">0.0035206582</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0015321858</td>
+<td class="org-right">0.0014926838</td>
+<td class="org-right">0.0017911163</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0023779713</td>
+<td class="org-right">0.0022736047</td>
+<td class="org-right">0.0022346096</td>
+</tr>
+
+<tr>
+<td class="org-right">0.003833847</td>
+<td class="org-right">0.003391762</td>
+<td class="org-right">0.0039768526</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0032339613</td>
+<td class="org-right">0.0026312915</td>
+<td class="org-right">0.0031807977</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0024073187</td>
+<td class="org-right">0.0020921866</td>
+<td class="org-right">0.002365463</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0029173244</td>
+<td class="org-right">0.0024788384</td>
+<td class="org-right">0.0036630423</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0023025507</td>
+<td class="org-right">0.0022479515</td>
+<td class="org-right">0.0026816207</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0023555679</td>
+<td class="org-right">0.0023168672</td>
+<td class="org-right">0.002819191</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0033654603</td>
+<td class="org-right">0.0033328792</td>
+<td class="org-right">0.0038815523</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0025632957</td>
+<td class="org-right">0.0023379133</td>
+<td class="org-right">0.0025938326</td>
+</tr>
+
+<tr>
+<td class="org-right">0.00349301</td>
+<td class="org-right">0.003411095</td>
+<td class="org-right">0.003810881</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0030717351</td>
+<td class="org-right">0.0030049048</td>
+<td class="org-right">0.0032032381</td>
+</tr>
+
+<tr>
+<td class="org-right">0.001193243</td>
+<td class="org-right">0.0011562117</td>
+<td class="org-right">0.0009968877</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0013465676</td>
+<td class="org-right">0.0013025336</td>
+<td class="org-right">0.0008975989</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0013131873</td>
+<td class="org-right">0.0011755121</td>
+<td class="org-right">0.00084322726</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0013177483</td>
+<td class="org-right">0.0012559775</td>
+<td class="org-right">0.0008621476</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0012351323</td>
+<td class="org-right">0.0011085502</td>
+<td class="org-right">0.0008751316</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0012229811</td>
+<td class="org-right">0.0011141312</td>
+<td class="org-right">0.00087049545</td>
+</tr>
+
+<tr>
+<td class="org-right">0.001374798</td>
+<td class="org-right">0.0013328108</td>
+<td class="org-right">0.0009173866</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0013861168</td>
+<td class="org-right">0.001221707</td>
+<td class="org-right">0.0008832612</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0025332794</td>
+<td class="org-right">0.002932436</td>
+<td class="org-right">0.0027128041</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0036067879</td>
+<td class="org-right">0.0031376323</td>
+<td class="org-right">0.0037044238</td>
+</tr>
+
+<tr>
+<td class="org-right">0.00339293</td>
+<td class="org-right">0.0033208467</td>
+<td class="org-right">0.004346304</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0014183201</td>
+<td class="org-right">0.0013238328</td>
+<td class="org-right">0.0016154384</td>
+</tr>
+
+<tr>
+<td class="org-right">0.004621427</td>
+<td class="org-right">0.0047028367</td>
+<td class="org-right">0.0046202843</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0014658732</td>
+<td class="org-right">0.0013899308</td>
+<td class="org-right">0.00256149</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0023711754</td>
+<td class="org-right">0.0022108082</td>
+<td class="org-right">0.0026406425</td>
+</tr>
+
+<tr>
+<td class="org-right">0.002516076</td>
+<td class="org-right">0.0023366914</td>
+<td class="org-right">0.002748363</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0019471686</td>
+<td class="org-right">0.0018115259</td>
+<td class="org-right">0.004527632</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0033787978</td>
+<td class="org-right">0.0030290852</td>
+<td class="org-right">0.003503075</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0021783817</td>
+<td class="org-right">0.0021271813</td>
+<td class="org-right">0.0019475339</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0036444226</td>
+<td class="org-right">0.0033581583</td>
+<td class="org-right">0.003897624</td>
+</tr>
+
+<tr>
+<td class="org-right">0.002823925</td>
+<td class="org-right">0.0026747882</td>
+<td class="org-right">0.003112585</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0035756512</td>
+<td class="org-right">0.0033058396</td>
+<td class="org-right">0.00492577</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0034714018</td>
+<td class="org-right">0.003403292</td>
+<td class="org-right">0.0038095748</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0029721686</td>
+<td class="org-right">0.0027480372</td>
+<td class="org-right">0.0029622987</td>
+</tr>
+
+<tr>
+<td class="org-right">0.002644481</td>
+<td class="org-right">0.0026835275</td>
+<td class="org-right">0.0025978298</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0028707138</td>
+<td class="org-right">0.002735543</td>
+<td class="org-right">0.0032248157</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>Calculating overestimation</li>
+</ul>
+<p>
+Use this Python block to compute and render the table plus mean/median when exporting to HTML:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orge087d2c"><span style="color: #00ffff;">import</span> numpy <span style="color: #00ffff;">as</span> np
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Header row</span>
+<span style="color: #eedd82;">header</span> = [<span style="color: #ffa07a;">"e_r"</span>, <span style="color: #ffa07a;">"e_i"</span>, <span style="color: #ffa07a;">"e_J0660"</span>, <span style="color: #ffa07a;">"&#963;_ideal"</span>, <span style="color: #ffa07a;">"&#963;_classic"</span>, <span style="color: #ffa07a;">"Overestimation (%)"</span>]
+<span style="color: #eedd82;">new_table</span> = []
+<span style="color: #eedd82;">overest</span> = []
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Process each data row</span>
+<span style="color: #00ffff;">for</span> sr_str, si_str, sj_str <span style="color: #00ffff;">in</span> <span style="color: #eedd82;">data</span>:
+    <span style="color: #00ffff;">try</span>:
+        sr = <span style="color: #b0c4de;">float</span>(sr_str)
+        <span style="color: #eedd82;">si</span> = <span style="color: #b0c4de;">float</span>(si_str)
+        <span style="color: #eedd82;">sj</span> = <span style="color: #b0c4de;">float</span>(sj_str)
+        <span style="color: #eedd82;">&#963;_ideal</span>   = np.sqrt(sigma_s**2 + (1 - m)**2 * sr**2 + sj**2 + m**2 * si**2)
+        <span style="color: #eedd82;">&#963;_classic</span> = np.sqrt(sigma_s**2 + (sr**2 + sj**2) + m**2 * (sr**2 + si**2))
+        <span style="color: #eedd82;">pct</span> = (&#963;_classic - &#963;_ideal) / &#963;_ideal * 100
+        new_table.append([f<span style="color: #ffa07a;">"</span>{sr:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{si:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{sj:.7f}<span style="color: #ffa07a;">"</span>,
+                          f<span style="color: #ffa07a;">"</span>{&#963;_ideal:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{&#963;_classic:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{pct:.2f}<span style="color: #ffa07a;">%"</span>])
+        overest.append(pct)
+    <span style="color: #00ffff;">except</span>:
+        new_table.append([sr_str, si_str, sj_str, <span style="color: #ffa07a;">"Error"</span>, <span style="color: #ffa07a;">"Error"</span>, <span style="color: #ffa07a;">"Error"</span>])
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Add summary rows</span>
+mean_pct   = np.mean(overest)
+<span style="color: #eedd82;">median_pct</span> = np.median(overest)
+new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Mean"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, f<span style="color: #ffa07a;">"</span>{mean_pct:.2f}<span style="color: #ffa07a;">%"</span>])
+new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Median"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, f<span style="color: #ffa07a;">"</span>{median_pct:.2f}<span style="color: #ffa07a;">%"</span>])
+
+<span style="color: #00ffff;">return</span> [header] + new_table
+</pre>
+</div>
+
+<p>
+The classical estimation of σσ results in an overestimation of about 2.32%, considering m=2,
+which is typical for the fit in the stellar locus color–color diagram of S-PLUS, and assuming sigma<sub>ss</sub>=0.01.
+</p>
 </div>
 </div>
 
-<div id="outline-container-orga727c0e" class="outline-4">
-<h4 id="orga727c0e"><span class="section-number-4">1.3.2</span> Luis's Method (Proposed)</h4>
+<div id="outline-container-org510285e" class="outline-4">
+<h4 id="org510285e"><span class="section-number-4">1.3.2.</span> Luis's Method (Proposed)</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
-\[
-\sigma_{\text{est, Luis}}^2 = \sigma_s^2 + (1 - m)^2 \sigma_{(r-J0660)}^2 + m^2 \sigma_{(r-i)}^2
-\]
-Expanding:
-\[
-= \sigma_s^2 + (1 - m)^2 (\sigma_r^2 + \sigma_{J0660}^2) + m^2 (\sigma_r^2 + \sigma_i^2)
-\]
-\[
-= \sigma_s^2 + \sigma_r^2 \left[(1 - m)^2 + m^2\right] + (1 - m)^2 \sigma_{J0660}^2 + m^2 \sigma_i^2
-\]
-For \( m = 0.5 \):
-\[
-\sigma_r^2 \left[(0.5)^2 + (0.5)^2\right] = 0.5 \sigma_r^2 \quad \text{(Mitigates overcounting)}
-\]
+See if I get a better apprximation on wich the covariance term contribute lees to the sigma value. Go back again to the ideal case:
 </p>
-</div>
-</div>
-</div>
 
-<div id="outline-container-orgfdcd6c6" class="outline-3">
-<h3 id="orgfdcd6c6"><span class="section-number-3">1.4</span> Key Difference</h3>
-<div class="outline-text-3" id="text-1-4">
-<ul class="org-ul">
-<li>Luis's method replaces the ideal’s \( (1 - m)^2 \sigma_r^2 \) with \( \sigma_r^2 \left[(1 - m)^2 + m^2\right] \), which is equivalent to \( \sigma_r^2 (1 - 2m + 2m^2) \).</li>
-<li>For \( 0.4 \leq m \leq 0.5 \), this term deviates from the ideal by only \( 2m(1 - m) \sigma_r^2 \), which is negligible for S-PLUS’s small \( \sigma_r \).</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org2a2cf60" class="outline-3">
-<h3 id="org2a2cf60"><span class="section-number-3">1.5</span> Analysis of the \((1 - m)^2 \sigma_{J0660}^2\) Term</h3>
-<div class="outline-text-3" id="text-1-5">
-</div>
-<div id="outline-container-orgb1a995b" class="outline-4">
-<h4 id="orgb1a995b"><span class="section-number-4">1.5.1</span> Structural Origin</h4>
-<div class="outline-text-4" id="text-1-5-1">
 <p>
-The term \((1 - m)^2 \sigma_{J0660}^2\) arises naturally from propagating errors through colors while preserving the slope-dependent weighting. Though it differs from the ideal method's standalone \(\sigma_{J0660}^2\), this is not an error but a feature of the approximation.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgf538206" class="outline-4">
-<h4 id="orgf538206"><span class="section-number-4">1.5.2</span> Numerical Impact</h4>
-<div class="outline-text-4" id="text-1-5-2">
-<p>
-For \( m = 0.45 \):
 \[
-\Delta_{\sigma_{J0660}}^2 = \sigma_{J0660}^2 \left[1 - (1 - m)^2\right] = \sigma_{J0660}^2 (2m - m^2) = 0.6975 \sigma_{J0660}^2,
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 + \sigma_{J0660}^2 - 2m \sigma_r^2 + m^2 \sigma_r^2  + m^2 \sigma_i^2
 \]
-implying a <b><b>30.25% reduction</b></b> in \(\sigma_{J0660}^2\) contribution. However, this is compensated by the overestimation of \(\sigma_r^2\) in Luis's method.
 </p>
-</div>
-</div>
 
-<div id="outline-container-org6cff36b" class="outline-4">
-<h4 id="org6cff36b"><span class="section-number-4">1.5.3</span> Compensation Mechanism</h4>
-<div class="outline-text-4" id="text-1-5-3">
-<ul class="org-ul">
-<li><b><b>Underestimation in \(\sigma_{J0660}^2\)</b></b>:
-\[
-  \Delta_{\text{under}} = (1 - (1 - m)^2) \sigma_{J0660}^2 = 0.6975 \sigma_{J0660}^2
-  \]</li>
-<li><b><b>Overestimation in \(\sigma_r^2\)</b></b>:
-\[
-  \Delta_{\text{over}} = \sigma_r^2 \left[(1 - m)^2 + m^2 - (1 - m)^2\right] = m^2 \sigma_r^2
-  \]</li>
-</ul>
 <p>
-For S-PLUS's typical errors (\(\sigma_r \sim \sigma_{J0660}\)), these terms balance. Example (Object 3):
+Rearrange;
 </p>
-<ul class="org-ul">
-<li>\(\Delta_{\text{under}} = 0.000164\)</li>
-<li>\(\Delta_{\text{over}} = 0.000039\)</li>
-<li><b><b>Net Effect</b></b>: \(\Delta_{\text{Total}} = -0.000125 \, (\approx -0.011 \, \text{mag})\), consistent with empirical results.</li>
-</ul>
+
+<p>
+\[
+\Rightarrow \boxed{\sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 + \sigma_{J0660}^2 + m^2 (\sigma_r^2  + \sigma_i^2}) - 2m \sigma_r^2
+\]
+</p>
+
+<p>
+Add and subtract the term: \(-2m(\sigma_r^2 + \sigma_{J0660}^2) + m^2(\sigma_r^2 + \sigma_{J0660}^2\), then:
+</p>
+
+<p>
+\[
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 + \sigma_{J0660}^2 + m^2 (\sigma_r^2  + \sigma_i^2) - 2m \sigma_r^2 + (-2m(\sigma_r^2 + \sigma_{J0660}^2)+ m^2(\sigma_r^2 + \sigma_{J0660}^2)) - (-2m(\sigma_r^2 + \sigma_{J0660}^2)+ m^2(\sigma_r^2 + \sigma_{J0660}^2))
+\]
+</p>
+
+<p>
+Next, we rearrange and factorize:
+</p>
+
+<p>
+\[
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + (1 - 2m + m^2)(\sigma_r^2 + \sigma_{J0660}^2) + m^2 (\sigma_r^2  + \sigma_i^2) - 2m \sigma_r^2 - (-2m(\sigma_r^2 + \sigma_{J0660}^2) + m^2(\sigma_r^2 + \sigma_{J0660}^2))
+\]
+</p>
+
+<p>
+\[
+\Rightarrow \boxed{\sigma_{\text{est, ideal}}^2 = \sigma_s^2 + (1 - m)^2(\sigma_r^2 + \sigma_{J0660}^2) + m^2 (\sigma_r^2  + \sigma_i^2}) + 2m\sigma_{J0660}^2 - m^2 \sigma_r^2 - m^2 \sigma_{J0660}^2
+\]
+</p>
+
+<p>
+\( \Rightarrow \sigma_{\mathrm{est,ideal}}^2 = \sigma_s^2 + (1 - m)^2(\sigma_r^2 + \sigma_{J0660}^2) + m^2(\sigma_r^2 + \sigma_i^2) - m^2\sigma_r^2 - m^2\sigma_{J0660}^2 + 2m\,\sigma_{J0660}^2 \)
+</p>
+
+<p>
+\( \Rightarrow \sigma_{\mathrm{est,ideal}}^2 = \sigma_s^2 + (1 - m)^2(\sigma_r^2 + \sigma_{J0660}^2) + m^2(\sigma_r^2 + \sigma_i^2) - m^2\sigma_r^2 + (2m - m^2)\,\sigma_{J0660}^2 \)
+</p>
+
+
+<p>
+The covariance term is: \(-m^2 \sigma_r^2 + (2m - m^2) \sigma_{J0660}^2\). Therefore, <b><b>the contribution</b></b> of this term is:
+</p>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgee6e4fc" class="outline-2">
-<h2 id="orgee6e4fc"><span class="section-number-2">2</span> Numerical Validation with 15 S-PLUS Objects</h2>
+<div id="outline-container-org9fbe81b" class="outline-2">
+<h2 id="org9fbe81b"><span class="section-number-2">2.</span> Simplified error estimate</h2>
 <div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-org8d57f10" class="outline-3">
-<h3 id="org8d57f10"><span class="section-number-3">2.1</span> Parameters</h3>
-<div class="outline-text-3" id="text-2-1">
-<ul class="org-ul">
-<li>Slope \( m = 0.40 \) (representative of the stellar locus).</li>
-<li>\( \sigma_s = 0.05 \, \text{mag} \) (intrinsic scatter).</li>
-</ul>
-</div>
-</div>
+<p>
+By removing the covariance term, we keep only the color errors:
+</p>
 
-<div id="outline-container-orge7d5ece" class="outline-3">
-<h3 id="orge7d5ece"><span class="section-number-3">2.2</span> Calculations for All 15 Objects</h3>
-<div class="outline-text-3" id="text-2-2">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<p>
+\( \sigma_{\mathrm{est,Luis}}^2 = \sigma_s^2 + (1 - m)^2\,\sigma_{(r - J0660)}^2 + m^2\,\sigma_{(r - i)}^2 \)
+</p>
+
+<p>
+Contribution of the Removed Covariance Term
+</p>
 
 
-<colgroup>
-<col  class="org-right" />
+<div class="org-src-container">
+<pre class="src src-python" id="org68ee6fb"><span style="color: #00ffff;">import</span> numpy <span style="color: #00ffff;">as</span> np
 
-<col  class="org-right" />
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Header row</span>
+<span style="color: #eedd82;">header</span> = [<span style="color: #ffa07a;">"e_r"</span>, <span style="color: #ffa07a;">"e_i"</span>, <span style="color: #ffa07a;">"e_J0660"</span>, <span style="color: #ffa07a;">"&#963;_ideal"</span>, <span style="color: #ffa07a;">"&#963;_luis"</span>, <span style="color: #ffa07a;">"Overestimation (%)"</span>]
+<span style="color: #eedd82;">new_table</span> = []
+<span style="color: #eedd82;">overest</span> = []
 
-<col  class="org-right" />
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Process each data row</span>
+<span style="color: #00ffff;">for</span> sr_str, si_str, sj_str <span style="color: #00ffff;">in</span> <span style="color: #eedd82;">data</span>:
+    <span style="color: #00ffff;">try</span>:
+        sr = <span style="color: #b0c4de;">float</span>(sr_str)
+        <span style="color: #eedd82;">si</span> = <span style="color: #b0c4de;">float</span>(si_str)
+        <span style="color: #eedd82;">sj</span> = <span style="color: #b0c4de;">float</span>(sj_str)
 
-<col  class="org-right" />
+        <span style="color: #eedd82;">&#963;_ideal</span> = np.sqrt(
+            sigma_s**2 +
+            (1 - m)**2 * sr**2 +
+            sj**2 +
+            m**2 * si**2
+        )
+        <span style="color: #eedd82;">&#963;_luis</span> = np.sqrt(
+            sigma_s**2 +
+            (1 - m)**2 * (sr**2 + sj**2) +
+            m**2 * (sr**2 + si**2)
+        )
 
-<col  class="org-right" />
+        <span style="color: #eedd82;">pct</span> = (&#963;_luis - &#963;_ideal) / &#963;_ideal * 100
+        new_table.append([
+            f<span style="color: #ffa07a;">"</span>{sr:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{si:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{sj:.7f}<span style="color: #ffa07a;">"</span>,
+            f<span style="color: #ffa07a;">"</span>{&#963;_ideal:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{&#963;_luis:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{pct:.2f}<span style="color: #ffa07a;">%"</span>
+        ])
+        overest.append(pct)
+    <span style="color: #00ffff;">except</span>:
+        new_table.append([sr_str, si_str, sj_str, <span style="color: #ffa07a;">"Error"</span>, <span style="color: #ffa07a;">"Error"</span>, <span style="color: #ffa07a;">"Error"</span>])
 
-<col  class="org-right" />
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Add summary rows</span>
+mean_pct   = np.mean(overest)
+<span style="color: #eedd82;">median_pct</span> = np.median(overest)
+new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Mean"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, f<span style="color: #ffa07a;">"</span>{mean_pct:.2f}<span style="color: #ffa07a;">%"</span>])
+new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Median"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, f<span style="color: #ffa07a;">"</span>{median_pct:.2f}<span style="color: #ffa07a;">%"</span>])
 
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-right">#</th>
-<th scope="col" class="org-right">\(\sigma_r\)</th>
-<th scope="col" class="org-right">\(\sigma_{J0660}\)</th>
-<th scope="col" class="org-right">\(\sigma_i\)</th>
-<th scope="col" class="org-right">Classical (mag)</th>
-<th scope="col" class="org-right">Luis (mag)</th>
-<th scope="col" class="org-right">Ideal (mag)</th>
-<th scope="col" class="org-right">\(\Delta_{\text{Classical}}\) (%)</th>
-<th scope="col" class="org-right">\(\Delta_{\text{Luis}}\) (%)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-right">1</td>
-<td class="org-right">0.013807</td>
-<td class="org-right">0.012171</td>
-<td class="org-right">0.011227</td>
-<td class="org-right">0.0538</td>
-<td class="org-right">0.0517</td>
-<td class="org-right">0.0523</td>
-<td class="org-right">+2.8%</td>
-<td class="org-right">-1.2%</td>
-</tr>
-
-<tr>
-<td class="org-right">2</td>
-<td class="org-right">0.010976</td>
-<td class="org-right">0.012747</td>
-<td class="org-right">0.010101</td>
-<td class="org-right">0.0531</td>
-<td class="org-right">0.0514</td>
-<td class="org-right">0.0522</td>
-<td class="org-right">+1.7%</td>
-<td class="org-right">-1.5%</td>
-</tr>
-
-<tr>
-<td class="org-right">3</td>
-<td class="org-right">0.013961</td>
-<td class="org-right">0.015343</td>
-<td class="org-right">0.011655</td>
-<td class="org-right">0.0550</td>
-<td class="org-right">0.0526</td>
-<td class="org-right">0.0534</td>
-<td class="org-right">+3.0%</td>
-<td class="org-right">-1.5%</td>
-</tr>
-
-<tr>
-<td class="org-right">4</td>
-<td class="org-right">0.009735</td>
-<td class="org-right">0.011767</td>
-<td class="org-right">0.010050</td>
-<td class="org-right">0.0518</td>
-<td class="org-right">0.0503</td>
-<td class="org-right">0.0509</td>
-<td class="org-right">+1.8%</td>
-<td class="org-right">-1.2%</td>
-</tr>
-
-<tr>
-<td class="org-right">5</td>
-<td class="org-right">0.011984</td>
-<td class="org-right">0.014062</td>
-<td class="org-right">0.011615</td>
-<td class="org-right">0.0534</td>
-<td class="org-right">0.0514</td>
-<td class="org-right">0.0521</td>
-<td class="org-right">+2.5%</td>
-<td class="org-right">-1.3%</td>
-</tr>
-
-<tr>
-<td class="org-right">6</td>
-<td class="org-right">0.013093</td>
-<td class="org-right">0.015699</td>
-<td class="org-right">0.013780</td>
-<td class="org-right">0.0559</td>
-<td class="org-right">0.0534</td>
-<td class="org-right">0.0542</td>
-<td class="org-right">+3.1%</td>
-<td class="org-right">-1.5%</td>
-</tr>
-
-<tr>
-<td class="org-right">7</td>
-<td class="org-right">0.013910</td>
-<td class="org-right">0.013115</td>
-<td class="org-right">0.007268</td>
-<td class="org-right">0.0523</td>
-<td class="org-right">0.0505</td>
-<td class="org-right">0.0511</td>
-<td class="org-right">+2.3%</td>
-<td class="org-right">-1.2%</td>
-</tr>
-
-<tr>
-<td class="org-right">8</td>
-<td class="org-right">0.011079</td>
-<td class="org-right">0.013446</td>
-<td class="org-right">0.011462</td>
-<td class="org-right">0.0529</td>
-<td class="org-right">0.0510</td>
-<td class="org-right">0.0516</td>
-<td class="org-right">+2.5%</td>
-<td class="org-right">-1.2%</td>
-</tr>
-
-<tr>
-<td class="org-right">9</td>
-<td class="org-right">0.012525</td>
-<td class="org-right">0.014509</td>
-<td class="org-right">0.012635</td>
-<td class="org-right">0.0541</td>
-<td class="org-right">0.0518</td>
-<td class="org-right">0.0526</td>
-<td class="org-right">+2.9%</td>
-<td class="org-right">-1.5%</td>
-</tr>
-
-<tr>
-<td class="org-right">10</td>
-<td class="org-right">0.012374</td>
-<td class="org-right">0.015097</td>
-<td class="org-right">0.013625</td>
-<td class="org-right">0.0547</td>
-<td class="org-right">0.0523</td>
-<td class="org-right">0.0531</td>
-<td class="org-right">+3.0%</td>
-<td class="org-right">-1.5%</td>
-</tr>
-
-<tr>
-<td class="org-right">11</td>
-<td class="org-right">0.011325</td>
-<td class="org-right">0.016555</td>
-<td class="org-right">0.011497</td>
-<td class="org-right">0.0543</td>
-<td class="org-right">0.0518</td>
-<td class="org-right">0.0533</td>
-<td class="org-right">+1.8%</td>
-<td class="org-right">-2.8%</td>
-</tr>
-
-<tr>
-<td class="org-right">12</td>
-<td class="org-right">0.011368</td>
-<td class="org-right">0.013484</td>
-<td class="org-right">0.011544</td>
-<td class="org-right">0.0525</td>
-<td class="org-right">0.0506</td>
-<td class="org-right">0.0513</td>
-<td class="org-right">+2.3%</td>
-<td class="org-right">-1.4%</td>
-</tr>
-
-<tr>
-<td class="org-right">13</td>
-<td class="org-right">0.008918</td>
-<td class="org-right">0.010300</td>
-<td class="org-right">0.008313</td>
-<td class="org-right">0.0494</td>
-<td class="org-right">0.0482</td>
-<td class="org-right">0.0486</td>
-<td class="org-right">+1.6%</td>
-<td class="org-right">-0.8%</td>
-</tr>
-
-<tr>
-<td class="org-right">14</td>
-<td class="org-right">0.009171</td>
-<td class="org-right">0.010908</td>
-<td class="org-right">0.009003</td>
-<td class="org-right">0.0500</td>
-<td class="org-right">0.0487</td>
-<td class="org-right">0.0491</td>
-<td class="org-right">+1.8%</td>
-<td class="org-right">-0.8%</td>
-</tr>
-
-<tr>
-<td class="org-right">15</td>
-<td class="org-right">0.011203</td>
-<td class="org-right">0.013191</td>
-<td class="org-right">0.011277</td>
-<td class="org-right">0.0527</td>
-<td class="org-right">0.0508</td>
-<td class="org-right">0.0515</td>
-<td class="org-right">+2.3%</td>
-<td class="org-right">-1.4%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Return full table</span>
+<span style="color: #00ffff;">return</span> [header] + new_table
+</pre>
 </div>
 
-<div id="outline-container-org0c4a532" class="outline-2">
-<h2 id="org0c4a532"><span class="section-number-2">3</span> Average Differences</h2>
-<div class="outline-text-2" id="text-3">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Metric</th>
-<th scope="col" class="org-right">Classical vs Ideal</th>
-<th scope="col" class="org-right">Luis vs Ideal</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">Mean Δ (mag)</td>
-<td class="org-right">+0.0012</td>
-<td class="org-right">-0.0007</td>
-</tr>
-
-<tr>
-<td class="org-left">Mean Relative Error</td>
-<td class="org-right">+2.4%</td>
-<td class="org-right">-1.4%</td>
-</tr>
-
-<tr>
-<td class="org-left">Max Relative Error</td>
-<td class="org-right">+3.1%</td>
-<td class="org-right">-2.8%</td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>
+The luis aproximation subestima the sigma in around -1.85%.
+</p>
 </div>
 
-<div id="outline-container-org0c72a0a" class="outline-2">
-<h2 id="org0c72a0a"><span class="section-number-2">4</span> Critical Analysis</h2>
-<div class="outline-text-2" id="text-4">
-</div>
-<div id="outline-container-org59cf522" class="outline-3">
-<h3 id="org59cf522"><span class="section-number-3">4.1</span> Case 11: Moderately High \(\sigma_{J0660}\)</h3>
-<div class="outline-text-3" id="text-4-1">
-<ul class="org-ul">
-<li>\(\sigma_{J0660} = 0.016555 \, \text{mag}\) (2–3× typical errors).</li>
-<li>Luis’s method deviates by \(\mathbf{-2.8\%}\) from the ideal, vs. \(\mathbf{+1.8\%}\) for the classical method.</li>
-<li>Demonstrates stability even with elevated \(J0660\) errors.</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org1897529" class="outline-3">
-<h3 id="org1897529"><span class="section-number-3">4.2</span> Why Luis’s Method Wins</h3>
-<div class="outline-text-3" id="text-4-2">
 <ol class="org-ol">
-<li><p>
-<b><b>Mathematical Consistency</b></b>:  
-The term \((1 - m)^2 \sigma_{(r-J0660)}^2\) dynamically scales \(\sigma_r\) and \(\sigma_{J0660}\) contributions with the slope \(m = 0.4\), aligning with the ideal method’s structure.  
+<li><a id="org422cd24"></a>Classic versus Luis aproximation<br />
+<div class="outline-text-5" id="text-2-0-0-1">
+<p>
+Now Comparing Classic vs. Luis Overestimation
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org6dfeba5"><span style="color: #00ffff;">import</span> numpy <span style="color: #00ffff;">as</span> np
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Header row</span>
+<span style="color: #eedd82;">header</span> = [
+    <span style="color: #ffa07a;">"e_r"</span>, <span style="color: #ffa07a;">"e_i"</span>, <span style="color: #ffa07a;">"e_J0660"</span>,
+    <span style="color: #ffa07a;">"&#963;_ideal"</span>, <span style="color: #ffa07a;">"&#963;_classic"</span>, <span style="color: #ffa07a;">"&#963;_luis"</span>,
+    <span style="color: #ffa07a;">"Classic overestimation (%)"</span>, <span style="color: #ffa07a;">"Luis overestimation (%)"</span>
+]
+
+<span style="color: #eedd82;">new_table</span> = []
+<span style="color: #eedd82;">overest_classic</span> = []
+<span style="color: #eedd82;">overest_luis</span> = []
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Process each data row</span>
+<span style="color: #00ffff;">for</span> sr_str, si_str, sj_str <span style="color: #00ffff;">in</span> <span style="color: #eedd82;">data</span>:
+    <span style="color: #00ffff;">try</span>:
+        sr = <span style="color: #b0c4de;">float</span>(sr_str)
+        <span style="color: #eedd82;">si</span> = <span style="color: #b0c4de;">float</span>(si_str)
+        <span style="color: #eedd82;">sj</span> = <span style="color: #b0c4de;">float</span>(sj_str)
+
+        <span style="color: #eedd82;">&#963;_ideal</span>   = np.sqrt(
+            sigma_s**2 +
+            (1 - m)**2 * sr**2 +
+            sj**2 +
+            m**2 * si**2
+        )
+        <span style="color: #eedd82;">&#963;_classic</span> = np.sqrt(
+            sigma_s**2 +
+            (sr**2 + sj**2) +
+            m**2 * (sr**2 + si**2)
+        )
+        <span style="color: #eedd82;">&#963;_luis</span>    = np.sqrt(
+            sigma_s**2 +
+            (1 - m)**2 * (sr**2 + sj**2) +
+            m**2 * (sr**2 + si**2)
+        )
+
+        <span style="color: #eedd82;">pct_classic</span> = (&#963;_classic - &#963;_ideal) / &#963;_ideal * 100
+        <span style="color: #eedd82;">pct_luis</span>    = (&#963;_luis    - &#963;_ideal) / &#963;_ideal * 100
+
+        new_table.append([
+            f<span style="color: #ffa07a;">"</span>{sr:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{si:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{sj:.7f}<span style="color: #ffa07a;">"</span>,
+            f<span style="color: #ffa07a;">"</span>{&#963;_ideal:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{&#963;_classic:.7f}<span style="color: #ffa07a;">"</span>, f<span style="color: #ffa07a;">"</span>{&#963;_luis:.7f}<span style="color: #ffa07a;">"</span>,
+            f<span style="color: #ffa07a;">"</span>{pct_classic:.2f}<span style="color: #ffa07a;">%"</span>, f<span style="color: #ffa07a;">"</span>{pct_luis:.2f}<span style="color: #ffa07a;">%"</span>
+        ])
+        overest_classic.append(pct_classic)
+        overest_luis.append(pct_luis)
+
+    <span style="color: #00ffff;">except</span>:
+        new_table.append([sr_str, si_str, sj_str] + [<span style="color: #ffa07a;">"Error"</span>] * 5)
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Compute summary statistics</span>
+<span style="color: #eedd82;">mean_c</span>   = np.mean(overest_classic)
+<span style="color: #eedd82;">median_c</span> = np.median(overest_classic)
+<span style="color: #eedd82;">min_c</span>    = np.<span style="color: #b0c4de;">min</span>(overest_classic)
+<span style="color: #eedd82;">max_c</span>    = np.<span style="color: #b0c4de;">max</span>(overest_classic)
+
+<span style="color: #eedd82;">mean_l</span>   = np.mean(overest_luis)
+<span style="color: #eedd82;">median_l</span> = np.median(overest_luis)
+<span style="color: #eedd82;">min_l</span>    = np.<span style="color: #b0c4de;">min</span>(overest_luis)
+<span style="color: #eedd82;">max_l</span>    = np.<span style="color: #b0c4de;">max</span>(overest_luis)
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Append summary rows</span>
+new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Mean"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>,
+                  f<span style="color: #ffa07a;">"</span>{mean_c:.2f}<span style="color: #ffa07a;">%"</span>, f<span style="color: #ffa07a;">"</span>{mean_l:.2f}<span style="color: #ffa07a;">%"</span>])
+new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Median"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>,
+                  f<span style="color: #ffa07a;">"</span>{median_c:.2f}<span style="color: #ffa07a;">%"</span>, f<span style="color: #ffa07a;">"</span>{median_l:.2f}<span style="color: #ffa07a;">%"</span>])
+new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Min"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>,
+                  f<span style="color: #ffa07a;">"</span>{min_c:.2f}<span style="color: #ffa07a;">%"</span>, f<span style="color: #ffa07a;">"</span>{min_l:.2f}<span style="color: #ffa07a;">%"</span>])
+new_table.append([<span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">"Max"</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>, <span style="color: #ffa07a;">""</span>,
+                  f<span style="color: #ffa07a;">"</span>{max_c:.2f}<span style="color: #ffa07a;">%"</span>, f<span style="color: #ffa07a;">"</span>{max_l:.2f}<span style="color: #ffa07a;">%"</span>])
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Return full table</span>
+<span style="color: #00ffff;">return</span> [header] + new_table
+</pre>
+</div>
+
+<p>
+Clearly, Luis’s approximation is closer to the ideal case, underestimating by only about 1.85%, compared to the classical method, which overestimates by approximately 2.33%.
 </p>
 
 <p>
-\[
-   \sigma_{\text{Luis}}^2 = \sigma_s^2 + \underbrace{(1 - 0.4)^2 (\sigma_r^2 + \sigma_{J0660}^2)}_{\text{Slope-weighted } \sigma_r, \sigma_{J0660}} + \underbrace{0.4^2 (\sigma_r^2 + \sigma_i^2)}_{\text{Slope-weighted } \sigma_r, \sigma_i}
-   \]
-</p></li>
-
-<li><b><b>Empirical Superiority</b></b>:  
-<ul class="org-ul">
-<li>Classical method overestimates errors by \(\mathbf{+2.4\%}\) on average (max \(\mathbf{+3.1\%}\)).</li>
-<li>Luis’s method underestimates by \(\mathbf{-1.4\%}\) on average (max \(\mathbf{-2.8\%}\)), staying within \(<3\%\) deviation.</li>
-</ul></li>
-
-<li><b><b>Preservation of Sensitivity</b></b>:  
-<ul class="org-ul">
-<li>A \(\mathbf{+3\%}\) overestimation (classical method) would exclude \(\mathbf{5–10\%}\) of genuine Hα-excess sources near the \(5\sigma\) threshold.</li>
-<li>Luis’s method minimizes false negatives, critical for scientific completeness.</li>
-</ul></li>
-</ol>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org408ad86" class="outline-2">
-<h2 id="org408ad86"><span class="section-number-2">5</span> Robustness of the \((1 - m)^2 \sigma_{J0660}^2\) Term</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-<b><b>Physical Meaning</b></b>:  
-At \(m = 0.4\), the term reduces \(\sigma_{J0660}\)’s weight by \((1 - 0.4)^2 = 0.36\), reflecting the locus geometry:  
-\[
-\text{Weighted } \sigma_{J0660}^2 = 0.36 \cdot \sigma_{J0660}^2
-\]
+Now estimate the value of the covariance term for both case:
 </p>
 
-<p>
-<b><b>Error Compensation</b></b>:  
-</p>
-<ul class="org-ul">
-<li><b><b>Underestimation</b></b>:  
-\[
-  \Delta_{\text{under}} = (1 - 0.36) \sigma_{J0660}^2 = 0.64 \cdot \sigma_{J0660}^2 \quad (\text{e.g., Object 11: } 0.64 \cdot (0.016555)^2 = 0.000173)
-  \]</li>
-<li><b><b>Overestimation</b></b>:  
-\[
-  \Delta_{\text{over}} = [(1 - 0.4)^2 + 0.4^2] \sigma_r^2 = 0.52 \cdot \sigma_r^2 \quad (\text{e.g., Object 3: } 0.52 \cdot (0.013961)^2 = 0.000103)
-  \]</li>
-<li><b><b>Net Effect</b></b>:  
-\[
-  \Delta_{\text{Total}} = \Delta_{\text{under}} - \Delta_{\text{over}} = -0.00007 \quad (\mathbf{-1.5\%} \text{ error})
-  \]</li>
-</ul>
+<div class="org-src-container">
+<pre class="src src-python" id="org07ea8c1"><span style="color: #00ffff;">import</span> numpy <span style="color: #00ffff;">as</span> np
 
-<p>
-<b><b>Empirical Validation</b></b>:  
-All objects show Luis’s method stays within \(\mathbf{<3\%}\) of ideal, while classical errors exceed \(\mathbf{+3\%}\).  
-</p>
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Header for the output table</span>
+<span style="color: #eedd82;">header</span> = [<span style="color: #ffa07a;">"e_r"</span>, <span style="color: #ffa07a;">"e_i"</span>, <span style="color: #ffa07a;">"e_J0660"</span>, <span style="color: #ffa07a;">"Cov_classic"</span>, <span style="color: #ffa07a;">"Cov_Luis"</span>]
+<span style="color: #eedd82;">output</span> = []
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Compute covariance terms for each row</span>
+<span style="color: #00ffff;">for</span> sr_str, si_str, sj_str <span style="color: #00ffff;">in</span> <span style="color: #eedd82;">data</span>:
+    <span style="color: #00ffff;">try</span>:
+        sr = <span style="color: #b0c4de;">float</span>(sr_str)
+        <span style="color: #eedd82;">sj</span> = <span style="color: #b0c4de;">float</span>(sj_str)
+        <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Classical covariance term</span>
+        <span style="color: #eedd82;">cov_classic</span> = -2 * m * sr**2
+        <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Luis covariance term</span>
+        <span style="color: #eedd82;">cov_luis</span> = -m**2 * sr**2 + (2 * m - m**2) * sj**2
+
+        output.append([
+            f<span style="color: #ffa07a;">"</span>{sr:.7f}<span style="color: #ffa07a;">"</span>,
+            si_str,
+            f<span style="color: #ffa07a;">"</span>{sj:.7f}<span style="color: #ffa07a;">"</span>,
+            f<span style="color: #ffa07a;">"</span>{cov_classic:.7e}<span style="color: #ffa07a;">"</span>,
+            f<span style="color: #ffa07a;">"</span>{cov_luis:.7e}<span style="color: #ffa07a;">"</span>
+        ])
+    <span style="color: #00ffff;">except</span> <span style="color: #98fb98;">Exception</span>:
+        output.append([sr_str, si_str, sj_str, <span style="color: #ffa07a;">"Error"</span>, <span style="color: #ffa07a;">"Error"</span>])
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Return header + computed rows</span>
+<span style="color: #00ffff;">return</span> [header] + output
+</pre>
 </div>
 
-<div id="outline-container-org04da932" class="outline-3">
-<h3 id="org04da932"><span class="section-number-3">5.1</span> Classical vs ideal/aproximation</h3>
-<div class="outline-text-3" id="text-5-1">
-</div>
-<div id="outline-container-org024bd38" class="outline-4">
-<h4 id="org024bd38"><span class="section-number-4">5.1.1</span> The Classical Method’s Fundamental Flaw</h4>
-<div class="outline-text-4" id="text-5-1-1">
-</div>
-<ol class="org-ol">
-<li><a id="org7df473a"></a>Residual Analysis for \(m = 1\)<br />
-<div class="outline-text-5" id="text-5-1-1-1">
 <p>
-The classical method assumes a unit slope (\(m = 1\)) in the color-color diagram. For this case:  
-\[
-(r - J0660)_{\text{fit}} = 1 \cdot (r - i) + b \implies \text{Residual} = (r - J0660)_{\text{obs}} - (r - i)_{\text{obs}} - b
-\]  
-Simplifying the residual:  
-\[
-\text{Residual} = r_{\text{obs}} - J0660_{\text{obs}} - r_{\text{obs}} + i_{\text{obs}} - b = -J0660_{\text{obs}} + i_{\text{obs}} - b
-\]
-</p>
-
-<p>
-The residual <b><b>does not depend on \(r\)</b></b>, so error propagation from first principles gives:  
-\[
-\sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_{J0660}^2 + \sigma_i^2
-\]  
+The comparison between the classical covariance and the alternative method implemented by
+Luis reveals that the latter consistently yields values closer to zero. This indicates
+a weaker linear dependency between the photometric errors of the \(r\), \(i\), and \(J0660\) filters.
+A covariance closer to zero suggests that the method proposed by Luis more effectively minimizes
+spurious correlations among uncertainties, bringing the error structure closer to the ideal
+assumption of independence. Therefore, the "Cov<sub>Luis</sub>" approach provides
+a more reliable representation of the photometric error relationships in this context.
 </p>
 </div>
 </li>
 </ol>
-</div>
-
-<div id="outline-container-org0d79e50" class="outline-4">
-<h4 id="org0d79e50"><span class="section-number-4">5.1.2</span> Classical Method’s Critical Error</h4>
-<div class="outline-text-4" id="text-5-1-2">
-<p>
-The classical method incorrectly calculates:  
-\[
-\sigma_{\text{est, classical}}^2 = \sigma_s^2 + \sigma_{(r-J0660)}^2 + \sigma_{(r-i)}^2 = \sigma_s^2 + (\sigma_r^2 + \sigma_{J0660}^2) + (\sigma_r^2 + \sigma_i^2)
-\]  
-\[
-\implies \sigma_{\text{est, classical}}^2 = \sigma_s^2 + 2\sigma_r^2 + \sigma_{J0660}^2 + \sigma_i^2
-\]  
-This <b><b>overestimates errors</b></b> by \(2\sigma_r^2\), even for \(m = 1\).  
-</p>
-</div>
-</div>
-
-<div id="outline-container-orge4631ed" class="outline-4">
-<h4 id="orge4631ed"><span class="section-number-4">5.1.3</span> Why This Matters for S-PLUS (\(m = 0.4\))</h4>
-<div class="outline-text-4" id="text-5-1-3">
-<p>
-For non-unit slopes (e.g., \(m = 0.4\)), the classical method’s flaws worsen:  
-</p>
-<ol class="org-ol">
-<li><b><b>Geometric Mismatch</b></b>:  
-\[
-   \sigma_{\text{est}}^2 \neq \sigma_s^2 + \sigma_{(r-J0660)}^2 + m^2 \sigma_{(r-i)}^2 \quad \text{(invalid for \(m \neq 1\))}
-   \]</li>
-<li><b><b>Slope-Independent Overestimation</b></b>:  
-\[
-   \text{Classical: } \sigma_r^2(1 + m^2) \quad vs. \quad \text{Ideal: } \sigma_r^2(1 - m)^2
-   \]  
-For \(m = 0.4\):  
-\[
-   1 + m^2 = 1.16 \quad (\text{+116\% error}) \quad vs. \quad (1 - m)^2 = 0.36 \quad (\text{ground truth})
-   \]</li>
-</ol>
-
-<p>
-<b><b>Consequence</b></b>: The classical method is <b><b>never</b></b> rigorously correct — it systematically overestimates errors for all slopes \(m\).  
-</p>
-</div>
-
-<ol class="org-ol">
-<li><a id="orge1dd9f8"></a>Proposed Method: First-Principles Generalization<br />
-<div class="outline-text-5" id="text-5-1-3-1">
-<p>
-Luis method fixes this by deriving coefficients directly from the residual’s dependence on \(r, i, J0660\):  
-\[
-\sigma_{\text{est, Luis}}^2 = \sigma_s^2 + (1 - m)^2 \sigma_r^2 + \sigma_{J0660}^2 + m^2 \sigma_i^2
-\]  
-</p>
-<ul class="org-ul">
-<li>For \(m = 1\): Removes overcounted \(\sigma_r^2\), matching first principles.</li>
-<li>For \(m \neq 1\): Dynamically weights \(\sigma_r^2\) and \(\sigma_i^2\).</li>
-</ul>
-</div>
-</li>
-
-<li><a id="org7c59c47"></a>Comparative Error Coefficients<br />
-<div class="outline-text-5" id="text-5-1-3-2">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Term</th>
-<th scope="col" class="org-left">Classical Method (\(m = 1\))</th>
-<th scope="col" class="org-left">Classical Method (\(m = 0.4\))</th>
-<th scope="col" class="org-left">Ideal/Proposed (\(m = 0.4\))</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">\(\sigma_r^2\)</td>
-<td class="org-left">\(2\sigma_r^2\) (flawed)</td>
-<td class="org-left">\(1.16\sigma_r^2\)</td>
-<td class="org-left">\(0.36\sigma_r^2\)</td>
-</tr>
-
-<tr>
-<td class="org-left">\(\sigma_{J0660}^2\)</td>
-<td class="org-left">\(1\sigma_{J0660}^2\)</td>
-<td class="org-left">\(1\sigma_{J0660}^2\)</td>
-<td class="org-left">\(1\sigma_{J0660}^2\)</td>
-</tr>
-
-<tr>
-<td class="org-left">\(\sigma_i^2\)</td>
-<td class="org-left">\(1\sigma_i^2\)</td>
-<td class="org-left">\(0.16\sigma_i^2\)</td>
-<td class="org-left">\(0.16\sigma_i^2\)</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-
-<li><a id="org46bee67"></a>Key Insight:<br />
-<div class="outline-text-5" id="text-5-1-3-3">
-<p>
-The classical method’s coefficients are <b><b>slope-independent</b></b>, while Luis method adapts to \(m\). For \(m = 0.4\), it reduces \(\sigma_r^2\) errors by <b><b>3.2×</b></b>.  
-</p>
-</div>
-</li>
-
-<li><a id="org4a1782e"></a>Why the Classical Method Persisted<br />
-<div class="outline-text-5" id="text-5-1-3-4">
-<ol class="org-ol">
-<li><b><b>Legacy Surveys</b></b>: Assumed \(m \approx 1\) (e.g., SDSS \(u - g\) vs \(g - r\)) where errors were less noticeable[<sup>1</sup>].</li>
-<li><b><b>Practicality</b></b>: Calculating \(\sigma_{(color)}^2\) was simpler than propagating individual terms[<sup>2</sup>].</li>
-<li><b><b>Low-Precision Data</b></b>: Older surveys couldn’t measure \(m\) accurately, masking systematic errors[<sup>3</sup>].</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-
-<div id="outline-container-orgdb8efe0" class="outline-4">
-<h4 id="orgdb8efe0"><span class="section-number-4">5.1.4</span> Conclusion</h4>
-<div class="outline-text-4" id="text-5-1-4">
-<p>
-The classical method is <b><b>fundamentally flawed</b></b> — even for \(m = 1\), it overestimates errors. Luis method is the first 
-to unify error propagation rigorously for <b><b>any slope \(m\)</b></b>, 
-eliminating overcounting and preserving accuracy.  
-</p>
-
-<p>
-[<sup>1</sup>]: Ivezić, Ž. et al. (2004). <b>SDSS Color Calibration</b>. ASPC, 314, 32.  
-[<sup>2</sup>]: Stetson, P. B. (1987). <b>DAOPHOT: A Computer Program for Crowded-Field Stellar Photometry</b>. PASP, 99, 191.  
-[<sup>3</sup>]: York, D. G. et al. (2000). <b>The Sloan Digital Sky Survey: Technical Summary</b>. AJ, 120, 1579.
-</p>
-</div>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-orgb0a0dad" class="outline-2">
-<h2 id="orgb0a0dad"><span class="section-number-2">6</span> Conclusion</h2>
-<div class="outline-text-2" id="text-6">
-<p>
-The revised analysis confirms:  
-\boxed{\text{Luis’s method is statistically indistinguishable from the ideal method for S-PLUS}}  
-with deviations (\(\mathbf{-1.4\%}\)) far smaller than the classical method’s overestimations (\(\mathbf{+2.4\%}\)).  
-</p>
-
-<p>
-The apparent "underestimation" of \(\sigma_{J0660}^2\) is not a flaw but:  
-</p>
-<ol class="org-ol">
-<li><b><b>Physically Motivated</b></b>: Reflects the slope-dependent error hierarchy (\(m = 0.4\)).</li>
-<li><b><b>Mathematically Balanced</b></b>: Compensated by \(\sigma_r^2 \left[(1 - m)^2 + m^2\right]\).</li>
-<li><b><b>Scientifically Optimal</b></b>: Avoids excluding true Hα-excess sources at thresholds.</li>
-</ol>
-
-<p>
-This method is now the \boxed{\text{gold standard}} for S-PLUS, validated by peer review and real-data performance.
-Its adoption ensures maximal scientific return from narrow-band surveys. 🚀  
-</p>
-</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Luis A. Gutiérrez Soto et al.</p>
-<p class="date">Created: 2025-03-11 Tue 13:57</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-06-10 Tue 01:19</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

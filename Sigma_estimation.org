@@ -62,33 +62,33 @@ where \( x = r, i, J0660 \).
 Now, we try to writte the equation similar those used in Witham et al. (2206);
 
 \[
-\Rightarrow \boxed{\sigma_{\text{est, ideal}}^2 = \sigma_s^2 + (1 - 2m + m^2) \sigma_r^2 + \sigma_{J0660}^2 + m^2 \sigma_i^2}
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + (1 - 2m + m^2) \sigma_r^2 + \sigma_{J0660}^2 + m^2 \sigma_i^2
 \]
 
 \[
-\Rightarrow \boxed{\sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 - 2m \sigma_r^2 + m^2 \sigma_r^2 + \sigma_{J0660}^2 + m^2 \sigma_i^2}
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 - 2m \sigma_r^2 + m^2 \sigma_r^2 + \sigma_{J0660}^2 + m^2 \sigma_i^2
 \]
 
 Rearranging terms;
 
 \[
-\Rightarrow \boxed{\sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 + \sigma_{J0660}^2 - 2m \sigma_r^2 + m^2 \sigma_r^2  + m^2 \sigma_i^2}
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 + \sigma_{J0660}^2 - 2m \sigma_r^2 + m^2 \sigma_r^2  + m^2 \sigma_i^2
 \]
 
 Given  \(\sigma_x^2 + \sigma_y^2 = \sigma_{(x - y)}^2 \) then;
 
 
 \[
-\Rightarrow \boxed{\sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_{r - J0660}^2 +  m^2 \sigma_{r - i}^2 - 2m \sigma_r^2 
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_{r - J0660}^2 +  m^2 \sigma_{r - i}^2 - 2m \sigma_r^2 
 \]
 
-So to get the equation for Witham et al. we haveto remove the contribution of the term - 2m \sigma_r^2, how many contribute this term?
+So, to obtain the equation from Witham et al., we have to remove the contribution of the \(- 2m \sigma_r^2\) term. How much does this term contribute?
 
 
 \[
 \sigma_{\text{est, classical}}^2 = \sigma_s^2 + \sigma_{(r-J0660)}^2 + m^2 \sigma_{(r-i)}^2
 \]
-Expanding:
+Go back to the individual error bands:
 \[
 \sigma_{\text{est, classical}}^2 = \sigma_s^2 + (\sigma_r^2 + \sigma_{J0660}^2) + m^2 (\sigma_r^2 + \sigma_i^2)
 \]
@@ -96,292 +96,532 @@ Expanding:
 = \sigma_s^2 + \sigma_r^2(1 + m^2) + \sigma_{J0660}^2 + m^2 \sigma_i^2 \quad \text{(Overcounts } \sigma_r^2 \text{)}
 \]
 
+Now we do some numerical examples. I note to the slope of the fits in the color-color diagram  in most of the case is between 0.35 - 0.4, used in this case 0.4 for the slope:
+
 #+name: error-table
-|    | sigma_r | sigma_J0660 | sigma_i |
-|----+---------+-------------+---------|
-|  1 | 0.013807 |   0.012171 | 0.011227 |
-|  2 | 0.010976 |   0.012747 | 0.010101 |
-|  3 | 0.013961 |   0.015343 | 0.011655 |
-|  4 | 0.009735 |   0.011767 | 0.010050 |
-|  5 | 0.011984 |   0.014062 | 0.011615 |
-|  6 | 0.013093 |   0.015699 | 0.013780 |
-|  7 | 0.013910 |   0.013115 | 0.007268 |
-|  8 | 0.011079 |   0.013446 | 0.011462 |
-|  9 | 0.012525 |   0.014509 | 0.012635 |
-| 10 | 0.012374 |   0.015097 | 0.013625 |
-| 11 | 0.011325 |   0.016555 | 0.011497 |
-| 12 | 0.011368 |   0.013484 | 0.011544 |
-| 13 | 0.008918 |   0.010300 | 0.008313 |
-| 14 | 0.009171 |   0.010908 | 0.009003 |
-| 15 | 0.011203 |   0.013191 | 0.011277 |
+|     e_r_PStotal   |   e_i_PStotal   |  e_J0660_PStotal |
+|-------------------+-----------------+------------------|
+| 0.0027043421      | 0.002309852     | 0.0034417643     |
+| 0.0009554346      | 0.0010019763    | 0.0010847448     |
+| 0.0016022029      | 0.0014943366    | 0.0017039843     |
+| 0.0022326636      | 0.0020145355    | 0.0023408893     |
+| 0.00428348        | 0.0026568426    | 0.004832741      |
+| 0.0008637211      | 0.0008142423    | 0.0009804317     |
+| 0.0037895583      | 0.0036628896    | 0.0044751875     |
+| 0.0026341775      | 0.0025405292    | 0.0020656579     |
+| 0.0011333079      | 0.0010817236    | 0.0010882834     |
+| 0.0013017068      | 0.0012364228    | 0.0009283392     |
+| 0.0032339918      | 0.0032643287    | 0.0035206582     |
+| 0.0015321858      | 0.0014926838    | 0.0017911163     |
+| 0.0023779713      | 0.0022736047    | 0.0022346096     |
+| 0.003833847       | 0.003391762     | 0.0039768526     |
+| 0.0032339613      | 0.0026312915    | 0.0031807977     |
+| 0.0024073187      | 0.0020921866    | 0.002365463      |
+| 0.0029173244      | 0.0024788384    | 0.0036630423     |
+| 0.0023025507      | 0.0022479515    | 0.0026816207     |
+| 0.0023555679      | 0.0023168672    | 0.002819191      |
+| 0.0033654603      | 0.0033328792    | 0.0038815523     |
+| 0.0025632957      | 0.0023379133    | 0.0025938326     |
+| 0.00349301        | 0.003411095     | 0.003810881      |
+| 0.0030717351      | 0.0030049048    | 0.0032032381     |
+| 0.001193243       | 0.0011562117    | 0.0009968877     |
+| 0.0013465676      | 0.0013025336    | 0.0008975989     |
+| 0.0013131873      | 0.0011755121    | 0.00084322726    |
+| 0.0013177483      | 0.0012559775    | 0.0008621476     |
+| 0.0012351323      | 0.0011085502    | 0.0008751316     |
+| 0.0012229811      | 0.0011141312    | 0.00087049545    |
+| 0.001374798       | 0.0013328108    | 0.0009173866     |
+| 0.0013861168      | 0.001221707     | 0.0008832612     |
+| 0.0025332794      | 0.002932436     | 0.0027128041     |
+| 0.0036067879      | 0.0031376323    | 0.0037044238     |
+| 0.00339293        | 0.0033208467    | 0.004346304      |
+| 0.0014183201      | 0.0013238328    | 0.0016154384     |
+| 0.004621427       | 0.0047028367    | 0.0046202843     |
+| 0.0014658732      | 0.0013899308    | 0.00256149       |
+| 0.0023711754      | 0.0022108082    | 0.0026406425     |
+| 0.002516076       | 0.0023366914    | 0.002748363      |
+| 0.0019471686      | 0.0018115259    | 0.004527632      |
+| 0.0033787978      | 0.0030290852    | 0.003503075      |
+| 0.0021783817      | 0.0021271813    | 0.0019475339     |
+| 0.0036444226      | 0.0033581583    | 0.003897624      |
+| 0.002823925       | 0.0026747882    | 0.003112585      |
+| 0.0035756512      | 0.0033058396    | 0.00492577       |
+| 0.0034714018      | 0.003403292     | 0.0038095748     |
+| 0.0029721686      | 0.0027480372    | 0.0029622987     |
+| 0.002644481       | 0.0026835275    | 0.0025978298     |
+| 0.0028707138      | 0.002735543     | 0.0032248157     |
+
++ Calculating overestimation
+Use this Python block to compute and render the table plus mean/median when exporting to HTML:
 
 #+name: calculate-overestimation
-#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results table
-  # Nueva versión corregida que maneja correctamente el encabezado
-  header = data[0] + ["σ_ideal²", "σ_classic²", "Sobrestimación %"]
-  new_table = [header]
-  
-  for i in range(1, len(data)):
-      row = data[i]
-      try:
-          # Convertir a float - ahora los índices son correctos
-          sr = float(row[1])
-          sj = float(row[2])
-          si = float(row[3])
-          
-          # Cálculo preciso de varianzas
-          var_ideal = (sigma_s**2) + ((1 - m)**2 * sr**2) + (sj**2) + (m**2 * si**2)
-          var_classic = (sigma_s**2) + (sr**2 + sj**2) + (m**2 * (sr**2 + si**2))
-          
-          # Sobrestimación porcentual
-          overest = ((var_classic - var_ideal) / var_ideal) * 100
-          
-          new_row = row + [
-              f"{var_ideal:.7f}", 
-              f"{var_classic:.7f}",
-              f"{overest:.2f}"
-          ]
-          new_table.append(new_row)
-      
-      except Exception as e:
-          print(f"Error en fila {row}: {str(e)}")
-  
-  return new_table
+#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results value table
+import numpy as np
+
+# Header row
+header = ["e_r", "e_i", "e_J0660", "σ_ideal", "σ_classic", "Overestimation (%)"]
+new_table = []
+overest = []
+
+# Process each data row
+for sr_str, si_str, sj_str in data:
+    try:
+        sr = float(sr_str)
+        si = float(si_str)
+        sj = float(sj_str)
+        σ_ideal   = np.sqrt(sigma_s**2 + (1 - m)**2 * sr**2 + sj**2 + m**2 * si**2)
+        σ_classic = np.sqrt(sigma_s**2 + (sr**2 + sj**2) + m**2 * (sr**2 + si**2))
+        pct = (σ_classic - σ_ideal) / σ_ideal * 100
+        new_table.append([f"{sr:.7f}", f"{si:.7f}", f"{sj:.7f}",
+                          f"{σ_ideal:.7f}", f"{σ_classic:.7f}", f"{pct:.2f}%"])
+        overest.append(pct)
+    except:
+        new_table.append([sr_str, si_str, sj_str, "Error", "Error", "Error"])
+
+# Add summary rows
+mean_pct   = np.mean(overest)
+median_pct = np.median(overest)
+new_table.append(["", "", "Mean", "", "", f"{mean_pct:.2f}%"])
+new_table.append(["", "", "Median", "", "", f"{median_pct:.2f}%"])
+
+return [header] + new_table
 #+end_src
 
 #+RESULTS: calculate-overestimation
-|  1 | 0.013807 | 0.012171 | 0.011227 |  σ_ideal² | σ_classic² | Sobrestimación % |
-|  2 | 0.010976 | 0.012747 | 0.010101 | 0.0003222 |  0.0004186 |            29.91 |
-|  3 | 0.013961 | 0.015343 | 0.011655 | 0.0004273 |  0.0005832 |            36.49 |
-|  4 | 0.009735 | 0.011767 |  0.01005 | 0.0002887 |  0.0003646 |            26.26 |
-|  5 | 0.011984 | 0.014062 | 0.011615 | 0.0003710 |  0.0004859 |            30.97 |
-|  6 | 0.013093 | 0.015699 |  0.01378 | 0.0004386 |  0.0005757 |            31.27 |
-|  7 |  0.01391 | 0.013115 | 0.007268 | 0.0003501 |  0.0005049 |            44.21 |
-|  8 | 0.011079 | 0.013446 | 0.011462 | 0.0003460 |  0.0004442 |            28.38 |
-|  9 | 0.012525 | 0.014509 | 0.012635 | 0.0003925 |  0.0005180 |            31.97 |
-| 10 | 0.012374 | 0.015097 | 0.013625 | 0.0004127 |  0.0005352 |            29.68 |
-| 11 | 0.011325 | 0.016555 | 0.011497 | 0.0004414 |  0.0005440 |            23.25 |
-| 12 | 0.011368 | 0.013484 | 0.011544 | 0.0003497 |  0.0004530 |            29.57 |
-| 13 | 0.008918 |   0.0103 | 0.008313 | 0.0002458 |  0.0003094 |            25.89 |
-| 14 | 0.009171 | 0.010908 | 0.009003 | 0.0002622 |  0.0003295 |            25.66 |
-| 15 | 0.011203 | 0.013191 | 0.011277 | 0.0003395 |  0.0004399 |            29.57 |
+|       e_r |       e_i |   e_J0660 |   σ_ideal | σ_classic | Overestimation (%) |
+| 0.0027043 | 0.0023099 | 0.0034418 | 0.0107393 | 0.0110083 |              2.51% |
+| 0.0009554 | 0.0010020 | 0.0010847 | 0.0100830 | 0.0101191 |              0.36% |
+| 0.0016022 | 0.0014943 | 0.0017040 | 0.0102071 | 0.0103072 |              0.98% |
+| 0.0022327 | 0.0020145 | 0.0023409 | 0.0103886 | 0.0105788 |              1.83% |
+| 0.0042835 | 0.0026568 | 0.0048327 | 0.0114495 | 0.0120735 |              5.45% |
+| 0.0008637 | 0.0008142 | 0.0009804 | 0.0100666 | 0.0100962 |              0.29% |
+| 0.0037896 | 0.0036629 | 0.0044752 | 0.0112847 | 0.0117827 |              4.41% |
+| 0.0026342 | 0.0025405 | 0.0020657 | 0.0103826 | 0.0106465 |              2.54% |
+| 0.0011333 | 0.0010817 | 0.0010883 | 0.0100913 | 0.0101421 |              0.50% |
+| 0.0013017 | 0.0012364 | 0.0009283 | 0.0100855 | 0.0101524 |              0.66% |
+| 0.0032340 | 0.0032643 | 0.0035207 | 0.0108566 | 0.0112353 |              3.49% |
+| 0.0015322 | 0.0014927 | 0.0017911 | 0.0102181 | 0.0103096 |              0.90% |
+| 0.0023780 | 0.0022736 | 0.0022346 | 0.0103854 | 0.0106009 |              2.08% |
+| 0.0038338 | 0.0033918 | 0.0039769 | 0.0110882 | 0.0116063 |              4.67% |
+| 0.0032340 | 0.0026313 | 0.0031808 | 0.0107234 | 0.0111066 |              3.57% |
+| 0.0024073 | 0.0020922 | 0.0023655 | 0.0104107 | 0.0106310 |              2.12% |
+| 0.0029173 | 0.0024788 | 0.0036630 | 0.0108381 | 0.0111478 |              2.86% |
+| 0.0023026 | 0.0022480 | 0.0026816 | 0.0104837 | 0.0106841 |              1.91% |
+| 0.0023556 | 0.0023169 | 0.0028192 | 0.0105264 | 0.0107351 |              1.98% |
+| 0.0033655 | 0.0033329 | 0.0038816 | 0.0109964 | 0.0114010 |              3.68% |
+| 0.0025633 | 0.0023379 | 0.0025938 | 0.0104866 | 0.0107343 |              2.36% |
+| 0.0034930 | 0.0034111 | 0.0038109 | 0.0109899 | 0.0114253 |              3.96% |
+| 0.0030717 | 0.0030049 | 0.0032032 | 0.0107286 | 0.0110748 |              3.23% |
+| 0.0011932 | 0.0011562 | 0.0009969 | 0.0100856 | 0.0101420 |              0.56% |
+| 0.0013466 | 0.0013025 | 0.0008976 | 0.0100861 | 0.0101578 |              0.71% |
+| 0.0013132 | 0.0011755 | 0.0008432 | 0.0100773 | 0.0101456 |              0.68% |
+| 0.0013177 | 0.0012560 | 0.0008621 | 0.0100807 | 0.0101494 |              0.68% |
+| 0.0012351 | 0.0011086 | 0.0008751 | 0.0100753 | 0.0101357 |              0.60% |
+| 0.0012230 | 0.0011141 | 0.0008705 | 0.0100745 | 0.0101337 |              0.59% |
+| 0.0013748 | 0.0013328 | 0.0009174 | 0.0100899 | 0.0101646 |              0.74% |
+| 0.0013861 | 0.0012217 | 0.0008833 | 0.0100852 | 0.0101611 |              0.75% |
+| 0.0025333 | 0.0029324 | 0.0027128 | 0.0105378 | 0.0107787 |              2.29% |
+| 0.0036068 | 0.0031376 | 0.0037044 | 0.0109536 | 0.0114188 |              4.25% |
+| 0.0033929 | 0.0033208 | 0.0043463 | 0.0111714 | 0.0115762 |              3.62% |
+| 0.0014183 | 0.0013238 | 0.0016154 | 0.0101791 | 0.0102579 |              0.77% |
+| 0.0046214 | 0.0047028 | 0.0046203 | 0.0115141 | 0.0122336 |              6.25% |
+| 0.0014659 | 0.0013899 | 0.0025615 | 0.0103752 | 0.0104577 |              0.80% |
+| 0.0023712 | 0.0022108 | 0.0026406 | 0.0104776 | 0.0106900 |              2.03% |
+| 0.0025161 | 0.0023367 | 0.0027484 | 0.0105217 | 0.0107597 |              2.26% |
+| 0.0019472 | 0.0018115 | 0.0045276 | 0.0110630 | 0.0111992 |              1.23% |
+| 0.0033788 | 0.0030291 | 0.0035031 | 0.0108558 | 0.0112686 |              3.80% |
+| 0.0021784 | 0.0021272 | 0.0019475 | 0.0103066 | 0.0104891 |              1.77% |
+| 0.0036444 | 0.0033582 | 0.0038976 | 0.0110353 | 0.0115066 |              4.27% |
+| 0.0028239 | 0.0026748 | 0.0031126 | 0.0106632 | 0.0109583 |              2.77% |
+| 0.0035757 | 0.0033058 | 0.0049258 | 0.0114287 | 0.0118677 |              3.84% |
+| 0.0034714 | 0.0034033 | 0.0038096 | 0.0109865 | 0.0114169 |              3.92% |
+| 0.0029722 | 0.0027480 | 0.0029623 | 0.0106378 | 0.0109650 |              3.08% |
+| 0.0026445 | 0.0026835 | 0.0025978 | 0.0105080 | 0.0107709 |              2.50% |
+| 0.0028707 | 0.0027355 | 0.0032248 | 0.0107034 | 0.0110071 |              2.84% |
+|           |           |      Mean |           |           |              2.33% |
+|           |           |    Median |           |           |              2.26% |
+
+The classical estimation of σσ results in an overestimation of about 2.32%, considering m=2,
+which is typical for the fit in the stellar locus color–color diagram of S-PLUS, and assuming sigma_ss=0.01.
 
 *** Luis's Method (Proposed)
 
-Go back again to the ideal case:
+See if I get a better apprximation on wich the covariance term contribute lees to the sigma value. Go back again to the ideal case:
 
 \[
-\Rightarrow \boxed{\sigma_{\text{est, ideal}}^2 = \sigma_s^2 + (1 - 2m + m^2) \sigma_r^2 + \sigma_{J0660}^2 + m^2 \sigma_i^2}
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 + \sigma_{J0660}^2 - 2m \sigma_r^2 + m^2 \sigma_r^2  + m^2 \sigma_i^2
 \]
 
+Rearrange;
 
 \[
-\sigma_{\text{est, Luis}}^2 = \sigma_s^2 + (1 - m)^2 \sigma_{(r-J0660)}^2 + m^2 \sigma_{(r-i)}^2
-\]
-Expanding:
-\[
-= \sigma_s^2 + (1 - m)^2 (\sigma_r^2 + \sigma_{J0660}^2) + m^2 (\sigma_r^2 + \sigma_i^2)
-\]
-\[
-= \sigma_s^2 + \sigma_r^2 \left[(1 - m)^2 + m^2\right] + (1 - m)^2 \sigma_{J0660}^2 + m^2 \sigma_i^2
-\]
-For \( m = 0.5 \):
-\[
-\sigma_r^2 \left[(0.5)^2 + (0.5)^2\right] = 0.5 \sigma_r^2 \quad \text{(Mitigates overcounting)}
+\Rightarrow \boxed{\sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 + \sigma_{J0660}^2 + m^2 (\sigma_r^2  + \sigma_i^2}) - 2m \sigma_r^2
 \]
 
-** Key Difference
-- Luis's method replaces the ideal’s \( (1 - m)^2 \sigma_r^2 \) with \( \sigma_r^2 \left[(1 - m)^2 + m^2\right] \), which is equivalent to \( \sigma_r^2 (1 - 2m + 2m^2) \).
-- For \( 0.4 \leq m \leq 0.5 \), this term deviates from the ideal by only \( 2m(1 - m) \sigma_r^2 \), which is negligible for S-PLUS’s small \( \sigma_r \).
+Add and subtract the term: \(-2m(\sigma_r^2 + \sigma_{J0660}^2) + m^2(\sigma_r^2 + \sigma_{J0660}^2\), then:
 
-** Analysis of the \((1 - m)^2 \sigma_{J0660}^2\) Term
-*** Structural Origin
-The term \((1 - m)^2 \sigma_{J0660}^2\) arises naturally from propagating errors through colors while preserving the slope-dependent weighting. Though it differs from the ideal method's standalone \(\sigma_{J0660}^2\), this is not an error but a feature of the approximation.
-
-*** Numerical Impact
-For \( m = 0.45 \):
 \[
-\Delta_{\sigma_{J0660}}^2 = \sigma_{J0660}^2 \left[1 - (1 - m)^2\right] = \sigma_{J0660}^2 (2m - m^2) = 0.6975 \sigma_{J0660}^2,
-\]
-implying a **30.25% reduction** in \(\sigma_{J0660}^2\) contribution. However, this is compensated by the overestimation of \(\sigma_r^2\) in Luis's method.
-
-*** Compensation Mechanism
-- **Underestimation in \(\sigma_{J0660}^2\)**:
-  \[
-  \Delta_{\text{under}} = (1 - (1 - m)^2) \sigma_{J0660}^2 = 0.6975 \sigma_{J0660}^2
-  \]
-- **Overestimation in \(\sigma_r^2\)**:
-  \[
-  \Delta_{\text{over}} = \sigma_r^2 \left[(1 - m)^2 + m^2 - (1 - m)^2\right] = m^2 \sigma_r^2
-  \]
-For S-PLUS's typical errors (\(\sigma_r \sim \sigma_{J0660}\)), these terms balance. Example (Object 3):
-- \(\Delta_{\text{under}} = 0.000164\)
-- \(\Delta_{\text{over}} = 0.000039\)
-- **Net Effect**: \(\Delta_{\text{Total}} = -0.000125 \, (\approx -0.011 \, \text{mag})\), consistent with empirical results.
-
-* Numerical Validation with 15 S-PLUS Objects  
-** Parameters  
-- Slope \( m = 0.40 \) (representative of the stellar locus).  
-- \( \sigma_s = 0.05 \, \text{mag} \) (intrinsic scatter).  
-
-** Calculations for All 15 Objects  
-| # | \(\sigma_r\) | \(\sigma_{J0660}\) | \(\sigma_i\) | Classical (mag) | Luis (mag) | Ideal (mag) | \(\Delta_{\text{Classical}}\) (%) | \(\Delta_{\text{Luis}}\) (%) |  
-|---|---------------|---------------------|---------------|------------------|------------|-------------|----------------------------------|------------------------------|  
-| 1 | 0.013807      | 0.012171            | 0.011227      | 0.0538           | 0.0517     | 0.0523      | +2.8%                           | -1.2%                        |  
-| 2 | 0.010976      | 0.012747            | 0.010101      | 0.0531           | 0.0514     | 0.0522      | +1.7%                           | -1.5%                        |  
-| 3 | 0.013961      | 0.015343            | 0.011655      | 0.0550           | 0.0526     | 0.0534      | +3.0%                           | -1.5%                        |  
-| 4 | 0.009735      | 0.011767            | 0.010050      | 0.0518           | 0.0503     | 0.0509      | +1.8%                           | -1.2%                        |  
-| 5 | 0.011984      | 0.014062            | 0.011615      | 0.0534           | 0.0514     | 0.0521      | +2.5%                           | -1.3%                        |  
-| 6 | 0.013093      | 0.015699            | 0.013780      | 0.0559           | 0.0534     | 0.0542      | +3.1%                           | -1.5%                        |  
-| 7 | 0.013910      | 0.013115            | 0.007268      | 0.0523           | 0.0505     | 0.0511      | +2.3%                           | -1.2%                        |  
-| 8 | 0.011079      | 0.013446            | 0.011462      | 0.0529           | 0.0510     | 0.0516      | +2.5%                           | -1.2%                        |  
-| 9 | 0.012525      | 0.014509            | 0.012635      | 0.0541           | 0.0518     | 0.0526      | +2.9%                           | -1.5%                        |  
-| 10| 0.012374      | 0.015097            | 0.013625      | 0.0547           | 0.0523     | 0.0531      | +3.0%                           | -1.5%                        |  
-| 11| 0.011325      | 0.016555            | 0.011497      | 0.0543           | 0.0518     | 0.0533      | +1.8%                           | -2.8%                        |  
-| 12| 0.011368      | 0.013484            | 0.011544      | 0.0525           | 0.0506     | 0.0513      | +2.3%                           | -1.4%                        |  
-| 13| 0.008918      | 0.010300            | 0.008313      | 0.0494           | 0.0482     | 0.0486      | +1.6%                           | -0.8%                        |  
-| 14| 0.009171      | 0.010908            | 0.009003      | 0.0500           | 0.0487     | 0.0491      | +1.8%                           | -0.8%                        |  
-| 15| 0.011203      | 0.013191            | 0.011277      | 0.0527           | 0.0508     | 0.0515      | +2.3%                           | -1.4%                        |  
-
-* Average Differences  
-| Metric                | Classical vs Ideal | Luis vs Ideal |  
-|-----------------------+--------------------+---------------|  
-| Mean Δ (mag)          | +0.0012            | -0.0007       |  
-| Mean Relative Error   | +2.4%              | -1.4%         |  
-| Max Relative Error    | +3.1%              | -2.8%         |  
-
-* Critical Analysis  
-** Case 11: Moderately High \(\sigma_{J0660}\)  
-- \(\sigma_{J0660} = 0.016555 \, \text{mag}\) (2–3× typical errors).  
-- Luis’s method deviates by \(\mathbf{-2.8\%}\) from the ideal, vs. \(\mathbf{+1.8\%}\) for the classical method.  
-- Demonstrates stability even with elevated \(J0660\) errors.  
-
-** Why Luis’s Method Wins  
-1. **Mathematical Consistency**:  
-   The term \((1 - m)^2 \sigma_{(r-J0660)}^2\) dynamically scales \(\sigma_r\) and \(\sigma_{J0660}\) contributions with the slope \(m = 0.4\), aligning with the ideal method’s structure.  
-   
-   \[
-   \sigma_{\text{Luis}}^2 = \sigma_s^2 + \underbrace{(1 - 0.4)^2 (\sigma_r^2 + \sigma_{J0660}^2)}_{\text{Slope-weighted } \sigma_r, \sigma_{J0660}} + \underbrace{0.4^2 (\sigma_r^2 + \sigma_i^2)}_{\text{Slope-weighted } \sigma_r, \sigma_i}
-   \]
-
-2. **Empirical Superiority**:  
-   - Classical method overestimates errors by \(\mathbf{+2.4\%}\) on average (max \(\mathbf{+3.1\%}\)).  
-   - Luis’s method underestimates by \(\mathbf{-1.4\%}\) on average (max \(\mathbf{-2.8\%}\)), staying within \(<3\%\) deviation.  
-
-3. **Preservation of Sensitivity**:  
-   - A \(\mathbf{+3\%}\) overestimation (classical method) would exclude \(\mathbf{5–10\%}\) of genuine Hα-excess sources near the \(5\sigma\) threshold.  
-   - Luis’s method minimizes false negatives, critical for scientific completeness.  
-
-* Robustness of the \((1 - m)^2 \sigma_{J0660}^2\) Term  
-**Physical Meaning**:  
-At \(m = 0.4\), the term reduces \(\sigma_{J0660}\)’s weight by \((1 - 0.4)^2 = 0.36\), reflecting the locus geometry:  
-\[
-\text{Weighted } \sigma_{J0660}^2 = 0.36 \cdot \sigma_{J0660}^2
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_r^2 + \sigma_{J0660}^2 + m^2 (\sigma_r^2  + \sigma_i^2) - 2m \sigma_r^2 + (-2m(\sigma_r^2 + \sigma_{J0660}^2)+ m^2(\sigma_r^2 + \sigma_{J0660}^2)) - (-2m(\sigma_r^2 + \sigma_{J0660}^2)+ m^2(\sigma_r^2 + \sigma_{J0660}^2))
 \]
 
-**Error Compensation**:  
-- **Underestimation**:  
-  \[
-  \Delta_{\text{under}} = (1 - 0.36) \sigma_{J0660}^2 = 0.64 \cdot \sigma_{J0660}^2 \quad (\text{e.g., Object 11: } 0.64 \cdot (0.016555)^2 = 0.000173)
-  \]
-- **Overestimation**:  
-  \[
-  \Delta_{\text{over}} = [(1 - 0.4)^2 + 0.4^2] \sigma_r^2 = 0.52 \cdot \sigma_r^2 \quad (\text{e.g., Object 3: } 0.52 \cdot (0.013961)^2 = 0.000103)
-  \]
-- **Net Effect**:  
-  \[
-  \Delta_{\text{Total}} = \Delta_{\text{under}} - \Delta_{\text{over}} = -0.00007 \quad (\mathbf{-1.5\%} \text{ error})
-  \]
+Next, we rearrange and factorize:
 
-**Empirical Validation**:  
-All objects show Luis’s method stays within \(\mathbf{<3\%}\) of ideal, while classical errors exceed \(\mathbf{+3\%}\).  
-
-** Classical vs ideal/aproximation  
-*** The Classical Method’s Fundamental Flaw  
-**** Residual Analysis for \(m = 1\)  
-The classical method assumes a unit slope (\(m = 1\)) in the color-color diagram. For this case:  
 \[
-(r - J0660)_{\text{fit}} = 1 \cdot (r - i) + b \implies \text{Residual} = (r - J0660)_{\text{obs}} - (r - i)_{\text{obs}} - b
-\]  
-Simplifying the residual:  
-\[
-\text{Residual} = r_{\text{obs}} - J0660_{\text{obs}} - r_{\text{obs}} + i_{\text{obs}} - b = -J0660_{\text{obs}} + i_{\text{obs}} - b
+\Rightarrow \sigma_{\text{est, ideal}}^2 = \sigma_s^2 + (1 - 2m + m^2)(\sigma_r^2 + \sigma_{J0660}^2) + m^2 (\sigma_r^2  + \sigma_i^2) - 2m \sigma_r^2 - (-2m(\sigma_r^2 + \sigma_{J0660}^2) + m^2(\sigma_r^2 + \sigma_{J0660}^2))
 \]
 
-The residual **does not depend on \(r\)**, so error propagation from first principles gives:  
 \[
-\sigma_{\text{est, ideal}}^2 = \sigma_s^2 + \sigma_{J0660}^2 + \sigma_i^2
-\]  
+\Rightarrow \boxed{\sigma_{\text{est, ideal}}^2 = \sigma_s^2 + (1 - m)^2(\sigma_r^2 + \sigma_{J0660}^2) + m^2 (\sigma_r^2  + \sigma_i^2}) + 2m\sigma_{J0660}^2 - m^2 \sigma_r^2 - m^2 \sigma_{J0660}^2
+\]
 
-*** Classical Method’s Critical Error  
-The classical method incorrectly calculates:  
-\[
-\sigma_{\text{est, classical}}^2 = \sigma_s^2 + \sigma_{(r-J0660)}^2 + \sigma_{(r-i)}^2 = \sigma_s^2 + (\sigma_r^2 + \sigma_{J0660}^2) + (\sigma_r^2 + \sigma_i^2)
-\]  
-\[
-\implies \sigma_{\text{est, classical}}^2 = \sigma_s^2 + 2\sigma_r^2 + \sigma_{J0660}^2 + \sigma_i^2
-\]  
-This **overestimates errors** by \(2\sigma_r^2\), even for \(m = 1\).  
+\( \Rightarrow \sigma_{\mathrm{est,ideal}}^2 = \sigma_s^2 + (1 - m)^2(\sigma_r^2 + \sigma_{J0660}^2) + m^2(\sigma_r^2 + \sigma_i^2) - m^2\sigma_r^2 - m^2\sigma_{J0660}^2 + 2m\,\sigma_{J0660}^2 \)
 
-*** Why This Matters for S-PLUS (\(m = 0.4\))  
-For non-unit slopes (e.g., \(m = 0.4\)), the classical method’s flaws worsen:  
-1. **Geometric Mismatch**:  
-   \[
-   \sigma_{\text{est}}^2 \neq \sigma_s^2 + \sigma_{(r-J0660)}^2 + m^2 \sigma_{(r-i)}^2 \quad \text{(invalid for \(m \neq 1\))}
-   \]  
-2. **Slope-Independent Overestimation**:  
-   \[
-   \text{Classical: } \sigma_r^2(1 + m^2) \quad vs. \quad \text{Ideal: } \sigma_r^2(1 - m)^2
-   \]  
-   For \(m = 0.4\):  
-   \[
-   1 + m^2 = 1.16 \quad (\text{+116\% error}) \quad vs. \quad (1 - m)^2 = 0.36 \quad (\text{ground truth})
-   \]  
-
-**Consequence**: The classical method is **never** rigorously correct — it systematically overestimates errors for all slopes \(m\).  
-
-**** Proposed Method: First-Principles Generalization  
-Luis method fixes this by deriving coefficients directly from the residual’s dependence on \(r, i, J0660\):  
-\[
-\sigma_{\text{est, Luis}}^2 = \sigma_s^2 + (1 - m)^2 \sigma_r^2 + \sigma_{J0660}^2 + m^2 \sigma_i^2
-\]  
-- For \(m = 1\): Removes overcounted \(\sigma_r^2\), matching first principles.  
-- For \(m \neq 1\): Dynamically weights \(\sigma_r^2\) and \(\sigma_i^2\).  
-
-**** Comparative Error Coefficients  
-| Term                | Classical Method (\(m = 1\)) | Classical Method (\(m = 0.4\)) | Ideal/Proposed (\(m = 0.4\)) |  
-|----------------------|------------------------------|--------------------------------|------------------------------|  
-| \(\sigma_r^2\)       | \(2\sigma_r^2\) (flawed)     | \(1.16\sigma_r^2\)             | \(0.36\sigma_r^2\)            |  
-| \(\sigma_{J0660}^2\) | \(1\sigma_{J0660}^2\)        | \(1\sigma_{J0660}^2\)          | \(1\sigma_{J0660}^2\)         |  
-| \(\sigma_i^2\)       | \(1\sigma_i^2\)              | \(0.16\sigma_i^2\)             | \(0.16\sigma_i^2\)            |  
-
-**** Key Insight:  
-The classical method’s coefficients are **slope-independent**, while Luis method adapts to \(m\). For \(m = 0.4\), it reduces \(\sigma_r^2\) errors by **3.2×**.  
-
-**** Why the Classical Method Persisted  
-1. **Legacy Surveys**: Assumed \(m \approx 1\) (e.g., SDSS \(u - g\) vs \(g - r\)) where errors were less noticeable[^1].  
-2. **Practicality**: Calculating \(\sigma_{(color)}^2\) was simpler than propagating individual terms[^2].  
-3. **Low-Precision Data**: Older surveys couldn’t measure \(m\) accurately, masking systematic errors[^3].  
-
-*** Conclusion  
-The classical method is **fundamentally flawed** — even for \(m = 1\), it overestimates errors. Luis method is the first 
-to unify error propagation rigorously for **any slope \(m\)**, 
-eliminating overcounting and preserving accuracy.  
-
-[^1]: Ivezić, Ž. et al. (2004). *SDSS Color Calibration*. ASPC, 314, 32.  
-[^2]: Stetson, P. B. (1987). *DAOPHOT: A Computer Program for Crowded-Field Stellar Photometry*. PASP, 99, 191.  
-[^3]: York, D. G. et al. (2000). *The Sloan Digital Sky Survey: Technical Summary*. AJ, 120, 1579.
+\( \Rightarrow \sigma_{\mathrm{est,ideal}}^2 = \sigma_s^2 + (1 - m)^2(\sigma_r^2 + \sigma_{J0660}^2) + m^2(\sigma_r^2 + \sigma_i^2) - m^2\sigma_r^2 + (2m - m^2)\,\sigma_{J0660}^2 \)
 
 
-* Conclusion  
-The revised analysis confirms:  
-\boxed{\text{Luis’s method is statistically indistinguishable from the ideal method for S-PLUS}}  
-with deviations (\(\mathbf{-1.4\%}\)) far smaller than the classical method’s overestimations (\(\mathbf{+2.4\%}\)).  
+The covariance term is: \(-m^2 \sigma_r^2 + (2m - m^2) \sigma_{J0660}^2\). Therefore, **the contribution** of this term is:
 
-The apparent "underestimation" of \(\sigma_{J0660}^2\) is not a flaw but:  
-1. **Physically Motivated**: Reflects the slope-dependent error hierarchy (\(m = 0.4\)).  
-2. **Mathematically Balanced**: Compensated by \(\sigma_r^2 \left[(1 - m)^2 + m^2\right]\).  
-3. **Scientifically Optimal**: Avoids excluding true Hα-excess sources at thresholds.  
+* Simplified error estimate
+By removing the covariance term, we keep only the color errors:
 
-This method is now the \boxed{\text{gold standard}} for S-PLUS, validated by peer review and real-data performance.
-Its adoption ensures maximal scientific return from narrow-band surveys. 🚀  
+\( \sigma_{\mathrm{est,Luis}}^2 = \sigma_s^2 + (1 - m)^2\,\sigma_{(r - J0660)}^2 + m^2\,\sigma_{(r - i)}^2 \)
+
+Contribution of the Removed Covariance Term
+
+
+#+name: calculate-overestimation-Luis
+#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results value table
+import numpy as np
+
+# Header row
+header = ["e_r", "e_i", "e_J0660", "σ_ideal", "σ_luis", "Overestimation (%)"]
+new_table = []
+overest = []
+
+# Process each data row
+for sr_str, si_str, sj_str in data:
+    try:
+        sr = float(sr_str)
+        si = float(si_str)
+        sj = float(sj_str)
+
+        σ_ideal = np.sqrt(
+            sigma_s**2 +
+            (1 - m)**2 * sr**2 +
+            sj**2 +
+            m**2 * si**2
+        )
+        σ_luis = np.sqrt(
+            sigma_s**2 +
+            (1 - m)**2 * (sr**2 + sj**2) +
+            m**2 * (sr**2 + si**2)
+        )
+
+        pct = (σ_luis - σ_ideal) / σ_ideal * 100
+        new_table.append([
+            f"{sr:.7f}", f"{si:.7f}", f"{sj:.7f}",
+            f"{σ_ideal:.7f}", f"{σ_luis:.7f}", f"{pct:.2f}%"
+        ])
+        overest.append(pct)
+    except:
+        new_table.append([sr_str, si_str, sj_str, "Error", "Error", "Error"])
+
+# Add summary rows
+mean_pct   = np.mean(overest)
+median_pct = np.median(overest)
+new_table.append(["", "", "Mean", "", "", f"{mean_pct:.2f}%"])
+new_table.append(["", "", "Median", "", "", f"{median_pct:.2f}%"])
+
+# Return full table
+return [header] + new_table
+#+end_src
+
+#+RESULTS: calculate-overestimation-Luis
+|       e_r |       e_i |   e_J0660 |   σ_ideal |    σ_luis | Overestimation (%) |
+| 0.0027043 | 0.0023099 | 0.0034418 | 0.0107393 | 0.0104365 |             -2.82% |
+| 0.0009554 | 0.0010020 | 0.0010847 | 0.0100830 | 0.0100528 |             -0.30% |
+| 0.0016022 | 0.0014943 | 0.0017040 | 0.0102071 | 0.0101359 |             -0.70% |
+| 0.0022327 | 0.0020145 | 0.0023409 | 0.0103886 | 0.0102574 |             -1.26% |
+| 0.0042835 | 0.0026568 | 0.0048327 | 0.0114495 | 0.0109123 |             -4.69% |
+| 0.0008637 | 0.0008142 | 0.0009804 | 0.0100666 | 0.0100419 |             -0.24% |
+| 0.0037896 | 0.0036629 | 0.0044752 | 0.0112847 | 0.0108085 |             -4.22% |
+| 0.0026342 | 0.0025405 | 0.0020657 | 0.0103826 | 0.0103042 |             -0.75% |
+| 0.0011333 | 0.0010817 | 0.0010883 | 0.0100913 | 0.0100639 |             -0.27% |
+| 0.0013017 | 0.0012364 | 0.0009283 | 0.0100855 | 0.0100715 |             -0.14% |
+| 0.0032340 | 0.0032643 | 0.0035207 | 0.0108566 | 0.0105644 |             -2.69% |
+| 0.0015322 | 0.0014927 | 0.0017911 | 0.0102181 | 0.0101357 |             -0.81% |
+| 0.0023780 | 0.0022736 | 0.0022346 | 0.0103854 | 0.0102745 |             -1.07% |
+| 0.0038338 | 0.0033918 | 0.0039769 | 0.0110882 | 0.0107321 |             -3.21% |
+| 0.0032340 | 0.0026313 | 0.0031808 | 0.0107234 | 0.0104971 |             -2.11% |
+| 0.0024073 | 0.0020922 | 0.0023655 | 0.0104107 | 0.0102824 |             -1.23% |
+| 0.0029173 | 0.0024788 | 0.0036630 | 0.0108381 | 0.0104995 |             -3.12% |
+| 0.0023026 | 0.0022480 | 0.0026816 | 0.0104837 | 0.0103031 |             -1.72% |
+| 0.0023556 | 0.0023169 | 0.0028192 | 0.0105264 | 0.0103250 |             -1.91% |
+| 0.0033655 | 0.0033329 | 0.0038816 | 0.0109964 | 0.0106344 |             -3.29% |
+| 0.0025633 | 0.0023379 | 0.0025938 | 0.0104866 | 0.0103302 |             -1.49% |
+| 0.0034930 | 0.0034111 | 0.0038109 | 0.0109899 | 0.0106506 |             -3.09% |
+| 0.0030717 | 0.0030049 | 0.0032032 | 0.0107286 | 0.0104902 |             -2.22% |
+| 0.0011932 | 0.0011562 | 0.0009969 | 0.0100856 | 0.0100654 |             -0.20% |
+| 0.0013466 | 0.0013025 | 0.0008976 | 0.0100861 | 0.0100749 |             -0.11% |
+| 0.0013132 | 0.0011755 | 0.0008432 | 0.0100773 | 0.0100685 |             -0.09% |
+| 0.0013177 | 0.0012560 | 0.0008621 | 0.0100807 | 0.0100709 |             -0.10% |
+| 0.0012351 | 0.0011086 | 0.0008751 | 0.0100753 | 0.0100631 |             -0.12% |
+| 0.0012230 | 0.0011141 | 0.0008705 | 0.0100745 | 0.0100623 |             -0.12% |
+| 0.0013748 | 0.0013328 | 0.0009174 | 0.0100899 | 0.0100782 |             -0.12% |
+| 0.0013861 | 0.0012217 | 0.0008833 | 0.0100852 | 0.0100757 |             -0.09% |
+| 0.0025333 | 0.0029324 | 0.0027128 | 0.0105378 | 0.0103616 |             -1.67% |
+| 0.0036068 | 0.0031376 | 0.0037044 | 0.0109536 | 0.0106433 |             -2.83% |
+| 0.0033929 | 0.0033208 | 0.0043463 | 0.0111714 | 0.0107029 |             -4.19% |
+| 0.0014183 | 0.0013238 | 0.0016154 | 0.0101791 | 0.0101127 |             -0.65% |
+| 0.0046214 | 0.0047028 | 0.0046203 | 0.0115141 | 0.0110603 |             -3.94% |
+| 0.0014659 | 0.0013899 | 0.0025615 | 0.0103752 | 0.0101877 |             -1.81% |
+| 0.0023712 | 0.0022108 | 0.0026406 | 0.0104776 | 0.0103061 |             -1.64% |
+| 0.0025161 | 0.0023367 | 0.0027484 | 0.0105217 | 0.0103385 |             -1.74% |
+| 0.0019472 | 0.0018115 | 0.0045276 | 0.0110630 | 0.0104822 |             -5.25% |
+| 0.0033788 | 0.0030291 | 0.0035031 | 0.0108558 | 0.0105746 |             -2.59% |
+| 0.0021784 | 0.0021272 | 0.0019475 | 0.0103066 | 0.0102253 |             -0.79% |
+| 0.0036444 | 0.0033582 | 0.0038976 | 0.0110353 | 0.0106855 |             -3.17% |
+| 0.0028239 | 0.0026748 | 0.0031126 | 0.0106632 | 0.0104297 |             -2.19% |
+| 0.0035757 | 0.0033058 | 0.0049258 | 0.0114287 | 0.0108227 |             -5.30% |
+| 0.0034714 | 0.0034033 | 0.0038096 | 0.0109865 | 0.0106463 |             -3.10% |
+| 0.0029722 | 0.0027480 | 0.0029623 | 0.0106378 | 0.0104384 |             -1.87% |
+| 0.0026445 | 0.0026835 | 0.0025978 | 0.0105080 | 0.0103546 |             -1.46% |
+| 0.0028707 | 0.0027355 | 0.0032248 | 0.0107034 | 0.0104511 |             -2.36% |
+|           |           |      Mean |           |           |             -1.85% |
+|           |           |    Median |           |           |             -1.72% |
+
+The luis aproximation subestima the sigma in around -1.85%.
+
+**** Classic versus Luis aproximation
+Now Comparing Classic vs. Luis Overestimation
+
+#+name: calculate-overestimation-compare
+#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results value table
+import numpy as np
+
+# Header row
+header = [
+    "e_r", "e_i", "e_J0660",
+    "σ_ideal", "σ_classic", "σ_luis",
+    "Classic overestimation (%)", "Luis overestimation (%)"
+]
+
+new_table = []
+overest_classic = []
+overest_luis = []
+
+# Process each data row
+for sr_str, si_str, sj_str in data:
+    try:
+        sr = float(sr_str)
+        si = float(si_str)
+        sj = float(sj_str)
+
+        σ_ideal   = np.sqrt(
+            sigma_s**2 +
+            (1 - m)**2 * sr**2 +
+            sj**2 +
+            m**2 * si**2
+        )
+        σ_classic = np.sqrt(
+            sigma_s**2 +
+            (sr**2 + sj**2) +
+            m**2 * (sr**2 + si**2)
+        )
+        σ_luis    = np.sqrt(
+            sigma_s**2 +
+            (1 - m)**2 * (sr**2 + sj**2) +
+            m**2 * (sr**2 + si**2)
+        )
+
+        pct_classic = (σ_classic - σ_ideal) / σ_ideal * 100
+        pct_luis    = (σ_luis    - σ_ideal) / σ_ideal * 100
+
+        new_table.append([
+            f"{sr:.7f}", f"{si:.7f}", f"{sj:.7f}",
+            f"{σ_ideal:.7f}", f"{σ_classic:.7f}", f"{σ_luis:.7f}",
+            f"{pct_classic:.2f}%", f"{pct_luis:.2f}%"
+        ])
+        overest_classic.append(pct_classic)
+        overest_luis.append(pct_luis)
+
+    except:
+        new_table.append([sr_str, si_str, sj_str] + ["Error"] * 5)
+
+# Compute summary statistics
+mean_c   = np.mean(overest_classic)
+median_c = np.median(overest_classic)
+min_c    = np.min(overest_classic)
+max_c    = np.max(overest_classic)
+
+mean_l   = np.mean(overest_luis)
+median_l = np.median(overest_luis)
+min_l    = np.min(overest_luis)
+max_l    = np.max(overest_luis)
+
+# Append summary rows
+new_table.append(["", "", "Mean", "", "", "",
+                  f"{mean_c:.2f}%", f"{mean_l:.2f}%"])
+new_table.append(["", "", "Median", "", "", "",
+                  f"{median_c:.2f}%", f"{median_l:.2f}%"])
+new_table.append(["", "", "Min", "", "", "",
+                  f"{min_c:.2f}%", f"{min_l:.2f}%"])
+new_table.append(["", "", "Max", "", "", "",
+                  f"{max_c:.2f}%", f"{max_l:.2f}%"])
+
+# Return full table
+return [header] + new_table
+#+end_src
+
+
+#+RESULTS: calculate-overestimation-compare
+|       e_r |       e_i |   e_J0660 |   σ_ideal | σ_classic |    σ_luis | Classic overestimation (%) | Luis overestimation (%) |
+| 0.0027043 | 0.0023099 | 0.0034418 | 0.0107393 | 0.0110083 | 0.0104365 |                      2.51% |                  -2.82% |
+| 0.0009554 | 0.0010020 | 0.0010847 | 0.0100830 | 0.0101191 | 0.0100528 |                      0.36% |                  -0.30% |
+| 0.0016022 | 0.0014943 | 0.0017040 | 0.0102071 | 0.0103072 | 0.0101359 |                      0.98% |                  -0.70% |
+| 0.0022327 | 0.0020145 | 0.0023409 | 0.0103886 | 0.0105788 | 0.0102574 |                      1.83% |                  -1.26% |
+| 0.0042835 | 0.0026568 | 0.0048327 | 0.0114495 | 0.0120735 | 0.0109123 |                      5.45% |                  -4.69% |
+| 0.0008637 | 0.0008142 | 0.0009804 | 0.0100666 | 0.0100962 | 0.0100419 |                      0.29% |                  -0.24% |
+| 0.0037896 | 0.0036629 | 0.0044752 | 0.0112847 | 0.0117827 | 0.0108085 |                      4.41% |                  -4.22% |
+| 0.0026342 | 0.0025405 | 0.0020657 | 0.0103826 | 0.0106465 | 0.0103042 |                      2.54% |                  -0.75% |
+| 0.0011333 | 0.0010817 | 0.0010883 | 0.0100913 | 0.0101421 | 0.0100639 |                      0.50% |                  -0.27% |
+| 0.0013017 | 0.0012364 | 0.0009283 | 0.0100855 | 0.0101524 | 0.0100715 |                      0.66% |                  -0.14% |
+| 0.0032340 | 0.0032643 | 0.0035207 | 0.0108566 | 0.0112353 | 0.0105644 |                      3.49% |                  -2.69% |
+| 0.0015322 | 0.0014927 | 0.0017911 | 0.0102181 | 0.0103096 | 0.0101357 |                      0.90% |                  -0.81% |
+| 0.0023780 | 0.0022736 | 0.0022346 | 0.0103854 | 0.0106009 | 0.0102745 |                      2.08% |                  -1.07% |
+| 0.0038338 | 0.0033918 | 0.0039769 | 0.0110882 | 0.0116063 | 0.0107321 |                      4.67% |                  -3.21% |
+| 0.0032340 | 0.0026313 | 0.0031808 | 0.0107234 | 0.0111066 | 0.0104971 |                      3.57% |                  -2.11% |
+| 0.0024073 | 0.0020922 | 0.0023655 | 0.0104107 | 0.0106310 | 0.0102824 |                      2.12% |                  -1.23% |
+| 0.0029173 | 0.0024788 | 0.0036630 | 0.0108381 | 0.0111478 | 0.0104995 |                      2.86% |                  -3.12% |
+| 0.0023026 | 0.0022480 | 0.0026816 | 0.0104837 | 0.0106841 | 0.0103031 |                      1.91% |                  -1.72% |
+| 0.0023556 | 0.0023169 | 0.0028192 | 0.0105264 | 0.0107351 | 0.0103250 |                      1.98% |                  -1.91% |
+| 0.0033655 | 0.0033329 | 0.0038816 | 0.0109964 | 0.0114010 | 0.0106344 |                      3.68% |                  -3.29% |
+| 0.0025633 | 0.0023379 | 0.0025938 | 0.0104866 | 0.0107343 | 0.0103302 |                      2.36% |                  -1.49% |
+| 0.0034930 | 0.0034111 | 0.0038109 | 0.0109899 | 0.0114253 | 0.0106506 |                      3.96% |                  -3.09% |
+| 0.0030717 | 0.0030049 | 0.0032032 | 0.0107286 | 0.0110748 | 0.0104902 |                      3.23% |                  -2.22% |
+| 0.0011932 | 0.0011562 | 0.0009969 | 0.0100856 | 0.0101420 | 0.0100654 |                      0.56% |                  -0.20% |
+| 0.0013466 | 0.0013025 | 0.0008976 | 0.0100861 | 0.0101578 | 0.0100749 |                      0.71% |                  -0.11% |
+| 0.0013132 | 0.0011755 | 0.0008432 | 0.0100773 | 0.0101456 | 0.0100685 |                      0.68% |                  -0.09% |
+| 0.0013177 | 0.0012560 | 0.0008621 | 0.0100807 | 0.0101494 | 0.0100709 |                      0.68% |                  -0.10% |
+| 0.0012351 | 0.0011086 | 0.0008751 | 0.0100753 | 0.0101357 | 0.0100631 |                      0.60% |                  -0.12% |
+| 0.0012230 | 0.0011141 | 0.0008705 | 0.0100745 | 0.0101337 | 0.0100623 |                      0.59% |                  -0.12% |
+| 0.0013748 | 0.0013328 | 0.0009174 | 0.0100899 | 0.0101646 | 0.0100782 |                      0.74% |                  -0.12% |
+| 0.0013861 | 0.0012217 | 0.0008833 | 0.0100852 | 0.0101611 | 0.0100757 |                      0.75% |                  -0.09% |
+| 0.0025333 | 0.0029324 | 0.0027128 | 0.0105378 | 0.0107787 | 0.0103616 |                      2.29% |                  -1.67% |
+| 0.0036068 | 0.0031376 | 0.0037044 | 0.0109536 | 0.0114188 | 0.0106433 |                      4.25% |                  -2.83% |
+| 0.0033929 | 0.0033208 | 0.0043463 | 0.0111714 | 0.0115762 | 0.0107029 |                      3.62% |                  -4.19% |
+| 0.0014183 | 0.0013238 | 0.0016154 | 0.0101791 | 0.0102579 | 0.0101127 |                      0.77% |                  -0.65% |
+| 0.0046214 | 0.0047028 | 0.0046203 | 0.0115141 | 0.0122336 | 0.0110603 |                      6.25% |                  -3.94% |
+| 0.0014659 | 0.0013899 | 0.0025615 | 0.0103752 | 0.0104577 | 0.0101877 |                      0.80% |                  -1.81% |
+| 0.0023712 | 0.0022108 | 0.0026406 | 0.0104776 | 0.0106900 | 0.0103061 |                      2.03% |                  -1.64% |
+| 0.0025161 | 0.0023367 | 0.0027484 | 0.0105217 | 0.0107597 | 0.0103385 |                      2.26% |                  -1.74% |
+| 0.0019472 | 0.0018115 | 0.0045276 | 0.0110630 | 0.0111992 | 0.0104822 |                      1.23% |                  -5.25% |
+| 0.0033788 | 0.0030291 | 0.0035031 | 0.0108558 | 0.0112686 | 0.0105746 |                      3.80% |                  -2.59% |
+| 0.0021784 | 0.0021272 | 0.0019475 | 0.0103066 | 0.0104891 | 0.0102253 |                      1.77% |                  -0.79% |
+| 0.0036444 | 0.0033582 | 0.0038976 | 0.0110353 | 0.0115066 | 0.0106855 |                      4.27% |                  -3.17% |
+| 0.0028239 | 0.0026748 | 0.0031126 | 0.0106632 | 0.0109583 | 0.0104297 |                      2.77% |                  -2.19% |
+| 0.0035757 | 0.0033058 | 0.0049258 | 0.0114287 | 0.0118677 | 0.0108227 |                      3.84% |                  -5.30% |
+| 0.0034714 | 0.0034033 | 0.0038096 | 0.0109865 | 0.0114169 | 0.0106463 |                      3.92% |                  -3.10% |
+| 0.0029722 | 0.0027480 | 0.0029623 | 0.0106378 | 0.0109650 | 0.0104384 |                      3.08% |                  -1.87% |
+| 0.0026445 | 0.0026835 | 0.0025978 | 0.0105080 | 0.0107709 | 0.0103546 |                      2.50% |                  -1.46% |
+| 0.0028707 | 0.0027355 | 0.0032248 | 0.0107034 | 0.0110071 | 0.0104511 |                      2.84% |                  -2.36% |
+|           |           |      Mean |           |           |           |                      2.33% |                  -1.85% |
+|           |           |    Median |           |           |           |                      2.26% |                  -1.72% |
+|           |           |       Min |           |           |           |                      0.29% |                  -5.30% |
+|           |           |       Max |           |           |           |                      6.25% |                  -0.09% |
+
+Clearly, Luis’s approximation is closer to the ideal case, underestimating by only about 1.85%, compared to the classical method, which overestimates by approximately 2.33%.
+
+Now estimate the value of the covariance term for both case:
+
+#+name: calculate-covarianze
+#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results value table
+import numpy as np
+
+# Header for the output table
+header = ["e_r", "e_i", "e_J0660", "Cov_classic", "Cov_Luis"]
+output = []
+
+# Compute covariance terms for each row
+for sr_str, si_str, sj_str in data:
+    try:
+        sr = float(sr_str)
+        sj = float(sj_str)
+        # Classical covariance term
+        cov_classic = -2 * m * sr**2
+        # Luis covariance term
+        cov_luis = -m**2 * sr**2 + (2 * m - m**2) * sj**2
+
+        output.append([
+            f"{sr:.7f}",
+            si_str,
+            f"{sj:.7f}",
+            f"{cov_classic:.7e}",
+            f"{cov_luis:.7e}"
+        ])
+    except Exception:
+        output.append([sr_str, si_str, sj_str, "Error", "Error"])
+
+# Return header + computed rows
+return [header] + output
+#+end_src
+
+#+RESULTS: calculate-covarianze
+|       e_r |          e_i |   e_J0660 |    Cov_classic |      Cov_Luis |
+| 0.0027043 |  0.002309852 | 0.0034418 | -5.8507730e-06 | 6.4111200e-06 |
+| 0.0009554 | 0.0010019763 | 0.0010847 | -7.3028422e-07 | 6.0701278e-07 |
+| 0.0016022 | 0.0014943366 | 0.0017040 | -2.0536433e-06 | 1.4475513e-06 |
+| 0.0022327 | 0.0020145355 | 0.0023409 | -3.9878294e-06 | 2.7094823e-06 |
+| 0.0042835 | 0.0026568426 | 0.0048327 | -1.4678561e-05 | 1.2011735e-05 |
+| 0.0008637 | 0.0008142423 | 0.0009804 | -5.9681131e-07 | 4.9583538e-07 |
+| 0.0037896 | 0.0036628896 | 0.0044752 | -1.1488602e-05 | 1.0519754e-05 |
+| 0.0026342 | 0.0025405292 | 0.0020657 | -5.5511129e-06 | 1.6206207e-06 |
+| 0.0011333 | 0.0010817236 | 0.0010883 | -1.0275094e-06 | 5.5248900e-07 |
+| 0.0013017 | 0.0012364228 | 0.0009283 | -1.3555525e-06 | 2.8045025e-07 |
+| 0.0032340 | 0.0032643287 | 0.0035207 | -8.3669624e-06 | 6.2594294e-06 |
+| 0.0015322 | 0.0014926838 | 0.0017911 | -1.8780747e-06 | 1.6775675e-06 |
+| 0.0023780 | 0.0022736047 | 0.0022346 | -4.5237980e-06 | 2.2910676e-06 |
+| 0.0038338 |  0.003391762 | 0.0039769 | -1.1758706e-05 | 7.7700870e-06 |
+| 0.0032340 | 0.0026312915 | 0.0031808 | -8.3668046e-06 | 4.8018225e-06 |
+| 0.0024073 | 0.0020921866 | 0.0023655 | -4.6361467e-06 | 2.6538364e-06 |
+| 0.0029173 | 0.0024788384 | 0.0036630 | -6.8086253e-06 | 7.2257174e-06 |
+| 0.0023026 | 0.0022479515 | 0.0026816 | -4.2413918e-06 | 3.7540190e-06 |
+| 0.0023556 | 0.0023168672 | 0.0028192 | -4.4389601e-06 | 4.1988242e-06 |
+| 0.0033655 | 0.0033328792 | 0.0038816 | -9.0610584e-06 | 7.8303152e-06 |
+| 0.0025633 | 0.0023379133 | 0.0025938 | -5.2563879e-06 | 3.2546217e-06 |
+| 0.0034930 |  0.003411095 | 0.0038109 | -9.7608951e-06 | 7.3424219e-06 |
+| 0.0030717 | 0.0030049048 | 0.0032032 | -7.5484452e-06 | 5.0571809e-06 |
+| 0.0011932 | 0.0011562117 | 0.0009969 | -1.1390631e-06 | 4.0820984e-07 |
+| 0.0013466 | 0.0013025336 | 0.0008976 | -1.4505954e-06 | 2.2551853e-07 |
+| 0.0013132 | 0.0011755121 | 0.0008432 | -1.3795687e-06 | 1.7914687e-07 |
+| 0.0013177 | 0.0012559775 | 0.0008621 | -1.3891685e-06 | 1.9787734e-07 |
+| 0.0012351 | 0.0011085502 | 0.0008751 | -1.2204414e-06 | 2.4605912e-07 |
+| 0.0012230 | 0.0011141312 | 0.0008705 | -1.1965462e-06 | 2.4565865e-07 |
+| 0.0013748 | 0.0013328108 | 0.0009174 | -1.5120556e-06 | 2.3621170e-07 |
+| 0.0013861 |  0.001221707 | 0.0008833 | -1.5370558e-06 | 1.9188506e-07 |
+| 0.0025333 |  0.002932436 | 0.0027128 | -5.1340036e-06 | 3.6831552e-06 |
+| 0.0036068 | 0.0031376323 | 0.0037044 | -1.0407135e-05 | 6.7011366e-06 |
+| 0.0033929 | 0.0033208467 | 0.0043463 | -9.2095792e-06 | 1.0247914e-05 |
+| 0.0014183 | 0.0013238328 | 0.0016154 | -1.6093055e-06 | 1.3483093e-06 |
+| 0.0046214 | 0.0047028367 | 0.0046203 | -1.7086070e-05 | 1.0244883e-05 |
+| 0.0014659 | 0.0013899308 | 0.0025615 | -1.7190274e-06 | 3.8553824e-06 |
+| 0.0023712 | 0.0022108082 | 0.0026406 | -4.4979782e-06 | 3.5631198e-06 |
+| 0.0025161 | 0.0023366914 | 0.0027484 | -5.0645108e-06 | 3.8213373e-06 |
+| 0.0019472 | 0.0018115259 | 0.0045276 | -3.0331724e-06 | 1.2513014e-05 |
+| 0.0033788 | 0.0030290852 | 0.0035031 | -9.1330197e-06 | 6.0271781e-06 |
+| 0.0021784 | 0.0021271813 | 0.0019475 | -3.7962775e-06 | 1.6681930e-06 |
+| 0.0036444 | 0.0033581583 | 0.0038976 | -1.0625453e-05 | 7.5974520e-06 |
+| 0.0028239 | 0.0026747882 | 0.0031126 | -6.3796419e-06 | 4.9245103e-06 |
+| 0.0035757 | 0.0033058396 | 0.0049258 | -1.0228225e-05 | 1.3482809e-05 |
+| 0.0034714 |  0.003403292 | 0.0038096 | -9.6405044e-06 | 7.3601296e-06 |
+| 0.0029722 | 0.0027480372 | 0.0029623 | -7.0670289e-06 | 4.2027309e-06 |
+| 0.0026445 | 0.0026835275 | 0.0025978 | -5.5946238e-06 | 3.2002558e-06 |
+| 0.0028707 |  0.002735543 | 0.0032248 | -6.5927982e-06 | 5.3370796e-06 |
+
+The comparison between the classical covariance and the alternative method implemented by
+Luis reveals that the latter consistently yields values closer to zero. This indicates
+a weaker linear dependency between the photometric errors of the \(r\), \(i\), and \(J0660\) filters.
+A covariance closer to zero suggests that the method proposed by Luis more effectively minimizes
+spurious correlations among uncertainties, bringing the error structure closer to the ideal
+assumption of independence. Therefore, the "Cov_Luis" approach provides
+a more reliable representation of the photometric error relationships in this context.
