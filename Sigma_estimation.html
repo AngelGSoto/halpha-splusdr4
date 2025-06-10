@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-10 Tue 17:23 -->
+<!-- 2025-06-10 Tue 17:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rigorous Mathematical Proof of the Error Propagation Method in S-PLUS Hα-Excess Analysis</title>
@@ -269,22 +269,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9976472">1. Mathematical Derivation</a>
+<li><a href="#orge8d8eb5">1. Mathematical Derivation</a>
 <ul>
-<li><a href="#org027a58d">1.1. Variable Definitions</a></li>
-<li><a href="#org6c7e830">1.2. Derivation of the Ideal Method from First Principles</a>
+<li><a href="#org9514fd0">1.1. Variable Definitions</a></li>
+<li><a href="#org55a65e7">1.2. Derivation of the Ideal Method from First Principles</a>
 <ul>
-<li><a href="#org324de31">1.2.1. Definition of Residual</a></li>
-<li><a href="#orge42ada3">1.2.2. Error Propagation Formula</a></li>
-<li><a href="#org552eba6">1.2.3. Partial Derivatives</a></li>
-<li><a href="#org97e4cd0">1.2.4. Substitute Derivatives into Error Propagation</a></li>
+<li><a href="#org69c1b10">1.2.1. Definition of Residual</a></li>
+<li><a href="#orgadab8a7">1.2.2. Error Propagation Formula</a></li>
+<li><a href="#orgd3666d4">1.2.3. Partial Derivatives</a></li>
+<li><a href="#org6286341">1.2.4. Substitute Derivatives into Error Propagation</a></li>
 </ul>
 </li>
-<li><a href="#orgb21d7cc">1.3. Error Propagation Equations</a>
+<li><a href="#orgc5aa7ae">1.3. Error Propagation Equations</a>
 <ul>
-<li><a href="#orgb7a4bd6">1.3.1. Classical Method</a></li>
-<li><a href="#orgfe37b63">1.3.2. Luis's Method (Proposed)</a></li>
-<li><a href="#orge198f10">1.3.3. Simplified error estimate</a></li>
+<li><a href="#org1ed8171">1.3.1. Classical Method</a></li>
+<li><a href="#orgdf57b5b">1.3.2. Luis's Method (Proposed)</a></li>
+<li><a href="#orga05c4ee">1.3.3. Simplified error estimate</a></li>
 </ul>
 </li>
 </ul>
@@ -295,12 +295,12 @@ for the JavaScript code in this tag.
 
 
 
-<div id="outline-container-org9976472" class="outline-2">
-<h2 id="org9976472"><span class="section-number-2">1</span> Mathematical Derivation</h2>
+<div id="outline-container-orge8d8eb5" class="outline-2">
+<h2 id="orge8d8eb5"><span class="section-number-2">1</span> Mathematical Derivation</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org027a58d" class="outline-3">
-<h3 id="org027a58d"><span class="section-number-3">1.1</span> Variable Definitions</h3>
+<div id="outline-container-org9514fd0" class="outline-3">
+<h3 id="org9514fd0"><span class="section-number-3">1.1</span> Variable Definitions</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>\( m \): Slope of the stellar locus in the \((r - i)\) vs. \((r - J0660)\) diagram.</li>
@@ -311,12 +311,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org6c7e830" class="outline-3">
-<h3 id="org6c7e830"><span class="section-number-3">1.2</span> Derivation of the Ideal Method from First Principles</h3>
+<div id="outline-container-org55a65e7" class="outline-3">
+<h3 id="org55a65e7"><span class="section-number-3">1.2</span> Derivation of the Ideal Method from First Principles</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org324de31" class="outline-4">
-<h4 id="org324de31"><span class="section-number-4">1.2.1</span> Definition of Residual</h4>
+<div id="outline-container-org69c1b10" class="outline-4">
+<h4 id="org69c1b10"><span class="section-number-4">1.2.1</span> Definition of Residual</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 The residual between the observed and fitted colors is:
@@ -339,8 +339,8 @@ Simplifying:
 </div>
 </div>
 
-<div id="outline-container-orge42ada3" class="outline-4">
-<h4 id="orge42ada3"><span class="section-number-4">1.2.2</span> Error Propagation Formula</h4>
+<div id="outline-container-orgadab8a7" class="outline-4">
+<h4 id="orgadab8a7"><span class="section-number-4">1.2.2</span> Error Propagation Formula</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 The total uncertainty in the residual is:
@@ -352,8 +352,8 @@ where \( x = r, i, J0660 \).
 </div>
 </div>
 
-<div id="outline-container-org552eba6" class="outline-4">
-<h4 id="org552eba6"><span class="section-number-4">1.2.3</span> Partial Derivatives</h4>
+<div id="outline-container-orgd3666d4" class="outline-4">
+<h4 id="orgd3666d4"><span class="section-number-4">1.2.3</span> Partial Derivatives</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 \[
@@ -370,8 +370,8 @@ where \( x = r, i, J0660 \).
 </div>
 </div>
 
-<div id="outline-container-org97e4cd0" class="outline-4">
-<h4 id="org97e4cd0"><span class="section-number-4">1.2.4</span> Substitute Derivatives into Error Propagation</h4>
+<div id="outline-container-org6286341" class="outline-4">
+<h4 id="org6286341"><span class="section-number-4">1.2.4</span> Substitute Derivatives into Error Propagation</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <p>
 \[
@@ -385,12 +385,12 @@ where \( x = r, i, J0660 \).
 </div>
 </div>
 
-<div id="outline-container-orgb21d7cc" class="outline-3">
-<h3 id="orgb21d7cc"><span class="section-number-3">1.3</span> Error Propagation Equations</h3>
+<div id="outline-container-orgc5aa7ae" class="outline-3">
+<h3 id="orgc5aa7ae"><span class="section-number-3">1.3</span> Error Propagation Equations</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-orgb7a4bd6" class="outline-4">
-<h4 id="orgb7a4bd6"><span class="section-number-4">1.3.1</span> Classical Method</h4>
+<div id="outline-container-org1ed8171" class="outline-4">
+<h4 id="org1ed8171"><span class="section-number-4">1.3.1</span> Classical Method</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 Now, we try to writte the equation similar those used in Witham et al. (2206);
@@ -451,7 +451,7 @@ Go back to the individual error bands:
 Now we do some numerical examples. I note to the slope of the fits in the color-color diagram  in most of the case is between 0.35 - 0.4, used in this case 0.4 for the slope:
 </p>
 
-<table id="org4127feb" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org0d71911" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -773,35 +773,39 @@ Use this Python block to compute and render the table plus mean/median when expo
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgab7af7c">import numpy as np
+<pre class="src src-python" id="orgc43b518">import numpy as np
 
-# Header row
-header = ["e_r", "e_i", "e_J0660", "σ_ideal", "σ_classic", "Overestimation (%)"]
-new_table = []
+# Imprimir encabezado de tabla
+print("| e_r | e_i | e_J0660 | σ_ideal | σ_classic | Overestimation (%) |")
+print("|-")  # Separador de cabecera
+
 overest = []
 
-# Process each data row
-for sr_str, si_str, sj_str in data:
+# Procesar cada fila de datos
+for row in data:
+    sr_str, si_str, sj_str = row
     try:
 	sr = float(sr_str)
 	si = float(si_str)
 	sj = float(sj_str)
-	σ_ideal   = np.sqrt(sigma_s**2 + (1 - m)**2 * sr**2 + sj**2 + m**2 * si**2)
-	σ_classic = np.sqrt(sigma_s**2 + (sr**2 + sj**2) + m**2 * (sr**2 + si**2))
+
+	# Cálculos
+	σ_ideal = np.sqrt(sigma_s**2 + (1 - m)**2 * sr**2 + sj**2 + m**2 * si**2)
+	σ_classic = np.sqrt(sigma_s**2 + sr**2 + sj**2 + m**2 * (sr**2 + si**2))
 	pct = (σ_classic - σ_ideal) / σ_ideal * 100
-	new_table.append([f"{sr:.7f}", f"{si:.7f}", f"{sj:.7f}",
-			  f"{σ_ideal:.7f}", f"{σ_classic:.7f}", f"{pct:.2f}%"])
 	overest.append(pct)
-    except:
-	new_table.append([sr_str, si_str, sj_str, "Error", "Error", "Error"])
 
-# Add summary rows
-mean_pct   = np.mean(overest)
+	# Imprimir fila formateada
+	print(f"| {sr:.7f} | {si:.7f} | {sj:.7f} | {σ_ideal:.7f} | {σ_classic:.7f} | {pct:.2f}% |")
+    except Exception as e:
+	print(f"| Error | Error | Error | Error | Error | Error |")
+
+# Estadísticas finales
+mean_pct = np.mean(overest)
 median_pct = np.median(overest)
-new_table.append(["", "", "Mean", "", "", f"{mean_pct:.2f}%"])
-new_table.append(["", "", "Median", "", "", f"{median_pct:.2f}%"])
-
-return [header] + new_table
+print("|-")
+print(f"| | | Mean | | | {mean_pct:.2f}% |")
+print(f"| | | Median | | | {median_pct:.2f}% |")
 </pre>
 </div>
 
@@ -812,8 +816,8 @@ which is typical for the fit in the stellar locus color–color diagram of S-PLU
 </div>
 </div>
 
-<div id="outline-container-orgfe37b63" class="outline-4">
-<h4 id="orgfe37b63"><span class="section-number-4">1.3.2</span> Luis's Method (Proposed)</h4>
+<div id="outline-container-orgdf57b5b" class="outline-4">
+<h4 id="orgdf57b5b"><span class="section-number-4">1.3.2</span> Luis's Method (Proposed)</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
 See if I get a better apprximation on wich the covariance term contribute lees to the sigma value. Go back again to the ideal case:
@@ -876,8 +880,8 @@ The covariance term is: \(-m^2 \sigma_r^2 + (2m - m^2) \sigma_{J0660}^2\). There
 </div>
 </div>
 
-<div id="outline-container-orge198f10" class="outline-4">
-<h4 id="orge198f10"><span class="section-number-4">1.3.3</span> Simplified error estimate</h4>
+<div id="outline-container-orga05c4ee" class="outline-4">
+<h4 id="orga05c4ee"><span class="section-number-4">1.3.3</span> Simplified error estimate</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <p>
 By removing the covariance term, we keep only the color errors:
@@ -893,7 +897,7 @@ Contribution of the Removed Covariance Term
 
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc6afafb">import numpy as np
+<pre class="src src-python" id="org436f064">import numpy as np
 
 # Encabezado de la tabla
 print("| e_r | e_i | e_J0660 | σ_ideal | σ_luis | Overestimation (%) |")
@@ -930,87 +934,64 @@ The luis aproximation subestima the sigma in around -1.85%.
 </div>
 
 <ol class="org-ol">
-<li><a id="orge0fb6c4"></a>Classic versus Luis aproximation<br />
+<li><a id="org82367c9"></a>Classic versus Luis aproximation<br />
 <div class="outline-text-5" id="text-1-3-3-1">
 <p>
 Now Comparing Classic vs. Luis Overestimation
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgcfc32d9">import numpy as np
+<pre class="src src-python" id="org762011f">import numpy as np
 
-# Header row
-header = [
-    "e_r", "e_i", "e_J0660",
-    "σ_ideal", "σ_classic", "σ_luis",
-    "Classic overestimation (%)", "Luis overestimation (%)"
-]
+# Imprimir encabezado de la tabla
+print("| e_r | e_i | e_J0660 | σ_ideal | σ_classic | σ_luis | Classic overestimation (%) | Luis overestimation (%) |")
+print("|-")
 
-new_table = []
 overest_classic = []
 overest_luis = []
 
-# Process each data row
-for sr_str, si_str, sj_str in data:
+# Procesar cada fila de datos
+for row in data:
+    sr_str, si_str, sj_str = row
     try:
 	sr = float(sr_str)
 	si = float(si_str)
 	sj = float(sj_str)
 
-	σ_ideal   = np.sqrt(
-	    sigma_s**2 +
-	    (1 - m)**2 * sr**2 +
-	    sj**2 +
-	    m**2 * si**2
-	)
-	σ_classic = np.sqrt(
-	    sigma_s**2 +
-	    (sr**2 + sj**2) +
-	    m**2 * (sr**2 + si**2)
-	)
-	σ_luis    = np.sqrt(
-	    sigma_s**2 +
-	    (1 - m)**2 * (sr**2 + sj**2) +
-	    m**2 * (sr**2 + si**2)
-	)
+	# Cálculos de sigmas
+	σ_ideal = np.sqrt(sigma_s**2 + (1 - m)**2 * sr**2 + sj**2 + m**2 * si**2)
+	σ_classic = np.sqrt(sigma_s**2 + sr**2 + sj**2 + m**2 * (sr**2 + si**2))
+	σ_luis = np.sqrt(sigma_s**2 + (1 - m)**2 * (sr**2 + sj**2) + m**2 * (sr**2 + si**2))
 
+	# Cálculos de porcentajes
 	pct_classic = (σ_classic - σ_ideal) / σ_ideal * 100
-	pct_luis    = (σ_luis    - σ_ideal) / σ_ideal * 100
+	pct_luis = (σ_luis - σ_ideal) / σ_ideal * 100
 
-	new_table.append([
-	    f"{sr:.7f}", f"{si:.7f}", f"{sj:.7f}",
-	    f"{σ_ideal:.7f}", f"{σ_classic:.7f}", f"{σ_luis:.7f}",
-	    f"{pct_classic:.2f}%", f"{pct_luis:.2f}%"
-	])
 	overest_classic.append(pct_classic)
 	overest_luis.append(pct_luis)
 
-    except:
-	new_table.append([sr_str, si_str, sj_str] + ["Error"] * 5)
+	# Imprimir fila
+	print(f"| {sr:.7f} | {si:.7f} | {sj:.7f} | {σ_ideal:.7f} | {σ_classic:.7f} | {σ_luis:.7f} | {pct_classic:.2f}% | {pct_luis:.2f}% |")
+    except Exception as e:
+	print(f"| Error | Error | Error | Error | Error | Error | Error | Error |")
 
-# Compute summary statistics
-mean_c   = np.mean(overest_classic)
+# Calcular estadísticas
+mean_c = np.mean(overest_classic)
 median_c = np.median(overest_classic)
-min_c    = np.min(overest_classic)
-max_c    = np.max(overest_classic)
+min_c = np.min(overest_classic)
+max_c = np.max(overest_classic)
 
-mean_l   = np.mean(overest_luis)
+mean_l = np.mean(overest_luis)
 median_l = np.median(overest_luis)
-min_l    = np.min(overest_luis)
-max_l    = np.max(overest_luis)
+min_l = np.min(overest_luis)
+max_l = np.max(overest_luis)
 
-# Append summary rows
-new_table.append(["", "", "Mean", "", "", "",
-		  f"{mean_c:.2f}%", f"{mean_l:.2f}%"])
-new_table.append(["", "", "Median", "", "", "",
-		  f"{median_c:.2f}%", f"{median_l:.2f}%"])
-new_table.append(["", "", "Min", "", "", "",
-		  f"{min_c:.2f}%", f"{min_l:.2f}%"])
-new_table.append(["", "", "Max", "", "", "",
-		  f"{max_c:.2f}%", f"{max_l:.2f}%"])
-
-# Return full table
-return [header] + new_table
+# Imprimir estadísticas
+print("|-")
+print(f"| | | Mean | | | | {mean_c:.2f}% | {mean_l:.2f}% |")
+print(f"| | | Median | | | | {median_c:.2f}% | {median_l:.2f}% |")
+print(f"| | | Min | | | | {min_c:.2f}% | {min_l:.2f}% |")
+print(f"| | | Max | | | | {max_c:.2f}% | {max_l:.2f}% |")
 </pre>
 </div>
 
@@ -1023,34 +1004,27 @@ Now estimate the value of the covariance term for both case:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orge4311d4">import numpy as np
+<pre class="src src-python" id="orgd098d6f">import numpy as np
 
-# Header for the output table
-header = ["e_r", "e_i", "e_J0660", "Cov_classic", "Cov_Luis"]
-output = []
+# Imprimir encabezado de la tabla
+print("| e_r | e_i | e_J0660 | Cov_classic | Cov_Luis |")
+print("|-")
 
-# Compute covariance terms for each row
-for sr_str, si_str, sj_str in data:
+# Procesar cada fila de datos
+for row in data:
+    sr_str, si_str, sj_str = row
     try:
 	sr = float(sr_str)
 	sj = float(sj_str)
-	# Classical covariance term
+
+	# Cálculos de covarianza
 	cov_classic = -2 * m * sr**2
-	# Luis covariance term
 	cov_luis = -m**2 * sr**2 + (2 * m - m**2) * sj**2
 
-	output.append([
-	    f"{sr:.7f}",
-	    si_str,
-	    f"{sj:.7f}",
-	    f"{cov_classic:.7e}",
-	    f"{cov_luis:.7e}"
-	])
-    except Exception:
-	output.append([sr_str, si_str, sj_str, "Error", "Error"])
-
-# Return header + computed rows
-return [header] + output
+	# Imprimir fila formateada
+	print(f"| {sr:.7f} | {si_str} | {sj:.7f} | {cov_classic:.7e} | {cov_luis:.7e} |")
+    except Exception as e:
+	print(f"| Error | Error | Error | Error | Error |")
 </pre>
 </div>
 
@@ -1072,7 +1046,7 @@ a more reliable representation of the photometric error relationships in this co
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Luis A. Gutiérrez Soto et al.</p>
-<p class="date">Created: 2025-06-10 Tue 17:23</p>
+<p class="date">Created: 2025-06-10 Tue 17:37</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
