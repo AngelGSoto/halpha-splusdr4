@@ -396,7 +396,7 @@ The luis aproximation subestima the sigma in around -1.85%.
 Now Comparing Classic vs. Luis Overestimation
 
 #+name: calculate-overestimation-compare
-#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results value table
+#+begin_src python :var data=error-table :var m=0.4 :var sigma_s=0.01 :results value table return table 
 import numpy as np
 
 # Header row
